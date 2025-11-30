@@ -1,0 +1,25 @@
+:{$PORT:80} {
+	root * /srv
+	file_server
+	encode gzip
+
+	# SPA fallback - serve index.html for non-existing files
+	try_files {path} /index.html
+
+	# Cache static assets
+	@static {
+		path *.html *.css *.js *.svg *.png *.jpg *.jpeg *.gif *.ico *.woff *.woff2
+	}
+	header @static Cache-Control "public, max-age=3600"
+
+	# Security headers
+	header {
+		X-Content-Type-Options "nosniff"
+		X-Frame-Options "DENY"
+		Referrer-Policy "strict-origin-when-cross-origin"
+	}
+
+	log {
+		output stdout
+	}
+}
