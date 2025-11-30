@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Typography - Dutchy Design System</title>
+  <meta name="description" content="Typography system for Dutchy Design System. Space Grotesk for display, Inter for body text, JetBrains Mono for code.">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            border: 'hsl(25 20% 88%)',
+            input: 'hsl(25 20% 88%)',
+            ring: 'hsl(25 95% 53%)',
+            background: 'hsl(40 30% 97%)',
+            foreground: 'hsl(25 20% 6%)',
+            primary: {
+              DEFAULT: 'hsl(25 95% 53%)',
+              foreground: 'hsl(0 0% 100%)',
+            },
+            secondary: {
+              DEFAULT: 'hsl(25 20% 92%)',
+              foreground: 'hsl(25 25% 15%)',
+            },
+            muted: {
+              DEFAULT: 'hsl(40 20% 94%)',
+              foreground: 'hsl(25 15% 40%)',
+            },
+          },
+          fontFamily: {
+            display: ['Space Grotesk', 'sans-serif'],
+            sans: ['Inter', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          },
+          borderRadius: {
+            DEFAULT: '0',
+            sm: '0',
+            md: '0',
+            lg: '0',
+            xl: '0',
+          },
+        },
+      },
+    }
+  </script>
+  <style>
+    * { border-radius: 0 !important; }
+  </style>
+</head>
+<body class="bg-background text-foreground font-sans">
+  <!-- Header -->
+  <header class="w-full border-b-4 border-primary bg-background sticky top-0 z-50">
+    <div class="container mx-auto px-4 md:px-6 h-20 flex items-center justify-between">
+      <a href="index.html" class="flex items-center gap-3">
+        <div class="bg-primary text-primary-foreground w-10 h-10 flex items-center justify-center font-display font-bold text-xl">
+          D.
+        </div>
+        <span class="font-display font-bold text-2xl tracking-tighter uppercase">
+          Dutchy
+        </span>
+      </a>
+      <nav class="hidden md:flex items-center gap-8">
+        <a href="typography.html" class="text-sm font-bold uppercase tracking-widest text-primary underline decoration-4 underline-offset-4">Typography</a>
+        <a href="colors.html" class="text-sm font-bold uppercase tracking-widest hover:text-primary transition-colors hover:underline decoration-4 underline-offset-4">Colors</a>
+        <a href="components.html" class="text-sm font-bold uppercase tracking-widest hover:text-primary transition-colors hover:underline decoration-4 underline-offset-4">Components</a>
+        <a href="patterns.html" class="text-sm font-bold uppercase tracking-widest hover:text-primary transition-colors hover:underline decoration-4 underline-offset-4">Patterns</a>
+        <a href="https://github.com/skitsanos/dutchy-design-system" class="bg-primary text-primary-foreground font-bold uppercase tracking-wide px-6 py-3 hover:bg-primary/90 transition-colors flex items-center gap-2">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>
+          GitHub
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Page Header -->
+  <section class="border-b border-border py-16 md:py-20">
+    <div class="container mx-auto px-4 md:px-6">
+      <div class="max-w-3xl">
+        <div class="inline-block bg-primary px-4 py-2 text-primary-foreground font-mono text-xs font-bold uppercase tracking-widest mb-6">
+          Foundation
+        </div>
+        <h1 class="font-display text-5xl md:text-7xl font-bold uppercase leading-[0.9] tracking-tighter mb-6">
+          Typography
+        </h1>
+        <p class="text-xl text-muted-foreground leading-relaxed">
+          The Dutchy type system uses three carefully selected font families: Space Grotesk for bold display text, Inter for readable body copy, and JetBrains Mono for code.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Font Families -->
+  <section class="py-16 border-b border-border">
+    <div class="container mx-auto px-4 md:px-6">
+      <h2 class="font-display text-3xl font-bold uppercase tracking-tighter mb-12">
+        Font Families
+      </h2>
+
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-0.5 bg-border">
+        <!-- Display Font -->
+        <div class="bg-background p-8">
+          <div class="flex items-center gap-3 mb-6">
+            <span class="w-3 h-3 bg-primary"></span>
+            <span class="font-mono text-xs uppercase tracking-widest text-muted-foreground">Display</span>
+          </div>
+          <p class="font-display text-5xl font-bold uppercase tracking-tighter mb-4">
+            Space Grotesk
+          </p>
+          <p class="text-muted-foreground mb-6">
+            Used for headlines, titles, and any text that needs to make an impact. Bold weights only.
+          </p>
+          <div class="font-mono text-xs bg-foreground text-background p-4">
+            font-family: 'Space Grotesk'
+          </div>
+        </div>
+
+        <!-- Body Font -->
+        <div class="bg-background p-8">
+          <div class="flex items-center gap-3 mb-6">
+            <span class="w-3 h-3 bg-secondary"></span>
+            <span class="font-mono text-xs uppercase tracking-widest text-muted-foreground">Body</span>
+          </div>
+          <p class="font-sans text-5xl font-semibold mb-4">
+            Inter
+          </p>
+          <p class="text-muted-foreground mb-6">
+            The workhorse font for body text, UI elements, and anything that needs to be highly readable.
+          </p>
+          <div class="font-mono text-xs bg-foreground text-background p-4">
+            font-family: 'Inter'
+          </div>
+        </div>
+
+        <!-- Mono Font -->
+        <div class="bg-background p-8">
+          <div class="flex items-center gap-3 mb-6">
+            <span class="w-3 h-3 bg-foreground"></span>
+            <span class="font-mono text-xs uppercase tracking-widest text-muted-foreground">Mono</span>
+          </div>
+          <p class="font-mono text-4xl font-bold mb-4">
+            JetBrains Mono
+          </p>
+          <p class="text-muted-foreground mb-6">
+            For code blocks, technical content, labels, and anywhere monospace adds clarity.
+          </p>
+          <div class="font-mono text-xs bg-foreground text-background p-4">
+            font-family: 'JetBrains Mono'
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Type Scale -->
+  <section class="py-16 border-b border-border bg-muted/30">
+    <div class="container mx-auto px-4 md:px-6">
+      <h2 class="font-display text-3xl font-bold uppercase tracking-tighter mb-4">
+        Type Scale
+      </h2>
+      <p class="text-muted-foreground mb-12 max-w-2xl">
+        A carefully crafted scale that provides clear visual hierarchy. Display sizes use Space Grotesk, body sizes use Inter.
+      </p>
+
+      <div class="space-y-0">
+        <!-- Display Sizes -->
+        <div class="border-l-4 border-primary bg-background p-6 mb-4">
+          <div class="flex items-baseline gap-4 mb-2">
+            <span class="font-mono text-xs text-primary uppercase tracking-wider w-24 shrink-0">8xl / 96px</span>
+            <span class="font-display text-8xl font-bold uppercase tracking-tighter leading-none">Display</span>
+          </div>
+        </div>
+
+        <div class="border-l-4 border-primary bg-background p-6 mb-4">
+          <div class="flex items-baseline gap-4 mb-2">
+            <span class="font-mono text-xs text-primary uppercase tracking-wider w-24 shrink-0">7xl / 72px</span>
+            <span class="font-display text-7xl font-bold uppercase tracking-tighter leading-none">Headline</span>
+          </div>
+        </div>
+
+        <div class="border-l-4 border-primary bg-background p-6 mb-4">
+          <div class="flex items-baseline gap-4 mb-2">
+            <span class="font-mono text-xs text-primary uppercase tracking-wider w-24 shrink-0">6xl / 60px</span>
+            <span class="font-display text-6xl font-bold uppercase tracking-tighter leading-none">Title Large</span>
+          </div>
+        </div>
+
+        <div class="border-l-4 border-border bg-background p-6 mb-4">
+          <div class="flex items-baseline gap-4 mb-2">
+            <span class="font-mono text-xs text-muted-foreground uppercase tracking-wider w-24 shrink-0">5xl / 48px</span>
+            <span class="font-display text-5xl font-bold uppercase tracking-tighter leading-none">Title</span>
+          </div>
+        </div>
+
+        <div class="border-l-4 border-border bg-background p-6 mb-4">
+          <div class="flex items-baseline gap-4 mb-2">
+            <span class="font-mono text-xs text-muted-foreground uppercase tracking-wider w-24 shrink-0">4xl / 36px</span>
+            <span class="font-display text-4xl font-bold uppercase tracking-tight leading-none">Section</span>
+          </div>
+        </div>
+
+        <div class="border-l-4 border-border bg-background p-6 mb-4">
+          <div class="flex items-baseline gap-4 mb-2">
+            <span class="font-mono text-xs text-muted-foreground uppercase tracking-wider w-24 shrink-0">3xl / 30px</span>
+            <span class="font-display text-3xl font-bold uppercase tracking-tight">Heading</span>
+          </div>
+        </div>
+
+        <div class="border-l-4 border-border bg-background p-6 mb-4">
+          <div class="flex items-baseline gap-4 mb-2">
+            <span class="font-mono text-xs text-muted-foreground uppercase tracking-wider w-24 shrink-0">2xl / 24px</span>
+            <span class="font-display text-2xl font-bold uppercase">Subheading</span>
+          </div>
+        </div>
+
+        <div class="border-l-4 border-border bg-background p-6 mb-4">
+          <div class="flex items-baseline gap-4 mb-2">
+            <span class="font-mono text-xs text-muted-foreground uppercase tracking-wider w-24 shrink-0">xl / 20px</span>
+            <span class="text-xl font-medium">Lead paragraph text for introductions</span>
+          </div>
+        </div>
+
+        <div class="border-l-4 border-border bg-background p-6 mb-4">
+          <div class="flex items-baseline gap-4 mb-2">
+            <span class="font-mono text-xs text-muted-foreground uppercase tracking-wider w-24 shrink-0">base / 16px</span>
+            <span class="text-base">Body text for paragraphs and general content</span>
+          </div>
+        </div>
+
+        <div class="border-l-4 border-border bg-background p-6 mb-4">
+          <div class="flex items-baseline gap-4 mb-2">
+            <span class="font-mono text-xs text-muted-foreground uppercase tracking-wider w-24 shrink-0">sm / 14px</span>
+            <span class="text-sm">Small text for captions and secondary content</span>
+          </div>
+        </div>
+
+        <div class="border-l-4 border-border bg-background p-6">
+          <div class="flex items-baseline gap-4 mb-2">
+            <span class="font-mono text-xs text-muted-foreground uppercase tracking-wider w-24 shrink-0">xs / 12px</span>
+            <span class="text-xs uppercase tracking-widest">Labels, tags, and micro text</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Typography Styles -->
+  <section class="py-16 border-b border-border">
+    <div class="container mx-auto px-4 md:px-6">
+      <h2 class="font-display text-3xl font-bold uppercase tracking-tighter mb-12">
+        Text Styles
+      </h2>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <!-- Display Style -->
+        <div class="bg-foreground text-background p-8">
+          <span class="font-mono text-xs text-primary uppercase tracking-widest">Display Style</span>
+          <p class="font-display text-4xl font-bold uppercase tracking-tighter mt-4 mb-6">
+            Bold Uppercase<br>Tight Tracking
+          </p>
+          <p class="text-background/70 text-sm">
+            Used for hero headlines and major section titles. Always uppercase with tight letter-spacing.
+          </p>
+        </div>
+
+        <!-- Heading Style -->
+        <div class="bg-background border-4 border-border p-8">
+          <span class="font-mono text-xs text-primary uppercase tracking-widest">Heading Style</span>
+          <p class="font-display text-2xl font-bold uppercase tracking-wide mt-4 mb-6">
+            Section Headers
+          </p>
+          <p class="text-muted-foreground text-sm">
+            For section titles and card headers. Bold weight with wider tracking.
+          </p>
+        </div>
+
+        <!-- Body Style -->
+        <div class="bg-background border-4 border-border p-8">
+          <span class="font-mono text-xs text-primary uppercase tracking-widest">Body Style</span>
+          <p class="text-base mt-4 mb-6 leading-relaxed">
+            Body text uses Inter at regular weight with relaxed line height for optimal readability. This creates comfortable reading for longer content blocks.
+          </p>
+          <p class="text-muted-foreground text-sm">
+            Default for paragraphs and general content.
+          </p>
+        </div>
+
+        <!-- Label Style -->
+        <div class="bg-muted p-8">
+          <span class="font-mono text-xs text-primary uppercase tracking-widest">Label Style</span>
+          <p class="font-mono text-xs uppercase tracking-widest mt-4 mb-6">
+            Monospace • Uppercase • Wide Tracking
+          </p>
+          <p class="text-muted-foreground text-sm">
+            For tags, badges, metadata, and technical labels.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sample Content -->
+  <section class="py-16 border-b border-border bg-muted/30">
+    <div class="container mx-auto px-4 md:px-6">
+      <h2 class="font-display text-3xl font-bold uppercase tracking-tighter mb-12">
+        Sample Article
+      </h2>
+
+      <div class="max-w-3xl bg-background p-8 md:p-12 border-l-4 border-primary">
+        <span class="font-mono text-xs text-primary uppercase tracking-widest">Design Philosophy</span>
+
+        <h1 class="font-display text-4xl md:text-5xl font-bold uppercase tracking-tighter mt-4 mb-6">
+          The Dutch Approach to Design
+        </h1>
+
+        <p class="text-xl text-muted-foreground mb-8 leading-relaxed">
+          Dutch design is characterized by its bold simplicity, structural clarity, and functional beauty. It rejects unnecessary ornamentation in favor of honest expression.
+        </p>
+
+        <h2 class="font-display text-2xl font-bold uppercase tracking-wide mb-4">
+          Core Principles
+        </h2>
+
+        <p class="text-base leading-relaxed mb-6">
+          The foundation of Dutch design lies in its commitment to clarity and purpose. Every element must justify its existence. This philosophy extends from architecture to graphic design, creating a cohesive visual language that speaks through structure rather than decoration.
+        </p>
+
+        <p class="text-base leading-relaxed mb-6">
+          Sharp corners and clean edges define the aesthetic. The deliberate absence of rounded corners creates a bold, architectural feel that demands attention without shouting. It's confident design that knows its worth.
+        </p>
+
+        <h3 class="font-display text-xl font-bold uppercase mb-3">
+          Color as Structure
+        </h3>
+
+        <p class="text-base leading-relaxed mb-6">
+          Colors in Dutch design serve structural purposes. The warm orange primary creates focal points, while the neutral palette provides a stable foundation. Each color has a role, a purpose, a place in the hierarchy.
+        </p>
+
+        <blockquote class="border-l-4 border-primary pl-6 my-8">
+          <p class="text-xl italic text-muted-foreground">
+            "Good design is as little design as possible. Less, but better."
+          </p>
+          <cite class="font-mono text-xs uppercase tracking-widest mt-2 block">
+            — Dieter Rams
+          </cite>
+        </blockquote>
+
+        <p class="text-base leading-relaxed">
+          This philosophy permeates every aspect of the Dutchy Design System. From typography choices to spacing scales, each decision reinforces the core values of bold simplicity and structural integrity.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Code Example -->
+  <section class="py-16">
+    <div class="container mx-auto px-4 md:px-6">
+      <h2 class="font-display text-3xl font-bold uppercase tracking-tighter mb-12">
+        Implementation
+      </h2>
+
+      <div class="bg-foreground text-background p-6 md:p-8 font-mono text-sm overflow-x-auto">
+        <pre><code><span class="text-muted-foreground">/* Tailwind Config */</span>
+fontFamily: {
+  <span class="text-primary">display</span>: ['Space Grotesk', 'sans-serif'],
+  <span class="text-primary">sans</span>: ['Inter', 'sans-serif'],
+  <span class="text-primary">mono</span>: ['JetBrains Mono', 'monospace'],
+}
+
+<span class="text-muted-foreground">/* Usage */</span>
+&lt;h1 class="<span class="text-primary">font-display</span> text-6xl font-bold uppercase tracking-tighter"&gt;
+  Display Heading
+&lt;/h1&gt;
+
+&lt;p class="<span class="text-primary">font-sans</span> text-base leading-relaxed"&gt;
+  Body paragraph text
+&lt;/p&gt;
+
+&lt;code class="<span class="text-primary">font-mono</span> text-sm"&gt;
+  Code snippet
+&lt;/code&gt;</code></pre>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-foreground text-background border-t-8 border-primary pt-20 pb-12">
+    <div class="container mx-auto px-4 md:px-6">
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-12 mb-20">
+        <div class="md:col-span-4 space-y-6">
+          <div class="w-16 h-16 bg-primary flex items-center justify-center">
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-primary-foreground"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+          </div>
+          <h2 class="font-display text-4xl font-bold uppercase tracking-tighter leading-none">
+            Dutchy<br>Design.
+          </h2>
+        </div>
+
+        <div class="md:col-span-2 md:col-start-7">
+          <h4 class="font-display font-bold uppercase tracking-widest mb-6 text-primary">Foundations</h4>
+          <ul class="space-y-4 font-medium">
+            <li><a href="typography.html" class="hover:text-primary transition-colors">Typography</a></li>
+            <li><a href="colors.html" class="hover:text-primary transition-colors">Colors</a></li>
+          </ul>
+        </div>
+
+        <div class="md:col-span-2">
+          <h4 class="font-display font-bold uppercase tracking-widest mb-6 text-primary">Components</h4>
+          <ul class="space-y-4 font-medium">
+            <li><a href="components.html" class="hover:text-primary transition-colors">Buttons</a></li>
+            <li><a href="components.html" class="hover:text-primary transition-colors">Forms</a></li>
+            <li><a href="components.html" class="hover:text-primary transition-colors">Cards</a></li>
+          </ul>
+        </div>
+
+        <div class="md:col-span-2">
+          <h4 class="font-display font-bold uppercase tracking-widest mb-6 text-primary">Patterns</h4>
+          <ul class="space-y-4 font-medium">
+            <li><a href="patterns.html" class="hover:text-primary transition-colors">Hero</a></li>
+            <li><a href="patterns.html" class="hover:text-primary transition-colors">Navigation</a></li>
+            <li><a href="patterns.html" class="hover:text-primary transition-colors">Footer</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="border-t border-background/20 pt-8 flex flex-col md:flex-row justify-between items-center gap-6">
+        <p class="font-mono text-xs opacity-60 uppercase tracking-widest">
+          &copy; 2025 Dutchy Design System. Open Source under MIT License.
+        </p>
+        <div class="flex gap-6">
+          <a href="https://github.com/skitsanos/dutchy-design-system" class="w-8 h-8 bg-background text-foreground flex items-center justify-center hover:bg-primary hover:text-primary-foreground transition-colors" aria-label="GitHub">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

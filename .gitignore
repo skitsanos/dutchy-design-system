@@ -1,0 +1,15 @@
+.idea/
+.vscode/
+.claude/
+
+.DS_Store
+Thumbs.db
+
+# Node.js
+node_modules/
+dist/
+build/
+.env
+
+CLAUDE.md
+

@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shopping Cart - Dutchy Design System</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <!-- TailwindCSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            display: ['Space Grotesk', 'sans-serif'],
+            body: ['Inter', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          },
+          colors: {
+            primary: {
+              DEFAULT: 'hsl(25 95% 53%)',
+              foreground: 'hsl(0 0% 100%)',
+            },
+            background: 'hsl(0 0% 100%)',
+            foreground: 'hsl(0 0% 4%)',
+            muted: {
+              DEFAULT: 'hsl(0 0% 96%)',
+              foreground: 'hsl(0 0% 45%)',
+            },
+            border: 'hsl(0 0% 90%)',
+            destructive: {
+              DEFAULT: 'hsl(0 84% 50%)',
+              foreground: 'hsl(0 0% 100%)',
+            },
+          },
+          borderRadius: {
+            none: '0',
+          },
+        },
+      },
+    }
+  </script>
+
+  <style>
+    * {
+      border-radius: 0 !important;
+    }
+  </style>
+</head>
+<body class="font-body bg-background text-foreground">
+  <!-- Header -->
+  <header class="border-b-4 border-primary">
+    <div class="container mx-auto px-4 md:px-6">
+      <div class="flex items-center justify-between h-20">
+        <!-- Logo -->
+        <a href="#" class="font-display text-2xl font-bold uppercase tracking-tight">
+          Shop<span class="text-primary">.</span>
+        </a>
+
+        <!-- Navigation -->
+        <nav class="hidden md:flex items-center gap-8">
+          <a href="#" class="text-sm font-bold uppercase tracking-widest text-muted-foreground hover:text-foreground transition-colors">
+            Products
+          </a>
+          <a href="#" class="text-sm font-bold uppercase tracking-widest text-muted-foreground hover:text-foreground transition-colors">
+            Categories
+          </a>
+          <a href="#" class="text-sm font-bold uppercase tracking-widest text-muted-foreground hover:text-foreground transition-colors">
+            Sale
+          </a>
+        </nav>
+
+        <!-- Cart Icon -->
+        <a href="#" class="relative p-2">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path>
+          </svg>
+          <span class="absolute -top-1 -right-1 w-5 h-5 bg-primary text-primary-foreground text-xs font-bold flex items-center justify-center">
+            3
+          </span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main class="py-12">
+    <div class="container mx-auto px-4 md:px-6">
+      <!-- Page Title -->
+      <div class="mb-12">
+        <h1 class="font-display text-4xl md:text-5xl font-bold uppercase tracking-tighter mb-4">
+          Your Cart
+        </h1>
+        <div class="h-2 w-24 bg-primary"></div>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <!-- Cart Items -->
+        <div class="lg:col-span-2">
+          <!-- Item 1 -->
+          <div class="border-b-2 border-border py-8 first:pt-0">
+            <div class="flex gap-6">
+              <!-- Product Image -->
+              <div class="w-32 h-32 bg-muted shrink-0">
+                <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=200" alt="Product" class="w-full h-full object-cover" />
+              </div>
+
+              <!-- Product Details -->
+              <div class="flex-1">
+                <div class="flex justify-between gap-4">
+                  <div>
+                    <h3 class="font-display text-lg font-bold uppercase">Premium Watch</h3>
+                    <p class="text-muted-foreground text-sm mt-1">Silver / 42mm</p>
+                  </div>
+                  <p class="font-display text-xl font-bold">$299.00</p>
+                </div>
+
+                <div class="flex items-center justify-between mt-6">
+                  <!-- Quantity -->
+                  <div class="flex items-center border-2 border-border">
+                    <button class="w-10 h-10 flex items-center justify-center hover:bg-muted transition-colors">
+                      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12H4"></path>
+                      </svg>
+                    </button>
+                    <span class="w-12 h-10 flex items-center justify-center font-bold border-x-2 border-border">1</span>
+                    <button class="w-10 h-10 flex items-center justify-center hover:bg-muted transition-colors">
+                      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
+                      </svg>
+                    </button>
+                  </div>
+
+                  <!-- Remove -->
+                  <button class="text-muted-foreground hover:text-destructive transition-colors text-sm font-bold uppercase tracking-wide">
+                    Remove
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Item 2 -->
+          <div class="border-b-2 border-border py-8">
+            <div class="flex gap-6">
+              <div class="w-32 h-32 bg-muted shrink-0">
+                <img src="https://images.unsplash.com/photo-1585386959984-a4155224a1ad?w=200" alt="Product" class="w-full h-full object-cover" />
+              </div>
+
+              <div class="flex-1">
+                <div class="flex justify-between gap-4">
+                  <div>
+                    <h3 class="font-display text-lg font-bold uppercase">Leather Wallet</h3>
+                    <p class="text-muted-foreground text-sm mt-1">Brown / Bifold</p>
+                  </div>
+                  <p class="font-display text-xl font-bold">$89.00</p>
+                </div>
+
+                <div class="flex items-center justify-between mt-6">
+                  <div class="flex items-center border-2 border-border">
+                    <button class="w-10 h-10 flex items-center justify-center hover:bg-muted transition-colors">
+                      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12H4"></path>
+                      </svg>
+                    </button>
+                    <span class="w-12 h-10 flex items-center justify-center font-bold border-x-2 border-border">2</span>
+                    <button class="w-10 h-10 flex items-center justify-center hover:bg-muted transition-colors">
+                      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
+                      </svg>
+                    </button>
+                  </div>
+                  <button class="text-muted-foreground hover:text-destructive transition-colors text-sm font-bold uppercase tracking-wide">
+                    Remove
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Item 3 -->
+          <div class="py-8">
+            <div class="flex gap-6">
+              <div class="w-32 h-32 bg-muted shrink-0">
+                <img src="https://images.unsplash.com/photo-1572635196237-14b3f281503f?w=200" alt="Product" class="w-full h-full object-cover" />
+              </div>
+
+              <div class="flex-1">
+                <div class="flex justify-between gap-4">
+                  <div>
+                    <h3 class="font-display text-lg font-bold uppercase">Sunglasses</h3>
+                    <p class="text-muted-foreground text-sm mt-1">Black / Classic</p>
+                  </div>
+                  <p class="font-display text-xl font-bold">$149.00</p>
+                </div>
+
+                <div class="flex items-center justify-between mt-6">
+                  <div class="flex items-center border-2 border-border">
+                    <button class="w-10 h-10 flex items-center justify-center hover:bg-muted transition-colors">
+                      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12H4"></path>
+                      </svg>
+                    </button>
+                    <span class="w-12 h-10 flex items-center justify-center font-bold border-x-2 border-border">1</span>
+                    <button class="w-10 h-10 flex items-center justify-center hover:bg-muted transition-colors">
+                      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
+                      </svg>
+                    </button>
+                  </div>
+                  <button class="text-muted-foreground hover:text-destructive transition-colors text-sm font-bold uppercase tracking-wide">
+                    Remove
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Order Summary -->
+        <div class="lg:col-span-1">
+          <div class="bg-muted p-8">
+            <h2 class="font-display text-xl font-bold uppercase mb-8">Order Summary</h2>
+
+            <!-- Summary Lines -->
+            <div class="space-y-4 mb-8">
+              <div class="flex justify-between">
+                <span class="text-muted-foreground">Subtotal</span>
+                <span class="font-medium">$626.00</span>
+              </div>
+              <div class="flex justify-between">
+                <span class="text-muted-foreground">Shipping</span>
+                <span class="font-medium">$15.00</span>
+              </div>
+              <div class="flex justify-between">
+                <span class="text-muted-foreground">Tax</span>
+                <span class="font-medium">$50.08</span>
+              </div>
+            </div>
+
+            <!-- Divider -->
+            <div class="border-t-2 border-border pt-4 mb-8">
+              <div class="flex justify-between">
+                <span class="font-display text-lg font-bold uppercase">Total</span>
+                <span class="font-display text-2xl font-bold">$691.08</span>
+              </div>
+            </div>
+
+            <!-- Promo Code -->
+            <div class="mb-8">
+              <label class="block text-xs font-bold uppercase tracking-wider mb-2">Promo Code</label>
+              <div class="flex">
+                <input
+                  type="text"
+                  placeholder="Enter code"
+                  class="flex-1 border-2 border-border px-4 py-3 focus:border-foreground focus:outline-none transition-colors"
+                />
+                <button class="bg-foreground text-background px-6 font-bold uppercase tracking-wide text-sm shrink-0">
+                  Apply
+                </button>
+              </div>
+            </div>
+
+            <!-- Checkout Button -->
+            <button class="w-full bg-primary text-primary-foreground py-4 font-bold uppercase tracking-wide hover:bg-primary/90 transition-colors">
+              Proceed to Checkout
+            </button>
+
+            <!-- Continue Shopping -->
+            <a href="#" class="block text-center mt-6 text-muted-foreground hover:text-foreground transition-colors text-sm font-bold uppercase tracking-wide">
+              Continue Shopping
+            </a>
+          </div>
+
+          <!-- Trust Badges -->
+          <div class="mt-6 grid grid-cols-2 gap-4">
+            <div class="flex items-center gap-3 p-4 border-2 border-border">
+              <svg class="w-6 h-6 text-primary shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>
+              </svg>
+              <span class="text-xs font-bold uppercase tracking-wide">Secure Checkout</span>
+            </div>
+            <div class="flex items-center gap-3 p-4 border-2 border-border">
+              <svg class="w-6 h-6 text-primary shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"></path>
+              </svg>
+              <span class="text-xs font-bold uppercase tracking-wide">All Cards Accepted</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Related Products -->
+      <section class="mt-20">
+        <div class="mb-12">
+          <h2 class="font-display text-3xl font-bold uppercase tracking-tighter mb-4">
+            You May Also Like
+          </h2>
+          <div class="h-2 w-24 bg-primary"></div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-0.5 bg-border">
+          <!-- Product 1 -->
+          <div class="bg-background">
+            <a href="#" class="block">
+              <div class="aspect-square bg-muted">
+                <img src="https://images.unsplash.com/photo-1491553895911-0055uj2f6dc4?w=400" alt="Product" class="w-full h-full object-cover" />
+              </div>
+              <div class="p-6">
+                <h3 class="font-display text-lg font-bold uppercase hover:text-primary transition-colors">Backpack</h3>
+                <p class="font-bold mt-2">$199.00</p>
+              </div>
+            </a>
+          </div>
+
+          <!-- Product 2 -->
+          <div class="bg-background">
+            <a href="#" class="block">
+              <div class="aspect-square bg-muted">
+                <img src="https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=400" alt="Product" class="w-full h-full object-cover" />
+              </div>
+              <div class="p-6">
+                <h3 class="font-display text-lg font-bold uppercase hover:text-primary transition-colors">Belt</h3>
+                <p class="font-bold mt-2">$59.00</p>
+              </div>
+            </a>
+          </div>
+
+          <!-- Product 3 -->
+          <div class="bg-background">
+            <a href="#" class="block">
+              <div class="aspect-square bg-muted">
+                <img src="https://images.unsplash.com/photo-1560343090-f0409e92791a?w=400" alt="Product" class="w-full h-full object-cover" />
+              </div>
+              <div class="p-6">
+                <h3 class="font-display text-lg font-bold uppercase hover:text-primary transition-colors">Sneakers</h3>
+                <p class="font-bold mt-2">$179.00</p>
+              </div>
+            </a>
+          </div>
+
+          <!-- Product 4 -->
+          <div class="bg-background">
+            <a href="#" class="block">
+              <div class="aspect-square bg-muted">
+                <img src="https://images.unsplash.com/photo-1591561954557-26941169b49e?w=400" alt="Product" class="w-full h-full object-cover" />
+              </div>
+              <div class="p-6">
+                <h3 class="font-display text-lg font-bold uppercase hover:text-primary transition-colors">Cap</h3>
+                <p class="font-bold mt-2">$35.00</p>
+              </div>
+            </a>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-foreground text-background border-t-8 border-primary mt-20">
+    <div class="container mx-auto px-4 md:px-6 py-16">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-12">
+        <!-- Brand -->
+        <div>
+          <a href="#" class="font-display text-2xl font-bold uppercase tracking-tight inline-block mb-6">
+            Shop<span class="text-primary">.</span>
+          </a>
+          <p class="text-background/70 text-sm">
+            Premium products with bold design.
+          </p>
+        </div>
+
+        <!-- Shop -->
+        <div>
+          <h3 class="font-bold uppercase tracking-wider text-sm mb-6">Shop</h3>
+          <ul class="space-y-3">
+            <li><a href="#" class="text-background/70 hover:text-background text-sm">All Products</a></li>
+            <li><a href="#" class="text-background/70 hover:text-background text-sm">New Arrivals</a></li>
+            <li><a href="#" class="text-background/70 hover:text-background text-sm">Sale</a></li>
+          </ul>
+        </div>
+
+        <!-- Support -->
+        <div>
+          <h3 class="font-bold uppercase tracking-wider text-sm mb-6">Support</h3>
+          <ul class="space-y-3">
+            <li><a href="#" class="text-background/70 hover:text-background text-sm">Contact</a></li>
+            <li><a href="#" class="text-background/70 hover:text-background text-sm">Shipping</a></li>
+            <li><a href="#" class="text-background/70 hover:text-background text-sm">Returns</a></li>
+          </ul>
+        </div>
+
+        <!-- Legal -->
+        <div>
+          <h3 class="font-bold uppercase tracking-wider text-sm mb-6">Legal</h3>
+          <ul class="space-y-3">
+            <li><a href="#" class="text-background/70 hover:text-background text-sm">Privacy</a></li>
+            <li><a href="#" class="text-background/70 hover:text-background text-sm">Terms</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="border-t border-background/10 py-6">
+      <div class="container mx-auto px-4 md:px-6">
+        <p class="text-background/60 text-sm text-center">
+          &copy; 2025 Shop. All rights reserved.
+        </p>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

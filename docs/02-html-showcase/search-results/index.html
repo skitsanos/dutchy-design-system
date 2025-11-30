@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Search Results - Dutchy Design System Showcase</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            border: 'hsl(25 20% 88%)',
+            input: 'hsl(25 20% 88%)',
+            ring: 'hsl(25 95% 53%)',
+            background: 'hsl(40 30% 97%)',
+            foreground: 'hsl(25 25% 10%)',
+            primary: {
+              DEFAULT: 'hsl(25 95% 53%)',
+              foreground: 'hsl(0 0% 100%)',
+            },
+            secondary: {
+              DEFAULT: 'hsl(25 20% 92%)',
+              foreground: 'hsl(25 25% 15%)',
+            },
+            muted: {
+              DEFAULT: 'hsl(40 20% 94%)',
+              foreground: 'hsl(25 15% 40%)',
+            },
+          },
+          fontFamily: {
+            display: ['Space Grotesk', 'sans-serif'],
+            sans: ['Inter', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          },
+          borderRadius: {
+            DEFAULT: '0',
+            sm: '0',
+            md: '0',
+            lg: '0',
+            xl: '0',
+          },
+        },
+      },
+    }
+  </script>
+  <style>
+    * { border-radius: 0 !important; }
+  </style>
+</head>
+<body class="bg-background text-foreground font-sans">
+  <!-- Header -->
+  <header class="w-full border-b-4 border-primary bg-background">
+    <div class="container mx-auto px-4 md:px-6 h-20 flex items-center justify-between">
+      <a href="#" class="flex items-center gap-3">
+        <div class="bg-primary text-primary-foreground w-10 h-10 flex items-center justify-center font-display font-bold text-xl">
+          D.
+        </div>
+        <span class="font-display font-bold text-2xl tracking-tighter uppercase">
+          Dutchy
+        </span>
+      </a>
+      <nav class="hidden md:flex items-center gap-10">
+        <a href="#" class="text-sm font-bold uppercase tracking-widest text-primary underline decoration-4 underline-offset-4">Components</a>
+        <a href="#" class="text-sm font-bold uppercase tracking-widest hover:text-primary transition-colors hover:underline decoration-4 underline-offset-4">Categories</a>
+        <a href="#" class="text-sm font-bold uppercase tracking-widest hover:text-primary transition-colors hover:underline decoration-4 underline-offset-4">Docs</a>
+        <a href="#" class="text-sm font-bold uppercase tracking-widest hover:text-primary transition-colors hover:underline decoration-4 underline-offset-4">Examples</a>
+        <a href="#" class="bg-primary text-primary-foreground font-bold uppercase tracking-wide px-8 py-3 hover:bg-primary/90 transition-colors">Get Started</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Search Hero -->
+  <section class="border-b border-border bg-muted/30 py-12">
+    <div class="container mx-auto px-4 md:px-6">
+      <div class="max-w-3xl mx-auto">
+        <h1 class="font-display text-3xl md:text-4xl font-bold uppercase tracking-tighter mb-6 text-center">
+          Search Components
+        </h1>
+        <!-- Search Box -->
+        <div class="flex gap-0 bg-background border-4 border-foreground">
+          <div class="flex items-center px-4">
+            <!-- Lucide Search Icon -->
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-muted-foreground"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+          </div>
+          <input
+            type="text"
+            placeholder="Search for components..."
+            value="button"
+            class="flex-1 py-4 px-2 bg-transparent font-sans text-lg focus:outline-none"
+          />
+          <button class="bg-primary text-primary-foreground px-8 py-4 font-bold uppercase tracking-wide hover:bg-primary/90 transition-colors">
+            Search
+          </button>
+        </div>
+        <p class="text-center mt-4 text-muted-foreground">
+          <span class="font-bold text-foreground">12 results</span> found for "button"
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Results Section -->
+  <main class="py-12">
+    <div class="container mx-auto px-4 md:px-6">
+      <div class="grid grid-cols-1 lg:grid-cols-4 gap-8">
+
+        <!-- Filters Sidebar -->
+        <aside class="lg:col-span-1">
+          <div class="sticky top-8 space-y-8">
+            <!-- Category Filter -->
+            <div>
+              <h3 class="font-display font-bold uppercase tracking-wider mb-4 text-sm border-b-2 border-primary pb-2">Category</h3>
+              <div class="space-y-3">
+                <label class="flex items-center gap-3 cursor-pointer group">
+                  <input type="checkbox" checked class="w-5 h-5 border-2 border-foreground accent-primary">
+                  <span class="text-sm group-hover:text-primary transition-colors">UI Components</span>
+                  <span class="ml-auto font-mono text-xs text-muted-foreground">8</span>
+                </label>
+                <label class="flex items-center gap-3 cursor-pointer group">
+                  <input type="checkbox" class="w-5 h-5 border-2 border-foreground accent-primary">
+                  <span class="text-sm group-hover:text-primary transition-colors">Forms</span>
+                  <span class="ml-auto font-mono text-xs text-muted-foreground">2</span>
+                </label>
+                <label class="flex items-center gap-3 cursor-pointer group">
+                  <input type="checkbox" class="w-5 h-5 border-2 border-foreground accent-primary">
+                  <span class="text-sm group-hover:text-primary transition-colors">Navigation</span>
+                  <span class="ml-auto font-mono text-xs text-muted-foreground">1</span>
+                </label>
+                <label class="flex items-center gap-3 cursor-pointer group">
+                  <input type="checkbox" class="w-5 h-5 border-2 border-foreground accent-primary">
+                  <span class="text-sm group-hover:text-primary transition-colors">Feedback</span>
+                  <span class="ml-auto font-mono text-xs text-muted-foreground">1</span>
+                </label>
+              </div>
+            </div>
+
+            <!-- Status Filter -->
+            <div>
+              <h3 class="font-display font-bold uppercase tracking-wider mb-4 text-sm border-b-2 border-primary pb-2">Status</h3>
+              <div class="space-y-3">
+                <label class="flex items-center gap-3 cursor-pointer group">
+                  <input type="checkbox" checked class="w-5 h-5 border-2 border-foreground accent-primary">
+                  <span class="text-sm group-hover:text-primary transition-colors">Stable</span>
+                  <span class="ml-auto font-mono text-xs text-muted-foreground">10</span>
+                </label>
+                <label class="flex items-center gap-3 cursor-pointer group">
+                  <input type="checkbox" class="w-5 h-5 border-2 border-foreground accent-primary">
+                  <span class="text-sm group-hover:text-primary transition-colors">Beta</span>
+                  <span class="ml-auto font-mono text-xs text-muted-foreground">2</span>
+                </label>
+                <label class="flex items-center gap-3 cursor-pointer group">
+                  <input type="checkbox" class="w-5 h-5 border-2 border-foreground accent-primary">
+                  <span class="text-sm group-hover:text-primary transition-colors">Deprecated</span>
+                  <span class="ml-auto font-mono text-xs text-muted-foreground">0</span>
+                </label>
+              </div>
+            </div>
+
+            <!-- Clear Filters -->
+            <button class="w-full py-3 border-2 border-foreground text-foreground font-bold uppercase tracking-wider text-sm hover:bg-foreground hover:text-background transition-colors">
+              Clear All Filters
+            </button>
+          </div>
+        </aside>
+
+        <!-- Results Grid -->
+        <div class="lg:col-span-3">
+          <!-- Sort Bar -->
+          <div class="flex items-center justify-between mb-8 pb-4 border-b border-border">
+            <div class="flex items-center gap-4">
+              <span class="font-mono text-sm text-muted-foreground uppercase tracking-wider">Sort by:</span>
+              <select class="bg-background border-2 border-border px-4 py-2 font-mono text-sm focus:outline-none focus:border-primary">
+                <option>Relevance</option>
+                <option>Name A-Z</option>
+                <option>Name Z-A</option>
+                <option>Recently Updated</option>
+              </select>
+            </div>
+            <div class="flex gap-2">
+              <button class="p-2 bg-foreground text-background" aria-label="Grid view">
+                <!-- Lucide Grid Icon -->
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="7" height="7" x="3" y="3"/><rect width="7" height="7" x="14" y="3"/><rect width="7" height="7" x="14" y="14"/><rect width="7" height="7" x="3" y="14"/></svg>
+              </button>
+              <button class="p-2 bg-muted text-muted-foreground hover:bg-border transition-colors" aria-label="List view">
+                <!-- Lucide List Icon -->
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="8" x2="21" y1="6" y2="6"/><line x1="8" x2="21" y1="12" y2="12"/><line x1="8" x2="21" y1="18" y2="18"/><line x1="3" x2="3.01" y1="6" y2="6"/><line x1="3" x2="3.01" y1="12" y2="12"/><line x1="3" x2="3.01" y1="18" y2="18"/></svg>
+              </button>
+            </div>
+          </div>
+
+          <!-- Results Cards -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-0.5 bg-border">
+            <!-- Result Card 1 -->
+            <a href="#" class="bg-background p-6 group hover:bg-muted/50 transition-colors">
+              <div class="flex items-start justify-between mb-4">
+                <div class="w-12 h-12 bg-primary/10 flex items-center justify-center">
+                  <!-- Lucide MousePointerClick Icon -->
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-primary"><path d="m9 9 5 12 1.8-5.2L21 14Z"/><path d="M7.2 2.2 8 5.1"/><path d="m5.1 8-2.9-.8"/><path d="M14 4.1 12 6"/><path d="m6 12-1.9 2"/></svg>
+                </div>
+                <span class="px-2 py-1 bg-green-100 text-green-800 font-mono text-xs font-bold uppercase">Stable</span>
+              </div>
+              <h3 class="font-display text-xl font-bold uppercase mb-2 group-hover:text-primary transition-colors">
+                <mark class="bg-primary/20 text-foreground">Button</mark>
+              </h3>
+              <p class="text-sm text-muted-foreground mb-4">Primary interactive element for triggering actions and submissions.</p>
+              <div class="flex items-center justify-between">
+                <span class="font-mono text-xs text-muted-foreground">UI Components</span>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-muted-foreground group-hover:text-primary group-hover:translate-x-1 transition-all"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+              </div>
+            </a>
+
+            <!-- Result Card 2 -->
+            <a href="#" class="bg-background p-6 group hover:bg-muted/50 transition-colors">
+              <div class="flex items-start justify-between mb-4">
+                <div class="w-12 h-12 bg-primary/10 flex items-center justify-center">
+                  <!-- Lucide SquareStack Icon -->
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-primary"><path d="M4 10c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h4c1.1 0 2 .9 2 2"/><path d="M10 16c-1.1 0-2-.9-2-2v-4c0-1.1.9-2 2-2h4c1.1 0 2 .9 2 2"/><rect width="8" height="8" x="14" y="14" rx="2"/></svg>
+                </div>
+                <span class="px-2 py-1 bg-green-100 text-green-800 font-mono text-xs font-bold uppercase">Stable</span>
+              </div>
+              <h3 class="font-display text-xl font-bold uppercase mb-2 group-hover:text-primary transition-colors">
+                <mark class="bg-primary/20 text-foreground">Button</mark> Group
+              </h3>
+              <p class="text-sm text-muted-foreground mb-4">Group multiple buttons together with consistent spacing and styling.</p>
+              <div class="flex items-center justify-between">
+                <span class="font-mono text-xs text-muted-foreground">UI Components</span>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-muted-foreground group-hover:text-primary group-hover:translate-x-1 transition-all"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+              </div>
+            </a>
+
+            <!-- Result Card 3 -->
+            <a href="#" class="bg-background p-6 group hover:bg-muted/50 transition-colors">
+              <div class="flex items-start justify-between mb-4">
+                <div class="w-12 h-12 bg-primary/10 flex items-center justify-center">
+                  <!-- Lucide ImageIcon -->
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-primary"><rect width="18" height="18" x="3" y="3" rx="2" ry="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/></svg>
+                </div>
+                <span class="px-2 py-1 bg-green-100 text-green-800 font-mono text-xs font-bold uppercase">Stable</span>
+              </div>
+              <h3 class="font-display text-xl font-bold uppercase mb-2 group-hover:text-primary transition-colors">
+                Icon <mark class="bg-primary/20 text-foreground">Button</mark>
+              </h3>
+              <p class="text-sm text-muted-foreground mb-4">Compact button variant that displays only an icon without text.</p>
+              <div class="flex items-center justify-between">
+                <span class="font-mono text-xs text-muted-foreground">UI Components</span>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-muted-foreground group-hover:text-primary group-hover:translate-x-1 transition-all"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+              </div>
+            </a>
+
+            <!-- Result Card 4 -->
+            <a href="#" class="bg-background p-6 group hover:bg-muted/50 transition-colors">
+              <div class="flex items-start justify-between mb-4">
+                <div class="w-12 h-12 bg-primary/10 flex items-center justify-center">
+                  <!-- Lucide ToggleLeft Icon -->
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-primary"><rect width="20" height="12" x="2" y="6" rx="6" ry="6"/><circle cx="8" cy="12" r="2"/></svg>
+                </div>
+                <span class="px-2 py-1 bg-green-100 text-green-800 font-mono text-xs font-bold uppercase">Stable</span>
+              </div>
+              <h3 class="font-display text-xl font-bold uppercase mb-2 group-hover:text-primary transition-colors">
+                Toggle <mark class="bg-primary/20 text-foreground">Button</mark>
+              </h3>
+              <p class="text-sm text-muted-foreground mb-4">A two-state button that can be toggled on or off.</p>
+              <div class="flex items-center justify-between">
+                <span class="font-mono text-xs text-muted-foreground">Forms</span>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-muted-foreground group-hover:text-primary group-hover:translate-x-1 transition-all"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+              </div>
+            </a>
+
+            <!-- Result Card 5 -->
+            <a href="#" class="bg-background p-6 group hover:bg-muted/50 transition-colors">
+              <div class="flex items-start justify-between mb-4">
+                <div class="w-12 h-12 bg-primary/10 flex items-center justify-center">
+                  <!-- Lucide Upload Icon -->
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-primary"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" x2="12" y1="3" y2="15"/></svg>
+                </div>
+                <span class="px-2 py-1 bg-blue-100 text-blue-800 font-mono text-xs font-bold uppercase">Beta</span>
+              </div>
+              <h3 class="font-display text-xl font-bold uppercase mb-2 group-hover:text-primary transition-colors">
+                File <mark class="bg-primary/20 text-foreground">Button</mark>
+              </h3>
+              <p class="text-sm text-muted-foreground mb-4">Styled file input disguised as a button for upload actions.</p>
+              <div class="flex items-center justify-between">
+                <span class="font-mono text-xs text-muted-foreground">Forms</span>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-muted-foreground group-hover:text-primary group-hover:translate-x-1 transition-all"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+              </div>
+            </a>
+
+            <!-- Result Card 6 -->
+            <a href="#" class="bg-background p-6 group hover:bg-muted/50 transition-colors">
+              <div class="flex items-start justify-between mb-4">
+                <div class="w-12 h-12 bg-primary/10 flex items-center justify-center">
+                  <!-- Lucide Loader Icon -->
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-primary"><path d="M12 2v4"/><path d="m16.2 7.8 2.9-2.9"/><path d="M18 12h4"/><path d="m16.2 16.2 2.9 2.9"/><path d="M12 18v4"/><path d="m4.9 19.1 2.9-2.9"/><path d="M2 12h4"/><path d="m4.9 4.9 2.9 2.9"/></svg>
+                </div>
+                <span class="px-2 py-1 bg-green-100 text-green-800 font-mono text-xs font-bold uppercase">Stable</span>
+              </div>
+              <h3 class="font-display text-xl font-bold uppercase mb-2 group-hover:text-primary transition-colors">
+                Loading <mark class="bg-primary/20 text-foreground">Button</mark>
+              </h3>
+              <p class="text-sm text-muted-foreground mb-4">Button with built-in loading state and spinner indicator.</p>
+              <div class="flex items-center justify-between">
+                <span class="font-mono text-xs text-muted-foreground">UI Components</span>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-muted-foreground group-hover:text-primary group-hover:translate-x-1 transition-all"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+              </div>
+            </a>
+          </div>
+
+          <!-- Pagination -->
+          <div class="mt-12 flex items-center justify-center gap-2">
+            <button class="w-10 h-10 border-2 border-border text-muted-foreground hover:border-foreground hover:text-foreground transition-colors flex items-center justify-center" disabled>
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+            </button>
+            <button class="w-10 h-10 bg-primary text-primary-foreground font-bold">1</button>
+            <button class="w-10 h-10 border-2 border-border hover:border-foreground transition-colors font-bold">2</button>
+            <button class="w-10 h-10 border-2 border-border text-foreground hover:border-foreground transition-colors flex items-center justify-center">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-foreground text-background border-t-8 border-primary pt-20 pb-12">
+    <div class="container mx-auto px-4 md:px-6">
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-12 mb-20">
+        <div class="md:col-span-4 space-y-6">
+          <div class="w-16 h-16 bg-primary flex items-center justify-center">
+            <!-- Lucide Hexagon Icon -->
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-primary-foreground"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+          </div>
+          <h2 class="font-display text-4xl font-bold uppercase tracking-tighter leading-none">
+            Dutchy<br>Design.
+          </h2>
+        </div>
+
+        <div class="md:col-span-2 md:col-start-7">
+          <h4 class="font-display font-bold uppercase tracking-widest mb-6 text-primary">Resources</h4>
+          <ul class="space-y-4 font-medium">
+            <li><a href="#" class="hover:text-primary transition-colors">Documentation</a></li>
+            <li><a href="#" class="hover:text-primary transition-colors">Components</a></li>
+            <li><a href="#" class="hover:text-primary transition-colors">Examples</a></li>
+          </ul>
+        </div>
+
+        <div class="md:col-span-2">
+          <h4 class="font-display font-bold uppercase tracking-widest mb-6 text-primary">Community</h4>
+          <ul class="space-y-4 font-medium">
+            <li><a href="#" class="hover:text-primary transition-colors">GitHub</a></li>
+            <li><a href="#" class="hover:text-primary transition-colors">Discord</a></li>
+            <li><a href="#" class="hover:text-primary transition-colors">Twitter</a></li>
+          </ul>
+        </div>
+
+        <div class="md:col-span-2">
+          <h4 class="font-display font-bold uppercase tracking-widest mb-6 text-primary">Legal</h4>
+          <ul class="space-y-4 font-medium">
+            <li><a href="#" class="hover:text-primary transition-colors">License</a></li>
+            <li><a href="#" class="hover:text-primary transition-colors">Privacy</a></li>
+            <li><a href="#" class="hover:text-primary transition-colors">Terms</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="border-t border-background/20 pt-8 flex flex-col md:flex-row justify-between items-center gap-6">
+        <p class="font-mono text-xs opacity-60 uppercase tracking-widest">
+          &copy; 2025 Dutchy Design System. Open Source under MIT License.
+        </p>
+        <div class="flex gap-6">
+          <a href="#" class="w-8 h-8 bg-background text-foreground flex items-center justify-center hover:bg-primary hover:text-primary-foreground transition-colors" aria-label="GitHub">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>
+          </a>
+          <a href="#" class="w-8 h-8 bg-background text-foreground flex items-center justify-center hover:bg-primary hover:text-primary-foreground transition-colors" aria-label="Twitter">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

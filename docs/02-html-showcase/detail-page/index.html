@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Detail Page - Dutchy Design System Showcase</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            border: 'hsl(25 20% 88%)',
+            input: 'hsl(25 20% 88%)',
+            ring: 'hsl(25 95% 53%)',
+            background: 'hsl(40 30% 97%)',
+            foreground: 'hsl(25 25% 10%)',
+            primary: {
+              DEFAULT: 'hsl(25 95% 53%)',
+              foreground: 'hsl(0 0% 100%)',
+            },
+            secondary: {
+              DEFAULT: 'hsl(25 20% 92%)',
+              foreground: 'hsl(25 25% 15%)',
+            },
+            muted: {
+              DEFAULT: 'hsl(40 20% 94%)',
+              foreground: 'hsl(25 15% 40%)',
+            },
+            destructive: {
+              DEFAULT: 'hsl(0 84% 60%)',
+              foreground: 'hsl(0 0% 100%)',
+            },
+            success: {
+              DEFAULT: 'hsl(142 76% 36%)',
+              foreground: 'hsl(0 0% 100%)',
+            },
+          },
+          fontFamily: {
+            display: ['Space Grotesk', 'sans-serif'],
+            sans: ['Inter', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          },
+          borderRadius: {
+            DEFAULT: '0',
+            sm: '0',
+            md: '0',
+            lg: '0',
+            xl: '0',
+          },
+        },
+      },
+    }
+  </script>
+  <style>
+    * { border-radius: 0 !important; }
+  </style>
+</head>
+<body class="bg-background text-foreground font-sans">
+  <!-- Header -->
+  <header class="w-full border-b-4 border-primary bg-background">
+    <div class="container mx-auto px-4 md:px-6 h-20 flex items-center justify-between">
+      <a href="#" class="flex items-center gap-3">
+        <div class="bg-primary text-primary-foreground w-10 h-10 flex items-center justify-center font-display font-bold text-xl">
+          D.
+        </div>
+        <span class="font-display font-bold text-2xl tracking-tighter uppercase">
+          Dutchy
+        </span>
+      </a>
+      <nav class="hidden md:flex items-center gap-10">
+        <a href="#" class="text-sm font-bold uppercase tracking-widest hover:text-primary transition-colors hover:underline decoration-4 underline-offset-4">Components</a>
+        <a href="#" class="text-sm font-bold uppercase tracking-widest hover:text-primary transition-colors hover:underline decoration-4 underline-offset-4">Categories</a>
+        <a href="#" class="text-sm font-bold uppercase tracking-widest text-primary underline decoration-4 underline-offset-4">Docs</a>
+        <a href="#" class="text-sm font-bold uppercase tracking-widest hover:text-primary transition-colors hover:underline decoration-4 underline-offset-4">Examples</a>
+        <a href="#" class="bg-primary text-primary-foreground font-bold uppercase tracking-wide px-8 py-3 hover:bg-primary/90 transition-colors">Get Started</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Breadcrumb -->
+  <div class="border-b border-border bg-muted/30">
+    <div class="container mx-auto px-4 md:px-6 py-4">
+      <nav class="flex items-center gap-2 text-sm font-mono">
+        <a href="#" class="text-muted-foreground hover:text-primary transition-colors">Home</a>
+        <span class="text-muted-foreground">/</span>
+        <a href="#" class="text-muted-foreground hover:text-primary transition-colors">Components</a>
+        <span class="text-muted-foreground">/</span>
+        <a href="#" class="text-muted-foreground hover:text-primary transition-colors">UI</a>
+        <span class="text-muted-foreground">/</span>
+        <span class="text-foreground font-bold">Button</span>
+      </nav>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <main class="py-12 md:py-16">
+    <div class="container mx-auto px-4 md:px-6">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+
+        <!-- Main Content Area -->
+        <div class="lg:col-span-8">
+          <!-- Header -->
+          <div class="mb-12">
+            <div class="flex items-center gap-4 mb-6">
+              <span class="inline-block bg-success text-success-foreground px-3 py-1 font-mono text-xs font-bold uppercase tracking-widest">
+                Stable
+              </span>
+              <span class="font-mono text-sm text-muted-foreground">v2.1.0</span>
+            </div>
+            <h1 class="font-display text-5xl md:text-6xl font-bold uppercase leading-[0.9] tracking-tighter mb-6">
+              Button
+            </h1>
+            <p class="text-xl text-muted-foreground max-w-2xl leading-relaxed">
+              Buttons trigger actions or navigation. Use them for form submissions,
+              dialogs, and primary user interactions.
+            </p>
+          </div>
+
+          <!-- Preview Section -->
+          <section class="mb-16">
+            <div class="flex items-center justify-between mb-6">
+              <h2 class="font-display text-2xl font-bold uppercase tracking-tight">Preview</h2>
+              <div class="flex gap-2">
+                <button class="px-4 py-2 bg-foreground text-background font-mono text-xs font-bold uppercase tracking-wider">
+                  Preview
+                </button>
+                <button class="px-4 py-2 bg-muted text-muted-foreground font-mono text-xs font-bold uppercase tracking-wider hover:bg-border transition-colors">
+                  Code
+                </button>
+              </div>
+            </div>
+            <div class="border-4 border-border bg-white p-12">
+              <div class="flex flex-wrap gap-4 items-center justify-center">
+                <!-- Primary Button -->
+                <button class="bg-primary text-primary-foreground px-6 py-3 font-bold uppercase tracking-wide hover:bg-primary/90 transition-colors">
+                  Primary
+                </button>
+                <!-- Secondary Button -->
+                <button class="bg-secondary text-secondary-foreground px-6 py-3 font-bold uppercase tracking-wide hover:bg-secondary/80 transition-colors border-2 border-border">
+                  Secondary
+                </button>
+                <!-- Outline Button -->
+                <button class="bg-transparent text-foreground px-6 py-3 font-bold uppercase tracking-wide border-2 border-foreground hover:bg-foreground hover:text-background transition-colors">
+                  Outline
+                </button>
+                <!-- Ghost Button -->
+                <button class="bg-transparent text-foreground px-6 py-3 font-bold uppercase tracking-wide hover:bg-muted transition-colors">
+                  Ghost
+                </button>
+                <!-- Destructive Button -->
+                <button class="bg-destructive text-destructive-foreground px-6 py-3 font-bold uppercase tracking-wide hover:bg-destructive/90 transition-colors">
+                  Destructive
+                </button>
+              </div>
+            </div>
+          </section>
+
+          <!-- Installation Section -->
+          <section class="mb-16">
+            <h2 class="font-display text-2xl font-bold uppercase tracking-tight mb-6">Installation</h2>
+            <div class="bg-foreground text-background p-6 font-mono text-sm overflow-x-auto">
+              <pre><code>npm install @dutchy/button</code></pre>
+            </div>
+          </section>
+
+          <!-- Usage Section -->
+          <section class="mb-16">
+            <h2 class="font-display text-2xl font-bold uppercase tracking-tight mb-6">Usage</h2>
+            <div class="bg-foreground text-background p-6 font-mono text-sm overflow-x-auto">
+              <pre><code class="text-primary/80">import</code> <code>{ Button }</code> <code class="text-primary/80">from</code> <code class="text-success">'@dutchy/button'</code>
+
+<code class="text-primary/80">export default function</code> <code>Example() {</code>
+  <code class="text-primary/80">return</code> <code>(</code>
+    <code class="text-muted-foreground">&lt;Button variant="primary"&gt;</code>
+      <code>Click me</code>
+    <code class="text-muted-foreground">&lt;/Button&gt;</code>
+  <code>)</code>
+<code>}</code></pre>
+            </div>
+          </section>
+
+          <!-- Props Table -->
+          <section class="mb-16">
+            <h2 class="font-display text-2xl font-bold uppercase tracking-tight mb-6">Props</h2>
+            <div class="border border-border overflow-hidden">
+              <table class="w-full">
+                <thead class="bg-muted">
+                  <tr>
+                    <th class="text-left p-4 font-display font-bold uppercase text-sm tracking-wider border-b-2 border-border">Prop</th>
+                    <th class="text-left p-4 font-display font-bold uppercase text-sm tracking-wider border-b-2 border-border">Type</th>
+                    <th class="text-left p-4 font-display font-bold uppercase text-sm tracking-wider border-b-2 border-border">Default</th>
+                    <th class="text-left p-4 font-display font-bold uppercase text-sm tracking-wider border-b-2 border-border">Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr class="border-b border-border">
+                    <td class="p-4 font-mono text-sm text-primary">variant</td>
+                    <td class="p-4 font-mono text-sm text-muted-foreground">string</td>
+                    <td class="p-4 font-mono text-sm">"primary"</td>
+                    <td class="p-4 text-sm text-muted-foreground">Visual style variant</td>
+                  </tr>
+                  <tr class="border-b border-border bg-muted/30">
+                    <td class="p-4 font-mono text-sm text-primary">size</td>
+                    <td class="p-4 font-mono text-sm text-muted-foreground">string</td>
+                    <td class="p-4 font-mono text-sm">"md"</td>
+                    <td class="p-4 text-sm text-muted-foreground">Button size (sm, md, lg)</td>
+                  </tr>
+                  <tr class="border-b border-border">
+                    <td class="p-4 font-mono text-sm text-primary">disabled</td>
+                    <td class="p-4 font-mono text-sm text-muted-foreground">boolean</td>
+                    <td class="p-4 font-mono text-sm">false</td>
+                    <td class="p-4 text-sm text-muted-foreground">Disable the button</td>
+                  </tr>
+                  <tr class="border-b border-border bg-muted/30">
+                    <td class="p-4 font-mono text-sm text-primary">loading</td>
+                    <td class="p-4 font-mono text-sm text-muted-foreground">boolean</td>
+                    <td class="p-4 font-mono text-sm">false</td>
+                    <td class="p-4 text-sm text-muted-foreground">Show loading spinner</td>
+                  </tr>
+                  <tr>
+                    <td class="p-4 font-mono text-sm text-primary">onClick</td>
+                    <td class="p-4 font-mono text-sm text-muted-foreground">function</td>
+                    <td class="p-4 font-mono text-sm">-</td>
+                    <td class="p-4 text-sm text-muted-foreground">Click handler function</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          <!-- Variants Section -->
+          <section class="mb-16">
+            <h2 class="font-display text-2xl font-bold uppercase tracking-tight mb-6">Variants</h2>
+            <div class="grid gap-6">
+              <!-- Primary -->
+              <div class="border-l-4 border-primary bg-background p-6">
+                <h3 class="font-display font-bold uppercase mb-2">Primary</h3>
+                <p class="text-sm text-muted-foreground mb-4">Use for primary actions and main CTAs.</p>
+                <button class="bg-primary text-primary-foreground px-6 py-3 font-bold uppercase tracking-wide hover:bg-primary/90 transition-colors">
+                  Primary Button
+                </button>
+              </div>
+              <!-- Secondary -->
+              <div class="border-l-4 border-secondary bg-background p-6">
+                <h3 class="font-display font-bold uppercase mb-2">Secondary</h3>
+                <p class="text-sm text-muted-foreground mb-4">Use for secondary actions that complement primary buttons.</p>
+                <button class="bg-secondary text-secondary-foreground px-6 py-3 font-bold uppercase tracking-wide hover:bg-secondary/80 transition-colors border-2 border-border">
+                  Secondary Button
+                </button>
+              </div>
+              <!-- Destructive -->
+              <div class="border-l-4 border-destructive bg-background p-6">
+                <h3 class="font-display font-bold uppercase mb-2">Destructive</h3>
+                <p class="text-sm text-muted-foreground mb-4">Use for destructive actions like delete or remove.</p>
+                <button class="bg-destructive text-destructive-foreground px-6 py-3 font-bold uppercase tracking-wide hover:bg-destructive/90 transition-colors">
+                  Delete Item
+                </button>
+              </div>
+            </div>
+          </section>
+        </div>
+
+        <!-- Sidebar -->
+        <aside class="lg:col-span-4">
+          <div class="sticky top-8 space-y-8">
+            <!-- Quick Info -->
+            <div class="bg-muted p-6">
+              <h3 class="font-display font-bold uppercase tracking-wider mb-4 text-sm">Quick Info</h3>
+              <dl class="space-y-4">
+                <div>
+                  <dt class="font-mono text-xs text-muted-foreground uppercase tracking-wider mb-1">Category</dt>
+                  <dd class="font-bold">UI Components</dd>
+                </div>
+                <div>
+                  <dt class="font-mono text-xs text-muted-foreground uppercase tracking-wider mb-1">Bundle Size</dt>
+                  <dd class="font-bold">2.1 KB</dd>
+                </div>
+                <div>
+                  <dt class="font-mono text-xs text-muted-foreground uppercase tracking-wider mb-1">Dependencies</dt>
+                  <dd class="font-bold">0</dd>
+                </div>
+                <div>
+                  <dt class="font-mono text-xs text-muted-foreground uppercase tracking-wider mb-1">Last Updated</dt>
+                  <dd class="font-bold">2 days ago</dd>
+                </div>
+              </dl>
+            </div>
+
+            <!-- On This Page -->
+            <div class="border-l-4 border-primary p-6 bg-background">
+              <h3 class="font-display font-bold uppercase tracking-wider mb-4 text-sm">On This Page</h3>
+              <nav class="space-y-3">
+                <a href="#" class="block text-sm text-primary font-bold hover:underline">Preview</a>
+                <a href="#" class="block text-sm text-muted-foreground hover:text-primary transition-colors">Installation</a>
+                <a href="#" class="block text-sm text-muted-foreground hover:text-primary transition-colors">Usage</a>
+                <a href="#" class="block text-sm text-muted-foreground hover:text-primary transition-colors">Props</a>
+                <a href="#" class="block text-sm text-muted-foreground hover:text-primary transition-colors">Variants</a>
+              </nav>
+            </div>
+
+            <!-- Related Components -->
+            <div class="bg-foreground text-background p-6">
+              <h3 class="font-display font-bold uppercase tracking-wider mb-4 text-sm text-primary">Related</h3>
+              <nav class="space-y-3">
+                <a href="#" class="flex items-center justify-between group">
+                  <span class="text-sm group-hover:text-primary transition-colors">IconButton</span>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-muted-foreground group-hover:text-primary group-hover:translate-x-1 transition-all"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                </a>
+                <a href="#" class="flex items-center justify-between group">
+                  <span class="text-sm group-hover:text-primary transition-colors">ButtonGroup</span>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-muted-foreground group-hover:text-primary group-hover:translate-x-1 transition-all"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                </a>
+                <a href="#" class="flex items-center justify-between group">
+                  <span class="text-sm group-hover:text-primary transition-colors">Link</span>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-muted-foreground group-hover:text-primary group-hover:translate-x-1 transition-all"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                </a>
+              </nav>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-foreground text-background border-t-8 border-primary pt-20 pb-12">
+    <div class="container mx-auto px-4 md:px-6">
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-12 mb-20">
+        <div class="md:col-span-4 space-y-6">
+          <div class="w-16 h-16 bg-primary flex items-center justify-center">
+            <!-- Lucide Hexagon Icon -->
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-primary-foreground"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+          </div>
+          <h2 class="font-display text-4xl font-bold uppercase tracking-tighter leading-none">
+            Dutchy<br>Design.
+          </h2>
+        </div>
+
+        <div class="md:col-span-2 md:col-start-7">
+          <h4 class="font-display font-bold uppercase tracking-widest mb-6 text-primary">Resources</h4>
+          <ul class="space-y-4 font-medium">
+            <li><a href="#" class="hover:text-primary transition-colors">Documentation</a></li>
+            <li><a href="#" class="hover:text-primary transition-colors">Components</a></li>
+            <li><a href="#" class="hover:text-primary transition-colors">Examples</a></li>
+          </ul>
+        </div>
+
+        <div class="md:col-span-2">
+          <h4 class="font-display font-bold uppercase tracking-widest mb-6 text-primary">Community</h4>
+          <ul class="space-y-4 font-medium">
+            <li><a href="#" class="hover:text-primary transition-colors">GitHub</a></li>
+            <li><a href="#" class="hover:text-primary transition-colors">Discord</a></li>
+            <li><a href="#" class="hover:text-primary transition-colors">Twitter</a></li>
+          </ul>
+        </div>
+
+        <div class="md:col-span-2">
+          <h4 class="font-display font-bold uppercase tracking-widest mb-6 text-primary">Legal</h4>
+          <ul class="space-y-4 font-medium">
+            <li><a href="#" class="hover:text-primary transition-colors">License</a></li>
+            <li><a href="#" class="hover:text-primary transition-colors">Privacy</a></li>
+            <li><a href="#" class="hover:text-primary transition-colors">Terms</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="border-t border-background/20 pt-8 flex flex-col md:flex-row justify-between items-center gap-6">
+        <p class="font-mono text-xs opacity-60 uppercase tracking-widest">
+          &copy; 2025 Dutchy Design System. Open Source under MIT License.
+        </p>
+        <div class="flex gap-6">
+          <a href="#" class="w-8 h-8 bg-background text-foreground flex items-center justify-center hover:bg-primary hover:text-primary-foreground transition-colors" aria-label="GitHub">
+            <!-- Lucide Github Icon -->
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>
+          </a>
+          <a href="#" class="w-8 h-8 bg-background text-foreground flex items-center justify-center hover:bg-primary hover:text-primary-foreground transition-colors" aria-label="Twitter">
+            <!-- Lucide Twitter Icon -->
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Theme Switcher - Dutchy Design System</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <!-- TailwindCSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <style>
+    :root {
+      /* Dutch Orange (Default) */
+      --primary-h: 25;
+      --primary-s: 95%;
+      --primary-l: 53%;
+    }
+
+    [data-theme="purple"] {
+      /* Royal Purple */
+      --primary-h: 263;
+      --primary-s: 70%;
+      --primary-l: 58%;
+    }
+
+    [data-theme="crimson"] {
+      /* Crimson Red */
+      --primary-h: 0;
+      --primary-s: 84%;
+      --primary-l: 50%;
+    }
+
+    /* Apply theme colors */
+    .bg-primary { background-color: hsl(var(--primary-h) var(--primary-s) var(--primary-l)); }
+    .text-primary { color: hsl(var(--primary-h) var(--primary-s) var(--primary-l)); }
+    .border-primary { border-color: hsl(var(--primary-h) var(--primary-s) var(--primary-l)); }
+    .bg-primary\/90 { background-color: hsl(var(--primary-h) var(--primary-s) var(--primary-l) / 0.9); }
+    .hover\:bg-primary\/90:hover { background-color: hsl(var(--primary-h) var(--primary-s) var(--primary-l) / 0.9); }
+
+    * {
+      border-radius: 0 !important;
+    }
+
+    /* Smooth transition for theme changes */
+    * {
+      transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+    }
+  </style>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            display: ['Space Grotesk', 'sans-serif'],
+            body: ['Inter', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          },
+          colors: {
+            background: 'hsl(0 0% 100%)',
+            foreground: 'hsl(0 0% 4%)',
+            muted: {
+              DEFAULT: 'hsl(0 0% 96%)',
+              foreground: 'hsl(0 0% 45%)',
+            },
+            border: 'hsl(0 0% 90%)',
+          },
+        },
+      },
+    }
+  </script>
+</head>
+<body class="font-body bg-background text-foreground">
+  <!-- Header -->
+  <header class="border-b-4 border-primary">
+    <div class="container mx-auto px-4 md:px-6">
+      <div class="flex items-center justify-between h-20">
+        <!-- Logo -->
+        <a href="#" class="font-display text-2xl font-bold uppercase tracking-tight">
+          Dutchy<span class="text-primary">.</span>
+        </a>
+
+        <!-- Theme Switcher -->
+        <div class="flex items-center gap-4">
+          <span class="hidden sm:block text-sm font-bold uppercase tracking-wider text-muted-foreground">Theme:</span>
+          <div class="flex gap-2">
+            <button
+              onclick="setTheme('orange')"
+              class="w-8 h-8 bg-[hsl(25_95%_53%)] hover:scale-110 transition-transform"
+              aria-label="Dutch Orange theme"
+              title="Dutch Orange"
+            ></button>
+            <button
+              onclick="setTheme('purple')"
+              class="w-8 h-8 bg-[hsl(263_70%_58%)] hover:scale-110 transition-transform"
+              aria-label="Royal Purple theme"
+              title="Royal Purple"
+            ></button>
+            <button
+              onclick="setTheme('crimson')"
+              class="w-8 h-8 bg-[hsl(0_84%_50%)] hover:scale-110 transition-transform"
+              aria-label="Crimson Red theme"
+              title="Crimson Red"
+            ></button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero Section -->
+    <section class="py-16 md:py-24 border-b-8 border-primary">
+      <div class="container mx-auto px-4 md:px-6">
+        <div class="max-w-3xl">
+          <p class="font-mono text-xs font-bold uppercase tracking-widest text-primary mb-6">
+            Theme Switching Demo
+          </p>
+          <h1 class="font-display text-5xl md:text-7xl font-bold uppercase leading-[0.9] tracking-tighter mb-6">
+            Dynamic<br />
+            <span class="text-primary">Themes.</span>
+          </h1>
+          <p class="text-xl text-muted-foreground leading-relaxed mb-8 max-w-lg">
+            Switch between Dutch Orange, Royal Purple, and Crimson Red themes using the buttons in the header.
+          </p>
+          <div class="flex flex-wrap gap-4">
+            <button class="bg-primary text-white px-8 py-3 font-bold uppercase tracking-wide hover:bg-primary/90">
+              Primary Button
+            </button>
+            <button class="border-2 border-foreground px-8 py-3 font-bold uppercase tracking-wide hover:bg-foreground hover:text-background transition-colors">
+              Secondary Button
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="py-16">
+      <div class="container mx-auto px-4 md:px-6">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-0.5 bg-border">
+          <div class="bg-background p-8">
+            <p class="font-display text-4xl font-bold text-primary mb-2">100%</p>
+            <p class="text-sm text-muted-foreground uppercase tracking-wider">CSS Variables</p>
+          </div>
+          <div class="bg-background p-8">
+            <p class="font-display text-4xl font-bold text-primary mb-2">3</p>
+            <p class="text-sm text-muted-foreground uppercase tracking-wider">Theme Options</p>
+          </div>
+          <div class="bg-background p-8">
+            <p class="font-display text-4xl font-bold text-primary mb-2">0ms</p>
+            <p class="text-sm text-muted-foreground uppercase tracking-wider">Page Reload</p>
+          </div>
+          <div class="bg-background p-8">
+            <p class="font-display text-4xl font-bold text-primary mb-2">HSL</p>
+            <p class="text-sm text-muted-foreground uppercase tracking-wider">Color Format</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Features Grid -->
+    <section class="py-20 bg-muted">
+      <div class="container mx-auto px-4 md:px-6">
+        <div class="mb-16">
+          <h2 class="font-display text-4xl md:text-5xl font-bold uppercase tracking-tighter mb-4">
+            Features
+          </h2>
+          <div class="h-2 w-24 bg-primary"></div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div class="border-l-4 border-primary bg-background p-8">
+            <div class="w-12 h-12 bg-primary flex items-center justify-center mb-6">
+              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"></path>
+              </svg>
+            </div>
+            <h3 class="font-display text-xl font-bold uppercase mb-3">CSS Variables</h3>
+            <p class="text-muted-foreground text-sm leading-relaxed">
+              Theme colors are defined using CSS custom properties (variables) making them easy to update dynamically.
+            </p>
+          </div>
+
+          <div class="border-l-4 border-primary bg-background p-8">
+            <div class="w-12 h-12 bg-primary flex items-center justify-center mb-6">
+              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+              </svg>
+            </div>
+            <h3 class="font-display text-xl font-bold uppercase mb-3">Instant Updates</h3>
+            <p class="text-muted-foreground text-sm leading-relaxed">
+              Theme changes happen instantly without page reload. A smooth transition effect enhances the experience.
+            </p>
+          </div>
+
+          <div class="border-l-4 border-primary bg-background p-8">
+            <div class="w-12 h-12 bg-primary flex items-center justify-center mb-6">
+              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
+              </svg>
+            </div>
+            <h3 class="font-display text-xl font-bold uppercase mb-3">HSL Format</h3>
+            <p class="text-muted-foreground text-sm leading-relaxed">
+              Using HSL color format allows easy manipulation of lightness and saturation for variants.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Color Blocks Demo -->
+    <section class="py-20">
+      <div class="container mx-auto px-4 md:px-6">
+        <div class="mb-16">
+          <h2 class="font-display text-4xl md:text-5xl font-bold uppercase tracking-tighter mb-4">
+            Color Blocks
+          </h2>
+          <div class="h-2 w-24 bg-primary"></div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-0.5 bg-border">
+          <div class="bg-foreground text-background p-10">
+            <h3 class="font-display text-2xl font-bold uppercase mb-4">Dark Block</h3>
+            <p class="text-background/70">High contrast inverted content.</p>
+          </div>
+          <div class="bg-primary text-white p-10">
+            <h3 class="font-display text-2xl font-bold uppercase mb-4">Primary Block</h3>
+            <p class="text-white/80">Dynamic theme color block.</p>
+          </div>
+          <div class="bg-background p-10">
+            <h3 class="font-display text-2xl font-bold uppercase mb-4">Light Block</h3>
+            <p class="text-muted-foreground">Standard content block.</p>
+          </div>
+          <div class="bg-muted p-10">
+            <h3 class="font-display text-2xl font-bold uppercase mb-4">Muted Block</h3>
+            <p class="text-muted-foreground">Subtle background block.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Button Showcase -->
+    <section class="py-20 bg-foreground text-background">
+      <div class="container mx-auto px-4 md:px-6">
+        <div class="mb-16">
+          <h2 class="font-display text-4xl md:text-5xl font-bold uppercase tracking-tighter mb-4">
+            Button<br /><span class="text-primary">Variants.</span>
+          </h2>
+        </div>
+
+        <div class="flex flex-wrap gap-6">
+          <button class="bg-primary text-white px-8 py-3 font-bold uppercase tracking-wide hover:bg-primary/90">
+            Primary
+          </button>
+          <button class="bg-background text-foreground px-8 py-3 font-bold uppercase tracking-wide hover:bg-background/90">
+            Secondary
+          </button>
+          <button class="border-2 border-background text-background px-8 py-3 font-bold uppercase tracking-wide hover:bg-background hover:text-foreground transition-colors">
+            Outline
+          </button>
+          <button class="text-background px-8 py-3 font-bold uppercase tracking-wide hover:text-primary transition-colors">
+            Ghost
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Form Demo -->
+    <section class="py-20">
+      <div class="container mx-auto px-4 md:px-6">
+        <div class="max-w-xl mx-auto">
+          <div class="mb-12 text-center">
+            <h2 class="font-display text-4xl font-bold uppercase tracking-tighter mb-4">
+              Contact Form
+            </h2>
+            <div class="h-2 w-24 bg-primary mx-auto"></div>
+          </div>
+
+          <form class="space-y-6">
+            <div class="space-y-2">
+              <label class="block text-xs font-bold uppercase tracking-wider">Name</label>
+              <input type="text" class="w-full border-2 border-border px-4 py-3 focus:border-primary focus:outline-none transition-colors" placeholder="Your name" />
+            </div>
+            <div class="space-y-2">
+              <label class="block text-xs font-bold uppercase tracking-wider">Email</label>
+              <input type="email" class="w-full border-2 border-border px-4 py-3 focus:border-primary focus:outline-none transition-colors" placeholder="your@email.com" />
+            </div>
+            <div class="space-y-2">
+              <label class="block text-xs font-bold uppercase tracking-wider">Message</label>
+              <textarea class="w-full border-2 border-border px-4 py-3 min-h-[120px] focus:border-primary focus:outline-none transition-colors" placeholder="Your message"></textarea>
+            </div>
+            <button type="submit" class="w-full bg-primary text-white py-4 font-bold uppercase tracking-wide hover:bg-primary/90">
+              Send Message
+            </button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- Code Example -->
+    <section class="py-20 bg-muted">
+      <div class="container mx-auto px-4 md:px-6">
+        <div class="mb-16">
+          <h2 class="font-display text-4xl md:text-5xl font-bold uppercase tracking-tighter mb-4">
+            Implementation
+          </h2>
+          <div class="h-2 w-24 bg-primary"></div>
+        </div>
+
+        <div class="bg-foreground text-background p-8 overflow-x-auto">
+          <pre class="font-mono text-sm"><code>/* CSS Variables for Theme */
+:root {
+  /* Dutch Orange (Default) */
+  --primary-h: 25;
+  --primary-s: 95%;
+  --primary-l: 53%;
+}
+
+[data-theme="purple"] {
+  /* Royal Purple */
+  --primary-h: 263;
+  --primary-s: 70%;
+  --primary-l: 58%;
+}
+
+[data-theme="crimson"] {
+  /* Crimson Red */
+  --primary-h: 0;
+  --primary-s: 84%;
+  --primary-l: 50%;
+}
+
+/* Apply theme colors */
+.bg-primary {
+  background-color: hsl(var(--primary-h) var(--primary-s) var(--primary-l));
+}
+
+/* JavaScript Theme Switcher */
+function setTheme(theme) {
+  if (theme === 'orange') {
+    document.documentElement.removeAttribute('data-theme');
+  } else {
+    document.documentElement.setAttribute('data-theme', theme);
+  }
+  localStorage.setItem('theme', theme);
+}</code></pre>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-foreground text-background border-t-8 border-primary">
+    <div class="container mx-auto px-4 md:px-6 py-16">
+      <div class="flex flex-col md:flex-row justify-between items-center gap-8">
+        <a href="#" class="font-display text-xl font-bold uppercase tracking-tight">
+          Dutchy<span class="text-primary">.</span>
+        </a>
+        <nav class="flex flex-wrap justify-center gap-6">
+          <a href="#" class="text-background/70 hover:text-background text-sm">Documentation</a>
+          <a href="#" class="text-background/70 hover:text-background text-sm">Components</a>
+          <a href="#" class="text-background/70 hover:text-background text-sm">Patterns</a>
+        </nav>
+        <p class="text-background/60 text-sm">&copy; 2025 Dutchy Design System</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Theme switcher function
+    function setTheme(theme) {
+      if (theme === 'orange') {
+        document.documentElement.removeAttribute('data-theme');
+      } else {
+        document.documentElement.setAttribute('data-theme', theme);
+      }
+      // Save preference to localStorage
+      localStorage.setItem('dutchy-theme', theme);
+    }
+
+    // Load saved theme on page load
+    document.addEventListener('DOMContentLoaded', function() {
+      const savedTheme = localStorage.getItem('dutchy-theme');
+      if (savedTheme && savedTheme !== 'orange') {
+        document.documentElement.setAttribute('data-theme', savedTheme);
+      }
+    });
+  </script>
+</body>
+</html>

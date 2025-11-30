@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>404 Error Page - Dutchy Design System Showcase</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            border: 'hsl(25 20% 88%)',
+            input: 'hsl(25 20% 88%)',
+            ring: 'hsl(25 95% 53%)',
+            background: 'hsl(40 30% 97%)',
+            foreground: 'hsl(25 25% 10%)',
+            primary: {
+              DEFAULT: 'hsl(25 95% 53%)',
+              foreground: 'hsl(0 0% 100%)',
+            },
+            secondary: {
+              DEFAULT: 'hsl(25 20% 92%)',
+              foreground: 'hsl(25 25% 15%)',
+            },
+            muted: {
+              DEFAULT: 'hsl(40 20% 94%)',
+              foreground: 'hsl(25 15% 40%)',
+            },
+          },
+          fontFamily: {
+            display: ['Space Grotesk', 'sans-serif'],
+            sans: ['Inter', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          },
+          borderRadius: {
+            DEFAULT: '0',
+            sm: '0',
+            md: '0',
+            lg: '0',
+            xl: '0',
+          },
+        },
+      },
+    }
+  </script>
+  <style>
+    * { border-radius: 0 !important; }
+  </style>
+</head>
+<body class="bg-background text-foreground font-sans min-h-screen flex flex-col">
+  <!-- Header -->
+  <header class="w-full border-b-4 border-primary bg-background">
+    <div class="container mx-auto px-4 md:px-6 h-20 flex items-center justify-between">
+      <a href="#" class="flex items-center gap-3">
+        <div class="bg-primary text-primary-foreground w-10 h-10 flex items-center justify-center font-display font-bold text-xl">
+          D.
+        </div>
+        <span class="font-display font-bold text-2xl tracking-tighter uppercase">
+          Dutchy
+        </span>
+      </a>
+      <nav class="hidden md:flex items-center gap-10">
+        <a href="#" class="text-sm font-bold uppercase tracking-widest hover:text-primary transition-colors hover:underline decoration-4 underline-offset-4">Components</a>
+        <a href="#" class="text-sm font-bold uppercase tracking-widest hover:text-primary transition-colors hover:underline decoration-4 underline-offset-4">Categories</a>
+        <a href="#" class="text-sm font-bold uppercase tracking-widest hover:text-primary transition-colors hover:underline decoration-4 underline-offset-4">Docs</a>
+        <a href="#" class="text-sm font-bold uppercase tracking-widest hover:text-primary transition-colors hover:underline decoration-4 underline-offset-4">Examples</a>
+        <a href="#" class="bg-primary text-primary-foreground font-bold uppercase tracking-wide px-8 py-3 hover:bg-primary/90 transition-colors">Get Started</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="flex-grow flex items-center justify-center py-16">
+    <div class="container mx-auto px-4 md:px-6">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center max-w-5xl mx-auto">
+
+        <!-- Left: Big 404 -->
+        <div class="relative">
+          <!-- Decorative grid lines -->
+          <div class="absolute inset-0 hidden md:block">
+            <div class="absolute top-10 left-0 w-full h-px bg-border/50"></div>
+            <div class="absolute bottom-10 left-0 w-full h-px bg-border/50"></div>
+            <div class="absolute left-10 top-0 w-px h-full bg-border/50"></div>
+          </div>
+
+          <!-- 404 Number -->
+          <div class="relative z-10 text-center lg:text-left">
+            <div class="font-display text-[12rem] md:text-[16rem] lg:text-[20rem] font-bold leading-none tracking-tighter text-foreground/5 select-none">
+              404
+            </div>
+            <div class="absolute inset-0 flex items-center justify-center lg:justify-start">
+              <div class="font-display text-8xl md:text-9xl font-bold tracking-tighter">
+                <span class="text-primary">4</span>
+                <span class="text-foreground">0</span>
+                <span class="text-primary">4</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Content -->
+        <div class="text-center lg:text-left">
+          <div class="inline-block bg-foreground text-background px-4 py-2 font-mono text-xs font-bold uppercase tracking-widest mb-6">
+            Error: Page Not Found
+          </div>
+          <h1 class="font-display text-4xl md:text-5xl font-bold uppercase leading-[0.9] tracking-tighter mb-6">
+            Lost in the<br>
+            <span class="text-primary">Design System.</span>
+          </h1>
+          <p class="text-lg text-muted-foreground leading-relaxed mb-8 max-w-lg">
+            The page you're looking for doesn't exist or has been moved.
+            Don't worry - even the best designs need some debugging.
+          </p>
+
+          <!-- Actions -->
+          <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+            <a href="#" class="bg-primary text-primary-foreground px-8 py-4 font-bold uppercase tracking-wide hover:bg-primary/90 transition-colors inline-flex items-center justify-center gap-2">
+              <!-- Lucide Home Icon -->
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+              Go Home
+            </a>
+            <a href="#" class="border-2 border-foreground text-foreground px-8 py-4 font-bold uppercase tracking-wide hover:bg-foreground hover:text-background transition-colors inline-flex items-center justify-center gap-2">
+              <!-- Lucide Search Icon -->
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+              Search
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quick Links -->
+      <div class="mt-20 max-w-5xl mx-auto">
+        <h2 class="font-display text-xl font-bold uppercase tracking-wider mb-6 text-center">
+          Popular Pages
+        </h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-0.5 bg-border">
+          <a href="#" class="bg-background p-6 group hover:bg-muted/50 transition-colors flex items-center gap-4">
+            <div class="w-10 h-10 bg-primary/10 flex items-center justify-center flex-shrink-0">
+              <!-- Lucide BookOpen Icon -->
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-primary"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+            </div>
+            <div>
+              <p class="font-display font-bold uppercase group-hover:text-primary transition-colors">Documentation</p>
+              <p class="text-xs text-muted-foreground">Getting started guide</p>
+            </div>
+          </a>
+          <a href="#" class="bg-background p-6 group hover:bg-muted/50 transition-colors flex items-center gap-4">
+            <div class="w-10 h-10 bg-primary/10 flex items-center justify-center flex-shrink-0">
+              <!-- Lucide Layers Icon -->
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-primary"><path d="m12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83Z"/><path d="m22 17.65-9.17 4.16a2 2 0 0 1-1.66 0L2 17.65"/><path d="m22 12.65-9.17 4.16a2 2 0 0 1-1.66 0L2 12.65"/></svg>
+            </div>
+            <div>
+              <p class="font-display font-bold uppercase group-hover:text-primary transition-colors">Components</p>
+              <p class="text-xs text-muted-foreground">Browse all UI elements</p>
+            </div>
+          </a>
+          <a href="#" class="bg-background p-6 group hover:bg-muted/50 transition-colors flex items-center gap-4">
+            <div class="w-10 h-10 bg-primary/10 flex items-center justify-center flex-shrink-0">
+              <!-- Lucide Palette Icon -->
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-primary"><circle cx="13.5" cy="6.5" r=".5" fill="currentColor"/><circle cx="17.5" cy="10.5" r=".5" fill="currentColor"/><circle cx="8.5" cy="7.5" r=".5" fill="currentColor"/><circle cx="6.5" cy="12.5" r=".5" fill="currentColor"/><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.555C21.965 6.012 17.461 2 12 2z"/></svg>
+            </div>
+            <div>
+              <p class="font-display font-bold uppercase group-hover:text-primary transition-colors">Design Tokens</p>
+              <p class="text-xs text-muted-foreground">Colors, typography, spacing</p>
+            </div>
+          </a>
+          <a href="#" class="bg-background p-6 group hover:bg-muted/50 transition-colors flex items-center gap-4">
+            <div class="w-10 h-10 bg-primary/10 flex items-center justify-center flex-shrink-0">
+              <!-- Lucide Code Icon -->
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-primary"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+            </div>
+            <div>
+              <p class="font-display font-bold uppercase group-hover:text-primary transition-colors">Examples</p>
+              <p class="text-xs text-muted-foreground">Code snippets & demos</p>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <!-- Error Details (optional technical info) -->
+      <div class="mt-12 max-w-2xl mx-auto text-center">
+        <details class="bg-muted/50 border border-border">
+          <summary class="px-6 py-4 cursor-pointer font-mono text-sm text-muted-foreground hover:text-foreground transition-colors uppercase tracking-wider">
+            Technical Details
+          </summary>
+          <div class="px-6 py-4 border-t border-border bg-foreground text-background font-mono text-sm text-left">
+            <pre class="overflow-x-auto"><code>{
+  "status": 404,
+  "error": "Not Found",
+  "message": "The requested resource could not be found",
+  "path": "/non-existent-page",
+  "timestamp": "2025-01-15T10:30:00Z"
+}</code></pre>
+          </div>
+        </details>
+      </div>
+    </div>
+  </main>
+
+  <!-- Minimal Footer -->
+  <footer class="bg-foreground text-background py-8">
+    <div class="container mx-auto px-4 md:px-6">
+      <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+        <div class="flex items-center gap-3">
+          <div class="w-8 h-8 bg-primary flex items-center justify-center">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-primary-foreground"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+          </div>
+          <span class="font-display font-bold text-lg tracking-tighter uppercase">
+            Dutchy Design
+          </span>
+        </div>
+        <p class="font-mono text-xs opacity-60 uppercase tracking-widest">
+          &copy; 2025 Dutchy Design System
+        </p>
+        <div class="flex gap-4">
+          <a href="#" class="w-8 h-8 bg-background text-foreground flex items-center justify-center hover:bg-primary hover:text-primary-foreground transition-colors" aria-label="GitHub">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>
+          </a>
+          <a href="#" class="w-8 h-8 bg-background text-foreground flex items-center justify-center hover:bg-primary hover:text-primary-foreground transition-colors" aria-label="Twitter">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard - Dutchy Design System</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <!-- TailwindCSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            display: ['Space Grotesk', 'sans-serif'],
+            body: ['Inter', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          },
+          colors: {
+            primary: {
+              DEFAULT: 'hsl(25 95% 53%)',
+              foreground: 'hsl(0 0% 100%)',
+            },
+            background: 'hsl(0 0% 100%)',
+            foreground: 'hsl(0 0% 4%)',
+            muted: {
+              DEFAULT: 'hsl(0 0% 96%)',
+              foreground: 'hsl(0 0% 45%)',
+            },
+            border: 'hsl(0 0% 90%)',
+            destructive: {
+              DEFAULT: 'hsl(0 84% 50%)',
+              foreground: 'hsl(0 0% 100%)',
+            },
+          },
+          borderRadius: {
+            none: '0',
+          },
+        },
+      },
+    }
+  </script>
+
+  <style>
+    * {
+      border-radius: 0 !important;
+    }
+  </style>
+</head>
+<body class="font-body bg-muted text-foreground">
+  <div class="min-h-screen flex">
+    <!-- Sidebar -->
+    <aside class="w-64 bg-foreground text-background shrink-0 hidden lg:block">
+      <div class="p-6">
+        <!-- Logo -->
+        <a href="#" class="font-display text-xl font-bold uppercase tracking-tight block mb-10">
+          Admin<span class="text-primary">.</span>
+        </a>
+
+        <!-- Navigation -->
+        <nav class="space-y-1">
+          <a href="#" class="flex items-center gap-3 px-4 py-3 text-sm font-bold uppercase tracking-wide bg-background/10 text-background">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"></path>
+            </svg>
+            Dashboard
+          </a>
+          <a href="#" class="flex items-center gap-3 px-4 py-3 text-sm font-bold uppercase tracking-wide text-background/60 hover:text-background hover:bg-background/5 transition-colors">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"></path>
+            </svg>
+            Products
+          </a>
+          <a href="#" class="flex items-center gap-3 px-4 py-3 text-sm font-bold uppercase tracking-wide text-background/60 hover:text-background hover:bg-background/5 transition-colors">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"></path>
+            </svg>
+            Orders
+          </a>
+          <a href="#" class="flex items-center gap-3 px-4 py-3 text-sm font-bold uppercase tracking-wide text-background/60 hover:text-background hover:bg-background/5 transition-colors">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
+            </svg>
+            Customers
+          </a>
+          <a href="#" class="flex items-center gap-3 px-4 py-3 text-sm font-bold uppercase tracking-wide text-background/60 hover:text-background hover:bg-background/5 transition-colors">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+            </svg>
+            Analytics
+          </a>
+        </nav>
+
+        <!-- Bottom Links -->
+        <div class="mt-12 pt-6 border-t border-background/10">
+          <a href="#" class="flex items-center gap-3 px-4 py-3 text-sm font-bold uppercase tracking-wide text-background/60 hover:text-background hover:bg-background/5 transition-colors">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path>
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+            </svg>
+            Settings
+          </a>
+          <a href="#" class="flex items-center gap-3 px-4 py-3 text-sm font-bold uppercase tracking-wide text-background/60 hover:text-background hover:bg-background/5 transition-colors">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path>
+            </svg>
+            Logout
+          </a>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <div class="flex-1 flex flex-col">
+      <!-- Header -->
+      <header class="bg-background border-b-4 border-primary">
+        <div class="px-6 h-16 flex items-center justify-between">
+          <!-- Mobile menu button -->
+          <button class="lg:hidden p-2" aria-label="Open menu">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+            </svg>
+          </button>
+
+          <!-- Search -->
+          <div class="hidden md:block relative flex-1 max-w-md">
+            <input
+              type="search"
+              placeholder="Search..."
+              class="w-full border-2 border-border pl-10 pr-4 py-2 text-sm focus:border-foreground focus:outline-none transition-colors"
+            >
+            <svg class="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+            </svg>
+          </div>
+
+          <!-- Right side -->
+          <div class="flex items-center gap-4">
+            <!-- Notifications -->
+            <button class="relative p-2 text-muted-foreground hover:text-foreground transition-colors">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"></path>
+              </svg>
+              <span class="absolute top-1 right-1 w-2 h-2 bg-primary"></span>
+            </button>
+
+            <!-- Profile -->
+            <div class="flex items-center gap-3">
+              <div class="w-8 h-8 bg-foreground flex items-center justify-center">
+                <span class="text-background text-sm font-bold">JD</span>
+              </div>
+              <span class="hidden md:block text-sm font-medium">John Doe</span>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <!-- Page Content -->
+      <main class="flex-1 p-6">
+        <!-- Page Title -->
+        <div class="mb-8">
+          <h1 class="font-display text-3xl font-bold uppercase tracking-tighter mb-2">
+            Dashboard
+          </h1>
+          <p class="text-muted-foreground">Welcome back, John. Here's what's happening.</p>
+        </div>
+
+        <!-- Stats Grid -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-0.5 bg-border mb-8">
+          <div class="bg-background p-6">
+            <p class="text-sm text-muted-foreground uppercase tracking-wider mb-2">Total Revenue</p>
+            <p class="font-display text-3xl font-bold">$45,231</p>
+            <p class="text-sm text-green-600 mt-2">+20.1% from last month</p>
+          </div>
+          <div class="bg-background p-6">
+            <p class="text-sm text-muted-foreground uppercase tracking-wider mb-2">Orders</p>
+            <p class="font-display text-3xl font-bold">2,350</p>
+            <p class="text-sm text-green-600 mt-2">+15.3% from last month</p>
+          </div>
+          <div class="bg-background p-6">
+            <p class="text-sm text-muted-foreground uppercase tracking-wider mb-2">Customers</p>
+            <p class="font-display text-3xl font-bold">1,247</p>
+            <p class="text-sm text-green-600 mt-2">+12.5% from last month</p>
+          </div>
+          <div class="bg-background p-6">
+            <p class="text-sm text-muted-foreground uppercase tracking-wider mb-2">Active Now</p>
+            <p class="font-display text-3xl font-bold">573</p>
+            <p class="text-sm text-muted-foreground mt-2">Online users</p>
+          </div>
+        </div>
+
+        <!-- Two Column Layout -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          <!-- Recent Orders -->
+          <div class="lg:col-span-2 bg-background border-l-4 border-primary">
+            <div class="border-b border-border px-6 py-4">
+              <h2 class="font-display text-lg font-bold uppercase">Recent Orders</h2>
+            </div>
+            <div class="overflow-x-auto">
+              <table class="w-full">
+                <thead>
+                  <tr class="border-b border-border">
+                    <th class="text-left px-6 py-3 text-xs font-bold uppercase tracking-wider text-muted-foreground">Order</th>
+                    <th class="text-left px-6 py-3 text-xs font-bold uppercase tracking-wider text-muted-foreground">Customer</th>
+                    <th class="text-left px-6 py-3 text-xs font-bold uppercase tracking-wider text-muted-foreground">Status</th>
+                    <th class="text-right px-6 py-3 text-xs font-bold uppercase tracking-wider text-muted-foreground">Amount</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr class="border-b border-border hover:bg-muted/50 transition-colors">
+                    <td class="px-6 py-4 font-mono text-sm">#3210</td>
+                    <td class="px-6 py-4 text-sm">Olivia Martin</td>
+                    <td class="px-6 py-4">
+                      <span class="inline-block bg-green-100 text-green-800 px-2 py-1 text-xs font-bold uppercase">Completed</span>
+                    </td>
+                    <td class="px-6 py-4 text-sm text-right font-medium">$1,999.00</td>
+                  </tr>
+                  <tr class="border-b border-border hover:bg-muted/50 transition-colors">
+                    <td class="px-6 py-4 font-mono text-sm">#3209</td>
+                    <td class="px-6 py-4 text-sm">Jackson Lee</td>
+                    <td class="px-6 py-4">
+                      <span class="inline-block bg-yellow-100 text-yellow-800 px-2 py-1 text-xs font-bold uppercase">Processing</span>
+                    </td>
+                    <td class="px-6 py-4 text-sm text-right font-medium">$39.00</td>
+                  </tr>
+                  <tr class="border-b border-border hover:bg-muted/50 transition-colors">
+                    <td class="px-6 py-4 font-mono text-sm">#3208</td>
+                    <td class="px-6 py-4 text-sm">Isabella Nguyen</td>
+                    <td class="px-6 py-4">
+                      <span class="inline-block bg-green-100 text-green-800 px-2 py-1 text-xs font-bold uppercase">Completed</span>
+                    </td>
+                    <td class="px-6 py-4 text-sm text-right font-medium">$299.00</td>
+                  </tr>
+                  <tr class="border-b border-border hover:bg-muted/50 transition-colors">
+                    <td class="px-6 py-4 font-mono text-sm">#3207</td>
+                    <td class="px-6 py-4 text-sm">William Kim</td>
+                    <td class="px-6 py-4">
+                      <span class="inline-block bg-blue-100 text-blue-800 px-2 py-1 text-xs font-bold uppercase">Shipped</span>
+                    </td>
+                    <td class="px-6 py-4 text-sm text-right font-medium">$99.00</td>
+                  </tr>
+                  <tr class="hover:bg-muted/50 transition-colors">
+                    <td class="px-6 py-4 font-mono text-sm">#3206</td>
+                    <td class="px-6 py-4 text-sm">Sofia Davis</td>
+                    <td class="px-6 py-4">
+                      <span class="inline-block bg-red-100 text-red-800 px-2 py-1 text-xs font-bold uppercase">Cancelled</span>
+                    </td>
+                    <td class="px-6 py-4 text-sm text-right font-medium">$150.00</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Recent Activity -->
+          <div class="bg-background border-l-4 border-foreground">
+            <div class="border-b border-border px-6 py-4">
+              <h2 class="font-display text-lg font-bold uppercase">Activity</h2>
+            </div>
+            <div class="p-6 space-y-6">
+              <div class="flex gap-4">
+                <div class="w-2 h-2 bg-primary mt-2 shrink-0"></div>
+                <div>
+                  <p class="text-sm font-medium">New order received</p>
+                  <p class="text-xs text-muted-foreground mt-1">2 minutes ago</p>
+                </div>
+              </div>
+              <div class="flex gap-4">
+                <div class="w-2 h-2 bg-green-500 mt-2 shrink-0"></div>
+                <div>
+                  <p class="text-sm font-medium">Payment confirmed</p>
+                  <p class="text-xs text-muted-foreground mt-1">15 minutes ago</p>
+                </div>
+              </div>
+              <div class="flex gap-4">
+                <div class="w-2 h-2 bg-blue-500 mt-2 shrink-0"></div>
+                <div>
+                  <p class="text-sm font-medium">Order shipped</p>
+                  <p class="text-xs text-muted-foreground mt-1">1 hour ago</p>
+                </div>
+              </div>
+              <div class="flex gap-4">
+                <div class="w-2 h-2 bg-foreground mt-2 shrink-0"></div>
+                <div>
+                  <p class="text-sm font-medium">New customer registered</p>
+                  <p class="text-xs text-muted-foreground mt-1">2 hours ago</p>
+                </div>
+              </div>
+              <div class="flex gap-4">
+                <div class="w-2 h-2 bg-yellow-500 mt-2 shrink-0"></div>
+                <div>
+                  <p class="text-sm font-medium">Low stock alert</p>
+                  <p class="text-xs text-muted-foreground mt-1">3 hours ago</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+</body>
+</html>
