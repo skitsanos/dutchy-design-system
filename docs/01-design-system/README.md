@@ -200,8 +200,6 @@ The design system works with:
 ## Credits
 
 Inspired by:
-- De Stijl movement
 - Dutch graphic design tradition
 - International Typographic Style
-- Wim Crouwel's work
 - Modern brutalist web design

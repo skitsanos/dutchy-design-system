@@ -1,13 +1,22 @@
 # Dutchy Design System
 
-A bold, structural design system inspired by Dutch design principles. Zero border radius, strong typography, and high contrast aesthetics.
+Bold, structural UI kit inspired by Dutch graphic design—built for teams shipping confident marketing sites, dashboards, and documentation.
 
-## Features
+## Why Dutchy
 
-- **Zero Border Radius** — Sharp, architectural edges throughout
-- **Bold Typography** — Space Grotesk for display, Inter for body, JetBrains Mono for code
-- **Warm Color Palette** — Orange primary with cream backgrounds
-- **Tailwind CSS** — Built with utility-first CSS framework
+- **Instant brand punch** — Zero-radius geometry, Space Grotesk display, Inter body, JetBrains Mono for code
+- **Production-ready tokens** — Colors, typography, spacing, effects with light/dark and theme variants
+- **Drop-in templates** — HTML showcases for landing pages, pricing, docs, dashboard, auth, and more
+- **SSG/SSR friendly** — Works with vanilla HTML/CSS or Bun JSX server rendering (SSR-only, no client React)
+- **Accessible by default** — High-contrast palette, visible focus states, WCAG-aware color guidance
+- **MIT licensed** — Commercial-friendly for products, clients, and internal tools
+
+## Repo Structure
+
+- `docs/` — Living documentation: design system, tokens, components, patterns, and HTML showcases
+- `website/` — Static site assets + Dockerfile for the public site
+- `src/utils/` — Server utilities (e.g., `loadRoutes` for Bun SSR routing)
+- `src/middleware/` — Middleware helpers (e.g., `corsResponse` for preflight handling)
 
 ## Quick Start
 
@@ -29,6 +38,24 @@ Ready-to-use page templates in [docs/02-html-showcase/](docs/02-html-showcase/RE
 
 ### Using with Bun
 Server-side rendering with Bun's JSX support in [docs/03-using-with-bun/](docs/03-using-with-bun/README.md)
+
+## Build with Bun (SSR)
+
+```ts
+import { serve } from 'bun';
+import { loadRoutes } from './src/utils/loadRoutes';
+
+const routes = await loadRoutes('routes');
+
+serve({
+  port: process.env.PORT || 3000,
+  async fetch(req) {
+    const url = new URL(req.url);
+    const handler = routes[url.pathname]?.[req.method];
+    return handler ? handler(req) : new Response('Not Found', { status: 404 });
+  },
+});
+```
 
 ## Run Locally
 
