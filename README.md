@@ -27,6 +27,9 @@ A bold, structural design system inspired by Dutch design principles. Zero borde
 ### HTML Showcase
 Ready-to-use page templates in [docs/02-html-showcase/](docs/02-html-showcase/README.md)
 
+### Using with Bun
+Server-side rendering with Bun's JSX support in [docs/03-using-with-bun/](docs/03-using-with-bun/README.md)
+
 ## Run Locally
 
 ```bash
