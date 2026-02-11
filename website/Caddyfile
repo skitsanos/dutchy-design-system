@@ -1,10 +1,18 @@
 :{$PORT:80} {
 	root * /srv
-	file_server
 	encode gzip
 
-	# SPA fallback - serve index.html for non-existing files
-	try_files {path} /index.html
+	# Serve static assets directly (no SPA fallback)
+	@assets path /assets/*
+	handle @assets {
+		file_server
+	}
+
+	# Everything else: try the file, then fall back to index.html
+	handle {
+		try_files {path} /index.html
+		file_server
+	}
 
 	# Cache static assets
 	@static {
