@@ -4,7 +4,7 @@ Server middleware helpers for Bun-based SSR apps.
 
 ## corsResponse.ts
 - Returns a 204 preflight response with permissive CORS headers
-- Allows methods: `POST, OPTIONS`
+- Allows methods: `GET, POST, PUT, PATCH, DELETE, OPTIONS, HEAD`
 - Allows headers: `Content-Type, Authorization`
 - Max age: 24h
 

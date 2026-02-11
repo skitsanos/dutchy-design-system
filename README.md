@@ -43,16 +43,17 @@ Server-side rendering with Bun's JSX support in [docs/03-using-with-bun/](docs/0
 
 ```ts
 import { serve } from 'bun';
-import { loadRoutes } from './src/utils/loadRoutes';
+import { loadRoutes, resolveRoute } from './src/utils/loadRoutes';
 
 const routes = await loadRoutes('routes');
 
 serve({
   port: process.env.PORT || 3000,
   async fetch(req) {
-    const url = new URL(req.url);
-    const handler = routes[url.pathname]?.[req.method];
-    return handler ? handler(req) : new Response('Not Found', { status: 404 });
+    const resolved = resolveRoute(routes, req);
+    return resolved
+      ? resolved.handler(resolved.request)
+      : new Response('Not Found', { status: 404 });
   },
 });
 ```

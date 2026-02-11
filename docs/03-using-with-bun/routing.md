@@ -91,7 +91,7 @@ Bun's built-in `FileSystemRouter` class resolves routes against a directory usin
 
 ### Directory Structure
 
-```
+```text
 pages/
 ├── index.tsx                → /
 ├── about.tsx                → /about
@@ -186,7 +186,7 @@ Our custom route loader with method-per-file convention. See [`src/utils/loadRou
 
 ### Directory Structure
 
-```
+```text
 src/routes/
 ├── index.tsx           → GET /
 ├── about/
@@ -229,7 +229,7 @@ The HTTP method is derived from the filename (case-insensitive):
 
 Use `$paramName` folder naming for dynamic route segments:
 
-```
+```text
 routes/
 └── users/
     └── $id/
@@ -238,7 +238,7 @@ routes/
 
 Multiple parameters:
 
-```
+```text
 routes/
 └── blog/
     └── $year/
@@ -259,13 +259,16 @@ The route loader is available at [`src/utils/loadRoutes.ts`](../../src/utils/loa
 ### Key Functions
 
 ```typescript
-import { loadRoutes, createReactHandler } from '@/utils/loadRoutes';
+import { loadRoutes, createReactHandler, resolveRoute } from '@/utils/loadRoutes';
 
 // Load all routes from src/routes directory
 const routes = await loadRoutes('routes');
 
 // Manually wrap a React component as a route handler
 const handler = createReactHandler(MyComponent);
+
+// Resolve static + dynamic routes for an incoming request
+const resolved = resolveRoute(routes, request);
 ```
 
 ### How It Works
@@ -283,13 +286,14 @@ const handler = createReactHandler(MyComponent);
 3. **Converts `$param` folders** to `:param` route parameters
 4. **Auto-detects React components** and wraps them with `renderToReadableStream`
 5. **Returns a routes object** mapping paths to method handlers
+6. **`resolveRoute()` matches static and dynamic paths** and injects `_param_*` search params for dynamic segments
 
 ### Route Object Structure
 
 ```typescript
 type Routes = {
   [path: string]: {
-    [method: string]: (req: Request) => Promise<Response>;
+    [method: string]: (req: Request) => Promise<Response> | Response;
   };
 };
 
@@ -309,9 +313,9 @@ Example `src/index.ts` using the custom route loader:
 
 ```typescript
 import { serve } from 'bun';
-import { loadRoutes } from '@/utils/loadRoutes';
+import { createReactHandler, loadRoutes, resolveRoute } from '@/utils/loadRoutes';
 import staticAssets from '@/utils/staticAssets';
-import { corsResponse } from '@/middleware/cors';
+import corsResponse from '@/middleware/corsResponse';
 
 const PORT = process.env.PORT || 3000;
 const IS_PRODUCTION = process.env.NODE_ENV === 'production';
@@ -336,10 +340,9 @@ async function startServer() {
     async fetch(req) {
       const url = new URL(req.url);
       const path = url.pathname;
-      const method = req.method;
 
       // Handle CORS preflight
-      if (method === 'OPTIONS') {
+      if (req.method === 'OPTIONS') {
         return corsResponse();
       }
 
@@ -348,50 +351,14 @@ async function startServer() {
         return assetHandler(req);
       }
 
-      // Normalize path (remove trailing slash except for root)
-      const normalizedPath = path === '/' ? '/' : path.replace(/\/$/, '');
-
-      // Find matching route
-      const route = routes[normalizedPath];
-
-      if (route) {
-        // Route is a direct handler function
-        if (typeof route === 'function') {
-          return route(req);
-        }
-
-        // Route is an object with method handlers
-        const handler = route[method];
-        if (handler) {
-          return handler(req);
-        }
-
-        // Method not allowed
-        return new Response('Method Not Allowed', { status: 405 });
-      }
-
-      // Try to match dynamic routes
-      for (const [routePath, routeHandler] of Object.entries(routes)) {
-        const params = matchDynamicRoute(routePath, normalizedPath);
-        if (params) {
-          // Add params to request (via URL search params or custom header)
-          const reqWithParams = addParamsToRequest(req, params);
-
-          if (typeof routeHandler === 'function') {
-            return routeHandler(reqWithParams);
-          }
-
-          const handler = routeHandler[method];
-          if (handler) {
-            return handler(reqWithParams);
-          }
-        }
+      const resolved = resolveRoute(routes, req);
+      if (resolved) {
+        return resolved.handler(resolved.request);
       }
 
       // 404 Not Found
       try {
         const { default: NotFound } = await import('./ui/PageNotFound/index.tsx');
-        const { createReactHandler } = await import('./utils/loadRoutes');
         return createReactHandler(NotFound)(req);
       } catch {
         return new Response('Not Found', { status: 404 });
@@ -405,51 +372,6 @@ async function startServer() {
   });
 
   console.log(`Server running at http://localhost:${PORT}`);
-}
-
-// Match dynamic route patterns
-function matchDynamicRoute(
-  pattern: string,
-  path: string
-): Record<string, string> | null {
-  const patternParts = pattern.split('/');
-  const pathParts = path.split('/');
-
-  if (patternParts.length !== pathParts.length) {
-    return null;
-  }
-
-  const params: Record<string, string> = {};
-
-  for (let i = 0; i < patternParts.length; i++) {
-    const patternPart = patternParts[i];
-    const pathPart = pathParts[i];
-
-    if (patternPart.startsWith(':')) {
-      // Dynamic segment
-      params[patternPart.slice(1)] = pathPart;
-    } else if (patternPart !== pathPart) {
-      // Static segment mismatch
-      return null;
-    }
-  }
-
-  return params;
-}
-
-// Add route params to request
-function addParamsToRequest(
-  req: Request,
-  params: Record<string, string>
-): Request {
-  const url = new URL(req.url);
-
-  // Add params as search params (accessible via url.searchParams)
-  for (const [key, value] of Object.entries(params)) {
-    url.searchParams.set(`_param_${key}`, value);
-  }
-
-  return new Request(url.toString(), req);
 }
 
 startServer();
@@ -784,7 +706,7 @@ export default requireAuth(handler);
 
 Each route file should handle one resource or page:
 
-```
+```text
 routes/api/users/       # User operations
 routes/api/products/    # Product operations
 routes/about/           # About page

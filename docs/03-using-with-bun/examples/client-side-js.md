@@ -653,7 +653,7 @@ document.getElementById('accordion')
 
 ### 5. Keep Scripts Small and Focused
 
-```
+```text
 public/assets/js/
 ├── mobile-menu.js    # ~30 lines
 ├── accordion.js      # ~25 lines

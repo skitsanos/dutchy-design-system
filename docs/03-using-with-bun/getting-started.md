@@ -190,7 +190,7 @@ mkdir -p public/assets/{css,js,img}
 
 Your project structure should look like:
 
-```
+```text
 my-dutchy-app/
 ├── src/
 │   ├── index.ts              # Server entry point

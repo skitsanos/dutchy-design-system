@@ -87,7 +87,7 @@ Large areas of solid color create visual anchors.
 ### Typography Scale
 Dramatic size differences create clear hierarchy.
 
-```
+```text
 Hero:      text-7xl (72px)
 Section:   text-5xl (48px)
 Card:      text-2xl (24px)

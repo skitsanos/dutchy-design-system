@@ -11,17 +11,17 @@ Server utilities used by the Dutchy Design System demos. These helpers are writt
 ### Usage
 ```ts
 import { serve } from 'bun';
-import { loadRoutes } from './utils/loadRoutes';
+import { loadRoutes, resolveRoute } from './utils/loadRoutes';
 
 const routes = await loadRoutes('routes'); // scans src/routes
 
 serve({
   port: 3000,
   async fetch(req) {
-    const url = new URL(req.url);
-    const route = routes[url.pathname];
-    const handler = route?.[req.method];
-    return handler ? handler(req) : new Response('Not Found', { status: 404 });
+    const resolved = resolveRoute(routes, req);
+    return resolved
+      ? resolved.handler(resolved.request)
+      : new Response('Not Found', { status: 404 });
   },
 });
 ```
@@ -29,12 +29,14 @@ serve({
 ### Notes
 - Components are rendered server-side; there is no client React runtime
 - Adds a fallback `GET /` handler returning “It works” when no routes exist
+- `resolveRoute()` supports dynamic paths and injects matched params as `_param_*` query values
 
 ### Example Pattern
 ```ts
 import corsResponse from './middleware/corsResponse';
 import notFoundPage from './ui/PageNotFound';
 import { renderToReadableStream } from 'react-dom/server';
+import { loadRoutes, resolveRoute } from './utils/loadRoutes';
 
 const routes = await loadRoutes('routes');
 
@@ -44,13 +46,8 @@ serve({
   async fetch(req) {
     if (req.method === 'OPTIONS') return corsResponse(); // CORS preflight
 
-    const url = new URL(req.url);
-    const path = url.pathname.length > 1 && url.pathname.endsWith('/')
-      ? url.pathname.slice(0, -1)
-      : url.pathname;
-
-    const handler = routes[path]?.[req.method];
-    if (handler) return handler(req);
+    const resolved = resolveRoute(routes, req);
+    if (resolved) return resolved.handler(resolved.request);
 
     const stream = await renderToReadableStream(notFoundPage({ request: req }));
     return new Response(stream, { headers: { 'Content-Type': 'text/html' }, status: 404 });

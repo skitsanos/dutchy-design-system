@@ -1,12 +1,26 @@
 import { existsSync, mkdirSync, readdirSync } from 'fs';
 import { basename, dirname, join } from 'path';
-import { fileURLToPath } from 'url';
+import { fileURLToPath, pathToFileURL } from 'url';
 import * as React from 'react';
 import { renderToReadableStream } from 'react-dom/server';
 
-type RouteHandler = (req: Request) => Promise<Response>;
-type RouteHandlers = Record<string, RouteHandler>;
-type Routes = Record<string, RouteHandlers>;
+export type RouteHandler = (req: Request) => Promise<Response> | Response;
+export type RouteHandlers = Record<string, RouteHandler>;
+export type Routes = Record<string, RouteHandlers>;
+export type RouteParams = Record<string, string>;
+
+export interface RouteMatch {
+    routePath: string;
+    handlers: RouteHandlers;
+    params: RouteParams;
+}
+
+export interface ResolvedRoute {
+    handler: RouteHandler;
+    params: RouteParams;
+    routePath: string;
+    request: Request;
+}
 
 const HTTP_METHODS = ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS', 'HEAD'] as const;
 type HttpMethod = (typeof HTTP_METHODS)[number];
@@ -53,6 +67,94 @@ export const createReactHandler =
         }
     };
 
+const isRouteHandler = (value: unknown): value is RouteHandler => typeof value === 'function';
+
+const normalizePathname = (pathname: string): string =>
+    pathname.length > 1 && pathname.endsWith('/') ? pathname.slice(0, -1) : pathname;
+
+const segmentMatches = (
+    routeSegment: string,
+    pathSegment: string,
+    params: RouteParams
+): boolean => {
+    if (routeSegment.startsWith(':')) {
+        params[routeSegment.slice(1)] = decodeURIComponent(pathSegment);
+        return true;
+    }
+
+    return routeSegment === pathSegment;
+};
+
+const matchPath = (routePath: string, pathname: string): RouteParams | null => {
+    const normalizedRoutePath = normalizePathname(routePath);
+    const normalizedPathname = normalizePathname(pathname);
+
+    const routeSegments = normalizedRoutePath.split('/').filter(Boolean);
+    const pathSegments = normalizedPathname.split('/').filter(Boolean);
+
+    if (routeSegments.length !== pathSegments.length) return null;
+
+    const params: RouteParams = {};
+
+    for (let i = 0; i < routeSegments.length; i += 1) {
+        if (!segmentMatches(routeSegments[i], pathSegments[i], params)) {
+            return null;
+        }
+    }
+
+    return params;
+};
+
+const addRouteParamsToRequest = (req: Request, params: RouteParams): Request => {
+    if (Object.keys(params).length === 0) return req;
+
+    const url = new URL(req.url);
+
+    for (const [key, value] of Object.entries(params)) {
+        url.searchParams.set(`_param_${key}`, value);
+    }
+
+    return new Request(url.toString(), req);
+};
+
+export const matchRoute = (routes: Routes, pathname: string): RouteMatch | null => {
+    const normalizedPathname = normalizePathname(pathname);
+
+    // Exact match first for best performance.
+    const exact = routes[normalizedPathname];
+    if (exact) {
+        return { routePath: normalizedPathname, handlers: exact, params: {} };
+    }
+
+    for (const [routePath, handlers] of Object.entries(routes)) {
+        if (!routePath.includes(':')) continue;
+        const params = matchPath(routePath, normalizedPathname);
+        if (params) {
+            return { routePath, handlers, params };
+        }
+    }
+
+    return null;
+};
+
+export const resolveRoute = (routes: Routes, req: Request): ResolvedRoute | null => {
+    const method = req.method.toUpperCase();
+    const { pathname } = new URL(req.url);
+
+    const match = matchRoute(routes, pathname);
+    if (!match) return null;
+
+    const handler = match.handlers[method];
+    if (!handler) return null;
+
+    return {
+        handler,
+        params: match.params,
+        routePath: match.routePath,
+        request: addRouteParamsToRequest(req, match.params),
+    };
+};
+
 /**
  * Process a single file and return its handler
  */
@@ -64,19 +166,28 @@ const processFile = async (
     const method = basename(fileName).replace(/\..+/i, '').toUpperCase();
 
     try {
-        // Handle TypeScript/JavaScript files
-        const importPath = '/' + filePath.split('/').slice(1).join('/');
-        const module = await import(importPath);
+        // Use file URL for robust cross-platform module imports.
+        const moduleUrl = pathToFileURL(filePath).href;
+        const module = await import(moduleUrl);
+        const defaultExport = module.default;
+        const reactComponent = isReactComponent(module);
 
         // index.ts/tsx files default to GET
         if (method === 'INDEX') {
-            const handler = isReactComponent(module)
-                ? createReactHandler(module.default)
-                : module.default;
+            if (!reactComponent && !isRouteHandler(defaultExport)) {
+                console.warn(
+                    `Skipped ${fileName} for GET ${routePath}: default export must be a handler function or React component`
+                );
+                return null;
+            }
+
+            const handler = reactComponent
+                ? createReactHandler(defaultExport)
+                : defaultExport;
 
             if (process.env.NODE_ENV !== 'production') {
                 console.log(
-                    `Loaded ${isReactComponent(module) ? 'React component' : 'handler'} for GET ${routePath}`
+                    `Loaded ${reactComponent ? 'React component' : 'handler'} for GET ${routePath}`
                 );
             }
 
@@ -85,9 +196,16 @@ const processFile = async (
 
         // Explicit HTTP method files (get.ts, post.ts, put.ts, etc.)
         if (HTTP_METHODS.includes(method as HttpMethod)) {
-            const handler = isReactComponent(module)
-                ? createReactHandler(module.default)
-                : module.default;
+            if (!reactComponent && !isRouteHandler(defaultExport)) {
+                console.warn(
+                    `Skipped ${fileName} for ${method} ${routePath}: default export must be a handler function or React component`
+                );
+                return null;
+            }
+
+            const handler = reactComponent
+                ? createReactHandler(defaultExport)
+                : defaultExport;
 
             if (process.env.NODE_ENV !== 'production') {
                 console.log(`Loaded ${method} ${routePath}`);

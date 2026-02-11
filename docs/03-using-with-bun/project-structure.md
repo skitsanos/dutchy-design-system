@@ -4,7 +4,7 @@ Recommended file organization for Bun + JSX projects using the Dutchy Design Sys
 
 ## Directory Layout
 
-```
+```text
 my-dutchy-app/
 ├── src/
 │   ├── index.ts                    # Server entry point
@@ -94,20 +94,28 @@ Server entry point. Initializes `Bun.serve()` and configures routing.
 
 ```typescript
 import { serve } from 'bun';
-import { loadRoutes } from '@/utils/loadRoutes';
+import { loadRoutes, resolveRoute } from '@/utils/loadRoutes';
 import staticAssets from '@/utils/staticAssets';
 
 const PORT = process.env.PORT || 3000;
 
 async function startServer() {
   const routes = await loadRoutes('routes');
-  const assets = staticAssets({ assetsPath: 'public' });
+  const assets = staticAssets({ assetsPath: 'public', urlPrefix: '/assets' });
 
   serve({
     port: PORT,
-    routes: { ...routes, ...assets },
-    fetch(req) {
-      return new Response('Not Found', { status: 404 });
+    async fetch(req) {
+      const url = new URL(req.url);
+
+      if (url.pathname.startsWith('/assets/')) {
+        return assets(req);
+      }
+
+      const resolved = resolveRoute(routes, req);
+      return resolved
+        ? resolved.handler(resolved.request)
+        : new Response('Not Found', { status: 404 });
     }
   });
 }
@@ -146,7 +154,7 @@ File-based routing directory. Each file or folder maps to a URL path.
 
 Reusable UI components organized by feature. Each component gets its own folder.
 
-```
+```text
 ui/
 ├── Layout/
 │   └── index.tsx       # Main component
@@ -243,7 +251,7 @@ export type ContactForm = z.infer<typeof contactSchema>;
 
 Static files served directly. Accessible via `/assets/*` URLs.
 
-```
+```text
 public/
 ├── assets/
 │   ├── css/
@@ -350,7 +358,7 @@ export default Button;
 
 Complex components with multiple parts:
 
-```
+```text
 ui/Card/
 ├── index.tsx           # Main export & Card component
 ├── CardHeader.tsx      # Sub-component

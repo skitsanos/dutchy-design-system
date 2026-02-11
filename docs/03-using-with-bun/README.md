@@ -61,7 +61,7 @@ document.getElementById('increment-btn').addEventListener('click', () => {
 
 ## Architecture
 
-```
+```text
 ┌─────────────────────────────────────────────────────────────┐
 │                      Bun.serve()                            │
 ├─────────────────────────────────────────────────────────────┤
@@ -215,7 +215,7 @@ return new Response(stream, {
 
 ### File-Based Routing
 
-```
+```text
 src/routes/
 ├── index.tsx          → GET /
 ├── about/
