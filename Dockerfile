@@ -2,6 +2,7 @@ FROM caddy:2-alpine
 
 # Copy website files
 COPY website/*.html /srv/
+COPY website/assets/ /srv/assets/
 
 # Copy Caddy configuration
 COPY website/Caddyfile /etc/caddy/Caddyfile
