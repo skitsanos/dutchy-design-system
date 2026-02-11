@@ -14,7 +14,7 @@ Bold, structural UI kit inspired by Dutch graphic design—built for teams shipp
 ## Repo Structure
 
 - `docs/` — Living documentation: design system, tokens, components, patterns, and HTML showcases
-- `website/` — Static site assets + Dockerfile for the public site
+- `website/` — Static site assets and Caddyfile for the public site
 - `src/utils/` — Server utilities (e.g., `loadRoutes` for Bun SSR routing)
 - `src/middleware/` — Middleware helpers (e.g., `corsResponse` for preflight handling)
 
@@ -62,11 +62,11 @@ serve({
 
 ```bash
 # Using Podman
-podman build -t dutchy-website ./website
+podman build -t dutchy-website .
 podman run -d -p 8080:80 dutchy-website
 
 # Using Docker
-docker build -t dutchy-website ./website
+docker build -t dutchy-website .
 docker run -d -p 8080:80 dutchy-website
 ```
 
