@@ -183,6 +183,9 @@ Label:     text-xs (12px)
 - [Dropdown](./components/dropdown.md) - Menus and command palette
 - [Data Table](./components/data-table.md) - Sortable data tables
 - [Stepper](./components/stepper.md) - Multi-step progress trackers
+- [Tooltip](./components/tooltip.md) - CSS-only contextual hints
+- [File Upload](./components/file-upload.md) - Drag-and-drop upload with file list
+- [Form Validation](./components/form-validation.md) - Declarative rule-based validation
 
 ### [Patterns](./patterns/)
 - [Hero Sections](./patterns/hero.md) - Hero layouts

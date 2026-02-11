@@ -217,3 +217,70 @@ if (cmdPalette) {
     }
   });
 }
+
+// File Upload
+function formatFileSize(bytes) {
+  if (bytes < 1024) return bytes + ' B';
+  if (bytes < 1048576) return (bytes / 1024).toFixed(1) + ' KB';
+  return (bytes / 1048576).toFixed(1) + ' MB';
+}
+
+document.querySelectorAll('[data-file-upload]').forEach(container => {
+  const dropzone = container.querySelector('[data-dropzone]');
+  const input = container.querySelector('[data-file-input]');
+  const list = container.querySelector('[data-file-list]');
+  if (!dropzone || !input || !list) return;
+
+  let files = [];
+
+  function render() {
+    list.innerHTML = '';
+    files.forEach((file, i) => {
+      const li = document.createElement('li');
+      li.className = 'flex items-center justify-between p-3 border-2 border-border';
+      li.innerHTML = `
+        <div class="flex items-center gap-3">
+          <svg class="w-5 h-5 text-muted-foreground shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+          </svg>
+          <span class="text-sm font-bold">${file.name}</span>
+          <span class="text-xs text-muted-foreground font-mono">${formatFileSize(file.size)}</span>
+        </div>
+        <button class="text-muted-foreground hover:text-destructive p-1" aria-label="Remove file" data-remove-index="${i}">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+          </svg>
+        </button>
+      `;
+      li.querySelector('button').addEventListener('click', () => {
+        files.splice(i, 1);
+        render();
+      });
+      list.appendChild(li);
+    });
+  }
+
+  function addFiles(fileList) {
+    for (const f of fileList) files.push(f);
+    render();
+  }
+
+  dropzone.addEventListener('click', () => input.click());
+  dropzone.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); input.click(); }
+  });
+
+  input.addEventListener('change', () => {
+    if (input.files.length) addFiles(input.files);
+    input.value = '';
+  });
+
+  dropzone.addEventListener('dragover', (e) => { e.preventDefault(); dropzone.classList.add('dutchy-dropzone-active'); });
+  dropzone.addEventListener('dragleave', () => dropzone.classList.remove('dutchy-dropzone-active'));
+  dropzone.addEventListener('drop', (e) => {
+    e.preventDefault();
+    dropzone.classList.remove('dutchy-dropzone-active');
+    if (e.dataTransfer.files.length) addFiles(e.dataTransfer.files);
+  });
+});

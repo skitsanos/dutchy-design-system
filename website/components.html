@@ -1185,6 +1185,193 @@
     </div>
   </section>
 
+  <!-- Tooltips Section -->
+  <section class="py-16 border-b border-border" id="tooltips">
+    <div class="container mx-auto px-4 md:px-6">
+      <div class="flex items-center gap-3 mb-4">
+        <span class="w-3 h-3 bg-primary"></span>
+        <h2 class="font-display text-3xl font-bold uppercase tracking-tighter">Tooltips</h2>
+      </div>
+      <p class="text-muted-foreground mb-12 max-w-2xl">CSS-only contextual hints that appear on hover and focus. No JavaScript required.</p>
+
+      <!-- Position Variants -->
+      <div class="bg-white border-4 border-border p-8 md:p-12 mb-8">
+        <h3 class="font-display font-bold uppercase text-sm tracking-wider mb-6 text-muted-foreground">Position Variants</h3>
+        <div class="flex flex-wrap gap-6 items-center justify-center py-12">
+          <button data-tooltip="Tooltip on top" class="bg-primary text-primary-foreground px-5 py-2.5 font-bold uppercase tracking-wide text-sm hover:bg-primary/90 transition-colors">
+            Top
+          </button>
+          <button data-tooltip="Tooltip on bottom" data-tooltip-position="bottom" class="bg-secondary text-secondary-foreground px-5 py-2.5 font-bold uppercase tracking-wide text-sm border-2 border-border hover:bg-secondary/80 transition-colors">
+            Bottom
+          </button>
+          <button data-tooltip="Tooltip on left" data-tooltip-position="left" class="border-2 border-border px-5 py-2.5 font-bold uppercase tracking-wide text-sm hover:border-primary transition-colors">
+            Left
+          </button>
+          <button data-tooltip="Tooltip on right" data-tooltip-position="right" class="border-2 border-border px-5 py-2.5 font-bold uppercase tracking-wide text-sm hover:border-primary transition-colors">
+            Right
+          </button>
+        </div>
+      </div>
+
+      <!-- Icons & Text -->
+      <div class="bg-white border-4 border-border p-8 md:p-12">
+        <h3 class="font-display font-bold uppercase text-sm tracking-wider mb-6 text-muted-foreground">Icons &amp; Text</h3>
+        <div class="flex flex-wrap items-center gap-8">
+          <button data-tooltip="Edit item" class="p-2 hover:text-primary transition-colors">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>
+            </svg>
+          </button>
+          <button data-tooltip="Delete item" data-tooltip-position="bottom" class="p-2 hover:text-destructive transition-colors">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
+            </svg>
+          </button>
+          <p class="text-sm">
+            Max upload:
+            <span data-tooltip="5 megabytes" tabindex="0" class="underline decoration-dotted cursor-help font-bold">5 MB</span>
+          </p>
+          <label class="text-sm font-bold uppercase tracking-wide">
+            Email
+            <span data-tooltip="This field is required" tabindex="0" class="text-destructive cursor-help">*</span>
+          </label>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- File Upload Section -->
+  <section class="py-16 border-b border-border bg-muted/30" id="fileupload">
+    <div class="container mx-auto px-4 md:px-6">
+      <div class="flex items-center gap-3 mb-4">
+        <span class="w-3 h-3 bg-primary"></span>
+        <h2 class="font-display text-3xl font-bold uppercase tracking-tighter">File Upload</h2>
+      </div>
+      <p class="text-muted-foreground mb-12 max-w-2xl">Drag-and-drop zone with file list, styled input fallback, and progress indicators.</p>
+
+      <!-- Drag & Drop -->
+      <div class="bg-background border-4 border-border p-8 md:p-12 mb-8">
+        <h3 class="font-display font-bold uppercase text-sm tracking-wider mb-6 text-muted-foreground">Drag &amp; Drop</h3>
+        <div data-file-upload>
+          <div class="dutchy-dropzone p-12 text-center" data-dropzone tabindex="0" role="button" aria-label="Upload files">
+            <svg class="w-10 h-10 mx-auto mb-4 text-muted-foreground" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"/>
+            </svg>
+            <p class="font-bold uppercase tracking-wide text-sm mb-1">Drop files here</p>
+            <p class="text-sm text-muted-foreground">or click to browse</p>
+            <input type="file" multiple class="hidden" data-file-input />
+          </div>
+          <ul data-file-list class="mt-4 space-y-2"></ul>
+        </div>
+      </div>
+
+      <!-- Styled Input -->
+      <div class="bg-background border-4 border-border p-8 md:p-12 mb-8">
+        <h3 class="font-display font-bold uppercase text-sm tracking-wider mb-6 text-muted-foreground">Styled Input</h3>
+        <label class="inline-flex items-center gap-3 border-2 border-border px-4 py-3 cursor-pointer hover:border-primary transition-colors">
+          <svg class="w-5 h-5 text-muted-foreground" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
+          </svg>
+          <span class="text-sm font-bold uppercase tracking-wide">Choose File</span>
+          <input type="file" class="hidden" />
+        </label>
+      </div>
+
+      <!-- Progress -->
+      <div class="bg-background border-4 border-border p-8 md:p-12">
+        <h3 class="font-display font-bold uppercase text-sm tracking-wider mb-6 text-muted-foreground">Progress Indicators</h3>
+        <div class="space-y-4 max-w-lg">
+          <div class="flex items-center gap-4 p-3 border-2 border-border">
+            <span class="text-sm font-bold flex-shrink-0">report.pdf</span>
+            <div class="flex-1 h-2 bg-muted">
+              <div class="h-full bg-primary transition-all" style="width: 75%"></div>
+            </div>
+            <span class="text-xs text-muted-foreground font-mono">75%</span>
+          </div>
+          <div class="flex items-center gap-4 p-3 border-2 border-border">
+            <span class="text-sm font-bold flex-shrink-0">photo.jpg</span>
+            <div class="flex-1 h-2 bg-muted">
+              <div class="h-full bg-[hsl(142,76%,36%)]" style="width: 100%"></div>
+            </div>
+            <svg class="w-5 h-5 text-[hsl(142,76%,36%)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Form Validation Section -->
+  <section class="py-16 border-b border-border" id="formvalidation">
+    <div class="container mx-auto px-4 md:px-6">
+      <div class="flex items-center gap-3 mb-4">
+        <span class="w-3 h-3 bg-primary"></span>
+        <h2 class="font-display text-3xl font-bold uppercase tracking-tighter">Form Validation</h2>
+      </div>
+      <p class="text-muted-foreground mb-12 max-w-2xl">Ant Design-inspired declarative validation with DutchyForm. Rule-based, async-ready, accessible.</p>
+
+      <!-- Live Demo -->
+      <div class="bg-white border-4 border-border p-8 md:p-12 mb-8">
+        <h3 class="font-display font-bold uppercase text-sm tracking-wider mb-6 text-muted-foreground">Live Demo</h3>
+        <form id="validation-demo" class="max-w-lg space-y-6" novalidate>
+          <div data-field>
+            <label class="block text-sm font-bold uppercase tracking-wide mb-2">Full Name</label>
+            <input name="fullname" type="text" placeholder="John Doe" class="w-full border-2 border-border p-3 text-sm focus:border-primary focus:outline-none transition-colors" />
+          </div>
+          <div data-field>
+            <label class="block text-sm font-bold uppercase tracking-wide mb-2">Email</label>
+            <input name="email" type="text" placeholder="john@example.com" class="w-full border-2 border-border p-3 text-sm focus:border-primary focus:outline-none transition-colors" />
+          </div>
+          <div data-field>
+            <label class="block text-sm font-bold uppercase tracking-wide mb-2">Password</label>
+            <input name="password" type="password" placeholder="Min 8 chars, uppercase + number" class="w-full border-2 border-border p-3 text-sm focus:border-primary focus:outline-none transition-colors" />
+          </div>
+          <div data-field>
+            <label class="block text-sm font-bold uppercase tracking-wide mb-2">Website <span class="text-muted-foreground font-normal normal-case">(optional)</span></label>
+            <input name="website" type="text" placeholder="https://example.com" class="w-full border-2 border-border p-3 text-sm focus:border-primary focus:outline-none transition-colors" />
+          </div>
+          <div data-field>
+            <label class="block text-sm font-bold uppercase tracking-wide mb-2">Bio <span class="text-muted-foreground font-normal normal-case">(max 200 chars)</span></label>
+            <textarea name="bio" rows="3" placeholder="Tell us about yourself..." class="w-full border-2 border-border p-3 text-sm focus:border-primary focus:outline-none transition-colors resize-none"></textarea>
+          </div>
+          <div class="flex gap-4">
+            <button type="submit" class="bg-primary text-primary-foreground px-6 py-3 font-bold uppercase tracking-wide hover:bg-primary/90 transition-colors">
+              Submit
+            </button>
+            <button type="reset" class="border-2 border-border px-6 py-3 font-bold uppercase tracking-wide hover:border-primary transition-colors">
+              Reset
+            </button>
+          </div>
+        </form>
+      </div>
+
+      <!-- Code Example -->
+      <div class="bg-white border-4 border-border p-8 md:p-12">
+        <h3 class="font-display font-bold uppercase text-sm tracking-wider mb-6 text-muted-foreground">Usage</h3>
+        <pre class="bg-foreground text-background p-6 overflow-x-auto"><code class="text-sm">const form = DutchyForm.create(document.getElementById('my-form'), {
+  rules: {
+    email: [
+      { required: true, message: 'Email is required' },
+      { type: 'email', message: 'Enter a valid email' },
+    ],
+    password: [
+      { required: true, message: 'Password is required' },
+      { min: 8, message: 'At least 8 characters' },
+      { pattern: /[A-Z]/, message: 'Include an uppercase letter' },
+      { pattern: /[0-9]/, message: 'Include a number' },
+    ],
+  },
+  validateTrigger: 'onBlur',
+});
+
+form.addEventListener('dutchy:submit', (e) =&gt; {
+  console.log('Valid:', e.detail);
+});</code></pre>
+      </div>
+    </div>
+  </section>
+
   <!-- Toast Container -->
   <div id="toast-container" class="fixed bottom-6 right-6 z-[100] space-y-3" aria-live="polite"></div>
 
@@ -1233,6 +1420,9 @@
             <li><a href="#dropdowns" class="hover:text-primary transition-colors">Dropdowns</a></li>
             <li><a href="#datatable" class="hover:text-primary transition-colors">Data Table</a></li>
             <li><a href="#stepper" class="hover:text-primary transition-colors">Stepper</a></li>
+            <li><a href="#tooltips" class="hover:text-primary transition-colors">Tooltips</a></li>
+            <li><a href="#fileupload" class="hover:text-primary transition-colors">File Upload</a></li>
+            <li><a href="#formvalidation" class="hover:text-primary transition-colors">Validation</a></li>
           </ul>
         </div>
       </div>
@@ -1251,5 +1441,37 @@
   </footer>
 
   <script src="assets/js/components.js"></script>
+  <script src="assets/js/form-validation.js"></script>
+  <script>
+    // Initialize validation demo
+    const demoForm = document.getElementById('validation-demo');
+    if (demoForm) {
+      DutchyForm.create(demoForm, {
+        rules: {
+          fullname: [
+            { required: true, message: 'Full name is required' },
+            { min: 2, message: 'Must be at least 2 characters' },
+          ],
+          email: [
+            { required: true, message: 'Email is required' },
+            { type: 'email', message: 'Enter a valid email address' },
+          ],
+          password: [
+            { required: true, message: 'Password is required' },
+            { min: 8, message: 'At least 8 characters' },
+            { pattern: /[A-Z]/, message: 'Include an uppercase letter' },
+            { pattern: /[0-9]/, message: 'Include a number' },
+          ],
+          website: [
+            { type: 'url', message: 'Enter a valid URL (e.g. https://example.com)' },
+          ],
+          bio: [
+            { max: 200, message: 'Bio must be 200 characters or fewer' },
+          ],
+        },
+        validateTrigger: 'onBlur',
+      });
+    }
+  </script>
 </body>
 </html>
