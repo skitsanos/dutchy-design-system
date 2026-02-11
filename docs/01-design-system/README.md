@@ -168,8 +168,21 @@ Label:     text-xs (12px)
 - [Buttons](./components/buttons.md) - Button variants and states
 - [Cards](./components/cards.md) - Card components
 - [Forms](./components/forms.md) - Form elements
-- [Navigation](./components/navigation.md) - Nav patterns
+- [Breadcrumbs](./components/breadcrumbs.md) - Hierarchy and path navigation
+- [Navigation](./components/navigation.md) - Header, sidebar, tabs, pagination
 - [Layout](./components/layout.md) - Layout components
+- [Empty State](./components/empty-state.md) - Empty state patterns
+- [Alerts / Banners](./components/alerts.md) - Contextual feedback messages
+- [Skeleton Loader](./components/skeleton.md) - Loading placeholders
+- [Stats / KPI Cards](./components/stats.md) - Metric display cards
+- [Pagination](./components/pagination.md) - Page navigation controls
+- [Accordion](./components/accordion.md) - Collapsible content sections
+- [Tabs](./components/tabs.md) - Tabbed content panels
+- [Toast Notifications](./components/toast.md) - Transient messages
+- [Modal / Drawer](./components/modal.md) - Dialog overlays and drawers
+- [Dropdown](./components/dropdown.md) - Menus and command palette
+- [Data Table](./components/data-table.md) - Sortable data tables
+- [Stepper](./components/stepper.md) - Multi-step progress trackers
 
 ### [Patterns](./patterns/)
 - [Hero Sections](./patterns/hero.md) - Hero layouts

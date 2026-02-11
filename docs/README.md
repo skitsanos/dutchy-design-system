@@ -10,7 +10,7 @@ Core design system documentation including:
 
 - **Design Philosophy** - Dutch-inspired minimalism with bold geometric shapes
 - **Design Tokens** - Colors, typography, spacing, and effects
-- **Components** - Buttons, cards, forms, navigation, and layout
+- **Components** - Buttons, cards, forms, breadcrumbs, navigation, layout, alerts, empty states, skeleton loaders, stats, pagination, accordion, tabs, toasts, modals, dropdowns, data tables, and steppers
 - **Patterns** - Hero sections, grids, footers, and compositions
 
 ### [02 - HTML Showcase](./02-html-showcase/)
@@ -37,7 +37,7 @@ Build server-rendered applications using Bun with JSX/TSX (SSR-only, no client R
 | Topic | Description |
 |-------|-------------|
 | [Design Tokens](./01-design-system/tokens/) | Colors, typography, spacing, effects |
-| [Components](./01-design-system/components/) | Buttons, cards, forms, navigation, layout |
+| [Components](./01-design-system/components/) | Buttons, cards, forms, navigation, alerts, modals, tables, and 12 more |
 | [Bun Quick Start](./03-using-with-bun/getting-started.md) | Start building with Bun |
 | [Routing](./03-using-with-bun/routing.md) | File-based routing system |
 | [Client-Side JS](./03-using-with-bun/examples/client-side-js.md) | Vanilla JS for interactivity |

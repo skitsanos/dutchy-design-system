@@ -33,52 +33,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            border: 'hsl(25 20% 88%)',
-            input: 'hsl(25 20% 88%)',
-            ring: 'hsl(25 95% 53%)',
-            background: 'hsl(40 30% 97%)',
-            foreground: 'hsl(25 20% 6%)',
-            primary: {
-              DEFAULT: 'hsl(25 95% 53%)',
-              foreground: 'hsl(0 0% 100%)',
-            },
-            secondary: {
-              DEFAULT: 'hsl(25 20% 92%)',
-              foreground: 'hsl(25 25% 15%)',
-            },
-            muted: {
-              DEFAULT: 'hsl(40 20% 94%)',
-              foreground: 'hsl(25 15% 40%)',
-            },
-            destructive: {
-              DEFAULT: 'hsl(0 84% 60%)',
-              foreground: 'hsl(0 0% 100%)',
-            },
-          },
-          fontFamily: {
-            display: ['Space Grotesk', 'sans-serif'],
-            sans: ['Inter', 'sans-serif'],
-            mono: ['JetBrains Mono', 'monospace'],
-          },
-          borderRadius: {
-            DEFAULT: '0',
-            sm: '0',
-            md: '0',
-            lg: '0',
-            xl: '0',
-          },
-        },
-      },
-    }
-  </script>
-  <style>
-    * { border-radius: 0 !important; }
-  </style>
+  <script src="assets/js/tailwind-config.js"></script>
+  <link rel="stylesheet" href="assets/css/dutchy.css">
 </head>
 <body class="bg-background text-foreground font-sans">
   <!-- Header -->
@@ -483,9 +439,754 @@
             </div>
           </div>
         </div>
+      <!-- Full-Width Banner -->
+      <div class="mt-8">
+        <h3 class="font-display font-bold uppercase text-sm tracking-wider mb-4 text-muted-foreground">Full-Width Banner</h3>
+        <div class="bg-primary text-primary-foreground px-4 py-3">
+          <div class="flex items-center justify-between">
+            <div class="flex items-center gap-3">
+              <svg class="w-5 h-5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
+              <p class="text-sm font-bold uppercase tracking-wide">New version available — upgrade now for the latest features.</p>
+            </div>
+            <button class="shrink-0 bg-primary-foreground text-primary px-4 py-1.5 text-xs font-bold uppercase tracking-wide hover:bg-primary-foreground/90 transition-colors">Upgrade</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Dismissible Alert -->
+      <div class="mt-4">
+        <h3 class="font-display font-bold uppercase text-sm tracking-wider mb-4 text-muted-foreground">Dismissible</h3>
+        <div class="bg-primary/10 border-l-4 border-primary p-4" role="alert">
+          <div class="flex items-start justify-between gap-3">
+            <div class="flex items-start gap-3">
+              <svg class="w-5 h-5 text-primary mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
+              <div>
+                <p class="font-bold text-sm">Heads up!</p>
+                <p class="text-sm text-muted-foreground">You can dismiss this alert when you're done reading.</p>
+              </div>
+            </div>
+            <button data-dismiss="alert" class="shrink-0 text-muted-foreground hover:text-foreground transition-colors p-1" aria-label="Dismiss">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+            </button>
+          </div>
+        </div>
+      </div>
       </div>
     </div>
   </section>
+
+  <!-- Empty State Section -->
+  <section class="py-16 border-b border-border bg-muted/30" id="emptystate">
+    <div class="container mx-auto px-4 md:px-6">
+      <div class="flex items-center gap-3 mb-4">
+        <span class="w-3 h-3 bg-primary"></span>
+        <h2 class="font-display text-3xl font-bold uppercase tracking-tighter">Empty States</h2>
+      </div>
+      <p class="text-muted-foreground mb-12 max-w-2xl">Invitations to action when there's no content to display.</p>
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <!-- Search empty -->
+        <div class="bg-background border-4 border-border">
+          <div class="flex flex-col items-center justify-center py-16 text-center px-4">
+            <div class="w-16 h-16 bg-muted flex items-center justify-center mb-6">
+              <svg class="w-8 h-8 text-muted-foreground" fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+            </div>
+            <h3 class="font-display text-xl font-bold uppercase tracking-tight mb-2">No results found</h3>
+            <p class="text-muted-foreground text-sm max-w-sm mb-6">We couldn't find anything matching your search. Try adjusting your filters.</p>
+            <button class="bg-primary text-primary-foreground px-6 py-3 font-bold uppercase tracking-wide text-sm hover:bg-primary/90 transition-colors">Clear Search</button>
+          </div>
+        </div>
+
+        <!-- Dashboard empty -->
+        <div class="bg-background border-4 border-dashed border-border">
+          <div class="flex flex-col items-center justify-center py-16 text-center px-4">
+            <div class="w-20 h-20 bg-primary/10 flex items-center justify-center mb-6">
+              <svg class="w-10 h-10 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zm10 0a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zm10 0a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"/></svg>
+            </div>
+            <h3 class="font-display text-2xl font-bold uppercase tracking-tight mb-2">Set up your dashboard</h3>
+            <p class="text-muted-foreground max-w-md mb-8">Your dashboard is empty. Add widgets to monitor key metrics.</p>
+            <div class="flex gap-4">
+              <button class="bg-primary text-primary-foreground px-6 py-3 font-bold uppercase tracking-wide text-sm hover:bg-primary/90 transition-colors">Add Widget</button>
+              <button class="border-2 border-foreground px-6 py-3 font-bold uppercase tracking-wide text-sm hover:bg-foreground hover:text-background transition-colors">Browse Templates</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skeleton Loader Section -->
+  <section class="py-16 border-b border-border" id="skeleton">
+    <div class="container mx-auto px-4 md:px-6">
+      <div class="flex items-center gap-3 mb-4">
+        <span class="w-3 h-3 bg-primary"></span>
+        <h2 class="font-display text-3xl font-bold uppercase tracking-tighter">Skeleton Loaders</h2>
+      </div>
+      <p class="text-muted-foreground mb-12 max-w-2xl">Placeholder shapes that mirror the final layout while content loads.</p>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- Card skeleton -->
+        <div class="bg-background border-4 border-border p-6 space-y-4">
+          <h3 class="font-display font-bold uppercase text-xs tracking-wider mb-4 text-muted-foreground">Card Skeleton</h3>
+          <div class="h-4 w-3/4 bg-muted skeleton-pulse"></div>
+          <div class="h-3 w-full bg-muted skeleton-pulse"></div>
+          <div class="h-3 w-5/6 bg-muted skeleton-pulse"></div>
+          <div class="h-10 w-32 bg-muted skeleton-pulse mt-4"></div>
+        </div>
+
+        <!-- List skeleton -->
+        <div class="bg-background border-4 border-border p-6">
+          <h3 class="font-display font-bold uppercase text-xs tracking-wider mb-4 text-muted-foreground">List Skeleton</h3>
+          <div class="space-y-3">
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 bg-muted skeleton-pulse shrink-0"></div>
+              <div class="flex-1 space-y-2">
+                <div class="h-3 w-1/3 bg-muted skeleton-pulse"></div>
+                <div class="h-2 w-2/3 bg-muted skeleton-pulse"></div>
+              </div>
+            </div>
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 bg-muted skeleton-pulse shrink-0"></div>
+              <div class="flex-1 space-y-2">
+                <div class="h-3 w-1/4 bg-muted skeleton-pulse"></div>
+                <div class="h-2 w-1/2 bg-muted skeleton-pulse"></div>
+              </div>
+            </div>
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 bg-muted skeleton-pulse shrink-0"></div>
+              <div class="flex-1 space-y-2">
+                <div class="h-3 w-2/5 bg-muted skeleton-pulse"></div>
+                <div class="h-2 w-3/5 bg-muted skeleton-pulse"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Content skeleton -->
+        <div class="bg-background border-4 border-border p-6">
+          <h3 class="font-display font-bold uppercase text-xs tracking-wider mb-4 text-muted-foreground">Content Skeleton</h3>
+          <div class="space-y-4">
+            <div class="h-6 w-1/2 bg-muted skeleton-pulse"></div>
+            <div class="h-3 w-full bg-muted skeleton-pulse"></div>
+            <div class="h-3 w-full bg-muted skeleton-pulse"></div>
+            <div class="h-3 w-4/5 bg-muted skeleton-pulse"></div>
+            <div class="h-24 w-full bg-muted skeleton-pulse"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats / KPI Section -->
+  <section class="py-16 border-b border-border bg-muted/30" id="stats">
+    <div class="container mx-auto px-4 md:px-6">
+      <div class="flex items-center gap-3 mb-4">
+        <span class="w-3 h-3 bg-primary"></span>
+        <h2 class="font-display text-3xl font-bold uppercase tracking-tighter">Stats / KPI Cards</h2>
+      </div>
+      <p class="text-muted-foreground mb-12 max-w-2xl">Surface key metrics at a glance with bold numbers and trend indicators.</p>
+
+      <!-- Stats Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+        <div class="bg-background border-4 border-border p-6">
+          <p class="font-display font-bold uppercase text-xs tracking-wider text-muted-foreground mb-2">Revenue</p>
+          <p class="font-display text-3xl font-bold tracking-tight mb-2">$48.2K</p>
+          <div class="flex items-center gap-1.5">
+            <svg class="w-4 h-4" style="color: hsl(142 76% 36%)" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 17l5-5 5 5m0-8l-5 5-5-5"/></svg>
+            <span class="text-sm font-bold" style="color: hsl(142 76% 36%)">+12.5%</span>
+          </div>
+        </div>
+        <div class="bg-background border-4 border-border p-6">
+          <p class="font-display font-bold uppercase text-xs tracking-wider text-muted-foreground mb-2">Orders</p>
+          <p class="font-display text-3xl font-bold tracking-tight mb-2">1,429</p>
+          <div class="flex items-center gap-1.5">
+            <svg class="w-4 h-4" style="color: hsl(142 76% 36%)" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 17l5-5 5 5m0-8l-5 5-5-5"/></svg>
+            <span class="text-sm font-bold" style="color: hsl(142 76% 36%)">+4.3%</span>
+          </div>
+        </div>
+        <div class="bg-background border-4 border-border p-6">
+          <p class="font-display font-bold uppercase text-xs tracking-wider text-muted-foreground mb-2">Conversion</p>
+          <p class="font-display text-3xl font-bold tracking-tight mb-2">3.24%</p>
+          <div class="flex items-center gap-1.5">
+            <svg class="w-4 h-4 text-destructive" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 7l-5 5-5-5m0 8l5-5 5 5"/></svg>
+            <span class="text-sm font-bold text-destructive">-1.8%</span>
+          </div>
+        </div>
+        <div class="bg-background border-4 border-border p-6">
+          <p class="font-display font-bold uppercase text-xs tracking-wider text-muted-foreground mb-2">Avg. Order</p>
+          <p class="font-display text-3xl font-bold tracking-tight">$33.80</p>
+        </div>
+      </div>
+
+      <!-- Compact Stats Row -->
+      <div class="bg-background flex divide-x-2 divide-border border-2 border-border">
+        <div class="flex-1 p-4 text-center">
+          <p class="font-display text-2xl font-bold">2,847</p>
+          <p class="text-xs text-muted-foreground uppercase tracking-wider font-bold mt-1">Users</p>
+        </div>
+        <div class="flex-1 p-4 text-center">
+          <p class="font-display text-2xl font-bold">14,209</p>
+          <p class="text-xs text-muted-foreground uppercase tracking-wider font-bold mt-1">Views</p>
+        </div>
+        <div class="flex-1 p-4 text-center">
+          <p class="font-display text-2xl font-bold">89%</p>
+          <p class="text-xs text-muted-foreground uppercase tracking-wider font-bold mt-1">Uptime</p>
+        </div>
+        <div class="flex-1 p-4 text-center">
+          <p class="font-display text-2xl font-bold">3.2s</p>
+          <p class="text-xs text-muted-foreground uppercase tracking-wider font-bold mt-1">Avg Load</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pagination Section -->
+  <section class="py-16 border-b border-border" id="pagination">
+    <div class="container mx-auto px-4 md:px-6">
+      <div class="flex items-center gap-3 mb-4">
+        <span class="w-3 h-3 bg-primary"></span>
+        <h2 class="font-display text-3xl font-bold uppercase tracking-tighter">Pagination</h2>
+      </div>
+      <p class="text-muted-foreground mb-12 max-w-2xl">Navigate through paged content with clear position indicators.</p>
+
+      <div class="space-y-12">
+        <!-- Standard -->
+        <div class="bg-background border-4 border-border p-8">
+          <h3 class="font-display font-bold uppercase text-sm tracking-wider mb-6 text-muted-foreground">Standard</h3>
+          <nav aria-label="Pagination" class="flex items-center gap-2">
+            <a href="#pagination" class="px-4 py-2 border-2 border-border text-muted-foreground hover:border-foreground hover:text-foreground transition-colors inline-flex items-center justify-center">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+            </a>
+            <a href="#pagination" class="px-4 py-2 border-2 border-border text-muted-foreground hover:border-foreground hover:text-foreground transition-colors text-sm font-bold">1</a>
+            <span class="px-4 py-2 border-2 border-foreground bg-foreground text-background font-bold text-sm" aria-current="page">2</span>
+            <a href="#pagination" class="px-4 py-2 border-2 border-border text-muted-foreground hover:border-foreground hover:text-foreground transition-colors text-sm font-bold">3</a>
+            <a href="#pagination" class="px-4 py-2 border-2 border-border text-muted-foreground hover:border-foreground hover:text-foreground transition-colors text-sm font-bold">4</a>
+            <a href="#pagination" class="px-4 py-2 border-2 border-border text-muted-foreground hover:border-foreground hover:text-foreground transition-colors text-sm font-bold">5</a>
+            <a href="#pagination" class="px-4 py-2 border-2 border-border text-muted-foreground hover:border-foreground hover:text-foreground transition-colors inline-flex items-center justify-center">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+            </a>
+          </nav>
+        </div>
+
+        <!-- With Ellipsis -->
+        <div class="bg-background border-4 border-border p-8">
+          <h3 class="font-display font-bold uppercase text-sm tracking-wider mb-6 text-muted-foreground">With Ellipsis</h3>
+          <nav aria-label="Pagination" class="flex items-center gap-2">
+            <a href="#pagination" class="px-4 py-2 border-2 border-border text-muted-foreground hover:border-foreground hover:text-foreground transition-colors inline-flex items-center justify-center">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+            </a>
+            <a href="#pagination" class="px-4 py-2 border-2 border-border text-muted-foreground hover:border-foreground hover:text-foreground transition-colors text-sm font-bold">1</a>
+            <span class="px-2 py-2 text-muted-foreground text-sm" aria-hidden="true">...</span>
+            <a href="#pagination" class="px-4 py-2 border-2 border-border text-muted-foreground hover:border-foreground hover:text-foreground transition-colors text-sm font-bold">6</a>
+            <span class="px-4 py-2 border-2 border-foreground bg-foreground text-background font-bold text-sm" aria-current="page">7</span>
+            <a href="#pagination" class="px-4 py-2 border-2 border-border text-muted-foreground hover:border-foreground hover:text-foreground transition-colors text-sm font-bold">8</a>
+            <span class="px-2 py-2 text-muted-foreground text-sm" aria-hidden="true">...</span>
+            <a href="#pagination" class="px-4 py-2 border-2 border-border text-muted-foreground hover:border-foreground hover:text-foreground transition-colors text-sm font-bold">20</a>
+            <a href="#pagination" class="px-4 py-2 border-2 border-border text-muted-foreground hover:border-foreground hover:text-foreground transition-colors inline-flex items-center justify-center">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+            </a>
+          </nav>
+        </div>
+
+        <!-- Compact -->
+        <div class="bg-background border-4 border-border p-8">
+          <h3 class="font-display font-bold uppercase text-sm tracking-wider mb-6 text-muted-foreground">Compact</h3>
+          <nav aria-label="Pagination" class="flex items-center gap-4">
+            <a href="#pagination" class="text-sm font-bold uppercase tracking-wide text-muted-foreground hover:text-foreground transition-colors inline-flex items-center gap-1">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+              Previous
+            </a>
+            <span class="text-sm text-muted-foreground">Page <strong class="text-foreground">3</strong> of <strong class="text-foreground">12</strong></span>
+            <a href="#pagination" class="text-sm font-bold uppercase tracking-wide text-muted-foreground hover:text-foreground transition-colors inline-flex items-center gap-1">
+              Next
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+            </a>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Accordion Section -->
+  <section class="py-16 border-b border-border bg-muted/30" id="accordion">
+    <div class="container mx-auto px-4 md:px-6">
+      <div class="flex items-center gap-3 mb-4">
+        <span class="w-3 h-3 bg-primary"></span>
+        <h2 class="font-display text-3xl font-bold uppercase tracking-tighter">Accordion</h2>
+      </div>
+      <p class="text-muted-foreground mb-12 max-w-2xl">Progressively disclose content using native details/summary with optional single-open behavior.</p>
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <!-- Multi-open -->
+        <div>
+          <h3 class="font-display font-bold uppercase text-sm tracking-wider mb-4 text-muted-foreground">Multi-Open</h3>
+          <div class="border-2 border-border divide-y-2 divide-border bg-background">
+            <details open>
+              <summary class="px-6 py-4 font-bold uppercase text-sm tracking-wide cursor-pointer hover:bg-muted transition-colors flex items-center justify-between list-none">
+                What is the Dutchy Design System?
+                <svg class="w-5 h-5 shrink-0 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+              </summary>
+              <div class="px-6 py-4 text-sm text-muted-foreground border-t border-border">A bold, structured design language inspired by Dutch graphic design traditions.</div>
+            </details>
+            <details>
+              <summary class="px-6 py-4 font-bold uppercase text-sm tracking-wide cursor-pointer hover:bg-muted transition-colors flex items-center justify-between list-none">
+                What frameworks does it support?
+                <svg class="w-5 h-5 shrink-0 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+              </summary>
+              <div class="px-6 py-4 text-sm text-muted-foreground border-t border-border">Works with vanilla HTML/CSS, TailwindCSS, React, Vue, or any CSS framework.</div>
+            </details>
+            <details>
+              <summary class="px-6 py-4 font-bold uppercase text-sm tracking-wide cursor-pointer hover:bg-muted transition-colors flex items-center justify-between list-none">
+                Is it accessible?
+                <svg class="w-5 h-5 shrink-0 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+              </summary>
+              <div class="px-6 py-4 text-sm text-muted-foreground border-t border-border">Yes. High-contrast palette and WCAG-aware color guidance built in.</div>
+            </details>
+          </div>
+        </div>
+
+        <!-- Single-open -->
+        <div>
+          <h3 class="font-display font-bold uppercase text-sm tracking-wider mb-4 text-muted-foreground">Single-Open (JS)</h3>
+          <div class="border-2 border-border divide-y-2 divide-border bg-background" data-accordion="single">
+            <details>
+              <summary class="px-6 py-4 font-bold uppercase text-sm tracking-wide cursor-pointer hover:bg-muted transition-colors flex items-center justify-between list-none">
+                Getting Started
+                <svg class="w-5 h-5 shrink-0 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+              </summary>
+              <div class="px-6 py-4 text-sm text-muted-foreground border-t border-border">Include the CDN link for Tailwind and start building.</div>
+            </details>
+            <details>
+              <summary class="px-6 py-4 font-bold uppercase text-sm tracking-wide cursor-pointer hover:bg-muted transition-colors flex items-center justify-between list-none">
+                Customization
+                <svg class="w-5 h-5 shrink-0 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+              </summary>
+              <div class="px-6 py-4 text-sm text-muted-foreground border-t border-border">Override CSS custom properties to swap colors and typography.</div>
+            </details>
+            <details>
+              <summary class="px-6 py-4 font-bold uppercase text-sm tracking-wide cursor-pointer hover:bg-muted transition-colors flex items-center justify-between list-none">
+                Deployment
+                <svg class="w-5 h-5 shrink-0 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+              </summary>
+              <div class="px-6 py-4 text-sm text-muted-foreground border-t border-border">Build with Docker or Podman and serve via any static host.</div>
+            </details>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Tabs Section -->
+  <section class="py-16 border-b border-border" id="tabs">
+    <div class="container mx-auto px-4 md:px-6">
+      <div class="flex items-center gap-3 mb-4">
+        <span class="w-3 h-3 bg-primary"></span>
+        <h2 class="font-display text-3xl font-bold uppercase tracking-tighter">Tabs</h2>
+      </div>
+      <p class="text-muted-foreground mb-12 max-w-2xl">Switch between content panels with underline or boxed (segmented) tab styles.</p>
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <!-- Underline Tabs -->
+        <div class="bg-background border-4 border-border" data-tabs>
+          <h3 class="font-display font-bold uppercase text-xs tracking-wider p-6 pb-0 text-muted-foreground">Underline Tabs</h3>
+          <div class="px-6 pt-4">
+            <div class="border-b-2 border-border">
+              <nav class="flex gap-0" role="tablist">
+                <button role="tab" aria-selected="true" class="px-6 py-4 text-sm font-bold uppercase tracking-wide border-b-4 border-primary -mb-0.5 text-foreground">Overview</button>
+                <button role="tab" aria-selected="false" class="px-6 py-4 text-sm font-bold uppercase tracking-wide text-muted-foreground hover:text-foreground transition-colors -mb-0.5 border-b-4 border-transparent">Features</button>
+                <button role="tab" aria-selected="false" class="px-6 py-4 text-sm font-bold uppercase tracking-wide text-muted-foreground hover:text-foreground transition-colors -mb-0.5 border-b-4 border-transparent">Pricing</button>
+              </nav>
+            </div>
+          </div>
+          <div role="tabpanel" class="p-6"><p class="text-muted-foreground text-sm">Overview panel content. Bold interfaces start here.</p></div>
+          <div role="tabpanel" class="p-6 hidden"><p class="text-muted-foreground text-sm">Features panel. Zero border radius, strong borders.</p></div>
+          <div role="tabpanel" class="p-6 hidden"><p class="text-muted-foreground text-sm">Pricing panel. Check our plans and pricing details.</p></div>
+        </div>
+
+        <!-- Boxed Tabs -->
+        <div class="bg-background border-4 border-border" data-tabs="boxed">
+          <h3 class="font-display font-bold uppercase text-xs tracking-wider p-6 pb-0 text-muted-foreground">Segmented Control</h3>
+          <div class="px-6 pt-4">
+            <div class="flex bg-muted p-1" role="tablist">
+              <button role="tab" aria-selected="true" class="flex-1 py-3 text-sm font-bold uppercase tracking-wide bg-background text-foreground">Monthly</button>
+              <button role="tab" aria-selected="false" class="flex-1 py-3 text-sm font-bold uppercase tracking-wide text-muted-foreground hover:text-foreground transition-colors">Yearly</button>
+            </div>
+          </div>
+          <div role="tabpanel" class="p-6"><p class="text-muted-foreground text-sm">Monthly billing: $29/mo per seat.</p></div>
+          <div role="tabpanel" class="p-6 hidden"><p class="text-muted-foreground text-sm">Yearly billing: $290/yr per seat (save 17%).</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Toast Section -->
+  <section class="py-16 border-b border-border bg-muted/30" id="toasts">
+    <div class="container mx-auto px-4 md:px-6">
+      <div class="flex items-center gap-3 mb-4">
+        <span class="w-3 h-3 bg-primary"></span>
+        <h2 class="font-display text-3xl font-bold uppercase tracking-tighter">Toast Notifications</h2>
+      </div>
+      <p class="text-muted-foreground mb-12 max-w-2xl">Non-blocking feedback messages that appear briefly and dismiss automatically.</p>
+
+      <div class="flex flex-wrap gap-4 mb-8">
+        <button onclick="showToast({title:'Saved',message:'Your changes have been saved.',variant:'success'})" class="bg-primary text-primary-foreground px-6 py-3 font-bold uppercase tracking-wide text-sm hover:bg-primary/90 transition-colors">Show Success Toast</button>
+        <button onclick="showToast({title:'Error',message:'Something went wrong. Try again.',variant:'error'})" class="bg-destructive text-destructive-foreground px-6 py-3 font-bold uppercase tracking-wide text-sm hover:bg-destructive/90 transition-colors">Show Error Toast</button>
+        <button onclick="showToast({title:'Heads up',message:'A new version is available.',variant:'info'})" class="border-2 border-foreground px-6 py-3 font-bold uppercase tracking-wide text-sm hover:bg-foreground hover:text-background transition-colors">Show Info Toast</button>
+      </div>
+
+      <!-- Static toast previews -->
+      <div class="space-y-4 max-w-sm">
+        <div class="border-2 bg-background p-4 shadow-md flex items-start gap-3" style="border-color: hsl(142 76% 36%)">
+          <svg class="w-5 h-5 shrink-0 mt-0.5" style="color: hsl(142 76% 36%)" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m9 11 3 3L22 4"/></svg>
+          <div class="flex-1">
+            <p class="font-bold text-sm">Saved successfully</p>
+            <p class="text-sm text-muted-foreground">Your changes have been saved.</p>
+          </div>
+        </div>
+        <div class="border-2 border-destructive bg-background p-4 shadow-md flex items-start gap-3">
+          <svg class="w-5 h-5 text-destructive shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="m15 9-6 6"/><path d="m9 9 6 6"/></svg>
+          <div class="flex-1">
+            <p class="font-bold text-sm">Error</p>
+            <p class="text-sm text-muted-foreground">Failed to save. Please try again.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Modal / Drawer Section -->
+  <section class="py-16 border-b border-border" id="modals">
+    <div class="container mx-auto px-4 md:px-6">
+      <div class="flex items-center gap-3 mb-4">
+        <span class="w-3 h-3 bg-primary"></span>
+        <h2 class="font-display text-3xl font-bold uppercase tracking-tighter">Modal / Drawer</h2>
+      </div>
+      <p class="text-muted-foreground mb-12 max-w-2xl">Focus user attention with native dialog-based modals and side drawers.</p>
+
+      <div class="flex flex-wrap gap-4">
+        <button data-open-modal="confirm-modal" class="bg-primary text-primary-foreground px-6 py-3 font-bold uppercase tracking-wide text-sm hover:bg-primary/90 transition-colors">Confirmation Modal</button>
+        <button data-open-modal="content-modal" class="bg-foreground text-background px-6 py-3 font-bold uppercase tracking-wide text-sm hover:bg-foreground/90 transition-colors">Content Modal</button>
+        <button data-open-modal="drawer" class="border-2 border-foreground px-6 py-3 font-bold uppercase tracking-wide text-sm hover:bg-foreground hover:text-background transition-colors">Right Drawer</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Confirmation Modal -->
+  <dialog id="confirm-modal" class="bg-background border-4 border-border p-0 w-full max-w-md backdrop:bg-foreground/50">
+    <div class="p-8">
+      <h2 class="font-display text-xl font-bold uppercase tracking-tight mb-2">Confirm Action</h2>
+      <p class="text-muted-foreground text-sm mb-8">Are you sure you want to delete this item? This action cannot be undone.</p>
+      <div class="flex justify-end gap-3">
+        <button data-close-modal class="px-6 py-3 border-2 border-border font-bold uppercase tracking-wide text-sm hover:bg-muted transition-colors">Cancel</button>
+        <button data-close-modal class="px-6 py-3 bg-destructive text-destructive-foreground font-bold uppercase tracking-wide text-sm hover:bg-destructive/90 transition-colors">Delete</button>
+      </div>
+    </div>
+  </dialog>
+
+  <!-- Content Modal -->
+  <dialog id="content-modal" class="bg-background border-4 border-border p-0 w-full max-w-lg backdrop:bg-foreground/50">
+    <div class="flex items-center justify-between px-6 py-4 border-b-2 border-border">
+      <h2 class="font-display text-lg font-bold uppercase tracking-tight">Edit Profile</h2>
+      <button data-close-modal class="text-muted-foreground hover:text-foreground transition-colors p-1" aria-label="Close">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+      </button>
+    </div>
+    <div class="p-6 space-y-4">
+      <div>
+        <label class="block font-display font-bold uppercase text-xs tracking-wider mb-2">Name</label>
+        <input type="text" value="John Doe" class="w-full px-4 py-3 border-2 border-border bg-background focus:border-primary focus:outline-none transition-colors">
+      </div>
+      <div>
+        <label class="block font-display font-bold uppercase text-xs tracking-wider mb-2">Email</label>
+        <input type="email" value="john@example.com" class="w-full px-4 py-3 border-2 border-border bg-background focus:border-primary focus:outline-none transition-colors">
+      </div>
+    </div>
+    <div class="flex justify-end gap-3 px-6 py-4 border-t-2 border-border">
+      <button data-close-modal class="px-6 py-3 border-2 border-border font-bold uppercase tracking-wide text-sm hover:bg-muted transition-colors">Cancel</button>
+      <button data-close-modal class="px-6 py-3 bg-primary text-primary-foreground font-bold uppercase tracking-wide text-sm hover:bg-primary/90 transition-colors">Save Changes</button>
+    </div>
+  </dialog>
+
+  <!-- Drawer -->
+  <dialog id="drawer" class="fixed inset-0 m-0 h-full max-h-full w-80 ml-auto bg-background border-l-4 border-border p-0 backdrop:bg-foreground/50">
+    <div class="flex items-center justify-between px-6 py-4 border-b-2 border-border">
+      <h2 class="font-display text-lg font-bold uppercase tracking-tight">Details</h2>
+      <button data-close-modal class="text-muted-foreground hover:text-foreground transition-colors p-1" aria-label="Close">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+      </button>
+    </div>
+    <div class="p-6 space-y-4">
+      <div>
+        <p class="font-display font-bold uppercase text-xs tracking-wider text-muted-foreground">Status</p>
+        <p class="text-sm mt-1">Active</p>
+      </div>
+      <div>
+        <p class="font-display font-bold uppercase text-xs tracking-wider text-muted-foreground">Created</p>
+        <p class="text-sm mt-1">January 15, 2025</p>
+      </div>
+      <div>
+        <p class="font-display font-bold uppercase text-xs tracking-wider text-muted-foreground">Description</p>
+        <p class="text-sm text-muted-foreground mt-1">Detailed information about the selected item goes here.</p>
+      </div>
+    </div>
+  </dialog>
+
+  <!-- Dropdown Section -->
+  <section class="py-16 border-b border-border bg-muted/30" id="dropdowns">
+    <div class="container mx-auto px-4 md:px-6">
+      <div class="flex items-center gap-3 mb-4">
+        <span class="w-3 h-3 bg-primary"></span>
+        <h2 class="font-display text-3xl font-bold uppercase tracking-tighter">Dropdowns</h2>
+      </div>
+      <p class="text-muted-foreground mb-12 max-w-2xl">Contextual action menus, searchable selects, and command palette patterns.</p>
+
+      <div class="flex flex-wrap gap-8 items-start">
+        <!-- Basic Dropdown -->
+        <div>
+          <h3 class="font-display font-bold uppercase text-sm tracking-wider mb-4 text-muted-foreground">Action Menu</h3>
+          <div class="relative inline-block" data-dropdown>
+            <button data-dropdown-trigger class="px-6 py-3 border-2 border-border font-bold uppercase tracking-wide text-sm hover:border-foreground transition-colors inline-flex items-center gap-2">
+              Actions
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+            </button>
+            <div class="absolute top-full left-0 mt-1 bg-background border-2 border-border shadow-md min-w-[200px] z-50 hidden" data-dropdown-menu>
+              <button class="w-full text-left px-4 py-3 text-sm hover:bg-primary hover:text-primary-foreground transition-colors">Edit</button>
+              <button class="w-full text-left px-4 py-3 text-sm hover:bg-primary hover:text-primary-foreground transition-colors border-t border-border">Duplicate</button>
+              <button class="w-full text-left px-4 py-3 text-sm hover:bg-primary hover:text-primary-foreground transition-colors border-t border-border">Archive</button>
+              <div class="border-t-2 border-border"></div>
+              <button class="w-full text-left px-4 py-3 text-sm text-destructive hover:bg-destructive hover:text-destructive-foreground transition-colors">Delete</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Dropdown with Icons -->
+        <div>
+          <h3 class="font-display font-bold uppercase text-sm tracking-wider mb-4 text-muted-foreground">With Icons</h3>
+          <div class="relative inline-block" data-dropdown>
+            <button data-dropdown-trigger class="px-6 py-3 border-2 border-border font-bold uppercase tracking-wide text-sm hover:border-foreground transition-colors inline-flex items-center gap-2">
+              More
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+            </button>
+            <div class="absolute top-full left-0 mt-1 bg-background border-2 border-border shadow-md min-w-[220px] z-50 hidden" data-dropdown-menu>
+              <button class="w-full text-left px-4 py-3 text-sm hover:bg-primary hover:text-primary-foreground transition-colors inline-flex items-center gap-3">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg>
+                Edit
+              </button>
+              <button class="w-full text-left px-4 py-3 text-sm hover:bg-primary hover:text-primary-foreground transition-colors border-t border-border inline-flex items-center gap-3">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
+                Duplicate
+              </button>
+              <button class="w-full text-left px-4 py-3 text-sm hover:bg-primary hover:text-primary-foreground transition-colors border-t border-border inline-flex items-center gap-3">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4"/></svg>
+                Archive
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Command Palette Trigger -->
+        <div>
+          <h3 class="font-display font-bold uppercase text-sm tracking-wider mb-4 text-muted-foreground">Command Palette</h3>
+          <button data-open-modal="command-palette" class="px-6 py-3 border-2 border-border font-bold uppercase tracking-wide text-sm hover:border-foreground transition-colors inline-flex items-center gap-3">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+            Search...
+            <kbd class="ml-2 text-xs font-mono text-muted-foreground bg-muted px-2 py-0.5 border border-border">Ctrl+K</kbd>
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Command Palette Dialog -->
+  <dialog id="command-palette" class="bg-background border-4 border-border p-0 w-full max-w-lg backdrop:bg-foreground/50">
+    <div class="p-4 border-b-2 border-border">
+      <div class="flex items-center gap-3">
+        <svg class="w-5 h-5 text-muted-foreground shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+        <input type="text" placeholder="Type a command or search..." class="w-full bg-transparent focus:outline-none text-sm" autofocus>
+      </div>
+    </div>
+    <div class="max-h-80 overflow-auto">
+      <div class="px-4 py-2"><p class="text-xs font-bold uppercase tracking-wider text-muted-foreground">Pages</p></div>
+      <button class="w-full text-left px-4 py-3 text-sm hover:bg-primary hover:text-primary-foreground transition-colors flex items-center gap-3">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3"/></svg>
+        Home
+        <span class="ml-auto text-xs text-muted-foreground font-mono">G H</span>
+      </button>
+      <button class="w-full text-left px-4 py-3 text-sm hover:bg-primary hover:text-primary-foreground transition-colors flex items-center gap-3 border-t border-border">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6z"/></svg>
+        Components
+        <span class="ml-auto text-xs text-muted-foreground font-mono">G C</span>
+      </button>
+      <div class="px-4 py-2 border-t-2 border-border"><p class="text-xs font-bold uppercase tracking-wider text-muted-foreground">Actions</p></div>
+      <button data-close-modal class="w-full text-left px-4 py-3 text-sm hover:bg-primary hover:text-primary-foreground transition-colors flex items-center gap-3">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/></svg>
+        Create New...
+        <span class="ml-auto text-xs text-muted-foreground font-mono">Ctrl+N</span>
+      </button>
+    </div>
+  </dialog>
+
+  <!-- Data Table Section -->
+  <section class="py-16 border-b border-border" id="datatable">
+    <div class="container mx-auto px-4 md:px-6">
+      <div class="flex items-center gap-3 mb-4">
+        <span class="w-3 h-3 bg-primary"></span>
+        <h2 class="font-display text-3xl font-bold uppercase tracking-tighter">Data Table</h2>
+      </div>
+      <p class="text-muted-foreground mb-12 max-w-2xl">Present structured data with sorting, striped rows, and responsive overflow.</p>
+
+      <!-- Sortable Table -->
+      <div class="bg-background border-2 border-border overflow-x-auto mb-8">
+        <table class="w-full text-sm" data-sortable>
+          <thead>
+            <tr class="bg-muted border-b-2 border-border">
+              <th class="text-left px-6 py-3 font-display font-bold uppercase text-xs tracking-wider cursor-pointer hover:text-primary transition-colors select-none" data-sort="name">
+                <span class="inline-flex items-center gap-1">Name <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16V4m0 0L3 8m4-4l4 4m6 0v12m0 0l4-4m-4 4l-4-4"/></svg></span>
+              </th>
+              <th class="text-left px-6 py-3 font-display font-bold uppercase text-xs tracking-wider cursor-pointer hover:text-primary transition-colors select-none" data-sort="status">
+                <span class="inline-flex items-center gap-1">Status <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16V4m0 0L3 8m4-4l4 4m6 0v12m0 0l4-4m-4 4l-4-4"/></svg></span>
+              </th>
+              <th class="text-left px-6 py-3 font-display font-bold uppercase text-xs tracking-wider">Role</th>
+              <th class="text-right px-6 py-3 font-display font-bold uppercase text-xs tracking-wider cursor-pointer hover:text-primary transition-colors select-none" data-sort="amount">
+                <span class="inline-flex items-center gap-1">Amount <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16V4m0 0L3 8m4-4l4 4m6 0v12m0 0l4-4m-4 4l-4-4"/></svg></span>
+              </th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-border">
+            <tr class="hover:bg-muted/50 transition-colors">
+              <td class="px-6 py-4 font-bold">Alice Johnson</td>
+              <td class="px-6 py-4"><span class="px-2 py-1 text-xs font-bold uppercase tracking-wider text-white" style="background-color: hsl(142 76% 36%)">Active</span></td>
+              <td class="px-6 py-4 text-muted-foreground">Admin</td>
+              <td class="px-6 py-4 text-right font-mono">$1,200</td>
+            </tr>
+            <tr class="hover:bg-muted/50 transition-colors bg-muted/30">
+              <td class="px-6 py-4 font-bold">Bob Smith</td>
+              <td class="px-6 py-4"><span class="px-2 py-1 text-xs font-bold uppercase tracking-wider bg-muted text-muted-foreground">Pending</span></td>
+              <td class="px-6 py-4 text-muted-foreground">Editor</td>
+              <td class="px-6 py-4 text-right font-mono">$800</td>
+            </tr>
+            <tr class="hover:bg-muted/50 transition-colors">
+              <td class="px-6 py-4 font-bold">Carol Davis</td>
+              <td class="px-6 py-4"><span class="px-2 py-1 text-xs font-bold uppercase tracking-wider text-white" style="background-color: hsl(142 76% 36%)">Active</span></td>
+              <td class="px-6 py-4 text-muted-foreground">Admin</td>
+              <td class="px-6 py-4 text-right font-mono">$2,400</td>
+            </tr>
+            <tr class="hover:bg-muted/50 transition-colors bg-muted/30">
+              <td class="px-6 py-4 font-bold">David Wilson</td>
+              <td class="px-6 py-4"><span class="px-2 py-1 text-xs font-bold uppercase tracking-wider text-white bg-destructive">Inactive</span></td>
+              <td class="px-6 py-4 text-muted-foreground">Viewer</td>
+              <td class="px-6 py-4 text-right font-mono">$350</td>
+            </tr>
+            <tr class="hover:bg-muted/50 transition-colors">
+              <td class="px-6 py-4 font-bold">Eve Martinez</td>
+              <td class="px-6 py-4"><span class="px-2 py-1 text-xs font-bold uppercase tracking-wider text-white" style="background-color: hsl(142 76% 36%)">Active</span></td>
+              <td class="px-6 py-4 text-muted-foreground">Editor</td>
+              <td class="px-6 py-4 text-right font-mono">$1,850</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Table with empty state -->
+      <div class="bg-background border-2 border-border">
+        <table class="w-full text-sm">
+          <thead>
+            <tr class="bg-muted border-b-2 border-border">
+              <th class="text-left px-6 py-3 font-display font-bold uppercase text-xs tracking-wider">Name</th>
+              <th class="text-left px-6 py-3 font-display font-bold uppercase text-xs tracking-wider">Email</th>
+              <th class="text-right px-6 py-3 font-display font-bold uppercase text-xs tracking-wider">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td colspan="3" class="px-6 py-16 text-center">
+                <p class="font-display font-bold uppercase text-sm mb-1">No data available</p>
+                <p class="text-sm text-muted-foreground">Try adjusting your search or filters.</p>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stepper Section -->
+  <section class="py-16 border-b border-border bg-muted/30" id="stepper">
+    <div class="container mx-auto px-4 md:px-6">
+      <div class="flex items-center gap-3 mb-4">
+        <span class="w-3 h-3 bg-primary"></span>
+        <h2 class="font-display text-3xl font-bold uppercase tracking-tighter">Stepper</h2>
+      </div>
+      <p class="text-muted-foreground mb-12 max-w-2xl">Visualize multi-step workflows with clear progress indicators.</p>
+
+      <!-- Horizontal Stepper -->
+      <div class="bg-background border-4 border-border p-8 mb-8">
+        <h3 class="font-display font-bold uppercase text-sm tracking-wider mb-6 text-muted-foreground">Horizontal</h3>
+        <div class="flex items-center">
+          <div class="flex items-center">
+            <div class="w-10 h-10 bg-primary text-primary-foreground flex items-center justify-center font-bold text-sm">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+            </div>
+            <span class="ml-3 text-sm font-bold uppercase tracking-wide">Account</span>
+          </div>
+          <div class="flex-1 h-0.5 bg-primary mx-4"></div>
+          <div class="flex items-center">
+            <div class="w-10 h-10 border-4 border-primary text-primary flex items-center justify-center font-bold text-sm">2</div>
+            <span class="ml-3 text-sm font-bold uppercase tracking-wide">Details</span>
+          </div>
+          <div class="flex-1 h-0.5 bg-border mx-4"></div>
+          <div class="flex items-center">
+            <div class="w-10 h-10 border-2 border-border text-muted-foreground flex items-center justify-center font-bold text-sm">3</div>
+            <span class="ml-3 text-sm font-bold uppercase tracking-wide text-muted-foreground">Review</span>
+          </div>
+          <div class="flex-1 h-0.5 bg-border mx-4"></div>
+          <div class="flex items-center">
+            <div class="w-10 h-10 border-2 border-border text-muted-foreground flex items-center justify-center font-bold text-sm">4</div>
+            <span class="ml-3 text-sm font-bold uppercase tracking-wide text-muted-foreground">Confirm</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Progress Bar Variant -->
+      <div class="bg-background border-4 border-border p-8 mb-8">
+        <h3 class="font-display font-bold uppercase text-sm tracking-wider mb-6 text-muted-foreground">Progress Bar</h3>
+        <div>
+          <div class="flex justify-between mb-2">
+            <span class="text-sm font-bold uppercase tracking-wide">Step 2 of 4</span>
+            <span class="text-sm text-muted-foreground">50%</span>
+          </div>
+          <div class="h-2 bg-muted w-full">
+            <div class="h-full bg-primary" style="width: 50%"></div>
+          </div>
+          <div class="flex justify-between mt-2">
+            <span class="text-xs text-muted-foreground uppercase tracking-wider">Account</span>
+            <span class="text-xs font-bold uppercase tracking-wider">Details</span>
+            <span class="text-xs text-muted-foreground uppercase tracking-wider">Review</span>
+            <span class="text-xs text-muted-foreground uppercase tracking-wider">Confirm</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Compact -->
+      <div class="bg-background border-4 border-border p-8">
+        <h3 class="font-display font-bold uppercase text-sm tracking-wider mb-6 text-muted-foreground">Compact</h3>
+        <div class="flex items-center gap-2">
+          <div class="w-8 h-8 bg-primary text-primary-foreground flex items-center justify-center font-bold text-xs">1</div>
+          <div class="w-8 h-0.5 bg-primary"></div>
+          <div class="w-8 h-8 bg-primary text-primary-foreground flex items-center justify-center font-bold text-xs">2</div>
+          <div class="w-8 h-0.5 bg-primary"></div>
+          <div class="w-8 h-8 border-4 border-primary text-primary flex items-center justify-center font-bold text-xs">3</div>
+          <div class="w-8 h-0.5 bg-border"></div>
+          <div class="w-8 h-8 border-2 border-border text-muted-foreground flex items-center justify-center font-bold text-xs">4</div>
+          <div class="w-8 h-0.5 bg-border"></div>
+          <div class="w-8 h-8 border-2 border-border text-muted-foreground flex items-center justify-center font-bold text-xs">5</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Toast Container -->
+  <div id="toast-container" class="fixed bottom-6 right-6 z-[100] space-y-3" aria-live="polite"></div>
 
   <!-- Footer -->
   <footer class="bg-foreground text-background border-t-8 border-primary pt-20 pb-12">
@@ -500,7 +1201,7 @@
           </h2>
         </div>
 
-        <div class="md:col-span-2 md:col-start-7">
+        <div class="md:col-span-2 md:col-start-6">
           <h4 class="font-display font-bold uppercase tracking-widest mb-6 text-primary">Foundations</h4>
           <ul class="space-y-4 font-medium">
             <li><a href="typography.html" class="hover:text-primary transition-colors">Typography</a></li>
@@ -510,19 +1211,28 @@
 
         <div class="md:col-span-2">
           <h4 class="font-display font-bold uppercase tracking-widest mb-6 text-primary">Components</h4>
-          <ul class="space-y-4 font-medium">
+          <ul class="space-y-4 font-medium text-sm">
             <li><a href="#buttons" class="hover:text-primary transition-colors">Buttons</a></li>
             <li><a href="#forms" class="hover:text-primary transition-colors">Forms</a></li>
             <li><a href="#cards" class="hover:text-primary transition-colors">Cards</a></li>
+            <li><a href="#alerts" class="hover:text-primary transition-colors">Alerts</a></li>
+            <li><a href="#emptystate" class="hover:text-primary transition-colors">Empty States</a></li>
+            <li><a href="#skeleton" class="hover:text-primary transition-colors">Skeletons</a></li>
+            <li><a href="#stats" class="hover:text-primary transition-colors">Stats</a></li>
           </ul>
         </div>
 
         <div class="md:col-span-2">
-          <h4 class="font-display font-bold uppercase tracking-widest mb-6 text-primary">Patterns</h4>
-          <ul class="space-y-4 font-medium">
-            <li><a href="patterns.html" class="hover:text-primary transition-colors">Hero</a></li>
-            <li><a href="patterns.html" class="hover:text-primary transition-colors">Navigation</a></li>
-            <li><a href="patterns.html" class="hover:text-primary transition-colors">Footer</a></li>
+          <h4 class="font-display font-bold uppercase tracking-widest mb-6 text-primary">Interactive</h4>
+          <ul class="space-y-4 font-medium text-sm">
+            <li><a href="#pagination" class="hover:text-primary transition-colors">Pagination</a></li>
+            <li><a href="#accordion" class="hover:text-primary transition-colors">Accordion</a></li>
+            <li><a href="#tabs" class="hover:text-primary transition-colors">Tabs</a></li>
+            <li><a href="#toasts" class="hover:text-primary transition-colors">Toasts</a></li>
+            <li><a href="#modals" class="hover:text-primary transition-colors">Modals</a></li>
+            <li><a href="#dropdowns" class="hover:text-primary transition-colors">Dropdowns</a></li>
+            <li><a href="#datatable" class="hover:text-primary transition-colors">Data Table</a></li>
+            <li><a href="#stepper" class="hover:text-primary transition-colors">Stepper</a></li>
           </ul>
         </div>
       </div>
@@ -540,59 +1250,6 @@
     </div>
   </footer>
 
-  <!-- Custom Select JavaScript -->
-  <script>
-    document.querySelectorAll('.dutchy-select').forEach(select => {
-      const trigger = select.querySelector('.dutchy-select-trigger');
-      const dropdown = select.querySelector('.dutchy-select-dropdown');
-      const valueDisplay = select.querySelector('.dutchy-select-value');
-      const icon = select.querySelector('.dutchy-select-icon');
-      const options = select.querySelectorAll('.dutchy-select-option');
-
-      // Toggle dropdown
-      trigger.addEventListener('click', (e) => {
-        e.stopPropagation();
-        const isOpen = !dropdown.classList.contains('hidden');
-
-        // Close all other dropdowns
-        document.querySelectorAll('.dutchy-select-dropdown').forEach(d => d.classList.add('hidden'));
-        document.querySelectorAll('.dutchy-select-icon').forEach(i => i.style.transform = '');
-        document.querySelectorAll('.dutchy-select-trigger').forEach(t => t.classList.remove('border-primary'));
-
-        if (!isOpen) {
-          dropdown.classList.remove('hidden');
-          icon.style.transform = 'rotate(180deg)';
-          trigger.classList.add('border-primary');
-        }
-      });
-
-      // Select option
-      options.forEach(option => {
-        option.addEventListener('click', () => {
-          const value = option.dataset.value;
-          const text = option.textContent;
-
-          select.dataset.value = value;
-          valueDisplay.textContent = text;
-          valueDisplay.classList.remove('text-muted-foreground');
-
-          dropdown.classList.add('hidden');
-          icon.style.transform = '';
-          trigger.classList.remove('border-primary');
-
-          // Mark selected option
-          options.forEach(o => o.classList.remove('bg-muted'));
-          option.classList.add('bg-muted');
-        });
-      });
-    });
-
-    // Close dropdown when clicking outside
-    document.addEventListener('click', () => {
-      document.querySelectorAll('.dutchy-select-dropdown').forEach(d => d.classList.add('hidden'));
-      document.querySelectorAll('.dutchy-select-icon').forEach(i => i.style.transform = '');
-      document.querySelectorAll('.dutchy-select-trigger').forEach(t => t.classList.remove('border-primary'));
-    });
-  </script>
+  <script src="assets/js/components.js"></script>
 </body>
 </html>
