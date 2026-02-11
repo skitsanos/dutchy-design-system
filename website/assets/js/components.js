@@ -48,6 +48,13 @@ document.querySelectorAll('[data-dismiss="alert"]').forEach(btn => {
   });
 });
 
+// Dismissible badges
+document.querySelectorAll('[data-dismiss="badge"]').forEach(btn => {
+  btn.addEventListener('click', () => {
+    btn.closest('[data-badge]').remove();
+  });
+});
+
 // Single-open accordion
 document.querySelectorAll('[data-accordion="single"]').forEach(accordion => {
   accordion.querySelectorAll('details').forEach(detail => {

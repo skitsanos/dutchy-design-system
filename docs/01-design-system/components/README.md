@@ -21,6 +21,7 @@ Dutchy component specifications and examples—sharp geometry, bold type, and hi
 - [Dropdown](./dropdown.md) — Action menus, searchable select, command palette
 - [Data Table](./data-table.md) — Sorting, striped rows, empty/loading states
 - [Stepper](./stepper.md) — Horizontal/vertical progress trackers
+- [Badges & Tags](./badges.md) — Status labels, category tags, inline metadata
 - [Tooltip](./tooltip.md) — CSS-only contextual hints with position variants
 - [File Upload](./file-upload.md) — Drag-and-drop zone with file list and progress
 - [Form Validation](./form-validation.md) — Declarative rule-based validation (DutchyForm)

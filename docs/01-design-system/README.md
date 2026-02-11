@@ -183,6 +183,7 @@ Label:     text-xs (12px)
 - [Dropdown](./components/dropdown.md) - Menus and command palette
 - [Data Table](./components/data-table.md) - Sortable data tables
 - [Stepper](./components/stepper.md) - Multi-step progress trackers
+- [Badges & Tags](./components/badges.md) - Status labels and category tags
 - [Tooltip](./components/tooltip.md) - CSS-only contextual hints
 - [File Upload](./components/file-upload.md) - Drag-and-drop upload with file list
 - [Form Validation](./components/form-validation.md) - Declarative rule-based validation
