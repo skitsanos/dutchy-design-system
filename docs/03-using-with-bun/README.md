@@ -125,32 +125,38 @@ bun add -d @types/react @types/react-dom typescript
 ```typescript
 // src/index.ts
 import { serve } from 'bun';
-import { renderToReadableStream } from 'react-dom/server';
-import { createElement } from 'react';
+import { createReactHandler, loadRoutes, resolveRoute } from './utils/loadRoutes';
+import staticAssets from './utils/staticAssets';
 
 const PORT = process.env.PORT || 3000;
+const IS_PRODUCTION = process.env.NODE_ENV === 'production';
 
-serve({
-  port: PORT,
-  async fetch(req) {
-    const url = new URL(req.url);
+async function startServer() {
+  const routes = await loadRoutes('routes');
+  const assetHandler = staticAssets({
+    assetsPath: 'public',
+    urlPrefix: '/assets',
+    cacheControl: IS_PRODUCTION
+      ? 'public, max-age=31536000, immutable'
+      : 'no-cache',
+  });
 
-    // Import and render JSX component
-    if (url.pathname === '/') {
-      const { default: HomePage } = await import('./routes/index.tsx');
-      const stream = await renderToReadableStream(
-        createElement(HomePage, { request: req })
-      );
-      return new Response(stream, {
-        headers: { 'Content-Type': 'text/html' }
-      });
-    }
+  serve({
+    port: PORT,
+    routes: {
+      '/assets/*': assetHandler,
+    },
+    async fetch(req) {
+      const resolved = resolveRoute(routes, req);
+      if (resolved) return resolved.handler(resolved.request);
 
-    return new Response('Not Found', { status: 404 });
-  }
-});
+      const { default: NotFound } = await import('./ui/PageNotFound/index.tsx');
+      return createReactHandler(NotFound)(req);
+    },
+  });
+}
 
-console.log(`Server running at http://localhost:${PORT}`);
+startServer();
 ```
 
 ### 5. Create Your First Component
@@ -253,18 +259,19 @@ const Page = ({ request }: PageProps) => {
 ### Static Assets
 
 ```typescript
-// Serve from public/ directory
-if (url.pathname.startsWith('/assets/')) {
-  const file = Bun.file(`public${url.pathname}`);
-  if (await file.exists()) {
-    return new Response(file.stream(), {
-      headers: {
-        'Content-Type': file.type,
-        'Cache-Control': 'public, max-age=31536000, immutable'
-      }
-    });
-  }
-}
+import staticAssets from './utils/staticAssets';
+
+const assetHandler = staticAssets({
+  assetsPath: 'public',
+  urlPrefix: '/assets',
+  cacheControl: 'public, max-age=31536000, immutable',
+});
+
+serve({
+  routes: {
+    '/assets/*': assetHandler,
+  },
+});
 ```
 
 ### Environment Variables

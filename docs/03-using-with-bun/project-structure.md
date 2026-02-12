@@ -105,13 +105,10 @@ async function startServer() {
 
   serve({
     port: PORT,
+    routes: {
+      '/assets/*': assets,
+    },
     async fetch(req) {
-      const url = new URL(req.url);
-
-      if (url.pathname.startsWith('/assets/')) {
-        return assets(req);
-      }
-
       const resolved = resolveRoute(routes, req);
       return resolved
         ? resolved.handler(resolved.request)

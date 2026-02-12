@@ -200,10 +200,10 @@ src/routes/
 │       └── index.tsx   → GET /products/:slug
 └── api/
     └── users/
-        ├── index.ts    → GET /api/users
+        ├── index.ts   → GET /api/users
         ├── post.ts     → POST /api/users
         └── $id/
-            ├── index.ts    → GET /api/users/:id
+            ├── index.ts  → GET /api/users/:id
             ├── put.ts      → PUT /api/users/:id
             └── delete.ts   → DELETE /api/users/:id
 ```
@@ -336,19 +336,14 @@ async function startServer() {
   serve({
     port: PORT,
     development: !IS_PRODUCTION,
+    routes: {
+      '/assets/*': assetHandler,
+    },
 
     async fetch(req) {
-      const url = new URL(req.url);
-      const path = url.pathname;
-
       // Handle CORS preflight
       if (req.method === 'OPTIONS') {
         return corsResponse();
-      }
-
-      // Handle static assets
-      if (path.startsWith('/assets/')) {
-        return assetHandler(req);
       }
 
       const resolved = resolveRoute(routes, req);

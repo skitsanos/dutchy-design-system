@@ -6,7 +6,7 @@ A complete guide to setting up a Bun project with JSX server-side rendering and 
 
 ## Prerequisites
 
-- [Bun](https://bun.sh) 1.3.0 or later
+- [Bun](https://bun.sh) 1.3.9 or later
 - Basic knowledge of React/JSX syntax
 - Familiarity with TypeScript
 
@@ -223,105 +223,59 @@ Create `src/index.ts`:
 
 ```typescript
 import { serve } from 'bun';
-import { renderToReadableStream } from 'react-dom/server';
-import { createElement } from 'react';
+import {
+  createReactHandler,
+  loadRoutes,
+  resolveRoute,
+} from './utils/loadRoutes';
+import staticAssets from './utils/staticAssets';
 
 const PORT = process.env.PORT || 3000;
 const IS_PRODUCTION = process.env.NODE_ENV === 'production';
 
-// MIME types for static assets
-const MIME_TYPES: Record<string, string> = {
-  '.html': 'text/html',
-  '.css': 'text/css',
-  '.js': 'application/javascript',
-  '.json': 'application/json',
-  '.png': 'image/png',
-  '.jpg': 'image/jpeg',
-  '.jpeg': 'image/jpeg',
-  '.gif': 'image/gif',
-  '.svg': 'image/svg+xml',
-  '.ico': 'image/x-icon',
-  '.woff': 'font/woff',
-  '.woff2': 'font/woff2',
-};
+async function startServer() {
+  const routes = await loadRoutes('routes');
+  const assetHandler = staticAssets({
+    assetsPath: 'public',
+    urlPrefix: '/assets',
+    cacheControl: IS_PRODUCTION
+      ? 'public, max-age=31536000, immutable'
+      : 'no-cache',
+  });
 
-// Helper to create React handler
-const createReactHandler = (Component: any) => {
-  return async (req: Request) => {
-    const stream = await renderToReadableStream(
-      createElement(Component, { request: req })
-    );
-    return new Response(stream, {
-      headers: { 'Content-Type': 'text/html' }
-    });
-  };
-};
+  serve({
+    port: PORT,
+    development: !IS_PRODUCTION,
 
-// Get file extension
-const getExtension = (path: string): string => {
-  const lastDot = path.lastIndexOf('.');
-  return lastDot !== -1 ? path.slice(lastDot) : '';
-};
+    routes: {
+      '/assets/*': assetHandler,
+    },
 
-serve({
-  port: PORT,
-  development: !IS_PRODUCTION,
+    async fetch(req) {
+      try {
+        const resolved = resolveRoute(routes, req);
+        if (resolved) {
+          return resolved.handler(resolved.request);
+        }
 
-  async fetch(req) {
-    const url = new URL(req.url);
-    const path = url.pathname;
-
-    // Handle static assets
-    if (path.startsWith('/assets/')) {
-      const filePath = `public${path}`;
-      const file = Bun.file(filePath);
-
-      if (await file.exists()) {
-        const ext = getExtension(path);
-        const contentType = MIME_TYPES[ext] || 'application/octet-stream';
-
-        return new Response(file.stream(), {
-          headers: {
-            'Content-Type': contentType,
-            'Cache-Control': IS_PRODUCTION
-              ? 'public, max-age=31536000, immutable'
-              : 'no-cache'
-          }
-        });
+        const { default: NotFound } = await import('./ui/PageNotFound/index.tsx');
+        return createReactHandler(NotFound)(req);
+      } catch (error) {
+        console.error('Route error:', error);
+        return new Response('Internal Server Error', { status: 500 });
       }
-    }
+    },
 
-    // Route handling
-    try {
-      // Home page
-      if (path === '/' || path === '') {
-        const { default: HomePage } = await import('./routes/index.tsx');
-        return await createReactHandler(HomePage)(req);
-      }
-
-      // Add more routes here...
-      // if (path === '/about') {
-      //   const { default: AboutPage } = await import('./routes/about/index.tsx');
-      //   return await createReactHandler(AboutPage)(req);
-      // }
-
-      // 404 Not Found
-      const { default: NotFound } = await import('./ui/PageNotFound/index.tsx');
-      return await createReactHandler(NotFound)(req);
-
-    } catch (error) {
-      console.error('Route error:', error);
+    error(error) {
+      console.error('Server error:', error);
       return new Response('Internal Server Error', { status: 500 });
-    }
-  },
+    },
+  });
 
-  error(error) {
-    console.error('Server error:', error);
-    return new Response('Internal Server Error', { status: 500 });
-  }
-});
+  console.log(`Server running at http://localhost:${PORT}`);
+}
 
-console.log(`Server running at http://localhost:${PORT}`);
+startServer();
 ```
 
 ## Create Base Components
