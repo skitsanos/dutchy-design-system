@@ -19,7 +19,7 @@ Required conventions:
 ### Via Layout Component
 
 ```tsx
-// src/ui/Layout/index.tsx
+// src/components/Layout/index.tsx
 interface LayoutProps {
   title: string;
   children: ReactNode;

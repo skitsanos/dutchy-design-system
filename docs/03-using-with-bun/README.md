@@ -157,7 +157,7 @@ async function startServer() {
       const resolved = resolveRoute(routes, req);
       if (resolved) return resolved.handler(resolved.request);
 
-      const { default: NotFound } = await import('./ui/PageNotFound/index.tsx');
+      const { default: NotFound } = await import('./components/PageNotFound/index.tsx');
       return createReactHandler(NotFound)(req);
     },
   });
@@ -175,16 +175,9 @@ src/components/Button/index.tsx
 src/components/Card/index.tsx
 ```
 
-In these docs we use `src/ui/*` for the same pattern:
-
-```text
-src/ui/Button/index.tsx
-src/ui/Card/index.tsx
-```
-
 ```tsx
 // src/routes/index.tsx
-import Layout from '@/ui/Layout';
+import Layout from '@/components/Layout';
 
 const HomePage = ({ request }: { request: Request }) => {
   return (

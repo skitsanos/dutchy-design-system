@@ -7,7 +7,7 @@ Handle form submissions with Bun server-side rendering.
 ### Input Component
 
 ```tsx
-// src/ui/Input/index.tsx
+// src/components/Input/index.tsx
 import type { FC, InputHTMLAttributes } from 'react';
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
@@ -64,7 +64,7 @@ export default Input;
 ### Textarea Component
 
 ```tsx
-// src/ui/Textarea/index.tsx
+// src/components/Textarea/index.tsx
 import type { FC, TextareaHTMLAttributes } from 'react';
 
 interface TextareaProps extends TextareaHTMLAttributes<HTMLTextAreaElement> {
@@ -122,7 +122,7 @@ export default Textarea;
 ### Select Component
 
 ```tsx
-// src/ui/Select/index.tsx
+// src/components/Select/index.tsx
 import type { FC, SelectHTMLAttributes } from 'react';
 
 interface SelectOption {
@@ -202,7 +202,7 @@ export default Select;
 ### Checkbox Component
 
 ```tsx
-// src/ui/Checkbox/index.tsx
+// src/components/Checkbox/index.tsx
 import type { FC, InputHTMLAttributes } from 'react';
 
 interface CheckboxProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 'type'> {
@@ -243,14 +243,14 @@ export default Checkbox;
 ```tsx
 // src/routes/contact/index.tsx
 import type { FC } from 'react';
-import Layout from '@/ui/Layout';
-import Header from '@/ui/Header';
-import Footer from '@/ui/Footer';
-import Input from '@/ui/Input';
-import Textarea from '@/ui/Textarea';
-import Select from '@/ui/Select';
-import Checkbox from '@/ui/Checkbox';
-import Button from '@/ui/Button';
+import Layout from '@/components/Layout';
+import Header from '@/components/Header';
+import Footer from '@/components/Footer';
+import Input from '@/components/Input';
+import Textarea from '@/components/Textarea';
+import Select from '@/components/Select';
+import Checkbox from '@/components/Checkbox';
+import Button from '@/components/Button';
 
 interface ContactPageProps {
   request: Request;
@@ -439,7 +439,7 @@ export default async (req: Request) => {
 ### Inline Newsletter Form
 
 ```tsx
-// src/ui/NewsletterForm/index.tsx
+// src/components/NewsletterForm/index.tsx
 import type { FC } from 'react';
 
 interface NewsletterFormProps {
@@ -553,9 +553,9 @@ export default async (req: Request) => {
 ## Search Form
 
 ```tsx
-// src/ui/SearchForm/index.tsx
+// src/components/SearchForm/index.tsx
 import type { FC } from 'react';
-import Icon from '@/ui/Icon';
+import Icon from '@/components/Icon';
 
 interface SearchFormProps {
   action?: string;
@@ -597,10 +597,10 @@ export default SearchForm;
 ```tsx
 // src/routes/search/index.tsx
 import type { FC } from 'react';
-import Layout from '@/ui/Layout';
-import Header from '@/ui/Header';
-import Footer from '@/ui/Footer';
-import SearchForm from '@/ui/SearchForm';
+import Layout from '@/components/Layout';
+import Header from '@/components/Header';
+import Footer from '@/components/Footer';
+import SearchForm from '@/components/SearchForm';
 
 interface SearchPageProps {
   request: Request;

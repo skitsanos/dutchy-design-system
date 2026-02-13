@@ -353,7 +353,7 @@ async function startServer() {
 
       // 404 Not Found
       try {
-        const { default: NotFound } = await import('./ui/PageNotFound/index.tsx');
+        const { default: NotFound } = await import('./components/PageNotFound/index.tsx');
         return createReactHandler(NotFound)(req);
       } catch {
         return new Response('Not Found', { status: 404 });
@@ -381,7 +381,7 @@ startServer();
 ```tsx
 // src/routes/index.tsx
 import type { FC } from 'react';
-import Layout from '@/ui/Layout';
+import Layout from '@/components/Layout';
 
 interface HomePageProps {
   request: Request;
@@ -407,7 +407,7 @@ export default HomePage;
 ```tsx
 // src/routes/products/$slug/index.tsx
 import type { FC } from 'react';
-import Layout from '@/ui/Layout';
+import Layout from '@/components/Layout';
 
 interface ProductPageProps {
   request: Request;

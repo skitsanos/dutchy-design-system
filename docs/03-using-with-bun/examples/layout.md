@@ -5,7 +5,7 @@ The Layout component is the root HTML document wrapper for all pages.
 ## Basic Implementation
 
 ```tsx
-// src/ui/Layout/index.tsx
+// src/components/Layout/index.tsx
 import type { FC, ReactNode } from 'react';
 
 interface LayoutProps {
@@ -108,11 +108,11 @@ export default Layout;
 Create a page layout that includes common elements:
 
 ```tsx
-// src/ui/PageLayout/index.tsx
+// src/components/PageLayout/index.tsx
 import type { FC, ReactNode } from 'react';
-import Layout from '@/ui/Layout';
-import Header from '@/ui/Header';
-import Footer from '@/ui/Footer';
+import Layout from '@/components/Layout';
+import Header from '@/components/Header';
+import Footer from '@/components/Footer';
 
 interface PageLayoutProps {
   title: string;
@@ -148,7 +148,7 @@ export default PageLayout;
 ```tsx
 // src/routes/index.tsx
 import type { FC } from 'react';
-import PageLayout from '@/ui/PageLayout';
+import PageLayout from '@/components/PageLayout';
 
 interface HomePageProps {
   request: Request;
@@ -185,7 +185,7 @@ export default HomePage;
 Add structured data for SEO:
 
 ```tsx
-// src/ui/Layout/index.tsx
+// src/components/Layout/index.tsx
 import type { FC, ReactNode } from 'react';
 
 interface JsonLdData {
@@ -253,7 +253,7 @@ Usage with JSON-LD:
 
 ```tsx
 // src/routes/index.tsx
-import Layout from '@/ui/Layout';
+import Layout from '@/components/Layout';
 
 const HomePage = ({ request }: { request: Request }) => {
   const jsonLd = {
@@ -276,7 +276,7 @@ const HomePage = ({ request }: { request: Request }) => {
 Layout with theme support:
 
 ```tsx
-// src/ui/Layout/index.tsx
+// src/components/Layout/index.tsx
 import type { FC, ReactNode } from 'react';
 
 interface LayoutProps {

@@ -171,9 +171,13 @@ Label:     text-xs (12px)
 - [Breadcrumbs](./components/breadcrumbs.md) - Hierarchy and path navigation
 - [Navigation](./components/navigation.md) - Header, sidebar, tabs, pagination
 - [Layout](./components/layout.md) - Layout components
+- [Flex](./components/flex.md) - Flexbox layout primitive
+- [Text](./components/text.md) - Typography primitive (family, scale, tracking)
 - [Empty State](./components/empty-state.md) - Empty state patterns
 - [Alerts / Banners](./components/alerts.md) - Contextual feedback messages
+- [Progress](./components/progress.md) - Determinate progress bars
 - [Skeleton Loader](./components/skeleton.md) - Loading placeholders
+- [Spinner](./components/spinner.md) - Minimal loading indicator
 - [Stats / KPI Cards](./components/stats.md) - Metric display cards
 - [Pagination](./components/pagination.md) - Page navigation controls
 - [Accordion](./components/accordion.md) - Collapsible content sections
@@ -181,11 +185,15 @@ Label:     text-xs (12px)
 - [Toast Notifications](./components/toast.md) - Transient messages
 - [Modal / Drawer](./components/modal.md) - Dialog overlays and drawers
 - [Dropdown](./components/dropdown.md) - Menus and command palette
+- [Menu](./components/menu.md) - Action menus (groups, dividers, destructive)
 - [Data Table](./components/data-table.md) - Sortable data tables
 - [Stepper](./components/stepper.md) - Multi-step progress trackers
 - [Badges & Tags](./components/badges.md) - Status labels and category tags
 - [Tooltip](./components/tooltip.md) - CSS-only contextual hints
 - [File Upload](./components/file-upload.md) - Drag-and-drop upload with file list
+- [Textarea](./components/textarea.md) - Multiline input and counting
+- [Scribble](./components/scribble.md) - Canvas signature pad
+- [Image](./components/image.md) - Responsive images with captions and expand
 - [Form Validation](./components/form-validation.md) - Declarative rule-based validation
 
 ### [Patterns](./patterns/)

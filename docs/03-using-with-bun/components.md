@@ -63,7 +63,7 @@ src/components/Button/index.tsx
 src/components/Card/index.tsx
 ```
 
-If your project uses `src/ui` as the root, apply the same structure:
+If you prefer naming the folder `src/ui` instead of `src/components`, keep the same folder-per-component structure and update imports accordingly. This guide uses `src/components/` in all examples.
 
 ```text
 src/ui/Button/index.tsx
@@ -115,7 +115,7 @@ export default Component;
 The root HTML document wrapper:
 
 ```tsx
-// src/ui/Layout/index.tsx
+// src/components/Layout/index.tsx
 import type { FC, ReactNode } from 'react';
 
 interface LayoutProps {
@@ -190,7 +190,7 @@ export default Layout;
 Navigation header with Dutchy styling:
 
 ```tsx
-// src/ui/Header/index.tsx
+// src/components/Header/index.tsx
 import type { FC } from 'react';
 
 interface NavLink {
@@ -288,7 +288,7 @@ export default Header;
 Dark footer with link columns:
 
 ```tsx
-// src/ui/Footer/index.tsx
+// src/components/Footer/index.tsx
 import type { FC } from 'react';
 
 interface FooterLink {
@@ -395,7 +395,7 @@ export default Footer;
 Multi-variant button component:
 
 ```tsx
-// src/ui/Button/index.tsx
+// src/components/Button/index.tsx
 import type { FC, ButtonHTMLAttributes, ReactNode } from 'react';
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
@@ -455,7 +455,7 @@ export default Button;
 Flexible card component:
 
 ```tsx
-// src/ui/Card/index.tsx
+// src/components/Card/index.tsx
 import type { FC, HTMLAttributes, ReactNode } from 'react';
 
 interface CardProps extends HTMLAttributes<HTMLDivElement> {
@@ -551,7 +551,7 @@ export default Card;
 Form input component:
 
 ```tsx
-// src/ui/Input/index.tsx
+// src/components/Input/index.tsx
 import type { FC, InputHTMLAttributes } from 'react';
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
@@ -617,7 +617,7 @@ export default Input;
 Multi-line text input:
 
 ```tsx
-// src/ui/Textarea/index.tsx
+// src/components/Textarea/index.tsx
 import type { FC, TextareaHTMLAttributes } from 'react';
 
 interface TextareaProps extends TextareaHTMLAttributes<HTMLTextAreaElement> {
@@ -689,7 +689,7 @@ Use one of these patterns:
 #### Option A: Lucide Dynamic Icon
 
 ```tsx
-// src/ui/Icon/index.tsx
+// src/components/Icon/index.tsx
 import type { FC, CSSProperties } from 'react';
 import * as LucideIcons from 'lucide-react';
 
@@ -741,7 +741,7 @@ API note:
 #### Option B: Native SVG Icon Registry
 
 ```tsx
-// src/ui/Icon/index.tsx
+// src/components/Icon/index.tsx
 import type { FC } from 'react';
 
 export type IconName =
@@ -882,7 +882,7 @@ export default Icon;
 Split-layout hero:
 
 ```tsx
-// src/ui/HeroSection/index.tsx
+// src/components/HeroSection/index.tsx
 import type { FC, ReactNode } from 'react';
 
 interface HeroSectionProps {
@@ -972,7 +972,7 @@ export default HeroSection;
 Tight grid stats display:
 
 ```tsx
-// src/ui/StatsGrid/index.tsx
+// src/components/StatsGrid/index.tsx
 import type { FC } from 'react';
 
 interface Stat {
@@ -1037,7 +1037,7 @@ export default StatsGrid;
 Consistent section headings:
 
 ```tsx
-// src/ui/SectionTitle/index.tsx
+// src/components/SectionTitle/index.tsx
 import type { FC, ReactNode } from 'react';
 
 interface SectionTitleProps {
@@ -1078,9 +1078,9 @@ export default SectionTitle;
 Grid of feature cards:
 
 ```tsx
-// src/ui/FeatureGrid/index.tsx
+// src/components/FeatureGrid/index.tsx
 import type { FC, ReactNode } from 'react';
-import Card, { CardTitle, CardDescription } from '@/ui/Card';
+import Card, { CardTitle, CardDescription } from '@/components/Card';
 
 interface Feature {
   icon?: ReactNode;
@@ -1131,14 +1131,14 @@ Complete page component with all parts:
 ```tsx
 // src/routes/about/index.tsx
 import type { FC } from 'react';
-import Layout from '@/ui/Layout';
-import Header from '@/ui/Header';
-import Footer from '@/ui/Footer';
-import HeroSection from '@/ui/HeroSection';
-import SectionTitle from '@/ui/SectionTitle';
-import FeatureGrid from '@/ui/FeatureGrid';
-import StatsGrid from '@/ui/StatsGrid';
-import Icon from '@/ui/Icon';
+import Layout from '@/components/Layout';
+import Header from '@/components/Header';
+import Footer from '@/components/Footer';
+import HeroSection from '@/components/HeroSection';
+import SectionTitle from '@/components/SectionTitle';
+import FeatureGrid from '@/components/FeatureGrid';
+import StatsGrid from '@/components/StatsGrid';
+import Icon from '@/components/Icon';
 
 interface AboutPageProps {
   request: Request;

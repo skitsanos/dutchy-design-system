@@ -5,7 +5,7 @@ Reusable UI components implementing the Dutchy Design System.
 ## Button
 
 ```tsx
-// src/ui/Button/index.tsx
+// src/components/Button/index.tsx
 import type { FC, ButtonHTMLAttributes, ReactNode } from 'react';
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
@@ -61,7 +61,7 @@ export default Button;
 ### Usage
 
 ```tsx
-import Button from '@/ui/Button';
+import Button from '@/components/Button';
 
 // Primary button
 <Button>Click Me</Button>
@@ -88,7 +88,7 @@ import Button from '@/ui/Button';
 ## Card
 
 ```tsx
-// src/ui/Card/index.tsx
+// src/components/Card/index.tsx
 import type { FC, HTMLAttributes, ReactNode } from 'react';
 
 interface CardProps extends HTMLAttributes<HTMLDivElement> {
@@ -178,7 +178,7 @@ export default Card;
 ### Usage
 
 ```tsx
-import Card, { CardTitle, CardDescription, CardFooter } from '@/ui/Card';
+import Card, { CardTitle, CardDescription, CardFooter } from '@/components/Card';
 
 // Simple card
 <Card variant="accent">
@@ -215,7 +215,7 @@ import Card, { CardTitle, CardDescription, CardFooter } from '@/ui/Card';
 ## Input
 
 ```tsx
-// src/ui/Input/index.tsx
+// src/components/Input/index.tsx
 import type { FC, InputHTMLAttributes } from 'react';
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
@@ -274,7 +274,7 @@ export default Input;
 ### Usage
 
 ```tsx
-import Input from '@/ui/Input';
+import Input from '@/components/Input';
 
 // Basic input
 <Input label="Email" type="email" placeholder="you@example.com" />
@@ -298,7 +298,7 @@ import Input from '@/ui/Input';
 ## Badge
 
 ```tsx
-// src/ui/Badge/index.tsx
+// src/components/Badge/index.tsx
 import type { FC, ReactNode } from 'react';
 
 interface BadgeProps {
@@ -347,7 +347,7 @@ export default Badge;
 ### Usage
 
 ```tsx
-import Badge from '@/ui/Badge';
+import Badge from '@/components/Badge';
 
 <Badge>Default</Badge>
 <Badge variant="primary">New</Badge>
@@ -359,7 +359,7 @@ import Badge from '@/ui/Badge';
 ## Icon
 
 ```tsx
-// src/ui/Icon/index.tsx
+// src/components/Icon/index.tsx
 import type { FC, CSSProperties } from 'react';
 import * as LucideIcons from 'lucide-react';
 
@@ -396,7 +396,7 @@ export default Icon;
 ### Usage
 
 ```tsx
-import Icon from '@/ui/Icon';
+import Icon from '@/components/Icon';
 
 <Icon icon="check" />
 <Icon icon="arrow-right" size={32} />
@@ -407,9 +407,9 @@ import Icon from '@/ui/Icon';
 ## Breadcrumbs
 
 ```tsx
-// src/ui/Breadcrumbs/index.tsx
+// src/components/Breadcrumbs/index.tsx
 import type { FC } from 'react';
-import Icon from '@/ui/Icon';
+import Icon from '@/components/Icon';
 
 interface BreadcrumbItem {
   label: string;
@@ -462,7 +462,7 @@ export default Breadcrumbs;
 ### Usage
 
 ```tsx
-import Breadcrumbs from '@/ui/Breadcrumbs';
+import Breadcrumbs from '@/components/Breadcrumbs';
 
 <Breadcrumbs
   items={[
@@ -476,7 +476,7 @@ import Breadcrumbs from '@/ui/Breadcrumbs';
 ## Tabs
 
 ```tsx
-// src/ui/Tabs/index.tsx
+// src/components/Tabs/index.tsx
 import type { FC, ReactNode } from 'react';
 
 interface Tab {
@@ -535,7 +535,7 @@ For SSR, use URL params to track active tab:
 
 ```tsx
 // src/routes/docs/index.tsx
-import Tabs from '@/ui/Tabs';
+import Tabs from '@/components/Tabs';
 
 const DocsPage: FC<{ request: Request }> = ({ request }) => {
   const url = new URL(request.url);
@@ -582,9 +582,9 @@ const DocsPage: FC<{ request: Request }> = ({ request }) => {
 ## Alert
 
 ```tsx
-// src/ui/Alert/index.tsx
+// src/components/Alert/index.tsx
 import type { FC, ReactNode } from 'react';
-import Icon from '@/ui/Icon';
+import Icon from '@/components/Icon';
 
 interface AlertProps {
   variant?: 'default' | 'success' | 'warning' | 'error';
@@ -654,7 +654,7 @@ export default Alert;
 ### Usage
 
 ```tsx
-import Alert from '@/ui/Alert';
+import Alert from '@/components/Alert';
 
 <Alert title="Note">This is a default alert.</Alert>
 <Alert variant="success" title="Success">Your changes have been saved.</Alert>
@@ -662,119 +662,228 @@ import Alert from '@/ui/Alert';
 <Alert variant="error" title="Error">Something went wrong.</Alert>
 ```
 
-## Section
+## Flex
 
 ```tsx
-// src/ui/Section/index.tsx
-import type { FC, ReactNode } from 'react';
+// src/components/Flex/index.tsx
+import type { FC, ReactNode, ElementType } from 'react';
 
-interface SectionProps {
-  children: ReactNode;
-  variant?: 'default' | 'muted' | 'dark' | 'primary';
-  padding?: 'sm' | 'md' | 'lg';
+type GapValue = 0 | 0.5 | 1 | 1.5 | 2 | 3 | 4 | 5 | 6 | 8 | 10 | 12 | 16;
+
+interface FlexProps {
+  direction?: 'row' | 'col' | 'row-reverse' | 'col-reverse';
+  align?: 'start' | 'center' | 'end' | 'stretch' | 'baseline';
+  justify?: 'start' | 'center' | 'end' | 'between' | 'around' | 'evenly';
+  wrap?: boolean;
+  gap?: GapValue;
   className?: string;
+  children: ReactNode;
+  as?: ElementType;
 }
 
-const Section: FC<SectionProps> = ({
-  children,
-  variant = 'default',
-  padding = 'md',
-  className = '',
-}) => {
-  const variants: Record<string, string> = {
-    default: 'bg-background',
-    muted: 'bg-muted',
-    dark: 'bg-foreground text-background',
-    primary: 'bg-primary text-primary-foreground',
-  };
-
-  const paddings: Record<string, string> = {
-    sm: 'py-12',
-    md: 'py-20',
-    lg: 'py-24',
-  };
-
-  return (
-    <section className={`${variants[variant]} ${paddings[padding]} ${className}`}>
-      {children}
-    </section>
-  );
+const directionClasses: Record<string, string> = {
+  row: 'flex-row',
+  col: 'flex-col',
+  'row-reverse': 'flex-row-reverse',
+  'col-reverse': 'flex-col-reverse',
 };
 
-export default Section;
+const alignClasses: Record<string, string> = {
+  start: 'items-start',
+  center: 'items-center',
+  end: 'items-end',
+  stretch: 'items-stretch',
+  baseline: 'items-baseline',
+};
+
+const justifyClasses: Record<string, string> = {
+  start: 'justify-start',
+  center: 'justify-center',
+  end: 'justify-end',
+  between: 'justify-between',
+  around: 'justify-around',
+  evenly: 'justify-evenly',
+};
+
+const gapClasses: Record<GapValue, string> = {
+  0: 'gap-0',
+  0.5: 'gap-0.5',
+  1: 'gap-1',
+  1.5: 'gap-1.5',
+  2: 'gap-2',
+  3: 'gap-3',
+  4: 'gap-4',
+  5: 'gap-5',
+  6: 'gap-6',
+  8: 'gap-8',
+  10: 'gap-10',
+  12: 'gap-12',
+  16: 'gap-16',
+};
+
+const Flex: FC<FlexProps> = ({
+  direction = 'row',
+  align,
+  justify,
+  wrap = false,
+  gap,
+  className = '',
+  children,
+  as: Tag = 'div',
+}) => {
+  const classes = [
+    'flex',
+    directionClasses[direction],
+    align ? alignClasses[align] : '',
+    justify ? justifyClasses[justify] : '',
+    wrap ? 'flex-wrap' : '',
+    gap !== undefined ? gapClasses[gap] : '',
+    className,
+  ]
+    .filter(Boolean)
+    .join(' ');
+
+  return <Tag className={classes}>{children}</Tag>;
+};
+
+export default Flex;
 ```
 
 ### Usage
 
 ```tsx
-import Section from '@/ui/Section';
+import Flex from '@/components/Flex';
 
-<Section>
-  <div className="container mx-auto px-4">
-    <h2>Default Section</h2>
-  </div>
-</Section>
-
-<Section variant="muted" padding="lg">
-  <div className="container mx-auto px-4">
-    <h2>Muted Section</h2>
-  </div>
-</Section>
-
-<Section variant="dark">
-  <div className="container mx-auto px-4">
-    <h2>Dark Section</h2>
-  </div>
-</Section>
+<Flex align="center" justify="between" gap={4} className="border-2 border-border p-4">
+  <span className="font-mono text-xs uppercase tracking-widest text-muted-foreground">Left</span>
+  <span className="font-mono text-xs uppercase tracking-widest text-muted-foreground">Right</span>
+</Flex>
 ```
 
-## Container
+## Text
 
 ```tsx
-// src/ui/Container/index.tsx
-import type { FC, ReactNode } from 'react';
+// src/components/Text/index.tsx
+import type { FC, ReactNode, ElementType } from 'react';
 
-interface ContainerProps {
-  children: ReactNode;
-  size?: 'sm' | 'md' | 'lg' | 'xl' | 'full';
+type TextSize = 'xs' | 'sm' | 'base' | 'lg' | 'xl' | '2xl' | '3xl' | '4xl' | '5xl' | '6xl' | '7xl' | '8xl';
+type TextWeight = 'normal' | 'medium' | 'semibold' | 'bold';
+type TextFamily = 'display' | 'sans' | 'mono';
+type TextTracking = 'tighter' | 'tight' | 'normal' | 'wide' | 'wider' | 'widest';
+type TextLeading = 'none' | 'tight' | 'snug' | 'normal' | 'relaxed' | 'loose';
+type TextColor = 'foreground' | 'muted' | 'primary' | 'background' | 'destructive' | 'success';
+
+interface TextProps {
+  family?: TextFamily;
+  size?: TextSize;
+  weight?: TextWeight;
+  tracking?: TextTracking;
+  leading?: TextLeading;
+  color?: TextColor;
+  uppercase?: boolean;
+  italic?: boolean;
+  as?: ElementType;
   className?: string;
+  children: ReactNode;
 }
 
-const Container: FC<ContainerProps> = ({
-  children,
-  size = 'full',
-  className = '',
-}) => {
-  const sizes: Record<string, string> = {
-    sm: 'max-w-2xl',
-    md: 'max-w-4xl',
-    lg: 'max-w-6xl',
-    xl: 'max-w-7xl',
-    full: '',
-  };
-
-  return (
-    <div
-      className={`
-        container mx-auto px-4 md:px-6
-        ${sizes[size]}
-        ${className}
-      `}
-    >
-      {children}
-    </div>
-  );
+const familyClasses: Record<TextFamily, string> = {
+  display: 'font-display',
+  sans: 'font-sans',
+  mono: 'font-mono',
 };
 
-export default Container;
+const sizeClasses: Record<TextSize, string> = {
+  xs: 'text-xs',
+  sm: 'text-sm',
+  base: 'text-base',
+  lg: 'text-lg',
+  xl: 'text-xl',
+  '2xl': 'text-2xl',
+  '3xl': 'text-3xl',
+  '4xl': 'text-4xl',
+  '5xl': 'text-5xl',
+  '6xl': 'text-6xl',
+  '7xl': 'text-7xl',
+  '8xl': 'text-8xl',
+};
+
+const weightClasses: Record<TextWeight, string> = {
+  normal: 'font-normal',
+  medium: 'font-medium',
+  semibold: 'font-semibold',
+  bold: 'font-bold',
+};
+
+const trackingClasses: Record<TextTracking, string> = {
+  tighter: 'tracking-tighter',
+  tight: 'tracking-tight',
+  normal: 'tracking-normal',
+  wide: 'tracking-wide',
+  wider: 'tracking-wider',
+  widest: 'tracking-widest',
+};
+
+const leadingClasses: Record<TextLeading, string> = {
+  none: 'leading-none',
+  tight: 'leading-tight',
+  snug: 'leading-snug',
+  normal: 'leading-normal',
+  relaxed: 'leading-relaxed',
+  loose: 'leading-loose',
+};
+
+const colorClasses: Record<TextColor, string> = {
+  foreground: 'text-foreground',
+  muted: 'text-muted-foreground',
+  primary: 'text-primary',
+  background: 'text-background',
+  destructive: 'text-destructive',
+  success: 'text-success',
+};
+
+const Text: FC<TextProps> = ({
+  family,
+  size,
+  weight,
+  tracking,
+  leading,
+  color,
+  uppercase = false,
+  italic = false,
+  as: Tag = 'p',
+  className = '',
+  children,
+}) => {
+  const classes = [
+    family ? familyClasses[family] : '',
+    size ? sizeClasses[size] : '',
+    weight ? weightClasses[weight] : '',
+    tracking ? trackingClasses[tracking] : '',
+    leading ? leadingClasses[leading] : '',
+    color ? colorClasses[color] : '',
+    uppercase ? 'uppercase' : '',
+    italic ? 'italic' : '',
+    className,
+  ]
+    .filter(Boolean)
+    .join(' ');
+
+  return <Tag className={classes || undefined}>{children}</Tag>;
+};
+
+export default Text;
 ```
 
 ### Usage
 
 ```tsx
-import Container from '@/ui/Container';
+import Text from '@/components/Text';
 
-<Container>Full width content</Container>
-<Container size="md">Medium width content</Container>
-<Container size="sm">Narrow content like articles</Container>
+<Text as="h2" family="display" size="5xl" weight="bold" uppercase tracking="tighter" leading="tight">
+  Bold Section
+</Text>
+<Text family="mono" size="xs" weight="bold" uppercase tracking="widest" color="muted">
+  Label
+</Text>
 ```

@@ -1,76 +1,101 @@
 # Dutchy Design System
 
-Bold, structural UI kit inspired by Dutch graphic design—built for teams shipping confident marketing sites, dashboards, and documentation.
-
-## Why Dutchy
-
-- **Instant brand punch** — Zero-radius geometry, Space Grotesk display, Inter body, JetBrains Mono for code
-- **Production-ready tokens** — Colors, typography, spacing, effects with light/dark and theme variants
-- **Drop-in templates** — HTML showcases for landing pages, pricing, docs, dashboard, auth, and more
-- **SSG/SSR friendly** — Works with vanilla HTML/CSS or Bun JSX server rendering (SSR-only, no client React)
-- **Accessible by default** — High-contrast palette, visible focus states, WCAG-aware color guidance
-- **MIT licensed** — Commercial-friendly for products, clients, and internal tools
-
-## Repo Structure
-
-- `docs/` — Living documentation: design system, tokens, components, patterns, and HTML showcases
-- `website/` — Static site assets and Caddyfile for the public site
-- `src/utils/` — Server utilities (e.g., `loadRoutes` for Bun SSR routing)
-- `src/middleware/` — Middleware helpers (e.g., `corsResponse` for preflight handling)
+Bold, structural UI kit inspired by Dutch graphic design: zero-radius geometry, high contrast, and loud typography. Built around Bun SSR + a server-only JSX component library in `src/components/`.
 
 ## Quick Start
 
-```html
-<script src="https://cdn.tailwindcss.com"></script>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+```bash
+bun install
+bun run dev:css   # watch Tailwind CSS
+bun run dev       # start Bun server (watch mode)
 ```
+
+Open `http://localhost:3000`
+
+## What’s In This Repo
+
+- **Bun SSR app** (for demos/showcases): routes in `src/routes/`, server in `src/index.ts`
+- **JSX SSR components**: reusable building blocks in `src/components/` (no client-side React)
+- **Design tokens + docs**: Markdown docs in `docs/`
+- **Static assets**: `public/assets/` (compiled CSS + vanilla JS modules)
+
+## Stack
+
+- **Runtime**: [Bun](https://bun.sh)
+- **Rendering**: React SSR via `renderToReadableStream()` (no hydration)
+- **Styling**: Tailwind CSS + CSS variables (themes)
+- **Routing**: file-based (see `src/utils/loadRoutes.ts`)
+- **Interactivity**: vanilla JS modules + `data-*` hooks (see `public/assets/js/`)
+
+## SSR-Only JSX (Important)
+
+Components in `src/components/` render to static HTML on the server. There is **no React runtime** in the browser.
+
+- Don’t use React hooks (`useState`, `useEffect`, …)
+- Don’t rely on JSX event handlers (`onClick`, `onChange`, …) for behavior
+- For interactive components (tabs, modal, toast, file upload, …) load a small script from `public/assets/js/` and bind via `data-*`
+
+## Local URLs
+
+- `/` — home
+- `/components` — component gallery (driven by `src/components/componentRegistry.ts`)
+- `/components/<id>` — component demo pages (implemented as routes in `src/routes/components/`)
+- `/showcase` — full-page compositions
+- `/patterns` — patterns gallery
+- `/typography`, `/colors` — foundation pages
+
+## Project Structure
+
+```text
+src/
+  index.ts                  # Bun server entry
+  components/               # JSX SSR components (folder-per-component)
+  routes/                   # File-based routing (index.tsx + method files)
+  middleware/               # Request helpers (e.g. CORS)
+  utils/                    # Routing + static asset helpers
+  styles/input.css          # Tailwind source (tokens + theme vars)
+public/assets/
+  css/styles.css            # Compiled Tailwind output
+  js/                       # Vanilla JS modules (tabs, modal, toast, ...)
+docs/                       # Design system docs (tokens/components/patterns)
+website/                    # Static site (if/when exported)
+```
+
+## Routing Conventions
+
+Routes are discovered under `src/routes/`:
+
+- `index.tsx` → `GET` handler (React component or `(req) => Response`)
+- `get.ts`, `post.ts`, `put.ts`, … → explicit HTTP method handlers
+- `$param` folder names are supported by the router (become `:param`), even if your current routes are mostly static
+
+## Theming
+
+Themes are CSS variables (default, purple, crimson). Tailwind utilities (`bg-primary`, `text-primary`, `border-primary`, including opacity modifiers) follow the active theme.
+
+## Scripts
+
+| Script | Description |
+|--------|-------------|
+| `bun run dev` | Start Bun server in watch mode |
+| `bun run dev:css` | Watch and rebuild Tailwind CSS |
+| `bun run build:css` | One-time Tailwind CSS build (minified) |
+| `bun test` | Run tests in `tests/` |
+
+## Docker
+
+```bash
+docker build -t dutchy:2.0.0 .
+docker run -p 3000:3000 dutchy:2.0.0
+```
+
+The image builds Tailwind CSS at build time and serves the Bun SSR app on port 3000.
 
 ## Documentation
 
-### Design System
-- [Overview](docs/01-design-system/README.md)
-- **Tokens:** [Colors](docs/01-design-system/tokens/colors.md) · [Typography](docs/01-design-system/tokens/typography.md) · [Spacing](docs/01-design-system/tokens/spacing.md) · [Effects](docs/01-design-system/tokens/effects.md)
-- **Components:** [Buttons](docs/01-design-system/components/buttons.md) · [Cards](docs/01-design-system/components/cards.md) · [Forms](docs/01-design-system/components/forms.md) · [Breadcrumbs](docs/01-design-system/components/breadcrumbs.md) · [Navigation](docs/01-design-system/components/navigation.md) · [Layout](docs/01-design-system/components/layout.md) · [Empty State](docs/01-design-system/components/empty-state.md) · [Alerts](docs/01-design-system/components/alerts.md) · [Skeleton](docs/01-design-system/components/skeleton.md) · [Stats](docs/01-design-system/components/stats.md) · [Pagination](docs/01-design-system/components/pagination.md) · [Accordion](docs/01-design-system/components/accordion.md) · [Tabs](docs/01-design-system/components/tabs.md) · [Toast](docs/01-design-system/components/toast.md) · [Modal](docs/01-design-system/components/modal.md) · [Dropdown](docs/01-design-system/components/dropdown.md) · [Data Table](docs/01-design-system/components/data-table.md) · [Stepper](docs/01-design-system/components/stepper.md) · [Badges](docs/01-design-system/components/badges.md) · [Tooltip](docs/01-design-system/components/tooltip.md) · [File Upload](docs/01-design-system/components/file-upload.md) · [Form Validation](docs/01-design-system/components/form-validation.md)
-- **Patterns:** [Hero](docs/01-design-system/patterns/hero.md) · [Grids](docs/01-design-system/patterns/grids.md) · [Footer](docs/01-design-system/patterns/footer.md)
-
-### HTML Showcase
-Ready-to-use page templates in [docs/02-html-showcase/](docs/02-html-showcase/README.md)
-
-### Using with Bun
-Server-side rendering with Bun's JSX support in [docs/03-using-with-bun/](docs/03-using-with-bun/README.md)
-
-## Build with Bun (SSR)
-
-```ts
-import { serve } from 'bun';
-import { loadRoutes, resolveRoute } from './src/utils/loadRoutes';
-
-const routes = await loadRoutes('routes');
-
-serve({
-  port: process.env.PORT || 3000,
-  async fetch(req) {
-    const resolved = resolveRoute(routes, req);
-    return resolved
-      ? resolved.handler(resolved.request)
-      : new Response('Not Found', { status: 404 });
-  },
-});
-```
-
-## Run Locally
-
-```bash
-# Using Podman
-podman build -t dutchy-website .
-podman run -d -p 8080:80 dutchy-website
-
-# Using Docker
-docker build -t dutchy-website .
-docker run -d -p 8080:80 dutchy-website
-```
-
-Visit `http://localhost:8080`
+- `docs/01-design-system/` — design principles, tokens, components, patterns (HTML-first)
+- `docs/03-using-with-bun/` — Bun SSR notes and conventions
+- `src/components/` — the canonical JSX SSR component implementation used by the demo app
 
 ## License
 

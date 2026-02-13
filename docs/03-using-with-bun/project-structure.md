@@ -31,7 +31,7 @@ my-dutchy-app/
 │   │       ├── index.tsx           # GET /products
 │   │       └── $slug/
 │   │           └── index.tsx       # GET /products/:slug
-│   ├── ui/                         # Reusable UI components
+│   ├── components/                 # Reusable JSX SSR components
 │   │   ├── Layout/
 │   │   │   └── index.tsx
 │   │   ├── Header/
@@ -147,9 +147,9 @@ File-based routing directory. Each file or folder maps to a URL path.
 | `api/health/index.ts` | GET | `/api/health` |
 | `products/$slug/index.tsx` | GET | `/products/:slug` |
 
-#### `src/ui/`
+#### `src/components/`
 
-Reusable UI components organized by feature. Each component gets its own folder.
+Reusable JSX SSR components organized by feature. Each component gets its own folder.
 
 This is a required convention for Bun projects in this system:
 
@@ -158,7 +158,7 @@ src/components/Button/index.tsx
 src/components/Card/index.tsx
 ```
 
-If you use `src/ui` instead of `src/components`, keep the same folder-per-component structure:
+If you prefer naming this folder `src/ui` instead of `src/components`, keep the same folder-per-component structure and update imports accordingly:
 
 ```text
 ui/
@@ -174,7 +174,7 @@ ui/
 
 - Easy to add component-specific assets
 - Clear component boundaries
-- Simple imports: `import Button from '@/ui/Button'`
+- Simple imports: `import Button from '@/components/Button'`
 
 #### `src/utils/`
 
@@ -303,11 +303,11 @@ Configure path aliases in `tsconfig.json` for cleaner imports:
 
 ```typescript
 // Instead of:
-import Layout from '../../../ui/Layout';
+import Layout from '../../../components/Layout';
 import products from '../../../data/products.json';
 
 // Use:
-import Layout from '@/ui/Layout';
+import Layout from '@/components/Layout';
 import products from '@data/products.json';
 ```
 
@@ -318,7 +318,7 @@ import products from '@data/products.json';
 Simple components in a single file:
 
 ```tsx
-// src/ui/Button/index.tsx
+// src/components/Button/index.tsx
 import type { FC, ButtonHTMLAttributes } from 'react';
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
@@ -365,7 +365,7 @@ export default Button;
 Complex components with multiple parts:
 
 ```text
-ui/Card/
+components/Card/
 ├── index.tsx           # Main export & Card component
 ├── CardHeader.tsx      # Sub-component
 ├── CardContent.tsx     # Sub-component
@@ -373,7 +373,7 @@ ui/Card/
 ```
 
 ```tsx
-// src/ui/Card/index.tsx
+// src/components/Card/index.tsx
 import type { FC, HTMLAttributes, ReactNode } from 'react';
 
 interface CardProps extends HTMLAttributes<HTMLDivElement> {
@@ -432,9 +432,9 @@ For pages that render HTML:
 ```tsx
 // src/routes/about/index.tsx
 import type { FC } from 'react';
-import Layout from '@/ui/Layout';
-import Header from '@/ui/Header';
-import Footer from '@/ui/Footer';
+import Layout from '@/components/Layout';
+import Header from '@/components/Header';
+import Footer from '@/components/Footer';
 
 interface AboutPageProps {
   request: Request;

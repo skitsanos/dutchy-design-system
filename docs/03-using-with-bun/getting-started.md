@@ -91,8 +91,8 @@ Update `package.json`:
   "scripts": {
     "dev": "bun run --watch src/index.ts",
     "start": "NODE_ENV=production bun run src/index.ts",
-    "build:css": "tailwindcss -i ./src/styles/input.css -o ./public/assets/css/styles.css",
-    "build:css:watch": "tailwindcss -i ./src/styles/input.css -o ./public/assets/css/styles.css --watch"
+    "build:css": "bunx tailwindcss -i src/styles/input.css -o public/assets/css/styles.css --minify",
+    "build:css:watch": "bunx tailwindcss -i src/styles/input.css -o public/assets/css/styles.css --watch"
   },
   "dependencies": {
     "react": "^19.0.0",
@@ -102,7 +102,7 @@ Update `package.json`:
     "@types/bun": "latest",
     "@types/react": "^19.0.0",
     "@types/react-dom": "^19.0.0",
-    "tailwindcss": "^4.0.0",
+    "tailwindcss": "3",
     "typescript": "^5.7.0"
   }
 }
@@ -190,7 +190,7 @@ src/components/Button/index.tsx
 src/components/Card/index.tsx
 ```
 
-This guide uses `src/ui/` as the component root with the same rule.
+This guide uses `src/components/` as the component root with the same rule.
 
 Asset and script rules for Bun SSR projects:
 - Put all frontend assets in `public/assets/{css,images,js}`.
@@ -198,7 +198,7 @@ Asset and script rules for Bun SSR projects:
 - In client-side JS files, use only `const` and `let` (no `var`).
 
 ```bash
-mkdir -p src/{routes,ui,utils,middleware}
+mkdir -p src/{routes,components,utils,middleware}
 mkdir -p public/assets/{css,images,js}
 ```
 
@@ -210,7 +210,7 @@ my-dutchy-app/
 │   ├── index.ts              # Server entry point
 │   ├── routes/               # Page components
 │   │   └── index.tsx         # Home page
-│   ├── ui/                   # Reusable components
+│   ├── components/           # Reusable components
 │   │   ├── Layout/
 │   │   ├── Header/
 │   │   └── Footer/
@@ -272,7 +272,7 @@ async function startServer() {
           return resolved.handler(resolved.request);
         }
 
-        const { default: NotFound } = await import('./ui/PageNotFound/index.tsx');
+        const { default: NotFound } = await import('./components/PageNotFound/index.tsx');
         return createReactHandler(NotFound)(req);
       } catch (error) {
         console.error('Route error:', error);
@@ -296,7 +296,7 @@ startServer();
 
 ### Layout Component
 
-Create `src/ui/Layout/index.tsx`:
+Create `src/components/Layout/index.tsx`:
 
 ```tsx
 import type { FC, ReactNode } from 'react';
@@ -347,7 +347,7 @@ export default Layout;
 
 ### Header Component
 
-Create `src/ui/Header/index.tsx`:
+Create `src/components/Header/index.tsx`:
 
 ```tsx
 import type { FC } from 'react';
@@ -430,7 +430,7 @@ export default Header;
 
 ### Footer Component
 
-Create `src/ui/Footer/index.tsx`:
+Create `src/components/Footer/index.tsx`:
 
 ```tsx
 import type { FC } from 'react';
@@ -541,7 +541,7 @@ export default Footer;
 
 ### 404 Page
 
-Create `src/ui/PageNotFound/index.tsx`:
+Create `src/components/PageNotFound/index.tsx`:
 
 ```tsx
 import type { FC } from 'react';
@@ -590,9 +590,9 @@ Create `src/routes/index.tsx`:
 
 ```tsx
 import type { FC } from 'react';
-import Layout from '@/ui/Layout';
-import Header from '@/ui/Header';
-import Footer from '@/ui/Footer';
+import Layout from '@/components/Layout';
+import Header from '@/components/Header';
+import Footer from '@/components/Footer';
 
 interface HomePageProps {
   request: Request;

@@ -7,9 +7,9 @@ Page components are route handlers that render full HTML pages.
 ```tsx
 // src/routes/index.tsx
 import type { FC } from 'react';
-import Layout from '@/ui/Layout';
-import Header from '@/ui/Header';
-import Footer from '@/ui/Footer';
+import Layout from '@/components/Layout';
+import Header from '@/components/Header';
+import Footer from '@/components/Footer';
 
 interface PageProps {
   request: Request;
@@ -46,10 +46,10 @@ Full home page with hero, features, and CTA:
 ```tsx
 // src/routes/index.tsx
 import type { FC } from 'react';
-import Layout from '@/ui/Layout';
-import Header from '@/ui/Header';
-import Footer from '@/ui/Footer';
-import Icon from '@/ui/Icon';
+import Layout from '@/components/Layout';
+import Header from '@/components/Header';
+import Footer from '@/components/Footer';
+import Icon from '@/components/Icon';
 
 interface HomePageProps {
   request: Request;
@@ -228,9 +228,9 @@ export default HomePage;
 ```tsx
 // src/routes/about/index.tsx
 import type { FC } from 'react';
-import Layout from '@/ui/Layout';
-import Header from '@/ui/Header';
-import Footer from '@/ui/Footer';
+import Layout from '@/components/Layout';
+import Header from '@/components/Header';
+import Footer from '@/components/Footer';
 
 interface AboutPageProps {
   request: Request;
@@ -366,9 +366,9 @@ export default AboutPage;
 ```tsx
 // src/routes/contact/index.tsx
 import type { FC } from 'react';
-import Layout from '@/ui/Layout';
-import Header from '@/ui/Header';
-import Footer from '@/ui/Footer';
+import Layout from '@/components/Layout';
+import Header from '@/components/Header';
+import Footer from '@/components/Footer';
 
 interface ContactPageProps {
   request: Request;
@@ -574,9 +574,9 @@ export default ContactPage;
 ```tsx
 // src/routes/products/$slug/index.tsx
 import type { FC } from 'react';
-import Layout from '@/ui/Layout';
-import Header from '@/ui/Header';
-import Footer from '@/ui/Footer';
+import Layout from '@/components/Layout';
+import Header from '@/components/Header';
+import Footer from '@/components/Footer';
 
 // Sample product data (in real app, fetch from database)
 const products: Record<string, { name: string; description: string; price: string }> = {
