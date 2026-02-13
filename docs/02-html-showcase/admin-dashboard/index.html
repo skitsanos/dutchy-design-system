@@ -38,6 +38,10 @@
               DEFAULT: 'hsl(0 84% 50%)',
               foreground: 'hsl(0 0% 100%)',
             },
+            success: {
+              DEFAULT: 'hsl(142 76% 36%)',
+              foreground: 'hsl(0 0% 100%)',
+            },
           },
           borderRadius: {
             none: '0',
@@ -48,9 +52,30 @@
   </script>
 
   <style>
-    * {
-      border-radius: 0 !important;
+    * { border-radius: 0 !important; }
+    /* Tooltip */
+    .tooltip-trigger { position: relative; }
+    .tooltip-trigger:hover::after, .tooltip-trigger:focus::after {
+      content: attr(data-tooltip);
+      position: absolute; bottom: calc(100% + 6px); left: 50%; transform: translateX(-50%);
+      padding: 6px 12px; background: hsl(0 0% 4%); color: #fff;
+      font-size: 12px; font-family: 'JetBrains Mono', monospace; white-space: nowrap; z-index: 50;
     }
+    .tooltip-trigger:hover::before, .tooltip-trigger:focus::before {
+      content: ''; position: absolute; bottom: calc(100% + 2px); left: 50%; transform: translateX(-50%);
+      border: 4px solid transparent; border-top-color: hsl(0 0% 4%); z-index: 50;
+    }
+    /* Skeleton pulse */
+    @keyframes skeleton-pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.4; } }
+    .skeleton { animation: skeleton-pulse 1.5s ease-in-out infinite; background: hsl(0 0% 90%); }
+    /* Toast animations */
+    @keyframes toast-in { from { transform: translateX(100%); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
+    @keyframes toast-out { from { transform: translateX(0); opacity: 1; } to { transform: translateX(100%); opacity: 0; } }
+    .toast-enter { animation: toast-in 0.3s ease-out forwards; }
+    .toast-exit { animation: toast-out 0.3s ease-in forwards; }
+    /* Sort icons */
+    .sort-icon { opacity: 0.3; transition: opacity 0.2s; }
+    th:hover .sort-icon, th[data-sort-dir] .sort-icon { opacity: 1; }
   </style>
 </head>
 <body class="font-body bg-muted text-foreground">
@@ -143,7 +168,7 @@
           <!-- Right side -->
           <div class="flex items-center gap-4">
             <!-- Notifications -->
-            <button class="relative p-2 text-muted-foreground hover:text-foreground transition-colors">
+            <button id="notifBell" class="relative p-2 text-muted-foreground hover:text-foreground transition-colors tooltip-trigger" data-tooltip="Notifications">
               <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"></path>
               </svg>
@@ -199,58 +224,59 @@
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
           <!-- Recent Orders -->
           <div class="lg:col-span-2 bg-background border-l-4 border-primary">
-            <div class="border-b border-border px-6 py-4">
+            <div class="border-b border-border px-6 py-4 flex items-center justify-between">
               <h2 class="font-display text-lg font-bold uppercase">Recent Orders</h2>
+              <button id="skeletonToggle" class="text-xs font-bold uppercase tracking-wider px-3 py-1.5 border-2 border-border hover:border-foreground transition-colors">
+                Toggle Loading
+              </button>
             </div>
-            <div class="overflow-x-auto">
-              <table class="w-full">
+            <div class="overflow-x-auto" id="tableContainer">
+              <table class="w-full" data-sortable>
                 <thead>
                   <tr class="border-b border-border">
-                    <th class="text-left px-6 py-3 text-xs font-bold uppercase tracking-wider text-muted-foreground">Order</th>
-                    <th class="text-left px-6 py-3 text-xs font-bold uppercase tracking-wider text-muted-foreground">Customer</th>
-                    <th class="text-left px-6 py-3 text-xs font-bold uppercase tracking-wider text-muted-foreground">Status</th>
-                    <th class="text-right px-6 py-3 text-xs font-bold uppercase tracking-wider text-muted-foreground">Amount</th>
+                    <th class="text-left px-6 py-3 text-xs font-bold uppercase tracking-wider text-muted-foreground cursor-pointer select-none" data-sort="order">
+                      <span class="flex items-center gap-1">Order <svg class="sort-icon w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16V4m0 0L3 8m4-4l4 4m6 0v12m0 0l4-4m-4 4l-4-4"/></svg></span>
+                    </th>
+                    <th class="text-left px-6 py-3 text-xs font-bold uppercase tracking-wider text-muted-foreground cursor-pointer select-none" data-sort="customer">
+                      <span class="flex items-center gap-1">Customer <svg class="sort-icon w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16V4m0 0L3 8m4-4l4 4m6 0v12m0 0l4-4m-4 4l-4-4"/></svg></span>
+                    </th>
+                    <th class="text-left px-6 py-3 text-xs font-bold uppercase tracking-wider text-muted-foreground cursor-pointer select-none" data-sort="status">
+                      <span class="flex items-center gap-1">Status <svg class="sort-icon w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16V4m0 0L3 8m4-4l4 4m6 0v12m0 0l4-4m-4 4l-4-4"/></svg></span>
+                    </th>
+                    <th class="text-right px-6 py-3 text-xs font-bold uppercase tracking-wider text-muted-foreground cursor-pointer select-none" data-sort="amount">
+                      <span class="flex items-center justify-end gap-1">Amount <svg class="sort-icon w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16V4m0 0L3 8m4-4l4 4m6 0v12m0 0l4-4m-4 4l-4-4"/></svg></span>
+                    </th>
                   </tr>
                 </thead>
-                <tbody>
-                  <tr class="border-b border-border hover:bg-muted/50 transition-colors">
+                <tbody id="ordersBody">
+                  <tr class="border-b border-border hover:bg-muted/50 transition-colors" data-order="#3210" data-customer="Olivia Martin" data-status="completed" data-amount="1999">
                     <td class="px-6 py-4 font-mono text-sm">#3210</td>
                     <td class="px-6 py-4 text-sm">Olivia Martin</td>
-                    <td class="px-6 py-4">
-                      <span class="inline-block bg-green-100 text-green-800 px-2 py-1 text-xs font-bold uppercase">Completed</span>
-                    </td>
+                    <td class="px-6 py-4"><span class="inline-block bg-success text-success-foreground px-2 py-1 text-xs font-bold uppercase">Completed</span></td>
                     <td class="px-6 py-4 text-sm text-right font-medium">$1,999.00</td>
                   </tr>
-                  <tr class="border-b border-border hover:bg-muted/50 transition-colors">
+                  <tr class="border-b border-border hover:bg-muted/50 transition-colors" data-order="#3209" data-customer="Jackson Lee" data-status="processing" data-amount="39">
                     <td class="px-6 py-4 font-mono text-sm">#3209</td>
                     <td class="px-6 py-4 text-sm">Jackson Lee</td>
-                    <td class="px-6 py-4">
-                      <span class="inline-block bg-yellow-100 text-yellow-800 px-2 py-1 text-xs font-bold uppercase">Processing</span>
-                    </td>
+                    <td class="px-6 py-4"><span class="inline-block bg-primary text-primary-foreground px-2 py-1 text-xs font-bold uppercase">Processing</span></td>
                     <td class="px-6 py-4 text-sm text-right font-medium">$39.00</td>
                   </tr>
-                  <tr class="border-b border-border hover:bg-muted/50 transition-colors">
+                  <tr class="border-b border-border hover:bg-muted/50 transition-colors" data-order="#3208" data-customer="Isabella Nguyen" data-status="completed" data-amount="299">
                     <td class="px-6 py-4 font-mono text-sm">#3208</td>
                     <td class="px-6 py-4 text-sm">Isabella Nguyen</td>
-                    <td class="px-6 py-4">
-                      <span class="inline-block bg-green-100 text-green-800 px-2 py-1 text-xs font-bold uppercase">Completed</span>
-                    </td>
+                    <td class="px-6 py-4"><span class="inline-block bg-success text-success-foreground px-2 py-1 text-xs font-bold uppercase">Completed</span></td>
                     <td class="px-6 py-4 text-sm text-right font-medium">$299.00</td>
                   </tr>
-                  <tr class="border-b border-border hover:bg-muted/50 transition-colors">
+                  <tr class="border-b border-border hover:bg-muted/50 transition-colors" data-order="#3207" data-customer="William Kim" data-status="shipped" data-amount="99">
                     <td class="px-6 py-4 font-mono text-sm">#3207</td>
                     <td class="px-6 py-4 text-sm">William Kim</td>
-                    <td class="px-6 py-4">
-                      <span class="inline-block bg-blue-100 text-blue-800 px-2 py-1 text-xs font-bold uppercase">Shipped</span>
-                    </td>
+                    <td class="px-6 py-4"><span class="inline-block bg-primary/20 text-primary px-2 py-1 text-xs font-bold uppercase">Shipped</span></td>
                     <td class="px-6 py-4 text-sm text-right font-medium">$99.00</td>
                   </tr>
-                  <tr class="hover:bg-muted/50 transition-colors">
+                  <tr class="hover:bg-muted/50 transition-colors" data-order="#3206" data-customer="Sofia Davis" data-status="cancelled" data-amount="150">
                     <td class="px-6 py-4 font-mono text-sm">#3206</td>
                     <td class="px-6 py-4 text-sm">Sofia Davis</td>
-                    <td class="px-6 py-4">
-                      <span class="inline-block bg-red-100 text-red-800 px-2 py-1 text-xs font-bold uppercase">Cancelled</span>
-                    </td>
+                    <td class="px-6 py-4"><span class="inline-block bg-destructive text-destructive-foreground px-2 py-1 text-xs font-bold uppercase">Cancelled</span></td>
                     <td class="px-6 py-4 text-sm text-right font-medium">$150.00</td>
                   </tr>
                 </tbody>
@@ -305,5 +331,85 @@
       </main>
     </div>
   </div>
+  <!-- Toast Container -->
+  <div id="toastContainer" class="fixed top-4 right-4 z-50 flex flex-col gap-2 pointer-events-none"></div>
+
+  <script>
+    // Toast system
+    function showToast(message, type = 'info') {
+      const container = document.getElementById('toastContainer');
+      const colors = {
+        success: 'border-l-4 border-[hsl(142_76%_36%)] bg-white',
+        error: 'border-l-4 border-[hsl(0_84%_50%)] bg-white',
+        info: 'border-l-4 border-[hsl(25_95%_53%)] bg-white',
+        warning: 'border-l-4 border-[hsl(45_93%_47%)] bg-white'
+      };
+      const toast = document.createElement('div');
+      toast.className = `${colors[type] || colors.info} shadow-lg px-6 py-4 text-sm font-medium pointer-events-auto toast-enter`;
+      toast.textContent = message;
+      container.appendChild(toast);
+      setTimeout(() => {
+        toast.classList.remove('toast-enter');
+        toast.classList.add('toast-exit');
+        toast.addEventListener('animationend', () => toast.remove());
+      }, 3000);
+    }
+
+    // Notification bell click
+    document.getElementById('notifBell')?.addEventListener('click', () => {
+      showToast('You have 3 new notifications', 'info');
+    });
+
+    // Skeleton toggle
+    const skeletonToggle = document.getElementById('skeletonToggle');
+    const ordersBody = document.getElementById('ordersBody');
+    let originalHTML = ordersBody?.innerHTML;
+    let isLoading = false;
+
+    skeletonToggle?.addEventListener('click', () => {
+      if (!isLoading) {
+        isLoading = true;
+        ordersBody.innerHTML = Array(5).fill('').map(() => `
+          <tr class="border-b border-border">
+            <td class="px-6 py-4"><div class="skeleton h-4 w-16"></div></td>
+            <td class="px-6 py-4"><div class="skeleton h-4 w-28"></div></td>
+            <td class="px-6 py-4"><div class="skeleton h-6 w-20"></div></td>
+            <td class="px-6 py-4"><div class="skeleton h-4 w-20 ml-auto"></div></td>
+          </tr>
+        `).join('');
+        setTimeout(() => {
+          ordersBody.innerHTML = originalHTML;
+          isLoading = false;
+        }, 3000);
+      }
+    });
+
+    // Sortable table
+    document.querySelectorAll('[data-sortable] th[data-sort]').forEach(th => {
+      th.addEventListener('click', () => {
+        const table = th.closest('table');
+        const tbody = table.querySelector('tbody');
+        const rows = Array.from(tbody.querySelectorAll('tr'));
+        const key = th.dataset.sort;
+        const dir = th.dataset.sortDir === 'asc' ? 'desc' : 'asc';
+
+        // Reset all headers
+        table.querySelectorAll('th[data-sort]').forEach(h => delete h.dataset.sortDir);
+        th.dataset.sortDir = dir;
+
+        rows.sort((a, b) => {
+          let aVal = a.dataset[key] || '';
+          let bVal = b.dataset[key] || '';
+          if (key === 'amount') { aVal = parseFloat(aVal); bVal = parseFloat(bVal); }
+          if (aVal < bVal) return dir === 'asc' ? -1 : 1;
+          if (aVal > bVal) return dir === 'asc' ? 1 : -1;
+          return 0;
+        });
+
+        rows.forEach(row => tbody.appendChild(row));
+        originalHTML = tbody.innerHTML;
+      });
+    });
+  </script>
 </body>
 </html>

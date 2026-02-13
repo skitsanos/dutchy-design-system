@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Notifications Center - Dutchy Design System Showcase</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            border: 'hsl(25 20% 88%)',
+            input: 'hsl(25 20% 88%)',
+            ring: 'hsl(25 95% 53%)',
+            background: 'hsl(40 30% 97%)',
+            foreground: 'hsl(25 25% 10%)',
+            primary: { DEFAULT: 'hsl(25 95% 53%)', foreground: 'hsl(0 0% 100%)' },
+            secondary: { DEFAULT: 'hsl(25 20% 92%)', foreground: 'hsl(25 25% 15%)' },
+            muted: { DEFAULT: 'hsl(40 20% 94%)', foreground: 'hsl(25 15% 40%)' },
+            destructive: { DEFAULT: 'hsl(0 84% 60%)', foreground: 'hsl(0 0% 100%)' },
+            success: { DEFAULT: 'hsl(142 76% 36%)', foreground: 'hsl(0 0% 100%)' },
+            warning: { DEFAULT: 'hsl(45 93% 47%)', foreground: 'hsl(25 25% 10%)' },
+            info: { DEFAULT: 'hsl(210 100% 50%)', foreground: 'hsl(0 0% 100%)' },
+          },
+          fontFamily: {
+            display: ['Space Grotesk', 'sans-serif'],
+            sans: ['Inter', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          },
+          borderRadius: { DEFAULT: '0', sm: '0', md: '0', lg: '0', xl: '0' },
+        },
+      },
+    }
+  </script>
+  <style>
+    * { border-radius: 0 !important; }
+    /* Tooltip */
+    .tooltip-trigger { position: relative; }
+    .tooltip-trigger:hover::after, .tooltip-trigger:focus::after {
+      content: attr(data-tooltip); position: absolute; bottom: calc(100% + 6px); left: 50%; transform: translateX(-50%);
+      padding: 6px 12px; background: hsl(25 25% 10%); color: hsl(40 30% 97%);
+      font-size: 12px; font-family: 'JetBrains Mono', monospace; white-space: nowrap; z-index: 50;
+    }
+    .tooltip-trigger:hover::before, .tooltip-trigger:focus::before {
+      content: ''; position: absolute; bottom: calc(100% + 2px); left: 50%; transform: translateX(-50%);
+      border: 4px solid transparent; border-top-color: hsl(25 25% 10%); z-index: 50;
+    }
+    /* Toast */
+    @keyframes toast-in { from { transform: translateX(100%); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
+    @keyframes toast-out { from { transform: translateX(0); opacity: 1; } to { transform: translateX(100%); opacity: 0; } }
+    .toast-enter { animation: toast-in 0.3s ease-out forwards; }
+    .toast-exit { animation: toast-out 0.3s ease-in forwards; }
+    /* Modal */
+    .modal-overlay { background: rgba(0,0,0,0.5); transition: opacity 0.2s; }
+    /* Drawer */
+    @keyframes drawer-in { from { transform: translateX(100%); } to { transform: translateX(0); } }
+    @keyframes drawer-out { from { transform: translateX(0); } to { transform: translateX(100%); } }
+    .drawer-enter { animation: drawer-in 0.3s ease-out forwards; }
+    .drawer-exit { animation: drawer-out 0.3s ease-in forwards; }
+  </style>
+</head>
+<body class="bg-background text-foreground font-sans">
+  <div class="min-h-screen flex">
+    <!-- Sidebar -->
+    <aside class="w-64 bg-foreground text-background shrink-0 hidden lg:block">
+      <div class="p-6">
+        <a href="#" class="font-display text-xl font-bold uppercase tracking-tight block mb-10">
+          Admin<span class="text-primary">.</span>
+        </a>
+        <nav class="space-y-1">
+          <a href="#" class="flex items-center gap-3 px-4 py-3 text-sm font-bold uppercase tracking-wide text-background/60 hover:text-background hover:bg-background/5 transition-colors">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"/></svg>
+            Dashboard
+          </a>
+          <a href="#" class="flex items-center gap-3 px-4 py-3 text-sm font-bold uppercase tracking-wide bg-background/10 text-background">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"/></svg>
+            Notifications
+          </a>
+          <a href="#" class="flex items-center gap-3 px-4 py-3 text-sm font-bold uppercase tracking-wide text-background/60 hover:text-background hover:bg-background/5 transition-colors">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+            Settings
+          </a>
+        </nav>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <div class="flex-1 flex flex-col">
+      <!-- Header -->
+      <header class="bg-white border-b-4 border-primary">
+        <div class="px-6 h-16 flex items-center justify-between">
+          <div class="hidden md:block font-display text-lg font-bold uppercase tracking-tight">Notification Center</div>
+          <div class="flex items-center gap-4">
+            <button id="settingsBtn" class="tooltip-trigger p-2 text-muted-foreground hover:text-foreground transition-colors" data-tooltip="Preferences">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+            </button>
+            <div class="w-8 h-8 bg-foreground flex items-center justify-center">
+              <span class="text-background text-sm font-bold">JD</span>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <main class="flex-1 p-6">
+        <!-- Breadcrumb -->
+        <nav aria-label="Breadcrumb" class="mb-6">
+          <ol class="flex items-center gap-2 text-sm font-mono">
+            <li><a href="#" class="text-muted-foreground hover:text-primary transition-colors">Home</a></li>
+            <li class="text-muted-foreground"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 18 6-6-6-6"/></svg></li>
+            <li><a href="#" class="text-muted-foreground hover:text-primary transition-colors">Settings</a></li>
+            <li class="text-muted-foreground"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 18 6-6-6-6"/></svg></li>
+            <li><span class="text-foreground font-bold" aria-current="page">Notifications</span></li>
+          </ol>
+        </nav>
+
+        <!-- Toast Demo Strip -->
+        <div class="bg-white border-l-4 border-foreground p-4 mb-6">
+          <p class="font-display font-bold uppercase text-sm tracking-wider mb-3">Toast Demo</p>
+          <div class="flex flex-wrap gap-2">
+            <button onclick="showToast('Operation completed!','success')" class="px-4 py-2 bg-success text-success-foreground text-xs font-bold uppercase tracking-wider">Success</button>
+            <button onclick="showToast('Something went wrong.','error')" class="px-4 py-2 bg-destructive text-destructive-foreground text-xs font-bold uppercase tracking-wider">Error</button>
+            <button onclick="showToast('New update available.','info')" class="px-4 py-2 bg-info text-info-foreground text-xs font-bold uppercase tracking-wider">Info</button>
+            <button onclick="showToast('Low disk space warning.','warning')" class="px-4 py-2 bg-warning text-warning-foreground text-xs font-bold uppercase tracking-wider">Warning</button>
+          </div>
+        </div>
+
+        <!-- Tabs -->
+        <div class="mb-6">
+          <div class="flex border-b-2 border-border">
+            <button class="tab-btn px-6 py-3 font-bold uppercase text-sm tracking-wider border-b-4 border-primary text-primary -mb-0.5" data-tab="all">All</button>
+            <button class="tab-btn px-6 py-3 font-bold uppercase text-sm tracking-wider border-b-4 border-transparent text-muted-foreground hover:text-foreground -mb-0.5" data-tab="unread">Unread</button>
+            <button class="tab-btn px-6 py-3 font-bold uppercase text-sm tracking-wider border-b-4 border-transparent text-muted-foreground hover:text-foreground -mb-0.5" data-tab="archived">Archived</button>
+          </div>
+        </div>
+
+        <!-- Actions -->
+        <div class="flex items-center justify-between mb-4">
+          <p class="text-sm text-muted-foreground"><span id="notifCount">4</span> notifications</p>
+          <button id="clearAllBtn" class="text-xs font-bold uppercase tracking-wider text-destructive hover:underline tooltip-trigger" data-tooltip="Remove all notifications">Clear All</button>
+        </div>
+
+        <!-- Notification List -->
+        <div id="notifList" class="space-y-2">
+          <div class="notif-item bg-white border-l-4 border-primary p-4 cursor-pointer hover:bg-muted/30 transition-colors" data-tab-group="all unread" data-notif="1">
+            <div class="flex items-start justify-between">
+              <div class="flex-1">
+                <div class="flex items-center gap-2 mb-1">
+                  <span class="inline-block bg-primary text-primary-foreground px-2 py-0.5 text-[10px] font-bold uppercase tracking-widest">Update</span>
+                  <span class="text-xs text-muted-foreground font-mono">2 min ago</span>
+                </div>
+                <p class="font-medium text-sm">New version 2.5.0 released</p>
+                <p class="text-xs text-muted-foreground mt-1">Includes new components and bug fixes.</p>
+              </div>
+              <div class="flex gap-1 ml-4">
+                <button class="tooltip-trigger p-1 text-muted-foreground hover:text-foreground" data-tooltip="Archive"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4"/></svg></button>
+                <button class="tooltip-trigger p-1 text-muted-foreground hover:text-destructive" data-tooltip="Delete"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg></button>
+              </div>
+            </div>
+          </div>
+
+          <div class="notif-item bg-white border-l-4 border-success p-4 cursor-pointer hover:bg-muted/30 transition-colors" data-tab-group="all unread" data-notif="2">
+            <div class="flex items-start justify-between">
+              <div class="flex-1">
+                <div class="flex items-center gap-2 mb-1">
+                  <span class="inline-block bg-success text-success-foreground px-2 py-0.5 text-[10px] font-bold uppercase tracking-widest">Success</span>
+                  <span class="text-xs text-muted-foreground font-mono">1 hour ago</span>
+                </div>
+                <p class="font-medium text-sm">Deployment completed</p>
+                <p class="text-xs text-muted-foreground mt-1">Production build deployed successfully.</p>
+              </div>
+              <div class="flex gap-1 ml-4">
+                <button class="tooltip-trigger p-1 text-muted-foreground hover:text-foreground" data-tooltip="Archive"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4"/></svg></button>
+                <button class="tooltip-trigger p-1 text-muted-foreground hover:text-destructive" data-tooltip="Delete"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg></button>
+              </div>
+            </div>
+          </div>
+
+          <div class="notif-item bg-white border-l-4 border-destructive p-4 cursor-pointer hover:bg-muted/30 transition-colors" data-tab-group="all" data-notif="3">
+            <div class="flex items-start justify-between">
+              <div class="flex-1">
+                <div class="flex items-center gap-2 mb-1">
+                  <span class="inline-block bg-destructive text-destructive-foreground px-2 py-0.5 text-[10px] font-bold uppercase tracking-widest">Error</span>
+                  <span class="text-xs text-muted-foreground font-mono">3 hours ago</span>
+                </div>
+                <p class="font-medium text-sm">Build failed on staging</p>
+                <p class="text-xs text-muted-foreground mt-1">TypeScript compilation error in module.</p>
+              </div>
+              <div class="flex gap-1 ml-4">
+                <button class="tooltip-trigger p-1 text-muted-foreground hover:text-foreground" data-tooltip="Archive"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4"/></svg></button>
+                <button class="tooltip-trigger p-1 text-muted-foreground hover:text-destructive" data-tooltip="Delete"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg></button>
+              </div>
+            </div>
+          </div>
+
+          <div class="notif-item bg-white border-l-4 border-warning p-4 cursor-pointer hover:bg-muted/30 transition-colors" data-tab-group="all" data-notif="4">
+            <div class="flex items-start justify-between">
+              <div class="flex-1">
+                <div class="flex items-center gap-2 mb-1">
+                  <span class="inline-block bg-warning text-warning-foreground px-2 py-0.5 text-[10px] font-bold uppercase tracking-widest">Warning</span>
+                  <span class="text-xs text-muted-foreground font-mono">Yesterday</span>
+                </div>
+                <p class="font-medium text-sm">API rate limit approaching</p>
+                <p class="text-xs text-muted-foreground mt-1">You've used 85% of your monthly API quota.</p>
+              </div>
+              <div class="flex gap-1 ml-4">
+                <button class="tooltip-trigger p-1 text-muted-foreground hover:text-foreground" data-tooltip="Archive"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4"/></svg></button>
+                <button class="tooltip-trigger p-1 text-muted-foreground hover:text-destructive" data-tooltip="Delete"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg></button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Empty State (for Archived tab) -->
+        <div id="emptyState" class="hidden text-center py-16">
+          <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" class="mx-auto mb-4 text-muted-foreground/40"><path d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4"/></svg>
+          <h3 class="font-display text-xl font-bold uppercase tracking-tight mb-2">No Archived Notifications</h3>
+          <p class="text-sm text-muted-foreground max-w-sm mx-auto">Archived notifications will appear here. Use the archive button on any notification to move it here.</p>
+        </div>
+      </main>
+
+      <!-- Footer -->
+      <footer class="bg-foreground text-background py-4 px-6">
+        <p class="font-mono text-xs opacity-60 uppercase tracking-widest text-center">&copy; 2025 Dutchy Design System</p>
+      </footer>
+    </div>
+  </div>
+
+  <!-- Content Modal -->
+  <div id="contentModal" class="fixed inset-0 z-40 hidden">
+    <div class="modal-overlay absolute inset-0" onclick="closeModal('contentModal')"></div>
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white border-4 border-border w-full max-w-lg z-50">
+      <div class="border-b border-border px-6 py-4 flex items-center justify-between">
+        <h3 class="font-display font-bold uppercase tracking-wider" id="modalTitle">Notification Details</h3>
+        <button onclick="closeModal('contentModal')" class="text-muted-foreground hover:text-foreground p-1"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg></button>
+      </div>
+      <div class="p-6" id="modalBody">
+        <p class="text-sm text-muted-foreground">Notification details will appear here.</p>
+      </div>
+      <div class="border-t border-border px-6 py-4 flex justify-end">
+        <button onclick="closeModal('contentModal')" class="px-6 py-2 bg-primary text-primary-foreground font-bold uppercase text-sm tracking-wider hover:bg-primary/90 transition-colors">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Confirmation Modal -->
+  <div id="confirmModal" class="fixed inset-0 z-40 hidden">
+    <div class="modal-overlay absolute inset-0" onclick="closeModal('confirmModal')"></div>
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white border-4 border-destructive w-full max-w-md z-50">
+      <div class="p-6 text-center">
+        <div class="w-12 h-12 bg-destructive/10 flex items-center justify-center mx-auto mb-4">
+          <svg class="w-6 h-6 text-destructive" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L4.082 16.5c-.77.833.192 2.5 1.732 2.5z"/></svg>
+        </div>
+        <h3 class="font-display font-bold uppercase tracking-wider mb-2">Clear All Notifications?</h3>
+        <p class="text-sm text-muted-foreground mb-6">This action cannot be undone. All notifications will be permanently removed.</p>
+        <div class="flex gap-3 justify-center">
+          <button onclick="closeModal('confirmModal')" class="px-6 py-2 border-2 border-foreground font-bold uppercase text-sm tracking-wider hover:bg-foreground hover:text-background transition-colors">Cancel</button>
+          <button onclick="clearAll()" class="px-6 py-2 bg-destructive text-destructive-foreground font-bold uppercase text-sm tracking-wider hover:bg-destructive/90 transition-colors">Delete All</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Drawer -->
+  <div id="drawerOverlay" class="fixed inset-0 z-40 hidden">
+    <div class="modal-overlay absolute inset-0" onclick="closeDrawer()"></div>
+    <div id="drawerPanel" class="absolute top-0 right-0 h-full w-full max-w-sm bg-white border-l-4 border-primary z-50 drawer-enter flex flex-col">
+      <div class="border-b border-border px-6 py-4 flex items-center justify-between">
+        <h3 class="font-display font-bold uppercase tracking-wider">Preferences</h3>
+        <button onclick="closeDrawer()" class="text-muted-foreground hover:text-foreground p-1"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg></button>
+      </div>
+      <div class="p-6 flex-1 overflow-y-auto space-y-6">
+        <div>
+          <h4 class="font-display font-bold uppercase text-sm tracking-wider mb-3">Email Notifications</h4>
+          <div class="space-y-3">
+            <label class="flex items-center justify-between cursor-pointer"><span class="text-sm">Deployment alerts</span><input type="checkbox" checked class="w-5 h-5 accent-primary"></label>
+            <label class="flex items-center justify-between cursor-pointer"><span class="text-sm">Build failures</span><input type="checkbox" checked class="w-5 h-5 accent-primary"></label>
+            <label class="flex items-center justify-between cursor-pointer"><span class="text-sm">Weekly digest</span><input type="checkbox" class="w-5 h-5 accent-primary"></label>
+          </div>
+        </div>
+        <div>
+          <h4 class="font-display font-bold uppercase text-sm tracking-wider mb-3">Push Notifications</h4>
+          <div class="space-y-3">
+            <label class="flex items-center justify-between cursor-pointer"><span class="text-sm">Critical errors</span><input type="checkbox" checked class="w-5 h-5 accent-primary"></label>
+            <label class="flex items-center justify-between cursor-pointer"><span class="text-sm">New releases</span><input type="checkbox" class="w-5 h-5 accent-primary"></label>
+          </div>
+        </div>
+        <div>
+          <h4 class="font-display font-bold uppercase text-sm tracking-wider mb-3">Quiet Hours</h4>
+          <div class="grid grid-cols-2 gap-3">
+            <div><label class="text-xs text-muted-foreground mb-1 block">From</label><input type="time" value="22:00" class="w-full px-3 py-2 border-2 border-border text-sm focus:outline-none focus:border-primary"></div>
+            <div><label class="text-xs text-muted-foreground mb-1 block">To</label><input type="time" value="07:00" class="w-full px-3 py-2 border-2 border-border text-sm focus:outline-none focus:border-primary"></div>
+          </div>
+        </div>
+      </div>
+      <div class="border-t border-border px-6 py-4">
+        <button onclick="closeDrawer(); showToast('Preferences saved','success')" class="w-full py-3 bg-primary text-primary-foreground font-bold uppercase text-sm tracking-wider hover:bg-primary/90 transition-colors">Save Preferences</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Container -->
+  <div id="toastContainer" class="fixed top-4 right-4 z-50 flex flex-col gap-2 pointer-events-none"></div>
+
+  <script>
+    // Toast
+    function showToast(message, type) {
+      const container = document.getElementById('toastContainer');
+      const colors = { success: 'hsl(142 76% 36%)', error: 'hsl(0 84% 60%)', info: 'hsl(210 100% 50%)', warning: 'hsl(45 93% 47%)' };
+      const toast = document.createElement('div');
+      toast.className = 'shadow-lg px-6 py-4 text-sm font-medium pointer-events-auto toast-enter bg-white';
+      toast.style.borderLeft = '4px solid ' + (colors[type] || colors.info);
+      toast.textContent = message;
+      container.appendChild(toast);
+      setTimeout(() => { toast.classList.replace('toast-enter', 'toast-exit'); toast.addEventListener('animationend', () => toast.remove()); }, 3000);
+    }
+
+    // Tabs
+    let activeTab = 'all';
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        activeTab = btn.dataset.tab;
+        document.querySelectorAll('.tab-btn').forEach(b => { b.classList.remove('border-primary', 'text-primary'); b.classList.add('border-transparent', 'text-muted-foreground'); });
+        btn.classList.remove('border-transparent', 'text-muted-foreground');
+        btn.classList.add('border-primary', 'text-primary');
+        filterNotifs();
+      });
+    });
+
+    function filterNotifs() {
+      const list = document.getElementById('notifList');
+      const empty = document.getElementById('emptyState');
+      let visible = 0;
+      document.querySelectorAll('.notif-item').forEach(item => {
+        const groups = item.dataset.tabGroup.split(' ');
+        const show = groups.includes(activeTab);
+        item.style.display = show ? '' : 'none';
+        if (show) visible++;
+      });
+      list.style.display = visible ? '' : 'none';
+      empty.classList.toggle('hidden', visible > 0);
+      document.getElementById('notifCount').textContent = visible;
+    }
+
+    // Click notification to open content modal
+    document.querySelectorAll('.notif-item').forEach(item => {
+      item.addEventListener('click', e => {
+        if (e.target.closest('button')) return;
+        const title = item.querySelector('.font-medium').textContent;
+        const desc = item.querySelector('.text-muted-foreground:last-child')?.textContent || '';
+        const badge = item.querySelector('span[class*="bg-"]')?.textContent || '';
+        document.getElementById('modalTitle').textContent = title;
+        document.getElementById('modalBody').innerHTML = '<div class="mb-4"><span class="inline-block bg-muted px-2 py-1 text-xs font-bold uppercase tracking-widest">' + badge.trim() + '</span></div><p class="text-sm text-muted-foreground">' + desc + '</p><p class="text-sm text-muted-foreground mt-4">Full notification details, links, and related actions would appear here in a production application.</p>';
+        openModal('contentModal');
+      });
+    });
+
+    // Modals
+    function openModal(id) { document.getElementById(id).classList.remove('hidden'); }
+    function closeModal(id) { document.getElementById(id).classList.add('hidden'); }
+
+    // Clear all -> confirmation modal
+    document.getElementById('clearAllBtn').addEventListener('click', () => openModal('confirmModal'));
+    function clearAll() {
+      closeModal('confirmModal');
+      document.querySelectorAll('.notif-item').forEach(i => i.remove());
+      filterNotifs();
+      showToast('All notifications cleared', 'success');
+    }
+
+    // Drawer
+    document.getElementById('settingsBtn').addEventListener('click', () => {
+      document.getElementById('drawerOverlay').classList.remove('hidden');
+      document.getElementById('drawerPanel').classList.remove('drawer-exit');
+      document.getElementById('drawerPanel').classList.add('drawer-enter');
+    });
+    function closeDrawer() {
+      const panel = document.getElementById('drawerPanel');
+      panel.classList.remove('drawer-enter');
+      panel.classList.add('drawer-exit');
+      panel.addEventListener('animationend', () => document.getElementById('drawerOverlay').classList.add('hidden'), { once: true });
+    }
+  </script>
+</body>
+</html>

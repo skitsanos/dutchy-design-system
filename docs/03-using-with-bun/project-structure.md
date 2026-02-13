@@ -70,7 +70,7 @@ my-dutchy-app/
 │   │   │   └── styles.css          # Compiled Tailwind
 │   │   ├── js/
 │   │   │   └── main.js             # Client-side JS
-│   │   └── img/
+│   │   └── images/
 │   │       ├── logo.svg
 │   │       └── favicon.ico
 │   └── robots.txt
@@ -101,7 +101,7 @@ const PORT = process.env.PORT || 3000;
 
 async function startServer() {
   const routes = await loadRoutes('routes');
-  const assets = staticAssets({ assetsPath: 'public', urlPrefix: '/assets' });
+  const assets = staticAssets({ assetsPath: 'public/assets', urlPrefix: '/assets' });
 
   serve({
     port: PORT,
@@ -150,6 +150,15 @@ File-based routing directory. Each file or folder maps to a URL path.
 #### `src/ui/`
 
 Reusable UI components organized by feature. Each component gets its own folder.
+
+This is a required convention for Bun projects in this system:
+
+```text
+src/components/Button/index.tsx
+src/components/Card/index.tsx
+```
+
+If you use `src/ui` instead of `src/components`, keep the same folder-per-component structure:
 
 ```text
 ui/
@@ -255,7 +264,7 @@ public/
 │   │   └── styles.css      # Compiled Tailwind CSS
 │   ├── js/
 │   │   └── main.js         # Client-side JavaScript
-│   └── img/
+│   └── images/
 │       ├── logo.svg
 │       ├── favicon.ico
 │       └── og-image.png    # Open Graph image

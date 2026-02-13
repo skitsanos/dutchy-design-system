@@ -30,6 +30,14 @@
               DEFAULT: 'hsl(40 20% 94%)',
               foreground: 'hsl(25 15% 40%)',
             },
+            destructive: {
+              DEFAULT: 'hsl(0 84% 60%)',
+              foreground: 'hsl(0 0% 100%)',
+            },
+            success: {
+              DEFAULT: 'hsl(142 76% 36%)',
+              foreground: 'hsl(0 0% 100%)',
+            },
           },
           fontFamily: {
             display: ['Space Grotesk', 'sans-serif'],
@@ -49,6 +57,34 @@
   </script>
   <style>
     * { border-radius: 0 !important; }
+    /* Tooltip */
+    .tooltip-trigger { position: relative; cursor: help; }
+    .tooltip-trigger:hover::after,
+    .tooltip-trigger:focus::after {
+      content: attr(data-tooltip);
+      position: absolute;
+      bottom: calc(100% + 6px);
+      left: 50%;
+      transform: translateX(-50%);
+      padding: 6px 12px;
+      background: hsl(25 25% 10%);
+      color: hsl(40 30% 97%);
+      font-size: 12px;
+      font-family: 'JetBrains Mono', monospace;
+      white-space: nowrap;
+      z-index: 50;
+    }
+    .tooltip-trigger:hover::before,
+    .tooltip-trigger:focus::before {
+      content: '';
+      position: absolute;
+      bottom: calc(100% + 2px);
+      left: 50%;
+      transform: translateX(-50%);
+      border: 4px solid transparent;
+      border-top-color: hsl(25 25% 10%);
+      z-index: 50;
+    }
   </style>
 </head>
 <body class="bg-background text-foreground font-sans">
@@ -96,7 +132,7 @@
           </button>
           <span class="font-bold text-muted-foreground">
             Yearly
-            <span class="ml-2 bg-primary/20 text-primary px-2 py-1 font-mono text-xs">Save 20%</span>
+            <span class="ml-2 bg-primary/20 text-primary px-2 py-1 font-mono text-xs tooltip-trigger" data-tooltip="Billed annually at $278.40">Save 20%</span>
           </span>
         </div>
       </div>
@@ -111,6 +147,7 @@
           <div class="bg-background p-8 flex flex-col">
             <div class="mb-8">
               <h3 class="font-display text-2xl font-bold uppercase tracking-tight mb-2">Starter</h3>
+              <span class="inline-block bg-muted text-muted-foreground px-3 py-1 text-xs font-bold uppercase tracking-widest mb-2">Free</span>
               <p class="text-sm text-muted-foreground">Perfect for side projects and learning.</p>
             </div>
             <div class="mb-8">
@@ -202,6 +239,7 @@
           <div class="bg-background p-8 flex flex-col">
             <div class="mb-8">
               <h3 class="font-display text-2xl font-bold uppercase tracking-tight mb-2">Enterprise</h3>
+              <span class="inline-block border-2 border-border text-muted-foreground px-3 py-1 text-xs font-bold uppercase tracking-widest mb-2">Custom</span>
               <p class="text-sm text-muted-foreground">For large organizations and custom needs.</p>
             </div>
             <div class="mb-8">
@@ -335,38 +373,43 @@
             Frequently <span class="text-primary">Asked</span>
           </h2>
 
-          <div class="space-y-4">
-            <!-- FAQ Item 1 -->
-            <div class="border-l-4 border-primary bg-background p-6">
-              <h3 class="font-display font-bold uppercase mb-2">Can I switch plans later?</h3>
-              <p class="text-muted-foreground text-sm">
+          <div class="space-y-2" data-accordion="single">
+            <details class="group border-l-4 border-primary bg-background" open>
+              <summary class="flex items-center justify-between cursor-pointer p-6 font-display font-bold uppercase text-sm tracking-wider select-none list-none [&::-webkit-details-marker]:hidden">
+                Can I switch plans later?
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="transform transition-transform duration-200 group-open:rotate-180"><path d="m6 9 6 6 6-6"/></svg>
+              </summary>
+              <div class="px-6 pb-6 text-sm text-muted-foreground">
                 Yes, you can upgrade or downgrade your plan at any time. Changes take effect immediately, and we'll prorate the difference.
-              </p>
-            </div>
-
-            <!-- FAQ Item 2 -->
-            <div class="border-l-4 border-border bg-background p-6 hover:border-primary transition-colors">
-              <h3 class="font-display font-bold uppercase mb-2">Is there a free trial for Pro?</h3>
-              <p class="text-muted-foreground text-sm">
+              </div>
+            </details>
+            <details class="group border-l-4 border-border bg-background hover:border-primary transition-colors">
+              <summary class="flex items-center justify-between cursor-pointer p-6 font-display font-bold uppercase text-sm tracking-wider select-none list-none [&::-webkit-details-marker]:hidden">
+                Is there a free trial for Pro?
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="transform transition-transform duration-200 group-open:rotate-180"><path d="m6 9 6 6 6-6"/></svg>
+              </summary>
+              <div class="px-6 pb-6 text-sm text-muted-foreground">
                 Yes, Pro comes with a 14-day free trial. No credit card required to start.
-              </p>
-            </div>
-
-            <!-- FAQ Item 3 -->
-            <div class="border-l-4 border-border bg-background p-6 hover:border-primary transition-colors">
-              <h3 class="font-display font-bold uppercase mb-2">What payment methods do you accept?</h3>
-              <p class="text-muted-foreground text-sm">
+              </div>
+            </details>
+            <details class="group border-l-4 border-border bg-background hover:border-primary transition-colors">
+              <summary class="flex items-center justify-between cursor-pointer p-6 font-display font-bold uppercase text-sm tracking-wider select-none list-none [&::-webkit-details-marker]:hidden">
+                What payment methods do you accept?
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="transform transition-transform duration-200 group-open:rotate-180"><path d="m6 9 6 6 6-6"/></svg>
+              </summary>
+              <div class="px-6 pb-6 text-sm text-muted-foreground">
                 We accept all major credit cards, PayPal, and bank transfers for Enterprise plans.
-              </p>
-            </div>
-
-            <!-- FAQ Item 4 -->
-            <div class="border-l-4 border-border bg-background p-6 hover:border-primary transition-colors">
-              <h3 class="font-display font-bold uppercase mb-2">Do you offer refunds?</h3>
-              <p class="text-muted-foreground text-sm">
+              </div>
+            </details>
+            <details class="group border-l-4 border-border bg-background hover:border-primary transition-colors">
+              <summary class="flex items-center justify-between cursor-pointer p-6 font-display font-bold uppercase text-sm tracking-wider select-none list-none [&::-webkit-details-marker]:hidden">
+                Do you offer refunds?
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="transform transition-transform duration-200 group-open:rotate-180"><path d="m6 9 6 6 6-6"/></svg>
+              </summary>
+              <div class="px-6 pb-6 text-sm text-muted-foreground">
                 We offer a 30-day money-back guarantee for all paid plans. No questions asked.
-              </p>
-            </div>
+              </div>
+            </details>
           </div>
         </div>
       </div>
@@ -450,5 +493,17 @@
       </div>
     </div>
   </footer>
+  <script>
+    // Single-open accordion behavior
+    document.querySelectorAll('[data-accordion="single"]').forEach(accordion => {
+      accordion.addEventListener('click', e => {
+        const target = e.target.closest('details');
+        if (!target) return;
+        accordion.querySelectorAll('details[open]').forEach(d => {
+          if (d !== target) d.removeAttribute('open');
+        });
+      });
+    });
+  </script>
 </body>
 </html>

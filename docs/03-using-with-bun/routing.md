@@ -326,7 +326,7 @@ async function startServer() {
 
   // Configure static assets
   const assetHandler = staticAssets({
-    assetsPath: 'public',
+    assetsPath: 'public/assets',
     urlPrefix: '/assets',
     cacheControl: IS_PRODUCTION
       ? 'public, max-age=31536000, immutable'
@@ -531,30 +531,21 @@ const contactSchema = z.object({
 
 export default async (req: Request) => {
   const contentType = req.headers.get('Content-Type') || '';
-
-  let data: unknown;
-
-  // Handle both JSON and form data
-  if (contentType.includes('application/json')) {
-    data = await req.json();
-  } else if (contentType.includes('application/x-www-form-urlencoded')) {
-    const formData = await req.formData();
-    data = Object.fromEntries(formData.entries());
-  } else {
+  if (!contentType.includes('application/json')) {
     return Response.json(
-      { error: { message: 'Unsupported content type' } },
+      { error: { message: 'Content-Type must be application/json' } },
       { status: 415 }
     );
   }
 
   try {
+    const data = await req.json();
     const validData = contactSchema.parse(data);
 
     // Send email, save to database, etc.
     console.log('Contact form submission:', validData);
 
-    // Redirect back to contact page with success message
-    return Response.redirect('/contact?success=true', 303);
+    return Response.json({ success: true });
   } catch (error) {
     if (error instanceof z.ZodError) {
       return Response.json(

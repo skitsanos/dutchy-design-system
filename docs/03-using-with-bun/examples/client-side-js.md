@@ -2,6 +2,11 @@
 
 Since Bun SSR renders static HTML without a React runtime on the client, all interactivity must be implemented with vanilla JavaScript.
 
+Required conventions:
+- Put assets in `public/assets/{css,images,js}`.
+- Serve them at `/assets/*` (mounted from `public/assets/*`).
+- Use only `const` and `let` in client JavaScript examples and production code (no `var`).
+
 ## How It Works
 
 1. **JSX renders to static HTML** - Components become HTML strings on the server
@@ -272,7 +277,7 @@ const Tabs = ({ tabs }: { tabs: { id: string; label: string; content: string }[]
 ```tsx
 // Component
 const ContactForm = () => (
-  <form id="contact-form" action="/api/contact" method="POST" noValidate>
+  <form id="contact-form" data-endpoint="/api/contact" noValidate>
     <div className="space-y-6">
       <div>
         <label htmlFor="email" className="block text-xs font-bold uppercase tracking-wider mb-2">
@@ -367,7 +372,8 @@ const ContactForm = () => (
     field.addEventListener('input', () => clearError(field.name));
   });
 
-  form.addEventListener('submit', (e) => {
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
     let hasErrors = false;
 
     form.querySelectorAll('[data-validate]').forEach(field => {
@@ -383,9 +389,20 @@ const ContactForm = () => (
       }
     });
 
-    if (hasErrors) {
-      e.preventDefault();
-    }
+    if (hasErrors) return;
+
+    const payload = {
+      email: form.email.value.trim(),
+      message: form.message.value.trim(),
+    };
+
+    const endpoint = form.dataset.endpoint || '/api/contact';
+
+    await fetch(endpoint, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload),
+    });
   });
 })();
 ```
@@ -607,6 +624,45 @@ document.addEventListener('DOMContentLoaded', () => {
     renderChart('#chart', data);
   }
 });
+```
+
+### Server-Sent Events (SSE) Progress
+
+For long-running server tasks, subscribe to an SSE endpoint and update UI in real time.
+
+```javascript
+// public/assets/js/job-progress.js
+(() => {
+  const statusEl = document.getElementById('job-status');
+  const progressEl = document.getElementById('job-progress');
+  const jobId = document.body.dataset.jobId;
+  if (!jobId || !statusEl || !progressEl) return;
+
+  const stream = new EventSource(`/api/jobs/${jobId}/stream`);
+
+  stream.addEventListener('started', (event) => {
+    const payload = JSON.parse(event.data);
+    statusEl.textContent = `Job ${payload.jobId} started`;
+    progressEl.textContent = `${payload.progress}%`;
+  });
+
+  stream.addEventListener('progress', (event) => {
+    const payload = JSON.parse(event.data);
+    progressEl.textContent = `${payload.progress}%`;
+  });
+
+  stream.addEventListener('complete', (event) => {
+    const payload = JSON.parse(event.data);
+    statusEl.textContent = `Job ${payload.jobId} complete`;
+    progressEl.textContent = '100%';
+    stream.close();
+  });
+
+  stream.addEventListener('error', () => {
+    statusEl.textContent = 'Connection lost';
+    stream.close();
+  });
+})();
 ```
 
 ## Best Practices

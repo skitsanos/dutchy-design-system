@@ -381,18 +381,14 @@ const contactSchema = z.object({
 export default async (req: Request) => {
   try {
     const contentType = req.headers.get('Content-Type') || '';
-
-    let data: Record<string, unknown>;
-
-    // Parse form data
-    if (contentType.includes('application/x-www-form-urlencoded')) {
-      const formData = await req.formData();
-      data = Object.fromEntries(formData.entries());
-    } else if (contentType.includes('application/json')) {
-      data = await req.json();
-    } else {
-      return Response.redirect('/contact?error=' + encodeURIComponent('Invalid content type'), 303);
+    if (!contentType.includes('application/json')) {
+      return Response.json(
+        { error: { message: 'Content-Type must be application/json' } },
+        { status: 415 }
+      );
     }
+
+    const data = await req.json();
 
     // Validate
     const validData = contactSchema.parse(data);
@@ -413,18 +409,27 @@ export default async (req: Request) => {
     //   `,
     // });
 
-    // Redirect with success
-    return Response.redirect('/contact?success=true', 303);
+    return Response.json({ success: true });
 
   } catch (error) {
     console.error('Form error:', error);
 
     if (error instanceof z.ZodError) {
-      const firstError = error.errors[0]?.message || 'Validation failed';
-      return Response.redirect('/contact?error=' + encodeURIComponent(firstError), 303);
+      return Response.json(
+        {
+          error: {
+            message: 'Validation failed',
+            details: error.errors,
+          },
+        },
+        { status: 400 }
+      );
     }
 
-    return Response.redirect('/contact?error=' + encodeURIComponent('An error occurred'), 303);
+    return Response.json(
+      { error: { message: 'An error occurred' } },
+      { status: 500 }
+    );
   }
 };
 ```
@@ -449,7 +454,7 @@ const NewsletterForm: FC<NewsletterFormProps> = ({
   const isDark = variant === 'dark';
 
   return (
-    <form action={action} method="POST" className="flex gap-0">
+    <form id="newsletter-form" data-endpoint={action} className="flex gap-0">
       <input
         type="email"
         name="email"
@@ -477,6 +482,28 @@ const NewsletterForm: FC<NewsletterFormProps> = ({
 export default NewsletterForm;
 ```
 
+```javascript
+// public/assets/js/newsletter.js
+(() => {
+  const form = document.getElementById('newsletter-form');
+  if (!form) return;
+
+  form.addEventListener('submit', async (event) => {
+    event.preventDefault();
+
+    const endpoint = form.dataset.endpoint || '/api/newsletter';
+    const emailInput = form.querySelector('input[name="email"]');
+    const email = emailInput?.value.trim() || '';
+
+    await fetch(endpoint, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email }),
+    });
+  });
+})();
+```
+
 ### Newsletter API Handler
 
 ```tsx
@@ -490,21 +517,14 @@ const newsletterSchema = z.object({
 export default async (req: Request) => {
   try {
     const contentType = req.headers.get('Content-Type') || '';
-
-    let data: Record<string, unknown>;
-
-    if (contentType.includes('application/x-www-form-urlencoded')) {
-      const formData = await req.formData();
-      data = Object.fromEntries(formData.entries());
-    } else if (contentType.includes('application/json')) {
-      data = await req.json();
-    } else {
+    if (!contentType.includes('application/json')) {
       return Response.json(
-        { error: { message: 'Invalid content type' } },
+        { error: { message: 'Content-Type must be application/json' } },
         { status: 415 }
       );
     }
 
+    const data = await req.json();
     const { email } = newsletterSchema.parse(data);
 
     // Add to mailing list (example with a hypothetical service)
@@ -512,13 +532,6 @@ export default async (req: Request) => {
 
     console.log('Newsletter subscription:', email);
 
-    // For form submissions, redirect back
-    if (contentType.includes('application/x-www-form-urlencoded')) {
-      const referer = req.headers.get('Referer') || '/';
-      return Response.redirect(`${referer}?subscribed=true`, 303);
-    }
-
-    // For API calls, return JSON
     return Response.json({ success: true, email });
 
   } catch (error) {
@@ -691,19 +704,21 @@ Post-Redirect-Get prevents duplicate submissions:
 return Response.redirect('/form?success=true', 303);
 ```
 
-### 3. Handle Both Form Data and JSON
+### 3. Use JSON for API Calls
 
-Support multiple content types:
+API endpoints should accept JSON requests by default (use `multipart/form-data` only for file uploads):
 
 ```typescript
 const contentType = req.headers.get('Content-Type') || '';
 
-if (contentType.includes('application/x-www-form-urlencoded')) {
-  const formData = await req.formData();
-  data = Object.fromEntries(formData.entries());
-} else if (contentType.includes('application/json')) {
-  data = await req.json();
+if (!contentType.includes('application/json')) {
+  return Response.json(
+    { error: { message: 'Content-Type must be application/json' } },
+    { status: 415 }
+  );
 }
+
+const data = await req.json();
 ```
 
 ### 4. Provide Clear Feedback

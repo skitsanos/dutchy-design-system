@@ -1,15 +1,18 @@
-FROM caddy:2-alpine
+FROM oven/bun:latest
 
-# Copy website files
-COPY website/*.html /srv/
-COPY website/assets/ /srv/assets/
+WORKDIR /app
 
-# Copy Caddy configuration
-COPY website/Caddyfile /etc/caddy/Caddyfile
+COPY package.json bun.lock* ./
+RUN bun install --frozen-lockfile
 
-# Railway uses PORT environment variable
-ENV PORT=80
+COPY . .
 
-EXPOSE 80
+# Build Tailwind CSS
+RUN bun run build:css
 
-CMD ["caddy", "run", "--config", "/etc/caddy/Caddyfile"]
+ENV NODE_ENV=production
+ENV PORT=3000
+
+EXPOSE 3000
+
+CMD ["bun", "run", "src/index.ts"]

@@ -1,0 +1,25 @@
+# Dependencies and local artifacts
+node_modules
+
+# VCS and editor files
+.git
+.gitignore
+.DS_Store
+.vscode
+.idea
+.claude
+
+# Project docs and static-site content not needed by Bun SSR runtime image
+docs/
+website/
+
+# Repository metadata / local helper files
+*.md
+TODO.md
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+*.log

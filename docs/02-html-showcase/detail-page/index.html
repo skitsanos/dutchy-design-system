@@ -57,6 +57,34 @@
   </script>
   <style>
     * { border-radius: 0 !important; }
+    /* Tooltip */
+    .tooltip-trigger { position: relative; cursor: help; border-bottom: 1px dashed hsl(25 20% 88%); }
+    .tooltip-trigger:hover::after,
+    .tooltip-trigger:focus::after {
+      content: attr(data-tooltip);
+      position: absolute;
+      bottom: calc(100% + 6px);
+      left: 50%;
+      transform: translateX(-50%);
+      padding: 6px 12px;
+      background: hsl(25 25% 10%);
+      color: hsl(40 30% 97%);
+      font-size: 12px;
+      font-family: 'JetBrains Mono', monospace;
+      white-space: nowrap;
+      z-index: 50;
+    }
+    .tooltip-trigger:hover::before,
+    .tooltip-trigger:focus::before {
+      content: '';
+      position: absolute;
+      bottom: calc(100% + 2px);
+      left: 50%;
+      transform: translateX(-50%);
+      border: 4px solid transparent;
+      border-top-color: hsl(25 25% 10%);
+      z-index: 50;
+    }
   </style>
 </head>
 <body class="bg-background text-foreground font-sans">
@@ -84,14 +112,22 @@
   <!-- Breadcrumb -->
   <div class="border-b border-border bg-muted/30">
     <div class="container mx-auto px-4 md:px-6 py-4">
-      <nav class="flex items-center gap-2 text-sm font-mono">
-        <a href="#" class="text-muted-foreground hover:text-primary transition-colors">Home</a>
-        <span class="text-muted-foreground">/</span>
-        <a href="#" class="text-muted-foreground hover:text-primary transition-colors">Components</a>
-        <span class="text-muted-foreground">/</span>
-        <a href="#" class="text-muted-foreground hover:text-primary transition-colors">UI</a>
-        <span class="text-muted-foreground">/</span>
-        <span class="text-foreground font-bold">Button</span>
+      <nav aria-label="Breadcrumb">
+        <ol class="flex items-center gap-2 text-sm font-mono">
+          <li><a href="#" class="text-muted-foreground hover:text-primary transition-colors">Home</a></li>
+          <li class="text-muted-foreground">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+          </li>
+          <li><a href="#" class="text-muted-foreground hover:text-primary transition-colors">Components</a></li>
+          <li class="text-muted-foreground">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+          </li>
+          <li><a href="#" class="text-muted-foreground hover:text-primary transition-colors">UI</a></li>
+          <li class="text-muted-foreground">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+          </li>
+          <li><span class="text-foreground font-bold" aria-current="page">Button</span></li>
+        </ol>
       </nav>
     </div>
   </div>
@@ -262,6 +298,40 @@
               </div>
             </div>
           </section>
+
+          <!-- FAQ Section -->
+          <section class="mb-16">
+            <h2 class="font-display text-2xl font-bold uppercase tracking-tight mb-6">FAQ</h2>
+            <div class="space-y-2">
+              <details class="group border-l-4 border-primary bg-background" open>
+                <summary class="flex items-center justify-between cursor-pointer p-6 font-display font-bold uppercase text-sm tracking-wider select-none list-none [&::-webkit-details-marker]:hidden">
+                  When should I use the Button component?
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="transform transition-transform duration-200 group-open:rotate-180"><path d="m6 9 6 6 6-6"/></svg>
+                </summary>
+                <div class="px-6 pb-6 text-sm text-muted-foreground">
+                  Use the Button component for any user-initiated action, such as form submissions, opening modals, navigating to new pages, or triggering side effects. Avoid using buttons for plain navigation — use links instead.
+                </div>
+              </details>
+              <details class="group border-l-4 border-border bg-background hover:border-primary transition-colors">
+                <summary class="flex items-center justify-between cursor-pointer p-6 font-display font-bold uppercase text-sm tracking-wider select-none list-none [&::-webkit-details-marker]:hidden">
+                  Can I customize the button styles?
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="transform transition-transform duration-200 group-open:rotate-180"><path d="m6 9 6 6 6-6"/></svg>
+                </summary>
+                <div class="px-6 pb-6 text-sm text-muted-foreground">
+                  Yes, the Button component accepts a <code class="font-mono text-primary">className</code> prop for custom styles. You can also extend the default variants through the design token configuration.
+                </div>
+              </details>
+              <details class="group border-l-4 border-border bg-background hover:border-primary transition-colors">
+                <summary class="flex items-center justify-between cursor-pointer p-6 font-display font-bold uppercase text-sm tracking-wider select-none list-none [&::-webkit-details-marker]:hidden">
+                  Does the Button support loading states?
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="transform transition-transform duration-200 group-open:rotate-180"><path d="m6 9 6 6 6-6"/></svg>
+                </summary>
+                <div class="px-6 pb-6 text-sm text-muted-foreground">
+                  Yes, pass the <code class="font-mono text-primary">loading</code> prop to display a spinner and disable the button. The button automatically prevents double-click submissions while loading.
+                </div>
+              </details>
+            </div>
+          </section>
         </div>
 
         <!-- Sidebar -->
@@ -277,11 +347,11 @@
                 </div>
                 <div>
                   <dt class="font-mono text-xs text-muted-foreground uppercase tracking-wider mb-1">Bundle Size</dt>
-                  <dd class="font-bold">2.1 KB</dd>
+                  <dd class="font-bold"><span class="tooltip-trigger" data-tooltip="Minified + gzipped size">2.1 KB</span></dd>
                 </div>
                 <div>
                   <dt class="font-mono text-xs text-muted-foreground uppercase tracking-wider mb-1">Dependencies</dt>
-                  <dd class="font-bold">0</dd>
+                  <dd class="font-bold"><span class="tooltip-trigger" data-tooltip="Zero runtime dependencies">0</span></dd>
                 </div>
                 <div>
                   <dt class="font-mono text-xs text-muted-foreground uppercase tracking-wider mb-1">Last Updated</dt>
@@ -299,6 +369,7 @@
                 <a href="#" class="block text-sm text-muted-foreground hover:text-primary transition-colors">Usage</a>
                 <a href="#" class="block text-sm text-muted-foreground hover:text-primary transition-colors">Props</a>
                 <a href="#" class="block text-sm text-muted-foreground hover:text-primary transition-colors">Variants</a>
+                <a href="#" class="block text-sm text-muted-foreground hover:text-primary transition-colors">FAQ</a>
               </nav>
             </div>
 

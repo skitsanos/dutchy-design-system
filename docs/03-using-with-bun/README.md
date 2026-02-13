@@ -13,6 +13,7 @@ Bun provides built-in support for JSX/TSX files and server-side rendering throug
 - **File-Based Routing**: Automatic route discovery from filesystem
 - **TypeScript Native**: No transpilation needed
 - **Fast Cold Starts**: Instant server startup
+- **SSE for Progress**: Stream long-running job updates to the frontend
 
 ## Important: SSR-Only Components
 
@@ -45,6 +46,12 @@ document.getElementById('increment-btn').addEventListener('click', () => {
   countEl.textContent = parseInt(countEl.textContent) + 1;
 });
 ```
+
+### Asset + Script Rules (Required)
+
+- Mount `/assets/*` from `public/assets/*` (do not serve from mixed roots).
+- Store assets under `public/assets/{css,images,js}`.
+- For client-side JavaScript, use only `const` and `let` (no `var`).
 
 ### When to Use This Approach
 
@@ -134,7 +141,7 @@ const IS_PRODUCTION = process.env.NODE_ENV === 'production';
 async function startServer() {
   const routes = await loadRoutes('routes');
   const assetHandler = staticAssets({
-    assetsPath: 'public',
+    assetsPath: 'public/assets',
     urlPrefix: '/assets',
     cacheControl: IS_PRODUCTION
       ? 'public, max-age=31536000, immutable'
@@ -160,6 +167,20 @@ startServer();
 ```
 
 ### 5. Create Your First Component
+
+Use folder-per-component structure for all reusable components (required):
+
+```text
+src/components/Button/index.tsx
+src/components/Card/index.tsx
+```
+
+In these docs we use `src/ui/*` for the same pattern:
+
+```text
+src/ui/Button/index.tsx
+src/ui/Card/index.tsx
+```
 
 ```tsx
 // src/routes/index.tsx
@@ -262,7 +283,7 @@ const Page = ({ request }: PageProps) => {
 import staticAssets from './utils/staticAssets';
 
 const assetHandler = staticAssets({
-  assetsPath: 'public',
+  assetsPath: 'public/assets',
   urlPrefix: '/assets',
   cacheControl: 'public, max-age=31536000, immutable',
 });

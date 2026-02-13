@@ -9,7 +9,7 @@ API routes return JSON responses instead of HTML.
 ### GET Endpoint
 
 ```typescript
-// src/routes/api/health/index.ts
+// src/routes/api/health/get.ts
 export default async (req: Request) => {
   return Response.json({
     status: 'ok',
@@ -127,7 +127,7 @@ Complete REST API for a resource:
 ### List (GET /api/products)
 
 ```typescript
-// src/routes/api/products/index.ts
+// src/routes/api/products/get.ts
 import { response } from '@/utils/response';
 
 // In-memory store (use database in production)
@@ -344,7 +344,7 @@ export const requireApiKey = (handler: Handler): Handler => {
 ### Usage
 
 ```typescript
-// src/routes/api/protected/index.ts
+// src/routes/api/protected/get.ts
 import { requireAuth } from '@/middleware/auth';
 import { response } from '@/utils/response';
 
@@ -360,7 +360,7 @@ export default requireAuth(handler);
 Consistent error handling pattern:
 
 ```typescript
-// src/routes/api/example/index.ts
+// src/routes/api/example/get.ts
 import { z } from 'zod';
 import { response } from '@/utils/response';
 
@@ -446,7 +446,7 @@ export const rateLimit = (config: RateLimitConfig) => {
 ### Usage
 
 ```typescript
-// src/routes/api/public/index.ts
+// src/routes/api/public/get.ts
 import { rateLimit } from '@/middleware/rateLimit';
 
 const handler = async (req: Request) => {
@@ -544,7 +544,7 @@ serve({
 
 ## File Uploads
 
-Handle multipart form data:
+File uploads are the exception to JSON-only API calls. Use `multipart/form-data` for uploads:
 
 ```typescript
 // src/routes/api/upload/post.ts
@@ -555,27 +555,27 @@ const MAX_SIZE = 5 * 1024 * 1024; // 5MB
 
 export default async (req: Request) => {
   try {
+    const contentType = req.headers.get('Content-Type') || '';
+    if (!contentType.includes('multipart/form-data')) {
+      return response.error('Content-Type must be multipart/form-data', 415);
+    }
+
     const formData = await req.formData();
     const file = formData.get('file') as File | null;
-
     if (!file) {
       return response.badRequest('No file provided');
     }
 
-    // Validate file type
     if (!ALLOWED_TYPES.includes(file.type)) {
       return response.badRequest('Invalid file type');
     }
 
-    // Validate file size
     if (file.size > MAX_SIZE) {
       return response.badRequest('File too large (max 5MB)');
     }
 
-    // Save file
     const filename = `${Date.now()}-${file.name}`;
     const path = `public/uploads/${filename}`;
-
     await Bun.write(path, file);
 
     return response.created({
@@ -638,6 +638,52 @@ export default async (req: Request) => {
     console.error('Webhook error:', error);
     return response.badRequest('Webhook error');
   }
+};
+```
+
+## Long-Running Jobs with SSE
+
+Use Server-Sent Events to stream progress updates from long-running server tasks.
+
+```typescript
+// src/routes/api/jobs/$id/stream/get.ts
+export default async (req: Request) => {
+  const url = new URL(req.url);
+  const jobId = url.searchParams.get('_param_id') || '';
+
+  const stream = new ReadableStream({
+    start(controller) {
+      const encoder = new TextEncoder();
+      let progress = 0;
+
+      const send = (event: string, data: unknown) => {
+        controller.enqueue(
+          encoder.encode(`event: ${event}\ndata: ${JSON.stringify(data)}\n\n`)
+        );
+      };
+
+      send('started', { jobId, progress: 0 });
+
+      const timer = setInterval(() => {
+        progress += 10;
+        send('progress', { jobId, progress });
+
+        if (progress >= 100) {
+          clearInterval(timer);
+          send('complete', { jobId, status: 'done' });
+          controller.close();
+        }
+      }, 1000);
+    },
+  });
+
+  return new Response(stream, {
+    headers: {
+      'Content-Type': 'text/event-stream',
+      'Cache-Control': 'no-cache',
+      Connection: 'keep-alive',
+    },
+  });
 };
 ```
 

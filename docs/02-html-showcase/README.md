@@ -145,6 +145,51 @@ An interactive theme demonstration featuring:
 
 **Use for:** Understanding theme implementation, demonstrating design system flexibility
 
+### [Registration Wizard](./registration-wizard/)
+
+A multi-step registration form featuring:
+- Horizontal stepper with 4 steps (Account, Profile, Interests, Confirm)
+- Form validation with real-time error feedback
+- File upload dropzones with drag-and-drop
+- Closable badge tags for interest selection
+- Background bar breadcrumb navigation
+- Skeleton-to-content transition on review step
+- Toast notifications on completion
+- Progress bar with step indicator
+
+**Use for:** Multi-step forms, onboarding flows, wizard interfaces
+
+### [Notifications Center](./notifications-center/)
+
+A notification management interface featuring:
+- Toast notifications in 4 variants (success, error, info, warning)
+- Content modal for notification details
+- Confirmation modal for destructive actions
+- Right-side drawer for notification preferences
+- Tab bar filtering (All, Unread, Archived)
+- Empty state for archived tab
+- Status badges on notification items
+- Chevron breadcrumb navigation
+- Tooltips on action icons
+
+**Use for:** Notification systems, settings panels, admin interfaces
+
+### [Data Management](./data-management/)
+
+A user management CRUD interface featuring:
+- Sortable data table with column headers
+- Single-open filter accordion (Status, Role, Date Range)
+- Content modal for editing and confirmation modal for deletion
+- Status and role badges with color coding
+- Closable filter badges in action bar
+- Skeleton loading state toggle
+- Empty state with call-to-action
+- Chevron breadcrumb navigation
+- Pagination controls
+- Tooltips on action buttons
+
+**Use for:** Admin panels, CRUD interfaces, data management dashboards
+
 ## How to Use
 
 1. **View in Browser**

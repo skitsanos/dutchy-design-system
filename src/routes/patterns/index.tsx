@@ -1,0 +1,416 @@
+import type { FC } from 'react';
+import Layout from '@/components/Layout';
+import WebsiteHeader from '@/components/WebsiteHeader';
+import WebsiteFooter from '@/components/WebsiteFooter';
+
+const PatternsPage: FC<{ request: Request }> = ({ request }) => {
+  return (
+    <Layout
+      title="Patterns - Dutchy Design System"
+      meta={{
+        description:
+          'Layout patterns for Dutchy Design System. Hero sections, navigation, footers, and grids with bold structural aesthetics.',
+        keywords:
+          'layout patterns, hero sections, navigation, footer, grids, design system, page templates',
+      }}
+      scripts={['/assets/js/mobile-menu.js']}
+    >
+      <WebsiteHeader currentPath="/patterns" />
+
+      {/* Page Header */}
+      <section className="border-b border-border py-16 md:py-20">
+        <div className="container mx-auto px-4 md:px-6">
+          <div className="max-w-3xl">
+            <div className="inline-block bg-primary px-4 py-2 text-primary-foreground font-mono text-xs font-bold uppercase tracking-widest mb-6">
+              Layout
+            </div>
+            <h1 className="font-display text-5xl md:text-7xl font-bold uppercase leading-[0.9] tracking-tighter mb-6">
+              Patterns
+            </h1>
+            <p className="text-xl text-muted-foreground leading-relaxed">
+              Pre-built layout patterns for common UI sections. Hero areas, navigation bars, footers, and grid layouts with the Dutchy aesthetic.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Hero Patterns */}
+      <section className="py-16 border-b border-border">
+        <div className="container mx-auto px-4 md:px-6">
+          <div className="flex items-center gap-3 mb-4">
+            <span className="w-3 h-3 bg-primary"></span>
+            <h2 className="font-display text-3xl font-bold uppercase tracking-tighter">Hero Sections</h2>
+          </div>
+          <p className="text-muted-foreground mb-12 max-w-2xl">
+            Bold opening sections that set the tone. Various layouts for different content needs.
+          </p>
+
+          {/* Split Hero Preview */}
+          <div className="mb-12">
+            <h3 className="font-display font-bold uppercase text-sm tracking-wider mb-4 text-muted-foreground">Split Layout</h3>
+            <div className="border-4 border-border overflow-hidden">
+              <div className="grid grid-cols-1 lg:grid-cols-2 min-h-[400px]">
+                <div className="flex flex-col justify-center p-8 md:p-12 bg-background relative">
+                  <div className="inline-block bg-primary px-3 py-1 text-primary-foreground font-mono text-xs font-bold uppercase tracking-widest mb-6 self-start">
+                    Featured
+                  </div>
+                  <h2 className="font-display text-4xl md:text-5xl font-bold uppercase leading-[0.9] tracking-tighter mb-4">
+                    Hero<br/><span className="text-primary">Headline.</span>
+                  </h2>
+                  <p className="text-muted-foreground mb-6 max-w-md">
+                    Supporting text that provides context and encourages action.
+                  </p>
+                  <div className="flex gap-4">
+                    <button className="bg-primary text-primary-foreground px-6 py-3 font-bold uppercase tracking-wide text-sm">
+                      Primary CTA
+                    </button>
+                    <button className="border-2 border-foreground px-6 py-3 font-bold uppercase tracking-wide text-sm">
+                      Secondary
+                    </button>
+                  </div>
+                </div>
+                <div className="bg-foreground p-8 flex items-end min-h-[200px] lg:min-h-0">
+                  <div className="text-background">
+                    <p className="font-display text-3xl font-bold uppercase mb-1">50+</p>
+                    <p className="font-mono text-xs uppercase tracking-wider opacity-70">Components</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Centered Hero Preview */}
+          <div className="mb-12">
+            <h3 className="font-display font-bold uppercase text-sm tracking-wider mb-4 text-muted-foreground">Centered Layout</h3>
+            <div className="border-4 border-border bg-background py-16 px-8 text-center">
+              <div className="max-w-3xl mx-auto">
+                <div className="inline-block bg-primary px-3 py-1 text-primary-foreground font-mono text-xs font-bold uppercase tracking-widest mb-6">
+                  Announcement
+                </div>
+                <h2 className="font-display text-4xl md:text-6xl font-bold uppercase leading-[0.9] tracking-tighter mb-6">
+                  Centered <span className="text-primary">Hero</span> Layout
+                </h2>
+                <p className="text-xl text-muted-foreground mb-8 max-w-xl mx-auto">
+                  Perfect for landing pages where the message is the focus.
+                </p>
+                <button className="bg-primary text-primary-foreground px-8 py-4 font-bold uppercase tracking-wide">
+                  Get Started
+                </button>
+              </div>
+            </div>
+          </div>
+
+          {/* Stats Hero */}
+          <div>
+            <h3 className="font-display font-bold uppercase text-sm tracking-wider mb-4 text-muted-foreground">With Stats Grid</h3>
+            <div className="border-4 border-border overflow-hidden">
+              <div className="bg-foreground text-background p-8 md:p-12">
+                <div className="max-w-2xl">
+                  <h2 className="font-display text-4xl md:text-5xl font-bold uppercase leading-[0.9] tracking-tighter mb-4">
+                    Bold <span className="text-primary">Numbers</span> Speak
+                  </h2>
+                  <p className="text-background/70 mb-8">
+                    Let your metrics make the impact.
+                  </p>
+                </div>
+              </div>
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-0.5 bg-border">
+                <div className="bg-background p-6 md:p-8 text-center">
+                  <p className="font-display text-3xl md:text-4xl font-bold text-primary mb-1">50+</p>
+                  <p className="font-mono text-xs uppercase tracking-wider text-muted-foreground">Components</p>
+                </div>
+                <div className="bg-background p-6 md:p-8 text-center">
+                  <p className="font-display text-3xl md:text-4xl font-bold text-primary mb-1">6</p>
+                  <p className="font-mono text-xs uppercase tracking-wider text-muted-foreground">Categories</p>
+                </div>
+                <div className="bg-background p-6 md:p-8 text-center">
+                  <p className="font-display text-3xl md:text-4xl font-bold text-primary mb-1">100%</p>
+                  <p className="font-mono text-xs uppercase tracking-wider text-muted-foreground">Accessible</p>
+                </div>
+                <div className="bg-background p-6 md:p-8 text-center">
+                  <p className="font-display text-3xl md:text-4xl font-bold text-primary mb-1">MIT</p>
+                  <p className="font-mono text-xs uppercase tracking-wider text-muted-foreground">Licensed</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Navigation Patterns */}
+      <section className="py-16 border-b border-border bg-muted/30">
+        <div className="container mx-auto px-4 md:px-6">
+          <div className="flex items-center gap-3 mb-4">
+            <span className="w-3 h-3 bg-primary"></span>
+            <h2 className="font-display text-3xl font-bold uppercase tracking-tighter">Navigation</h2>
+          </div>
+          <p className="text-muted-foreground mb-12 max-w-2xl">
+            Header and navigation patterns with the bold Dutchy style.
+          </p>
+
+          {/* Primary Header */}
+          <div className="mb-12">
+            <h3 className="font-display font-bold uppercase text-sm tracking-wider mb-4 text-muted-foreground">Primary Header</h3>
+            <div className="border-4 border-border">
+              <header className="w-full border-b-4 border-primary bg-background">
+                <div className="px-6 h-20 flex items-center justify-between">
+                  <a href="#" className="flex items-center gap-3">
+                    <div className="bg-primary text-primary-foreground w-10 h-10 flex items-center justify-center font-display font-bold text-xl">
+                      D.
+                    </div>
+                    <span className="font-display font-bold text-2xl tracking-tighter uppercase">
+                      Brand
+                    </span>
+                  </a>
+                  <nav className="hidden md:flex items-center gap-8">
+                    <a href="#" className="text-sm font-bold uppercase tracking-widest text-primary underline decoration-4 underline-offset-4">Home</a>
+                    <a href="#" className="text-sm font-bold uppercase tracking-widest hover:text-primary transition-colors">About</a>
+                    <a href="#" className="text-sm font-bold uppercase tracking-widest hover:text-primary transition-colors">Products</a>
+                    <a href="#" className="text-sm font-bold uppercase tracking-widest hover:text-primary transition-colors">Contact</a>
+                    <a href="#" className="bg-primary text-primary-foreground font-bold uppercase tracking-wide px-6 py-3">
+                      Get Started
+                    </a>
+                  </nav>
+                </div>
+              </header>
+            </div>
+          </div>
+
+          {/* Dark Header */}
+          <div className="mb-12">
+            <h3 className="font-display font-bold uppercase text-sm tracking-wider mb-4 text-muted-foreground">Dark Header</h3>
+            <div className="border-4 border-border">
+              <header className="w-full bg-foreground text-background">
+                <div className="px-6 h-20 flex items-center justify-between">
+                  <a href="#" className="flex items-center gap-3">
+                    <div className="bg-primary text-primary-foreground w-10 h-10 flex items-center justify-center font-display font-bold text-xl">
+                      D.
+                    </div>
+                    <span className="font-display font-bold text-2xl tracking-tighter uppercase">
+                      Brand
+                    </span>
+                  </a>
+                  <nav className="hidden md:flex items-center gap-8">
+                    <a href="#" className="text-sm font-bold uppercase tracking-widest text-primary">Home</a>
+                    <a href="#" className="text-sm font-bold uppercase tracking-widest hover:text-primary transition-colors">About</a>
+                    <a href="#" className="text-sm font-bold uppercase tracking-widest hover:text-primary transition-colors">Products</a>
+                    <a href="#" className="bg-primary text-primary-foreground font-bold uppercase tracking-wide px-6 py-3">
+                      Contact
+                    </a>
+                  </nav>
+                </div>
+              </header>
+            </div>
+          </div>
+
+          {/* Breadcrumbs */}
+          <div>
+            <h3 className="font-display font-bold uppercase text-sm tracking-wider mb-4 text-muted-foreground">Breadcrumbs</h3>
+            <div className="border-4 border-border bg-background p-6">
+              <nav className="flex items-center gap-2 text-sm font-mono">
+                <a href="#" className="text-muted-foreground hover:text-primary transition-colors">Home</a>
+                <span className="text-muted-foreground">/</span>
+                <a href="#" className="text-muted-foreground hover:text-primary transition-colors">Components</a>
+                <span className="text-muted-foreground">/</span>
+                <a href="#" className="text-muted-foreground hover:text-primary transition-colors">Forms</a>
+                <span className="text-muted-foreground">/</span>
+                <span className="text-foreground font-bold">Input</span>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Grid Patterns */}
+      <section className="py-16 border-b border-border">
+        <div className="container mx-auto px-4 md:px-6">
+          <div className="flex items-center gap-3 mb-4">
+            <span className="w-3 h-3 bg-primary"></span>
+            <h2 className="font-display text-3xl font-bold uppercase tracking-tighter">Grid Layouts</h2>
+          </div>
+          <p className="text-muted-foreground mb-12 max-w-2xl">
+            Structured grid patterns for organizing content with tight gaps and clear boundaries.
+          </p>
+
+          {/* Tight Grid */}
+          <div className="mb-12">
+            <h3 className="font-display font-bold uppercase text-sm tracking-wider mb-4 text-muted-foreground">Tight Grid (0.5 Gap)</h3>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-0.5 bg-border border border-border">
+              <div className="bg-background p-6">
+                <span className="font-mono text-xs text-primary uppercase">Item 1</span>
+                <h4 className="font-display font-bold uppercase mt-2">Grid Item</h4>
+              </div>
+              <div className="bg-background p-6">
+                <span className="font-mono text-xs text-primary uppercase">Item 2</span>
+                <h4 className="font-display font-bold uppercase mt-2">Grid Item</h4>
+              </div>
+              <div className="bg-background p-6">
+                <span className="font-mono text-xs text-primary uppercase">Item 3</span>
+                <h4 className="font-display font-bold uppercase mt-2">Grid Item</h4>
+              </div>
+              <div className="bg-background p-6">
+                <span className="font-mono text-xs text-primary uppercase">Item 4</span>
+                <h4 className="font-display font-bold uppercase mt-2">Grid Item</h4>
+              </div>
+            </div>
+          </div>
+
+          {/* Feature Grid */}
+          <div className="mb-12">
+            <h3 className="font-display font-bold uppercase text-sm tracking-wider mb-4 text-muted-foreground">Feature Grid</h3>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <div className="border-l-4 border-primary bg-background p-6">
+                <div className="w-12 h-12 bg-primary/10 flex items-center justify-center mb-4">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-primary"><path d="m12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83Z"/><path d="m22 17.65-9.17 4.16a2 2 0 0 1-1.66 0L2 17.65"/><path d="m22 12.65-9.17 4.16a2 2 0 0 1-1.66 0L2 12.65"/></svg>
+                </div>
+                <h4 className="font-display font-bold uppercase mb-2">Feature One</h4>
+                <p className="text-sm text-muted-foreground">Description of the first feature with supporting details.</p>
+              </div>
+              <div className="border-l-4 border-primary bg-background p-6">
+                <div className="w-12 h-12 bg-primary/10 flex items-center justify-center mb-4">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-primary"><rect width="18" height="18" x="3" y="3"/><path d="M3 9h18"/><path d="M9 21V9"/></svg>
+                </div>
+                <h4 className="font-display font-bold uppercase mb-2">Feature Two</h4>
+                <p className="text-sm text-muted-foreground">Description of the second feature with supporting details.</p>
+              </div>
+              <div className="border-l-4 border-primary bg-background p-6">
+                <div className="w-12 h-12 bg-primary/10 flex items-center justify-center mb-4">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-primary"><path d="M4 7V4h16v3"/><path d="M9 20h6"/><path d="M12 4v16"/></svg>
+                </div>
+                <h4 className="font-display font-bold uppercase mb-2">Feature Three</h4>
+                <p className="text-sm text-muted-foreground">Description of the third feature with supporting details.</p>
+              </div>
+            </div>
+          </div>
+
+          {/* Asymmetric Grid */}
+          <div>
+            <h3 className="font-display font-bold uppercase text-sm tracking-wider mb-4 text-muted-foreground">Asymmetric Layout</h3>
+            <div className="grid grid-cols-1 md:grid-cols-12 gap-0.5 bg-border">
+              <div className="md:col-span-8 bg-foreground text-background p-8">
+                <h4 className="font-display text-2xl font-bold uppercase mb-2">Main Content Area</h4>
+                <p className="text-background/70">Larger area for primary content or featured items.</p>
+              </div>
+              <div className="md:col-span-4 bg-primary text-primary-foreground p-8">
+                <h4 className="font-display text-xl font-bold uppercase mb-2">Sidebar</h4>
+                <p className="text-primary-foreground/80 text-sm">Secondary content or CTA.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Footer Patterns */}
+      <section className="py-16 border-b border-border bg-muted/30">
+        <div className="container mx-auto px-4 md:px-6">
+          <div className="flex items-center gap-3 mb-4">
+            <span className="w-3 h-3 bg-primary"></span>
+            <h2 className="font-display text-3xl font-bold uppercase tracking-tighter">Footers</h2>
+          </div>
+          <p className="text-muted-foreground mb-12 max-w-2xl">
+            Footer patterns for closing out pages with navigation and brand reinforcement.
+          </p>
+
+          {/* Full Footer Preview */}
+          <div className="border-4 border-border overflow-hidden">
+            <footer className="bg-foreground text-background border-t-8 border-primary pt-16 pb-8">
+              <div className="px-6 md:px-8">
+                <div className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12 mb-16">
+                  <div className="md:col-span-4 space-y-4">
+                    <div className="w-14 h-14 bg-primary flex items-center justify-center">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-primary-foreground"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+                    </div>
+                    <h3 className="font-display text-3xl font-bold uppercase tracking-tighter leading-none">
+                      Brand<br/>Name.
+                    </h3>
+                    <p className="text-background/60 text-sm">
+                      Brief brand description or tagline goes here.
+                    </p>
+                  </div>
+
+                  <div className="md:col-span-2 md:col-start-7">
+                    <h4 className="font-display font-bold uppercase tracking-widest mb-4 text-primary text-sm">Products</h4>
+                    <ul className="space-y-3 text-sm">
+                      <li><a href="#" className="hover:text-primary transition-colors">Features</a></li>
+                      <li><a href="#" className="hover:text-primary transition-colors">Pricing</a></li>
+                      <li><a href="#" className="hover:text-primary transition-colors">Enterprise</a></li>
+                    </ul>
+                  </div>
+
+                  <div className="md:col-span-2">
+                    <h4 className="font-display font-bold uppercase tracking-widest mb-4 text-primary text-sm">Company</h4>
+                    <ul className="space-y-3 text-sm">
+                      <li><a href="#" className="hover:text-primary transition-colors">About</a></li>
+                      <li><a href="#" className="hover:text-primary transition-colors">Blog</a></li>
+                      <li><a href="#" className="hover:text-primary transition-colors">Careers</a></li>
+                    </ul>
+                  </div>
+
+                  <div className="md:col-span-2">
+                    <h4 className="font-display font-bold uppercase tracking-widest mb-4 text-primary text-sm">Legal</h4>
+                    <ul className="space-y-3 text-sm">
+                      <li><a href="#" className="hover:text-primary transition-colors">Privacy</a></li>
+                      <li><a href="#" className="hover:text-primary transition-colors">Terms</a></li>
+                      <li><a href="#" className="hover:text-primary transition-colors">License</a></li>
+                    </ul>
+                  </div>
+                </div>
+
+                <div className="border-t border-background/20 pt-6 flex flex-col md:flex-row justify-between items-center gap-4">
+                  <p className="font-mono text-xs opacity-60 uppercase tracking-widest">
+                    &copy; 2025 Brand Name. All rights reserved.
+                  </p>
+                  <div className="flex gap-4">
+                    <a href="#" className="w-8 h-8 bg-background text-foreground flex items-center justify-center hover:bg-primary hover:text-primary-foreground transition-colors">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>
+                    </a>
+                    <a href="#" className="w-8 h-8 bg-background text-foreground flex items-center justify-center hover:bg-primary hover:text-primary-foreground transition-colors">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"/></svg>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </footer>
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Pattern */}
+      <section className="py-16">
+        <div className="container mx-auto px-4 md:px-6">
+          <div className="flex items-center gap-3 mb-4">
+            <span className="w-3 h-3 bg-primary"></span>
+            <h2 className="font-display text-3xl font-bold uppercase tracking-tighter">Call to Action</h2>
+          </div>
+          <p className="text-muted-foreground mb-12 max-w-2xl">
+            Conversion-focused sections to drive user action.
+          </p>
+
+          {/* CTA Preview */}
+          <div className="border-4 border-border overflow-hidden bg-primary py-16 px-8 text-center">
+            <div className="max-w-2xl mx-auto">
+              <h2 className="font-display text-3xl md:text-4xl font-bold uppercase tracking-tighter mb-4 text-primary-foreground">
+                Ready to Get Started?
+              </h2>
+              <p className="text-primary-foreground/80 mb-8">
+                Join thousands already using Dutchy to build bold interfaces.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <button className="bg-foreground text-background px-8 py-4 font-bold uppercase tracking-wide">
+                  Start Free Trial
+                </button>
+                <button className="bg-primary-foreground text-primary px-8 py-4 font-bold uppercase tracking-wide">
+                  View Documentation
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <WebsiteFooter />
+    </Layout>
+  );
+};
+
+export default PatternsPage;

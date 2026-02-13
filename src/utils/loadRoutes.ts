@@ -97,7 +97,9 @@ const matchPath = (routePath: string, pathname: string): RouteParams | null => {
     const params: RouteParams = {};
 
     for (let i = 0; i < routeSegments.length; i += 1) {
-        if (!segmentMatches(routeSegments[i], pathSegments[i], params)) {
+        const routeSeg = routeSegments[i];
+        const pathSeg = pathSegments[i];
+        if (!routeSeg || !pathSeg || !segmentMatches(routeSeg, pathSeg, params)) {
             return null;
         }
     }
@@ -268,7 +270,7 @@ const scanDirectoryForRoutes = async (rootDir: string): Promise<Routes> => {
             dirMap.set(dirPath, []);
         }
 
-        if (entry.isFile() && /\.(js|ts|jsx|tsx)$/.test(entry.name)) {
+        if (entry.isFile() && /\.(js|ts|jsx|tsx)$/.test(entry.name) && !entry.name.startsWith('_')) {
             dirMap.get(dirPath)!.push(entry);
         }
     }

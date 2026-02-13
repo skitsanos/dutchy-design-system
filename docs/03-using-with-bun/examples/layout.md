@@ -38,8 +38,8 @@ const Layout: FC<LayoutProps> = ({
         <title>{title}</title>
 
         {/* Favicon */}
-        <link rel="icon" type="image/x-icon" href="/assets/img/favicon.ico" />
-        <link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png" />
+        <link rel="icon" type="image/x-icon" href="/assets/images/favicon.ico" />
+        <link rel="apple-touch-icon" href="/assets/images/apple-touch-icon.png" />
 
         {/* SEO Meta Tags */}
         {meta?.description && (
@@ -163,7 +163,7 @@ const HomePage: FC<HomePageProps> = ({ request }) => {
       currentPath={url.pathname}
       meta={{
         description: 'Welcome to my site built with Dutchy Design System.',
-        image: '/assets/img/og-home.png',
+        image: '/assets/images/og-home.png',
       }}
     >
       <section className="py-20">

@@ -183,9 +183,23 @@ Create `src/styles/input.css`:
 
 ## Create Directory Structure
 
+All reusable components must use folder-per-component structure (`index.tsx` entry in each folder), for example:
+
+```text
+src/components/Button/index.tsx
+src/components/Card/index.tsx
+```
+
+This guide uses `src/ui/` as the component root with the same rule.
+
+Asset and script rules for Bun SSR projects:
+- Put all frontend assets in `public/assets/{css,images,js}`.
+- Mount URL `/assets/*` from filesystem `public/assets/*`.
+- In client-side JS files, use only `const` and `let` (no `var`).
+
 ```bash
 mkdir -p src/{routes,ui,utils,middleware}
-mkdir -p public/assets/{css,js,img}
+mkdir -p public/assets/{css,images,js}
 ```
 
 Your project structure should look like:
@@ -211,7 +225,7 @@ my-dutchy-app/
 │   └── assets/
 │       ├── css/
 │       ├── js/
-│       └── img/
+│       └── images/
 ├── package.json
 ├── tsconfig.json
 └── tailwind.config.js
@@ -236,7 +250,7 @@ const IS_PRODUCTION = process.env.NODE_ENV === 'production';
 async function startServer() {
   const routes = await loadRoutes('routes');
   const assetHandler = staticAssets({
-    assetsPath: 'public',
+    assetsPath: 'public/assets',
     urlPrefix: '/assets',
     cacheControl: IS_PRODUCTION
       ? 'public, max-age=31536000, immutable'

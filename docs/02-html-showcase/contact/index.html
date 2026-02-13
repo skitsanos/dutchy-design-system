@@ -30,6 +30,14 @@
               DEFAULT: 'hsl(40 20% 94%)',
               foreground: 'hsl(25 15% 40%)',
             },
+            destructive: {
+              DEFAULT: 'hsl(0 84% 60%)',
+              foreground: 'hsl(0 0% 100%)',
+            },
+            success: {
+              DEFAULT: 'hsl(142 76% 36%)',
+              foreground: 'hsl(0 0% 100%)',
+            },
           },
           fontFamily: {
             display: ['Space Grotesk', 'sans-serif'],
@@ -49,6 +57,30 @@
   </script>
   <style>
     * { border-radius: 0 !important; }
+    /* Tooltip */
+    .tooltip-trigger { position: relative; cursor: help; }
+    .tooltip-trigger:hover::after, .tooltip-trigger:focus::after {
+      content: attr(data-tooltip); position: absolute; bottom: calc(100% + 6px); left: 50%; transform: translateX(-50%);
+      padding: 6px 12px; background: hsl(25 25% 10%); color: hsl(40 30% 97%);
+      font-size: 12px; font-family: 'JetBrains Mono', monospace; white-space: nowrap; z-index: 50;
+    }
+    .tooltip-trigger:hover::before, .tooltip-trigger:focus::before {
+      content: ''; position: absolute; bottom: calc(100% + 2px); left: 50%; transform: translateX(-50%);
+      border: 4px solid transparent; border-top-color: hsl(25 25% 10%); z-index: 50;
+    }
+    /* Validation */
+    [data-field] .field-error { display: none; color: hsl(0 84% 60%); font-size: 12px; margin-top: 6px; font-weight: 500; }
+    [data-field].invalid .field-error { display: block; }
+    [data-field].invalid input, [data-field].invalid textarea { border-color: hsl(0 84% 60%) !important; }
+    [data-field].valid input, [data-field].valid textarea { border-color: hsl(142 76% 36%) !important; }
+    /* Dropzone */
+    .dropzone { border: 2px dashed hsl(25 20% 88%); transition: all 0.2s; }
+    .dropzone.dragover { border-color: hsl(25 95% 53%); background: hsl(25 95% 53% / 0.05); }
+    /* Toast */
+    @keyframes toast-in { from { transform: translateX(100%); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
+    @keyframes toast-out { from { transform: translateX(0); opacity: 1; } to { transform: translateX(100%); opacity: 0; } }
+    .toast-enter { animation: toast-in 0.3s ease-out forwards; }
+    .toast-exit { animation: toast-out 0.3s ease-in forwards; }
   </style>
 </head>
 <body class="bg-background text-foreground font-sans">
@@ -100,50 +132,56 @@
 
           <!-- Contact Form -->
           <div class="lg:col-span-7">
-            <form class="space-y-8">
+            <form id="contactForm" class="space-y-8" novalidate>
               <!-- Name Fields -->
               <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                <div>
+                <div data-field>
                   <label class="block font-display font-bold uppercase text-sm tracking-wider mb-3" for="firstName">
-                    First Name <span class="text-primary">*</span>
+                    First Name <span class="text-primary tooltip-trigger" data-tooltip="This field is required">*</span>
                   </label>
                   <input
                     type="text"
                     id="firstName"
                     placeholder="John"
+                    required
                     class="w-full px-4 py-4 border-2 border-border bg-background font-sans focus:outline-none focus:border-primary transition-colors"
                   />
+                  <p class="field-error">First name is required</p>
                 </div>
-                <div>
+                <div data-field>
                   <label class="block font-display font-bold uppercase text-sm tracking-wider mb-3" for="lastName">
-                    Last Name <span class="text-primary">*</span>
+                    Last Name <span class="text-primary tooltip-trigger" data-tooltip="This field is required">*</span>
                   </label>
                   <input
                     type="text"
                     id="lastName"
                     placeholder="Doe"
+                    required
                     class="w-full px-4 py-4 border-2 border-border bg-background font-sans focus:outline-none focus:border-primary transition-colors"
                   />
+                  <p class="field-error">Last name is required</p>
                 </div>
               </div>
 
               <!-- Email -->
-              <div>
+              <div data-field>
                 <label class="block font-display font-bold uppercase text-sm tracking-wider mb-3" for="email">
-                  Email Address <span class="text-primary">*</span>
+                  Email Address <span class="text-primary tooltip-trigger" data-tooltip="This field is required">*</span>
                 </label>
                 <input
                   type="email"
                   id="email"
                   placeholder="john@example.com"
+                  required
                   class="w-full px-4 py-4 border-2 border-border bg-background font-sans focus:outline-none focus:border-primary transition-colors"
                 />
+                <p class="field-error">Please enter a valid email address</p>
               </div>
 
               <!-- Subject -->
               <div>
                 <label class="block font-display font-bold uppercase text-sm tracking-wider mb-3" for="subject">
-                  Subject <span class="text-primary">*</span>
+                  Subject <span class="text-primary tooltip-trigger" data-tooltip="This field is required">*</span>
                 </label>
                 <select
                   id="subject"
@@ -160,17 +198,34 @@
               </div>
 
               <!-- Message -->
-              <div>
+              <div data-field>
                 <label class="block font-display font-bold uppercase text-sm tracking-wider mb-3" for="message">
-                  Message <span class="text-primary">*</span>
+                  Message <span class="text-primary tooltip-trigger" data-tooltip="This field is required">*</span>
                 </label>
                 <textarea
                   id="message"
                   rows="6"
                   placeholder="Tell us more about your inquiry..."
+                  required
+                  minlength="20"
                   class="w-full px-4 py-4 border-2 border-border bg-background font-sans focus:outline-none focus:border-primary transition-colors resize-none"
                 ></textarea>
+                <p class="field-error">Message must be at least 20 characters</p>
                 <p class="mt-2 text-sm text-muted-foreground">Maximum 500 characters</p>
+              </div>
+
+              <!-- File Attachment -->
+              <div>
+                <label class="block font-display font-bold uppercase text-sm tracking-wider mb-3">
+                  File Attachment
+                </label>
+                <div id="dropzone" class="dropzone p-8 text-center cursor-pointer">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="mx-auto mb-3 text-muted-foreground"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" x2="12" y1="3" y2="15"/></svg>
+                  <p class="text-sm text-muted-foreground mb-1">Drag and drop files here or <span class="text-primary font-bold cursor-pointer">browse</span></p>
+                  <p class="text-xs text-muted-foreground">PNG, JPG, PDF up to 10MB</p>
+                  <input type="file" id="fileInput" class="hidden" multiple accept=".png,.jpg,.jpeg,.pdf">
+                </div>
+                <div id="fileList" class="mt-3 space-y-2"></div>
               </div>
 
               <!-- Checkbox -->
@@ -369,5 +424,78 @@
       </div>
     </div>
   </footer>
+  <!-- Toast Container -->
+  <div id="toastContainer" class="fixed top-4 right-4 z-50 flex flex-col gap-2 pointer-events-none"></div>
+
+  <script>
+    // Toast system
+    function showToast(message, type = 'info') {
+      const container = document.getElementById('toastContainer');
+      const colors = { success: 'hsl(142 76% 36%)', error: 'hsl(0 84% 60%)', info: 'hsl(25 95% 53%)', warning: 'hsl(45 93% 47%)' };
+      const toast = document.createElement('div');
+      toast.className = 'shadow-lg px-6 py-4 text-sm font-medium pointer-events-auto toast-enter bg-white';
+      toast.style.borderLeft = `4px solid ${colors[type] || colors.info}`;
+      toast.textContent = message;
+      container.appendChild(toast);
+      setTimeout(() => { toast.classList.replace('toast-enter', 'toast-exit'); toast.addEventListener('animationend', () => toast.remove()); }, 3000);
+    }
+
+    // Form validation
+    document.querySelectorAll('[data-field] input, [data-field] textarea').forEach(field => {
+      field.addEventListener('blur', () => validateField(field));
+      field.addEventListener('input', () => { if (field.closest('[data-field]').classList.contains('invalid')) validateField(field); });
+    });
+
+    function validateField(field) {
+      const wrapper = field.closest('[data-field]');
+      let valid = true;
+      if (field.required && !field.value.trim()) valid = false;
+      if (field.type === 'email' && field.value && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(field.value)) valid = false;
+      if (field.minLength > 0 && field.value.length > 0 && field.value.length < field.minLength) valid = false;
+      wrapper.classList.toggle('invalid', !valid);
+      wrapper.classList.toggle('valid', valid && field.value.trim().length > 0);
+      return valid;
+    }
+
+    // Form submit
+    document.getElementById('contactForm')?.addEventListener('submit', e => {
+      e.preventDefault();
+      const fields = document.querySelectorAll('[data-field] input[required], [data-field] textarea[required]');
+      let allValid = true;
+      fields.forEach(f => { if (!validateField(f)) allValid = false; });
+      if (allValid) {
+        showToast('Message sent successfully!', 'success');
+        e.target.reset();
+        document.querySelectorAll('[data-field]').forEach(w => { w.classList.remove('valid', 'invalid'); });
+        document.getElementById('fileList').innerHTML = '';
+      } else {
+        showToast('Please fix the errors above', 'error');
+      }
+    });
+
+    // File upload dropzone
+    const dropzone = document.getElementById('dropzone');
+    const fileInput = document.getElementById('fileInput');
+    const fileList = document.getElementById('fileList');
+    const files = [];
+
+    dropzone?.addEventListener('click', () => fileInput.click());
+    dropzone?.addEventListener('dragover', e => { e.preventDefault(); dropzone.classList.add('dragover'); });
+    dropzone?.addEventListener('dragleave', () => dropzone.classList.remove('dragover'));
+    dropzone?.addEventListener('drop', e => { e.preventDefault(); dropzone.classList.remove('dragover'); addFiles(e.dataTransfer.files); });
+    fileInput?.addEventListener('change', () => { addFiles(fileInput.files); fileInput.value = ''; });
+
+    function addFiles(newFiles) {
+      Array.from(newFiles).forEach(f => {
+        files.push(f);
+        const div = document.createElement('div');
+        div.className = 'flex items-center justify-between bg-muted px-4 py-2 text-sm';
+        div.innerHTML = `<span class="truncate">${f.name} <span class="text-muted-foreground">(${(f.size/1024).toFixed(1)} KB)</span></span>
+          <button type="button" class="text-muted-foreground hover:text-destructive ml-4 font-bold">&times;</button>`;
+        div.querySelector('button').addEventListener('click', () => { div.remove(); files.splice(files.indexOf(f), 1); });
+        fileList.appendChild(div);
+      });
+    }
+  </script>
 </body>
 </html>

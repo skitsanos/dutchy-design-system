@@ -6,6 +6,11 @@ Create reusable JSX components that implement the Dutchy Design System for Bun s
 
 **Important:** Components in this architecture are **NOT traditional React components**. They are JSX templates rendered to static HTML on the server. There is no React runtime on the client.
 
+Asset and script conventions for Bun SSR components:
+- Put assets in `public/assets/{css,images,js}`.
+- Mount `/assets/*` from `public/assets/*`.
+- Write client-side scripts using only `const` and `let` (no `var`).
+
 ### What This Means
 
 | Feature | Traditional React | Bun SSR |
@@ -48,6 +53,22 @@ document.getElementById('menu-toggle').addEventListener('click', () => {
 See [Client-Side Interactivity](./examples/client-side-js.md) for more patterns.
 
 ## Component Architecture
+
+### Required Folder Convention
+
+All reusable components must be created in their own folder with `index.tsx` as the entry:
+
+```text
+src/components/Button/index.tsx
+src/components/Card/index.tsx
+```
+
+If your project uses `src/ui` as the root, apply the same structure:
+
+```text
+src/ui/Button/index.tsx
+src/ui/Card/index.tsx
+```
 
 ### Basic Structure
 
@@ -660,7 +681,12 @@ export default Textarea;
 
 ### Icon
 
-Dynamic icon component using Lucide:
+Use one of these patterns:
+
+- **Option A (Lucide):** fast integration with a broad icon catalog.
+- **Option B (Native SVG registry):** fully controlled icon set with zero third-party icon dependency.
+
+#### Option A: Lucide Dynamic Icon
 
 ```tsx
 // src/ui/Icon/index.tsx
@@ -702,6 +728,147 @@ const Icon: FC<IconProps> = ({
       className={className}
       style={style}
     />
+  );
+};
+
+export default Icon;
+```
+
+API note:
+- If you use **Option A (Lucide)**, use `icon="check"` and numeric `size={24}`.
+- If you use **Option B (Registry)**, use `name="check"` and semantic size (`size="md"`).
+
+#### Option B: Native SVG Icon Registry
+
+```tsx
+// src/ui/Icon/index.tsx
+import type { FC } from 'react';
+
+export type IconName =
+  | 'dashboard'
+  | 'transcripts'
+  | 'settings'
+  | 'generators'
+  | 'segments'
+  | 'chat'
+  | 'chevron-down'
+  | 'chevron-right'
+  | 'search'
+  | 'download'
+  | 'upload'
+  | 'refresh'
+  | 'plus'
+  | 'x'
+  | 'check'
+  | 'grid'
+  | 'list'
+  | 'edit'
+  | 'trash'
+  | 'sparkle'
+  | 'save'
+  | 'file'
+  | 'key'
+  | 'shield'
+  | 'warning'
+  | 'layers'
+  | 'tags'
+  | 'activity'
+  | 'quote'
+  | 'users'
+  | 'bot'
+  | 'workflow'
+  | 'dna'
+  | 'filter'
+  | 'award'
+  | 'profile'
+  | 'logout'
+  | 'pie'
+  | 'bar-chart';
+
+interface IconProps {
+  name: IconName;
+  className?: string;
+  size?: 'sm' | 'md' | 'lg';
+}
+
+const sizeClasses = {
+  sm: 'w-4 h-4',
+  md: 'w-5 h-5',
+  lg: 'w-6 h-6',
+};
+
+const icons: Record<IconName, { paths: string[]; viewBox?: string; filled?: boolean }> = {
+  dashboard: {
+    paths: [
+      'M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z',
+    ],
+  },
+  check: {
+    paths: ['M5 13l4 4L19 7'],
+  },
+  search: {
+    paths: ['M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z'],
+  },
+  // Add remaining icons from your registry here.
+  transcripts: { paths: ['M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z'] },
+  settings: { paths: ['M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z', 'M15 12a3 3 0 11-6 0 3 3 0 016 0z'] },
+  generators: { paths: ['M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z'] },
+  segments: { paths: ['M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z'] },
+  chat: { paths: ['M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z'] },
+  'chevron-down': { paths: ['M19 9l-7 7-7-7'] },
+  'chevron-right': { paths: ['M9 5l7 7-7 7'] },
+  download: { paths: ['M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4'] },
+  upload: { paths: ['M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12'] },
+  refresh: { paths: ['M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15'] },
+  plus: { paths: ['M12 4v16m8-8H4'] },
+  x: { paths: ['M6 18L18 6M6 6l12 12'] },
+  grid: { paths: ['M4 5a1 1 0 011-1h4a1 1 0 011 1v4a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM14 5a1 1 0 011-1h4a1 1 0 011 1v4a1 1 0 01-1 1h-4a1 1 0 01-1-1V5zM4 15a1 1 0 011-1h4a1 1 0 011 1v4a1 1 0 01-1 1H5a1 1 0 01-1-1v-4zM14 15a1 1 0 011-1h4a1 1 0 011 1v4a1 1 0 01-1 1h-4a1 1 0 01-1-1v-4z'] },
+  list: { paths: ['M4 6h16M4 12h16M4 18h16'] },
+  edit: { paths: ['M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z'] },
+  trash: { paths: ['M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16'] },
+  sparkle: { paths: ['M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z'] },
+  save: { paths: ['M8 7H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-3m-1 4l-3 3m0 0l-3-3m3 3V4'] },
+  file: { paths: ['M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z'] },
+  key: { paths: ['M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z'] },
+  shield: { paths: ['M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z'] },
+  warning: { paths: ['M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z'] },
+  layers: { paths: ['M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5'] },
+  tags: { paths: ['M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A2 2 0 013 12V7a4 4 0 014-4z'] },
+  activity: { paths: ['M22 12h-4l-3 9L9 3l-3 9H2'] },
+  quote: { paths: ['M3 4h5v5H3v2c0 2 1.5 3.5 3.5 3.5v2C3.5 16.5 1 14 1 10.5V4z', 'M15 4h5v5h-5v2c0 2 1.5 3.5 3.5 3.5v2c-3 0-5.5-2.5-5.5-6V4z'] },
+  users: { paths: ['M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2', 'M9 11a4 4 0 100-8 4 4 0 000 8z', 'M23 21v-2a4 4 0 00-3-3.87', 'M16 3.13a4 4 0 010 7.75'] },
+  bot: { paths: ['M12 2a2 2 0 012 2v1h3a2 2 0 012 2v10a2 2 0 01-2 2H7a2 2 0 01-2-2V7a2 2 0 012-2h3V4a2 2 0 012-2z', 'M9 12a1 1 0 100-2 1 1 0 000 2z', 'M15 12a1 1 0 100-2 1 1 0 000 2z', 'M9 16h6'] },
+  workflow: { paths: ['M3 6a3 3 0 116 0 3 3 0 01-6 0z', 'M15 6a3 3 0 116 0 3 3 0 01-6 0z', 'M9 18a3 3 0 116 0 3 3 0 01-6 0z', 'M6 9v3a3 3 0 003 3h0', 'M18 9v3a3 3 0 01-3 3h0'] },
+  dna: { viewBox: '0 0 512 512', filled: true, paths: ['m499.8,335.9c-3.7-10.6-15.4-16.2-26-12.5-26.1,9.2-50.8,16.8-74.1,23 16.1-97 1.7-166.3-43-207-49.6-45-126.4-45.2-193.9-32.7 8.5-27.5 17.8-51.1 25.1-66.8 4.7-10.2 0.3-22.4-10-27.1-10.2-4.7-22.4-0.3-27.1,9.9-1.8,3.8-19.5,42.7-33.6,94.4-51.7,14.1-90.6,31.9-94.4,33.6-10.2,4.7-14.7,16.9-9.9,27.1 4.7,10.2 16.9,14.7 27.1,10 15.6-7.2 39.3-16.6 66.7-25.1-12.5,67.5-12.4,144.3 32.7,193.9 29.9,32.9 75.4,49.4 135.9,49.4 21.7,0 45.4-2.1 71-6.4-6.2,23.3-13.8,48-23,74.1-3.7,10.6 1.7,22.7 12.5,26 13.4,4.1 23.1-4.1 26-12.5 12.1-34.4 21.7-66.7 28.8-96.6 30-7.1 62.2-16.7 96.6-28.8 10.8-3.6 16.4-15.3 12.6-25.9z'] },
+  filter: { paths: ['M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z'] },
+  award: { paths: ['M12 2a7 7 0 100 14 7 7 0 000-14z', 'M8.21 13.89L7 23l5-3 5 3-1.21-9.12'] },
+  profile: { paths: ['M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2', 'M12 11a4 4 0 100-8 4 4 0 000 8z'] },
+  logout: { paths: ['M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4', 'M16 17l5-5-5-5', 'M21 12H9'] },
+  pie: { paths: ['M21.21 15.89A10 10 0 118 2.83', 'M22 12A10 10 0 0012 2v10z'] },
+  'bar-chart': { paths: ['M18 20V10', 'M12 20V4', 'M6 20v-6'] },
+};
+
+const Icon: FC<IconProps> = ({ name, className = '', size = 'md' }) => {
+  const icon = icons[name];
+  if (!icon) return null;
+
+  return (
+    <svg
+      className={`${sizeClasses[size]} ${className}`}
+      fill={icon.filled ? 'currentColor' : 'none'}
+      stroke={icon.filled ? 'none' : 'currentColor'}
+      viewBox={icon.viewBox || '0 0 24 24'}
+    >
+      {icon.paths.map((d) => (
+        <path
+          key={d}
+          {...(icon.filled
+            ? {}
+            : { strokeLinecap: 'round', strokeLinejoin: 'round', strokeWidth: 2 })}
+          d={d}
+        />
+      ))}
+    </svg>
   );
 };
 
@@ -980,6 +1147,9 @@ interface AboutPageProps {
 const AboutPage: FC<AboutPageProps> = ({ request }) => {
   const url = new URL(request.url);
 
+  // Icon props depend on the Icon implementation you choose above:
+  // Option A (Lucide): <Icon icon="check" size={24} />
+  // Option B (Registry): <Icon name="check" size="md" />
   const features = [
     {
       icon: <Icon icon="check" size={24} />,

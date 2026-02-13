@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Registration Wizard - Dutchy Design System Showcase</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            border: 'hsl(25 20% 88%)',
+            input: 'hsl(25 20% 88%)',
+            ring: 'hsl(25 95% 53%)',
+            background: 'hsl(40 30% 97%)',
+            foreground: 'hsl(25 25% 10%)',
+            primary: { DEFAULT: 'hsl(25 95% 53%)', foreground: 'hsl(0 0% 100%)' },
+            secondary: { DEFAULT: 'hsl(25 20% 92%)', foreground: 'hsl(25 25% 15%)' },
+            muted: { DEFAULT: 'hsl(40 20% 94%)', foreground: 'hsl(25 15% 40%)' },
+            destructive: { DEFAULT: 'hsl(0 84% 60%)', foreground: 'hsl(0 0% 100%)' },
+            success: { DEFAULT: 'hsl(142 76% 36%)', foreground: 'hsl(0 0% 100%)' },
+          },
+          fontFamily: {
+            display: ['Space Grotesk', 'sans-serif'],
+            sans: ['Inter', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          },
+          borderRadius: { DEFAULT: '0', sm: '0', md: '0', lg: '0', xl: '0' },
+        },
+      },
+    }
+  </script>
+  <style>
+    * { border-radius: 0 !important; }
+    /* Tooltip */
+    .tooltip-trigger { position: relative; cursor: help; }
+    .tooltip-trigger:hover::after, .tooltip-trigger:focus::after {
+      content: attr(data-tooltip); position: absolute; bottom: calc(100% + 6px); left: 50%; transform: translateX(-50%);
+      padding: 6px 12px; background: hsl(25 25% 10%); color: hsl(40 30% 97%);
+      font-size: 12px; font-family: 'JetBrains Mono', monospace; white-space: nowrap; z-index: 50;
+    }
+    .tooltip-trigger:hover::before, .tooltip-trigger:focus::before {
+      content: ''; position: absolute; bottom: calc(100% + 2px); left: 50%; transform: translateX(-50%);
+      border: 4px solid transparent; border-top-color: hsl(25 25% 10%); z-index: 50;
+    }
+    /* Validation */
+    [data-field] .field-error { display: none; color: hsl(0 84% 60%); font-size: 12px; margin-top: 6px; font-weight: 500; }
+    [data-field].invalid .field-error { display: block; }
+    [data-field].invalid input, [data-field].invalid textarea { border-color: hsl(0 84% 60%) !important; }
+    [data-field].valid input, [data-field].valid textarea { border-color: hsl(142 76% 36%) !important; }
+    /* Dropzone */
+    .dropzone { border: 2px dashed hsl(25 20% 88%); transition: all 0.2s; }
+    .dropzone.dragover { border-color: hsl(25 95% 53%); background: hsl(25 95% 53% / 0.05); }
+    /* Skeleton */
+    @keyframes skeleton-pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.4; } }
+    .skeleton { animation: skeleton-pulse 1.5s ease-in-out infinite; background: hsl(25 20% 88%); }
+    /* Toast */
+    @keyframes toast-in { from { transform: translateX(100%); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
+    @keyframes toast-out { from { transform: translateX(0); opacity: 1; } to { transform: translateX(100%); opacity: 0; } }
+    .toast-enter { animation: toast-in 0.3s ease-out forwards; }
+    .toast-exit { animation: toast-out 0.3s ease-in forwards; }
+    /* Stepper */
+    .step-item.active .step-number { background: hsl(25 95% 53%); color: #fff; }
+    .step-item.completed .step-number { background: hsl(142 76% 36%); color: #fff; }
+    .step-item .step-number { background: hsl(40 20% 94%); color: hsl(25 15% 40%); }
+    .step-connector { height: 2px; background: hsl(25 20% 88%); }
+    .step-connector.active { background: hsl(25 95% 53%); }
+    .step-connector.completed { background: hsl(142 76% 36%); }
+  </style>
+</head>
+<body class="bg-background text-foreground font-sans">
+  <!-- Header -->
+  <header class="w-full border-b-4 border-primary bg-background">
+    <div class="container mx-auto px-4 md:px-6 h-20 flex items-center justify-between">
+      <a href="#" class="flex items-center gap-3">
+        <div class="bg-primary text-primary-foreground w-10 h-10 flex items-center justify-center font-display font-bold text-xl">D.</div>
+        <span class="font-display font-bold text-2xl tracking-tighter uppercase">Dutchy</span>
+      </a>
+      <nav class="hidden md:flex items-center gap-10">
+        <a href="#" class="text-sm font-bold uppercase tracking-widest hover:text-primary transition-colors">Components</a>
+        <a href="#" class="text-sm font-bold uppercase tracking-widest hover:text-primary transition-colors">Docs</a>
+        <a href="#" class="bg-primary text-primary-foreground font-bold uppercase tracking-wide px-8 py-3 hover:bg-primary/90 transition-colors">Get Started</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Breadcrumb (background bar variant) -->
+  <div class="bg-muted border-b border-border">
+    <div class="container mx-auto px-4 md:px-6 py-3">
+      <nav aria-label="Breadcrumb">
+        <ol class="flex items-center gap-2 text-sm font-mono">
+          <li><a href="#" class="text-muted-foreground hover:text-primary transition-colors">Home</a></li>
+          <li class="text-muted-foreground">/</li>
+          <li><a href="#" class="text-muted-foreground hover:text-primary transition-colors">Account</a></li>
+          <li class="text-muted-foreground">/</li>
+          <li><span class="text-foreground font-bold" aria-current="page">Register</span></li>
+        </ol>
+      </nav>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <main class="py-12 md:py-16">
+    <div class="container mx-auto px-4 md:px-6 max-w-3xl">
+      <div class="text-center mb-10">
+        <h1 class="font-display text-4xl md:text-5xl font-bold uppercase tracking-tighter mb-4">Create Account</h1>
+        <p class="text-muted-foreground">Complete the steps below to set up your account.</p>
+      </div>
+
+      <!-- Stepper -->
+      <div class="flex items-center justify-between mb-12 px-4" id="stepper">
+        <div class="step-item active flex flex-col items-center relative z-10" data-step="1">
+          <div class="step-number w-10 h-10 flex items-center justify-center font-display font-bold text-sm mb-2">1</div>
+          <span class="text-xs font-bold uppercase tracking-wider">Account</span>
+        </div>
+        <div class="step-connector flex-1 mx-2" data-connector="1"></div>
+        <div class="step-item flex flex-col items-center relative z-10" data-step="2">
+          <div class="step-number w-10 h-10 flex items-center justify-center font-display font-bold text-sm mb-2">2</div>
+          <span class="text-xs font-bold uppercase tracking-wider">Profile</span>
+        </div>
+        <div class="step-connector flex-1 mx-2" data-connector="2"></div>
+        <div class="step-item flex flex-col items-center relative z-10" data-step="3">
+          <div class="step-number w-10 h-10 flex items-center justify-center font-display font-bold text-sm mb-2">3</div>
+          <span class="text-xs font-bold uppercase tracking-wider">Interests</span>
+        </div>
+        <div class="step-connector flex-1 mx-2" data-connector="3"></div>
+        <div class="step-item flex flex-col items-center relative z-10" data-step="4">
+          <div class="step-number w-10 h-10 flex items-center justify-center font-display font-bold text-sm mb-2">4</div>
+          <span class="text-xs font-bold uppercase tracking-wider">Confirm</span>
+        </div>
+      </div>
+
+      <!-- Step Panels -->
+      <div class="bg-white border-4 border-border p-8 md:p-10">
+        <!-- Step 1: Account -->
+        <div class="step-panel" data-panel="1">
+          <h2 class="font-display text-2xl font-bold uppercase tracking-tight mb-6">Account Details</h2>
+          <div class="space-y-6">
+            <div data-field>
+              <label class="block font-display font-bold uppercase text-sm tracking-wider mb-3" for="regEmail">
+                Email <span class="text-primary tooltip-trigger" data-tooltip="This field is required">*</span>
+              </label>
+              <input type="email" id="regEmail" required placeholder="you@example.com" class="w-full px-4 py-4 border-2 border-border bg-background font-sans focus:outline-none focus:border-primary transition-colors">
+              <p class="field-error">Please enter a valid email address</p>
+            </div>
+            <div data-field>
+              <label class="block font-display font-bold uppercase text-sm tracking-wider mb-3" for="regPassword">
+                Password <span class="text-primary tooltip-trigger" data-tooltip="This field is required">*</span>
+              </label>
+              <input type="password" id="regPassword" required minlength="8" placeholder="Minimum 8 characters" class="w-full px-4 py-4 border-2 border-border bg-background font-sans focus:outline-none focus:border-primary transition-colors">
+              <p class="field-error">Password must be at least 8 characters</p>
+            </div>
+            <div data-field>
+              <label class="block font-display font-bold uppercase text-sm tracking-wider mb-3" for="regConfirm">
+                Confirm Password <span class="text-primary tooltip-trigger" data-tooltip="This field is required">*</span>
+              </label>
+              <input type="password" id="regConfirm" required placeholder="Re-enter your password" class="w-full px-4 py-4 border-2 border-border bg-background font-sans focus:outline-none focus:border-primary transition-colors">
+              <p class="field-error">Passwords must match</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 2: Profile -->
+        <div class="step-panel hidden" data-panel="2">
+          <h2 class="font-display text-2xl font-bold uppercase tracking-tight mb-6">Profile Information</h2>
+          <div class="space-y-6">
+            <div data-field>
+              <label class="block font-display font-bold uppercase text-sm tracking-wider mb-3" for="fullName">
+                Full Name <span class="text-primary tooltip-trigger" data-tooltip="This field is required">*</span>
+              </label>
+              <input type="text" id="fullName" required placeholder="John Doe" class="w-full px-4 py-4 border-2 border-border bg-background font-sans focus:outline-none focus:border-primary transition-colors">
+              <p class="field-error">Full name is required</p>
+            </div>
+            <div>
+              <label class="block font-display font-bold uppercase text-sm tracking-wider mb-3" for="phone">Phone</label>
+              <input type="tel" id="phone" placeholder="+1 (555) 000-0000" class="w-full px-4 py-4 border-2 border-border bg-background font-sans focus:outline-none focus:border-primary transition-colors">
+            </div>
+            <div>
+              <label class="block font-display font-bold uppercase text-sm tracking-wider mb-3" for="bio">Bio</label>
+              <textarea id="bio" rows="3" placeholder="Tell us about yourself..." class="w-full px-4 py-4 border-2 border-border bg-background font-sans focus:outline-none focus:border-primary transition-colors resize-none"></textarea>
+            </div>
+            <div>
+              <label class="block font-display font-bold uppercase text-sm tracking-wider mb-3">Avatar</label>
+              <div id="avatarDropzone" class="dropzone p-6 text-center cursor-pointer">
+                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="mx-auto mb-2 text-muted-foreground"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" x2="12" y1="3" y2="15"/></svg>
+                <p class="text-sm text-muted-foreground">Drop your avatar here or <span class="text-primary font-bold">browse</span></p>
+                <p class="text-xs text-muted-foreground mt-1">PNG, JPG up to 5MB</p>
+                <input type="file" id="avatarInput" class="hidden" accept=".png,.jpg,.jpeg">
+              </div>
+              <div id="avatarFileList" class="mt-2 space-y-2"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 3: Interests -->
+        <div class="step-panel hidden" data-panel="3">
+          <h2 class="font-display text-2xl font-bold uppercase tracking-tight mb-6">Select Interests</h2>
+          <p class="text-sm text-muted-foreground mb-6">Click to select your interests. Click the X to remove.</p>
+          <div class="flex flex-wrap gap-2 mb-8" id="interestTags">
+            <button type="button" class="interest-tag inline-flex items-center gap-2 px-4 py-2 border-2 border-border text-sm font-bold uppercase tracking-wider hover:border-primary hover:text-primary transition-colors" data-interest="Design">
+              Design
+            </button>
+            <button type="button" class="interest-tag inline-flex items-center gap-2 px-4 py-2 border-2 border-border text-sm font-bold uppercase tracking-wider hover:border-primary hover:text-primary transition-colors" data-interest="Frontend">
+              Frontend
+            </button>
+            <button type="button" class="interest-tag inline-flex items-center gap-2 px-4 py-2 border-2 border-border text-sm font-bold uppercase tracking-wider hover:border-primary hover:text-primary transition-colors" data-interest="Backend">
+              Backend
+            </button>
+            <button type="button" class="interest-tag inline-flex items-center gap-2 px-4 py-2 border-2 border-border text-sm font-bold uppercase tracking-wider hover:border-primary hover:text-primary transition-colors" data-interest="DevOps">
+              DevOps
+            </button>
+            <button type="button" class="interest-tag inline-flex items-center gap-2 px-4 py-2 border-2 border-border text-sm font-bold uppercase tracking-wider hover:border-primary hover:text-primary transition-colors" data-interest="Mobile">
+              Mobile
+            </button>
+            <button type="button" class="interest-tag inline-flex items-center gap-2 px-4 py-2 border-2 border-border text-sm font-bold uppercase tracking-wider hover:border-primary hover:text-primary transition-colors" data-interest="AI">
+              AI
+            </button>
+          </div>
+          <div class="mb-4">
+            <p class="font-display font-bold uppercase text-sm tracking-wider mb-3">Selected:</p>
+            <div id="selectedInterests" class="flex flex-wrap gap-2 min-h-[40px]">
+              <span class="text-sm text-muted-foreground italic" id="noInterests">No interests selected</span>
+            </div>
+          </div>
+          <div class="mt-8">
+            <label class="block font-display font-bold uppercase text-sm tracking-wider mb-3">Documents</label>
+            <div id="docDropzone" class="dropzone p-6 text-center cursor-pointer">
+              <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="mx-auto mb-2 text-muted-foreground"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" x2="12" y1="3" y2="15"/></svg>
+              <p class="text-sm text-muted-foreground">Drop documents here or <span class="text-primary font-bold">browse</span></p>
+              <p class="text-xs text-muted-foreground mt-1">PDF, DOC up to 10MB</p>
+              <input type="file" id="docInput" class="hidden" multiple accept=".pdf,.doc,.docx">
+            </div>
+            <div id="docFileList" class="mt-2 space-y-2"></div>
+          </div>
+        </div>
+
+        <!-- Step 4: Confirm -->
+        <div class="step-panel hidden" data-panel="4">
+          <h2 class="font-display text-2xl font-bold uppercase tracking-tight mb-6">Review & Confirm</h2>
+          <div id="reviewContent">
+            <div id="reviewSkeleton" class="space-y-4">
+              <div class="skeleton h-5 w-48"></div>
+              <div class="skeleton h-4 w-64"></div>
+              <div class="skeleton h-4 w-56"></div>
+              <div class="skeleton h-5 w-48 mt-6"></div>
+              <div class="skeleton h-4 w-64"></div>
+              <div class="skeleton h-4 w-40"></div>
+              <div class="skeleton h-5 w-48 mt-6"></div>
+              <div class="skeleton h-4 w-72"></div>
+            </div>
+            <div id="reviewData" class="hidden space-y-6">
+              <div class="border-l-4 border-primary p-4 bg-muted/30">
+                <h3 class="font-display font-bold uppercase text-sm tracking-wider mb-2">Account</h3>
+                <p class="text-sm"><span class="text-muted-foreground">Email:</span> <span id="reviewEmail" class="font-medium"></span></p>
+              </div>
+              <div class="border-l-4 border-primary p-4 bg-muted/30">
+                <h3 class="font-display font-bold uppercase text-sm tracking-wider mb-2">Profile</h3>
+                <p class="text-sm"><span class="text-muted-foreground">Name:</span> <span id="reviewName" class="font-medium"></span></p>
+                <p class="text-sm"><span class="text-muted-foreground">Phone:</span> <span id="reviewPhone" class="font-medium"></span></p>
+              </div>
+              <div class="border-l-4 border-primary p-4 bg-muted/30">
+                <h3 class="font-display font-bold uppercase text-sm tracking-wider mb-2">Interests</h3>
+                <div id="reviewInterests" class="flex flex-wrap gap-2 mt-2"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Navigation Buttons -->
+        <div class="flex items-center justify-between mt-10 pt-6 border-t border-border">
+          <button id="prevBtn" class="px-8 py-3 border-2 border-foreground font-bold uppercase tracking-wide hover:bg-foreground hover:text-background transition-colors hidden">
+            Back
+          </button>
+          <div class="flex-1"></div>
+          <button id="nextBtn" class="px-8 py-3 bg-primary text-primary-foreground font-bold uppercase tracking-wide hover:bg-primary/90 transition-colors">
+            Continue
+          </button>
+        </div>
+
+        <!-- Progress -->
+        <div class="mt-6">
+          <div class="w-full bg-muted h-2">
+            <div id="progressBar" class="bg-primary h-2 transition-all duration-300" style="width: 25%"></div>
+          </div>
+          <p id="progressText" class="text-center text-xs text-muted-foreground mt-2 font-mono uppercase tracking-wider">Step 1 of 4 — 25%</p>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-foreground text-background py-8 mt-16">
+    <div class="container mx-auto px-4 md:px-6 text-center">
+      <p class="font-mono text-xs opacity-60 uppercase tracking-widest">&copy; 2025 Dutchy Design System</p>
+    </div>
+  </footer>
+
+  <!-- Toast Container -->
+  <div id="toastContainer" class="fixed top-4 right-4 z-50 flex flex-col gap-2 pointer-events-none"></div>
+
+  <script>
+    // Toast system
+    function showToast(message, type = 'info') {
+      const container = document.getElementById('toastContainer');
+      const colors = { success: 'hsl(142 76% 36%)', error: 'hsl(0 84% 60%)', info: 'hsl(25 95% 53%)', warning: 'hsl(45 93% 47%)' };
+      const toast = document.createElement('div');
+      toast.className = 'shadow-lg px-6 py-4 text-sm font-medium pointer-events-auto toast-enter bg-white';
+      toast.style.borderLeft = '4px solid ' + (colors[type] || colors.info);
+      toast.textContent = message;
+      container.appendChild(toast);
+      setTimeout(() => { toast.classList.replace('toast-enter', 'toast-exit'); toast.addEventListener('animationend', () => toast.remove()); }, 3000);
+    }
+
+    // Validation
+    function validateField(field) {
+      const wrapper = field.closest('[data-field]');
+      if (!wrapper) return true;
+      let valid = true;
+      if (field.required && !field.value.trim()) valid = false;
+      if (field.type === 'email' && field.value && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(field.value)) valid = false;
+      if (field.minLength > 0 && field.value.length > 0 && field.value.length < field.minLength) valid = false;
+      if (field.id === 'regConfirm' && field.value !== document.getElementById('regPassword').value) valid = false;
+      wrapper.classList.toggle('invalid', !valid);
+      wrapper.classList.toggle('valid', valid && field.value.trim().length > 0);
+      return valid;
+    }
+
+    document.querySelectorAll('[data-field] input, [data-field] textarea').forEach(f => {
+      f.addEventListener('blur', () => validateField(f));
+      f.addEventListener('input', () => { if (f.closest('[data-field]').classList.contains('invalid')) validateField(f); });
+    });
+
+    // Stepper navigation
+    let currentStep = 1;
+    const totalSteps = 4;
+
+    function updateStepper() {
+      document.querySelectorAll('.step-item').forEach(item => {
+        const step = parseInt(item.dataset.step);
+        item.classList.remove('active', 'completed');
+        if (step === currentStep) item.classList.add('active');
+        else if (step < currentStep) item.classList.add('completed');
+      });
+      document.querySelectorAll('.step-connector').forEach(conn => {
+        const idx = parseInt(conn.dataset.connector);
+        conn.classList.remove('active', 'completed');
+        if (idx < currentStep) conn.classList.add('completed');
+        else if (idx === currentStep) conn.classList.add('active');
+      });
+      document.querySelectorAll('.step-panel').forEach(p => {
+        p.classList.toggle('hidden', parseInt(p.dataset.panel) !== currentStep);
+      });
+      document.getElementById('prevBtn').classList.toggle('hidden', currentStep === 1);
+      document.getElementById('nextBtn').textContent = currentStep === totalSteps ? 'Complete' : 'Continue';
+      const pct = Math.round((currentStep / totalSteps) * 100);
+      document.getElementById('progressBar').style.width = pct + '%';
+      document.getElementById('progressText').textContent = 'Step ' + currentStep + ' of ' + totalSteps + ' — ' + pct + '%';
+    }
+
+    function validateCurrentStep() {
+      const panel = document.querySelector('[data-panel="' + currentStep + '"]');
+      if (!panel) return true;
+      const fields = panel.querySelectorAll('[data-field] input[required], [data-field] textarea[required]');
+      let valid = true;
+      fields.forEach(f => { if (!validateField(f)) valid = false; });
+      return valid;
+    }
+
+    document.getElementById('nextBtn').addEventListener('click', () => {
+      if (currentStep < totalSteps) {
+        if (!validateCurrentStep()) { showToast('Please fix the errors above', 'error'); return; }
+        currentStep++;
+        updateStepper();
+        if (currentStep === 4) loadReview();
+      } else {
+        showToast('Registration completed successfully!', 'success');
+      }
+    });
+
+    document.getElementById('prevBtn').addEventListener('click', () => {
+      if (currentStep > 1) { currentStep--; updateStepper(); }
+    });
+
+    // Review step with skeleton transition
+    function loadReview() {
+      document.getElementById('reviewSkeleton').classList.remove('hidden');
+      document.getElementById('reviewData').classList.add('hidden');
+      setTimeout(() => {
+        document.getElementById('reviewEmail').textContent = document.getElementById('regEmail').value || '—';
+        document.getElementById('reviewName').textContent = document.getElementById('fullName').value || '—';
+        document.getElementById('reviewPhone').textContent = document.getElementById('phone').value || '—';
+        const interestsDiv = document.getElementById('reviewInterests');
+        interestsDiv.innerHTML = '';
+        selectedInterests.forEach(i => {
+          const span = document.createElement('span');
+          span.className = 'inline-block bg-primary text-primary-foreground px-3 py-1 text-xs font-bold uppercase tracking-widest';
+          span.textContent = i;
+          interestsDiv.appendChild(span);
+        });
+        if (!selectedInterests.length) interestsDiv.innerHTML = '<span class="text-sm text-muted-foreground">None selected</span>';
+        document.getElementById('reviewSkeleton').classList.add('hidden');
+        document.getElementById('reviewData').classList.remove('hidden');
+      }, 1500);
+    }
+
+    // Closable badge interests
+    const selectedInterests = [];
+    document.querySelectorAll('.interest-tag').forEach(tag => {
+      tag.addEventListener('click', () => {
+        const interest = tag.dataset.interest;
+        if (selectedInterests.includes(interest)) return;
+        selectedInterests.push(interest);
+        tag.classList.add('bg-primary', 'text-primary-foreground', 'border-primary');
+        renderSelectedInterests();
+      });
+    });
+
+    function renderSelectedInterests() {
+      const container = document.getElementById('selectedInterests');
+      const noMsg = document.getElementById('noInterests');
+      if (noMsg) noMsg.style.display = selectedInterests.length ? 'none' : '';
+      container.querySelectorAll('.closable-badge').forEach(b => b.remove());
+      selectedInterests.forEach(interest => {
+        const badge = document.createElement('span');
+        badge.className = 'closable-badge inline-flex items-center gap-1 bg-foreground text-background px-3 py-1 text-xs font-bold uppercase tracking-widest';
+        badge.innerHTML = interest + ' <button type="button" class="ml-1 hover:text-primary text-base leading-none">&times;</button>';
+        badge.querySelector('button').addEventListener('click', () => {
+          selectedInterests.splice(selectedInterests.indexOf(interest), 1);
+          const tag = document.querySelector('[data-interest="' + interest + '"]');
+          if (tag) tag.classList.remove('bg-primary', 'text-primary-foreground', 'border-primary');
+          renderSelectedInterests();
+        });
+        container.appendChild(badge);
+      });
+    }
+
+    // File upload helpers
+    function setupDropzone(zoneId, inputId, listId) {
+      const zone = document.getElementById(zoneId);
+      const input = document.getElementById(inputId);
+      const list = document.getElementById(listId);
+      if (!zone) return;
+      zone.addEventListener('click', () => input.click());
+      zone.addEventListener('dragover', e => { e.preventDefault(); zone.classList.add('dragover'); });
+      zone.addEventListener('dragleave', () => zone.classList.remove('dragover'));
+      zone.addEventListener('drop', e => { e.preventDefault(); zone.classList.remove('dragover'); addFilesToList(e.dataTransfer.files, list); });
+      input.addEventListener('change', () => { addFilesToList(input.files, list); input.value = ''; });
+    }
+
+    function addFilesToList(files, list) {
+      Array.from(files).forEach(f => {
+        const div = document.createElement('div');
+        div.className = 'flex items-center justify-between bg-muted px-4 py-2 text-sm';
+        div.innerHTML = '<span class="truncate">' + f.name + ' <span class="text-muted-foreground">(' + (f.size/1024).toFixed(1) + ' KB)</span></span><button type="button" class="text-muted-foreground hover:text-destructive ml-4 font-bold">&times;</button>';
+        div.querySelector('button').addEventListener('click', () => div.remove());
+        list.appendChild(div);
+      });
+    }
+
+    setupDropzone('avatarDropzone', 'avatarInput', 'avatarFileList');
+    setupDropzone('docDropzone', 'docInput', 'docFileList');
+
+    updateStepper();
+  </script>
+</body>
+</html>
