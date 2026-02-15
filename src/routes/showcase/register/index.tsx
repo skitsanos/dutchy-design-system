@@ -84,13 +84,12 @@ const RegisterPage: FC<{ request: Request }> = () => {
                       <span className="text-primary">*</span>
                     </Tooltip>
                   </label>
-                  <input
+                  <Input
                     type="email"
                     id="regEmail"
                     name="email"
                     required
                     placeholder="you@example.com"
-                    className="w-full px-4 py-4 border-2 border-border bg-background font-body focus:outline-none focus:border-primary transition-colors"
                   />
                   <p className="field-error">Please enter a valid email address</p>
                 </div>
@@ -101,14 +100,13 @@ const RegisterPage: FC<{ request: Request }> = () => {
                       <span className="text-primary">*</span>
                     </Tooltip>
                   </label>
-                  <input
+                  <Input
                     type="password"
                     id="regPassword"
                     name="password"
                     required
                     minLength={8}
                     placeholder="Minimum 8 characters"
-                    className="w-full px-4 py-4 border-2 border-border bg-background font-body focus:outline-none focus:border-primary transition-colors"
                   />
                   <p className="field-error">Password must be at least 8 characters</p>
                 </div>
@@ -119,13 +117,12 @@ const RegisterPage: FC<{ request: Request }> = () => {
                       <span className="text-primary">*</span>
                     </Tooltip>
                   </label>
-                  <input
+                  <Input
                     type="password"
                     id="regConfirm"
                     name="confirmPassword"
                     required
                     placeholder="Re-enter your password"
-                    className="w-full px-4 py-4 border-2 border-border bg-background font-body focus:outline-none focus:border-primary transition-colors"
                   />
                   <p className="field-error">Passwords must match</p>
                 </div>
@@ -143,13 +140,12 @@ const RegisterPage: FC<{ request: Request }> = () => {
                       <span className="text-primary">*</span>
                     </Tooltip>
                   </label>
-                  <input
+                  <Input
                     type="text"
                     id="fullName"
                     name="fullName"
                     required
                     placeholder="John Doe"
-                    className="w-full px-4 py-4 border-2 border-border bg-background font-body focus:outline-none focus:border-primary transition-colors"
                   />
                   <p className="field-error">Full name is required</p>
                 </div>

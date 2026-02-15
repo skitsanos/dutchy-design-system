@@ -179,10 +179,10 @@ const DataManagementPage: FC<{ request: Request }> = () => {
             <div className="flex flex-wrap items-center gap-3">
               <Button size="sm" data-modal-open="edit-modal">Add User</Button>
               <div className="relative flex-1 max-w-xs">
-                <input
+                <Input
                   type="search"
                   placeholder="Search users..."
-                  className="w-full border-2 border-border pl-9 pr-4 py-2 text-sm focus:border-foreground focus:outline-none"
+                  className="pl-9 py-2 text-sm"
                 />
                 <Icon name="search" size="sm" className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" />
               </div>

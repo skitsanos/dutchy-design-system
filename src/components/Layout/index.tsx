@@ -75,6 +75,9 @@ const Layout: FC<LayoutProps> = ({
         ))}
       </head>
       <body className="font-body bg-background text-foreground antialiased">
+        <a href="#main-content" className="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-50 focus:bg-primary focus:text-primary-foreground focus:px-4 focus:py-2 focus:font-bold focus:uppercase focus:tracking-wider focus:text-sm">
+          Skip to main content
+        </a>
         {children}
 
         {/* Scripts */}

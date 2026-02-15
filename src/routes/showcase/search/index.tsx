@@ -6,6 +6,7 @@ import Badge from '@/components/Badge';
 import Button from '@/components/Button';
 import Select from '@/components/Select';
 import Pagination from '@/components/Pagination';
+import Checkbox from '@/components/Checkbox';
 const headerNavLinks = [
   { href: '/showcase', label: 'Home' },
   { href: '/showcase/categories', label: 'Categories' },
@@ -92,7 +93,7 @@ const SearchPage = ({ request }: { request: Request }) => {
         description: `Search results for "${query}" in the Dutchy Design System component library.`,
         keywords: 'search, components, design system',
       }}
-      scripts={['/assets/js/mobile-menu.js']}
+      scripts={['/assets/js/mobile-menu.js', '/assets/js/select.js']}
     >
       <Header
         siteName="Dutchy"
@@ -153,55 +154,22 @@ const SearchPage = ({ request }: { request: Request }) => {
                     Category
                   </h3>
                   <div className="space-y-3">
-                    <label className="flex items-center gap-3 cursor-pointer group">
-                      <input
-                        type="checkbox"
-                        defaultChecked
-                        className="w-5 h-5 border-2 border-foreground accent-primary"
-                      />
-                      <span className="text-sm group-hover:text-primary transition-colors">
-                        UI Components
-                      </span>
-                      <span className="ml-auto font-mono text-xs text-muted-foreground">
-                        8
-                      </span>
-                    </label>
-                    <label className="flex items-center gap-3 cursor-pointer group">
-                      <input
-                        type="checkbox"
-                        className="w-5 h-5 border-2 border-foreground accent-primary"
-                      />
-                      <span className="text-sm group-hover:text-primary transition-colors">
-                        Forms
-                      </span>
-                      <span className="ml-auto font-mono text-xs text-muted-foreground">
-                        2
-                      </span>
-                    </label>
-                    <label className="flex items-center gap-3 cursor-pointer group">
-                      <input
-                        type="checkbox"
-                        className="w-5 h-5 border-2 border-foreground accent-primary"
-                      />
-                      <span className="text-sm group-hover:text-primary transition-colors">
-                        Navigation
-                      </span>
-                      <span className="ml-auto font-mono text-xs text-muted-foreground">
-                        1
-                      </span>
-                    </label>
-                    <label className="flex items-center gap-3 cursor-pointer group">
-                      <input
-                        type="checkbox"
-                        className="w-5 h-5 border-2 border-foreground accent-primary"
-                      />
-                      <span className="text-sm group-hover:text-primary transition-colors">
-                        Feedback
-                      </span>
-                      <span className="ml-auto font-mono text-xs text-muted-foreground">
-                        1
-                      </span>
-                    </label>
+                    <div className="flex items-center justify-between">
+                      <Checkbox label="UI Components" defaultChecked />
+                      <span className="font-mono text-xs text-muted-foreground">8</span>
+                    </div>
+                    <div className="flex items-center justify-between">
+                      <Checkbox label="Forms" />
+                      <span className="font-mono text-xs text-muted-foreground">2</span>
+                    </div>
+                    <div className="flex items-center justify-between">
+                      <Checkbox label="Navigation" />
+                      <span className="font-mono text-xs text-muted-foreground">1</span>
+                    </div>
+                    <div className="flex items-center justify-between">
+                      <Checkbox label="Feedback" />
+                      <span className="font-mono text-xs text-muted-foreground">1</span>
+                    </div>
                   </div>
                 </div>
 
@@ -211,43 +179,18 @@ const SearchPage = ({ request }: { request: Request }) => {
                     Status
                   </h3>
                   <div className="space-y-3">
-                    <label className="flex items-center gap-3 cursor-pointer group">
-                      <input
-                        type="checkbox"
-                        defaultChecked
-                        className="w-5 h-5 border-2 border-foreground accent-primary"
-                      />
-                      <span className="text-sm group-hover:text-primary transition-colors">
-                        Stable
-                      </span>
-                      <span className="ml-auto font-mono text-xs text-muted-foreground">
-                        10
-                      </span>
-                    </label>
-                    <label className="flex items-center gap-3 cursor-pointer group">
-                      <input
-                        type="checkbox"
-                        className="w-5 h-5 border-2 border-foreground accent-primary"
-                      />
-                      <span className="text-sm group-hover:text-primary transition-colors">
-                        Beta
-                      </span>
-                      <span className="ml-auto font-mono text-xs text-muted-foreground">
-                        2
-                      </span>
-                    </label>
-                    <label className="flex items-center gap-3 cursor-pointer group">
-                      <input
-                        type="checkbox"
-                        className="w-5 h-5 border-2 border-foreground accent-primary"
-                      />
-                      <span className="text-sm group-hover:text-primary transition-colors">
-                        Deprecated
-                      </span>
-                      <span className="ml-auto font-mono text-xs text-muted-foreground">
-                        0
-                      </span>
-                    </label>
+                    <div className="flex items-center justify-between">
+                      <Checkbox label="Stable" defaultChecked />
+                      <span className="font-mono text-xs text-muted-foreground">10</span>
+                    </div>
+                    <div className="flex items-center justify-between">
+                      <Checkbox label="Beta" />
+                      <span className="font-mono text-xs text-muted-foreground">2</span>
+                    </div>
+                    <div className="flex items-center justify-between">
+                      <Checkbox label="Deprecated" />
+                      <span className="font-mono text-xs text-muted-foreground">0</span>
+                    </div>
                   </div>
                 </div>
 

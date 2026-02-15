@@ -59,6 +59,9 @@ const PricingPage = ({ request }: { request: Request }) => {
               <button
                 className="w-14 h-8 bg-foreground flex items-center p-1 cursor-pointer"
                 data-pricing-toggle=""
+                role="switch"
+                aria-checked="true"
+                aria-label="Toggle between monthly and yearly billing"
               >
                 <span className="w-6 h-6 bg-primary transform translate-x-6 transition-transform" />
               </button>
@@ -82,9 +85,9 @@ const PricingPage = ({ request }: { request: Request }) => {
               {/* Free Plan */}
               <div className="bg-background p-8 flex flex-col">
                 <div className="mb-8">
-                  <h3 className="font-display text-2xl font-bold uppercase tracking-tight mb-2">
+                  <h2 className="font-display text-2xl font-bold uppercase tracking-tight mb-2">
                     Starter
-                  </h3>
+                  </h2>
                   <span className="inline-block bg-muted text-muted-foreground px-3 py-1 text-xs font-bold uppercase tracking-widest mb-2">
                     Free
                   </span>
@@ -143,7 +146,7 @@ const PricingPage = ({ request }: { request: Request }) => {
                   </li>
                 </ul>
                 <a
-                  href="#"
+                  href="/showcase/register"
                   className="block w-full py-4 border-2 border-foreground text-foreground font-bold uppercase tracking-wide text-center hover:bg-foreground hover:text-background transition-colors"
                 >
                   Get Started
@@ -156,9 +159,9 @@ const PricingPage = ({ request }: { request: Request }) => {
                   Most Popular
                 </div>
                 <div className="mb-8">
-                  <h3 className="font-display text-2xl font-bold uppercase tracking-tight mb-2 text-primary">
+                  <h2 className="font-display text-2xl font-bold uppercase tracking-tight mb-2 text-primary">
                     Pro
-                  </h3>
+                  </h2>
                   <p className="text-sm text-background/70">
                     For professional developers and teams.
                   </p>
@@ -214,7 +217,7 @@ const PricingPage = ({ request }: { request: Request }) => {
                   </li>
                 </ul>
                 <a
-                  href="#"
+                  href="/showcase/register"
                   className="block w-full py-4 bg-primary text-primary-foreground font-bold uppercase tracking-wide text-center hover:bg-primary/90 transition-colors"
                 >
                   Start Free Trial
@@ -224,9 +227,9 @@ const PricingPage = ({ request }: { request: Request }) => {
               {/* Enterprise Plan */}
               <div className="bg-background p-8 flex flex-col">
                 <div className="mb-8">
-                  <h3 className="font-display text-2xl font-bold uppercase tracking-tight mb-2">
+                  <h2 className="font-display text-2xl font-bold uppercase tracking-tight mb-2">
                     Enterprise
-                  </h3>
+                  </h2>
                   <span className="inline-block border-2 border-border text-muted-foreground px-3 py-1 text-xs font-bold uppercase tracking-widest mb-2">
                     Custom
                   </span>
@@ -285,7 +288,7 @@ const PricingPage = ({ request }: { request: Request }) => {
                   </li>
                 </ul>
                 <a
-                  href="#"
+                  href="/showcase/contact"
                   className="block w-full py-4 border-2 border-foreground text-foreground font-bold uppercase tracking-wide text-center hover:bg-foreground hover:text-background transition-colors"
                 >
                   Contact Sales
@@ -308,19 +311,19 @@ const PricingPage = ({ request }: { request: Request }) => {
             </div>
 
             <div className="max-w-5xl mx-auto overflow-x-auto">
-              <table className="w-full border-collapse">
+              <table className="w-full border-collapse" aria-label="Feature comparison across pricing plans">
                 <thead>
                   <tr className="bg-foreground text-background">
-                    <th className="text-left p-4 font-display font-bold uppercase text-sm tracking-wider">
+                    <th scope="col" className="text-left p-4 font-display font-bold uppercase text-sm tracking-wider">
                       Feature
                     </th>
-                    <th className="text-center p-4 font-display font-bold uppercase text-sm tracking-wider">
+                    <th scope="col" className="text-center p-4 font-display font-bold uppercase text-sm tracking-wider">
                       Starter
                     </th>
-                    <th className="text-center p-4 font-display font-bold uppercase text-sm tracking-wider bg-primary text-primary-foreground">
+                    <th scope="col" className="text-center p-4 font-display font-bold uppercase text-sm tracking-wider bg-primary text-primary-foreground">
                       Pro
                     </th>
-                    <th className="text-center p-4 font-display font-bold uppercase text-sm tracking-wider">
+                    <th scope="col" className="text-center p-4 font-display font-bold uppercase text-sm tracking-wider">
                       Enterprise
                     </th>
                   </tr>
@@ -333,18 +336,21 @@ const PricingPage = ({ request }: { request: Request }) => {
                         name="check"
                         className="w-6 h-6 text-primary mx-auto"
                       />
+                      <span className="sr-only">Included</span>
                     </td>
                     <td className="p-4 text-center bg-primary/5">
                       <Icon
                         name="check"
                         className="w-6 h-6 text-primary mx-auto"
                       />
+                      <span className="sr-only">Included</span>
                     </td>
                     <td className="p-4 text-center">
                       <Icon
                         name="check"
                         className="w-6 h-6 text-primary mx-auto"
                       />
+                      <span className="sr-only">Included</span>
                     </td>
                   </tr>
                   <tr className="border-b border-border bg-muted/50">
@@ -376,18 +382,21 @@ const PricingPage = ({ request }: { request: Request }) => {
                         name="x"
                         className="w-6 h-6 text-muted-foreground mx-auto"
                       />
+                      <span className="sr-only">Not included</span>
                     </td>
                     <td className="p-4 text-center bg-primary/5">
                       <Icon
                         name="check"
                         className="w-6 h-6 text-primary mx-auto"
                       />
+                      <span className="sr-only">Included</span>
                     </td>
                     <td className="p-4 text-center">
                       <Icon
                         name="check"
                         className="w-6 h-6 text-primary mx-auto"
                       />
+                      <span className="sr-only">Included</span>
                     </td>
                   </tr>
                   <tr className="border-b border-border bg-background">
@@ -397,18 +406,21 @@ const PricingPage = ({ request }: { request: Request }) => {
                         name="x"
                         className="w-6 h-6 text-muted-foreground mx-auto"
                       />
+                      <span className="sr-only">Not included</span>
                     </td>
                     <td className="p-4 text-center bg-primary/5">
                       <Icon
                         name="check"
                         className="w-6 h-6 text-primary mx-auto"
                       />
+                      <span className="sr-only">Included</span>
                     </td>
                     <td className="p-4 text-center">
                       <Icon
                         name="check"
                         className="w-6 h-6 text-primary mx-auto"
                       />
+                      <span className="sr-only">Included</span>
                     </td>
                   </tr>
                   <tr className="border-b border-border bg-muted/50">
@@ -478,7 +490,7 @@ const PricingPage = ({ request }: { request: Request }) => {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a
-                href="#"
+                href="/showcase/register"
                 className="bg-primary text-primary-foreground px-8 py-4 font-bold uppercase tracking-wider hover:bg-primary/90 transition-colors inline-flex items-center justify-center gap-2"
               >
                 Start Free Trial

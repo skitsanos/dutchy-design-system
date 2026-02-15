@@ -129,12 +129,12 @@ const LoginPage: FC<{ request: Request }> = ({ request }) => {
                     </a>
                   </div>
                   <div className="relative">
-                    <input
+                    <Input
                       type="password"
                       id="password"
                       name="password"
                       placeholder="Enter your password"
-                      className="w-full border-2 px-4 py-3 text-base border-border focus:border-foreground focus:outline-none bg-background pr-12 transition-colors duration-150"
+                      className="pr-12"
                     />
                     <Button variant="ghost" icon size="sm" type="button" id="toggle-password" aria-label="Toggle password visibility" className="absolute right-2 top-1/2 -translate-y-1/2 w-auto h-auto p-1">
                       <Icon name="eye" />

@@ -238,6 +238,7 @@ const Icon: FC<IconProps> = ({ name, className = '', size = 'md' }) => {
       fill={icon.filled ? 'currentColor' : 'none'}
       stroke={icon.filled ? 'none' : 'currentColor'}
       viewBox={icon.viewBox || '0 0 24 24'}
+      aria-hidden="true"
     >
       {icon.paths.map((d, i) => (
         <path

@@ -37,7 +37,7 @@ const Header: FC<HeaderProps> = ({
           </a>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center gap-8">
+          <nav aria-label="Main navigation" className="hidden md:flex items-center gap-8">
             {navLinks.map((link) => (
               <a
                 key={link.href}
@@ -86,6 +86,7 @@ const Header: FC<HeaderProps> = ({
         {/* Mobile Navigation */}
         <nav
           id="mobile-nav"
+          aria-label="Mobile navigation"
           className="hidden md:hidden border-t border-border pb-4"
         >
           <div className="flex flex-col gap-2 pt-4">
