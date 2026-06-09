@@ -94,8 +94,9 @@ Update `package.json`:
   "scripts": {
     "dev": "bun run --watch src/index.ts",
     "start": "NODE_ENV=production bun run src/index.ts",
-    "build:css": "bunx tailwindcss -i src/styles/input.css -o public/assets/css/styles.css --minify",
-    "dev:css": "bunx tailwindcss -i src/styles/input.css -o public/assets/css/styles.css --watch",
+    "build": "bun run build:css",
+    "build:css": "bunx tailwindcss -i src/styles/dutchy.css -o public/assets/css/styles.css --minify",
+    "dev:css": "bunx tailwindcss -i src/styles/dutchy.css -o public/assets/css/styles.css --watch",
     "typecheck": "bunx tsc --noEmit",
     "lint": "bunx biome check .",
     "lint:fix": "bunx biome check --write ."
@@ -120,7 +121,9 @@ Update `package.json`:
 
 Tailwind 4 can be configured directly in CSS. No `tailwind.config.js` is required for the base Dutchy setup.
 
-Create `src/styles/input.css`:
+For the full production lifecycle, including runtime theme variables, generated CSS, Bun static asset serving, Docker, Railway, and cache versioning, see [Theme and CSS Build Lifecycle](./theme-and-css-build.md).
+
+Create `src/styles/dutchy.css`:
 
 ```css
 @import "tailwindcss";
@@ -217,7 +220,7 @@ my-dutchy-app/
 │   ├── middleware/           # Middleware functions
 │   │   └── cors.ts
 │   └── styles/
-│       └── input.css
+│       └── dutchy.css
 ├── public/
 │   └── assets/
 │       ├── css/

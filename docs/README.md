@@ -29,6 +29,7 @@ Build server-rendered applications using Bun with JSX/TSX (SSR-only, no client R
 - **Project Structure** - Recommended file organization
 - **Routing** - File-based routing system
 - **Components** - JSX component patterns for SSR
+- **Theme and CSS Build Lifecycle** - Tailwind generation, runtime theme variables, static asset serving, Docker, and Railway
 - **Client-Side JS** - Vanilla JavaScript for interactivity
 - **Examples** - Layout, pages, forms, and API routes
 
@@ -39,6 +40,7 @@ Build server-rendered applications using Bun with JSX/TSX (SSR-only, no client R
 | [Design Tokens](./01-design-system/tokens/) | Colors, typography, spacing, effects |
 | [Components](./01-design-system/components/) | Buttons, cards, forms, navigation, alerts, modals, tables, and 12 more |
 | [Bun Quick Start](./03-using-with-bun/getting-started.md) | Start building with Bun |
+| [Theme and CSS Build Lifecycle](./03-using-with-bun/theme-and-css-build.md) | Understand theme loading, Tailwind generation, Bun serving, and Railway build behavior |
 | [Routing](./03-using-with-bun/routing.md) | File-based routing system |
 | [Client-Side JS](./03-using-with-bun/examples/client-side-js.md) | Vanilla JS for interactivity |
 | [API Routes](./03-using-with-bun/examples/api-routes.md) | REST API patterns |

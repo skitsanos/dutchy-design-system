@@ -32,7 +32,7 @@ Guidance for automated agents working in this repository.
 - When adding new sections, mirror existing formatting styles and typography references.
 
 ## Frontend Styling
-- Tailwind 4 is generated from `src/styles/input.css` to `public/assets/css/styles.css`; the generated stylesheet is a build artifact and should not be committed. Fonts come from Google Fonts as already configured.
+- Tailwind 4 is generated from `src/styles/dutchy.css` to `public/assets/css/styles.css`; the generated stylesheet is a build artifact and should not be committed. Read `docs/03-using-with-bun/theme-and-css-build.md` before changing theme tokens, CSS build behavior, asset caching, or theme switching. Fonts come from Google Fonts as already configured.
 - Avoid introducing rounded corners or low-contrast schemes.
 - Use accent borders (4px/8px) and tight grids where patterns call for them.
 

@@ -8,7 +8,7 @@ Bun provides built-in support for JSX/TSX files and server-side rendering throug
 
 ### Why Bun + JSX?
 
-- **Zero Build Step**: Bun natively understands JSX/TSX
+- **No TypeScript Build Step**: Bun natively understands JSX/TSX
 - **Streaming HTML**: Efficient `renderToReadableStream()` for fast TTFB
 - **File-Based Routing**: Automatic route discovery from filesystem
 - **TypeScript Native**: No transpilation needed
@@ -218,6 +218,7 @@ bun run src/index.ts
 - [Project Structure](./project-structure.md) - Recommended file organization
 - [Routing](./routing.md) - File-based routing system
 - [Components](./components.md) - Building Dutchy components
+- [Theme and CSS Build Lifecycle](./theme-and-css-build.md) - How Tailwind, runtime themes, Bun static assets, Docker, and Railway fit together
 
 ### Examples
 

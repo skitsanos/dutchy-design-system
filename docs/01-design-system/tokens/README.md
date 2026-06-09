@@ -12,3 +12,4 @@ Design tokens for the Dutchy Design System: consistent foundations for color, ty
 - Zero-radius philosophy; emphasis on borders over shadows
 - High-contrast defaults with alternate themes and dark mode
 - Type uses Space Grotesk (display), Inter (body), JetBrains Mono (code)
+- For Bun SSR apps, see [Theme and CSS Build Lifecycle](../../03-using-with-bun/theme-and-css-build.md) before changing theme tokens or generated CSS.

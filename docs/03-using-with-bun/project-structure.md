@@ -63,11 +63,11 @@ my-dutchy-app/
 │   │   ├── string/
 │   │   └── array/
 │   └── styles/
-│       └── input.css               # Tailwind input file
+│       └── dutchy.css               # Dutchy Tailwind source
 ├── public/                         # Static assets (served as-is)
 │   ├── assets/
 │   │   ├── css/
-│   │   │   └── styles.css          # Compiled Tailwind
+│   │   │   └── styles.css          # Generated Tailwind output
 │   │   ├── js/
 │   │   │   └── main.js             # Client-side JS
 │   │   └── images/

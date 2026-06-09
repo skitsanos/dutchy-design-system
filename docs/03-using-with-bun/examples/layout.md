@@ -331,7 +331,7 @@ export default Layout;
 
 ## CSS Variables Setup
 
-Your `input.css` should define Tailwind 4 theme tokens and runtime theme variables:
+Your `dutchy.css` should define Tailwind 4 theme tokens and runtime theme variables:
 
 ```css
 @import "tailwindcss";
