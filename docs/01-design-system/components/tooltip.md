@@ -6,7 +6,7 @@ Tooltips provide contextual hints on hover or focus without cluttering the inter
 
 ## Basic Usage
 
-Add `data-tooltip` to any element. The tooltip appears on `:hover` and `:focus`.
+Add `data-tooltip` to any element. The tooltip appears on `:hover`, `:focus`, and `:focus-within` for wrapped controls.
 
 ```html
 <button data-tooltip="Save your changes" class="bg-primary text-primary-foreground px-4 py-2 font-bold uppercase tracking-wide">
@@ -106,15 +106,18 @@ Control placement with `data-tooltip-position`. Default is `top`.
 [data-tooltip]:hover::before,
 [data-tooltip]:hover::after,
 [data-tooltip]:focus::before,
-[data-tooltip]:focus::after {
+[data-tooltip]:focus::after,
+[data-tooltip]:focus-within::before,
+[data-tooltip]:focus-within::after {
   opacity: 1;
 }
 ```
 
 ## Accessibility
 
-- Tooltips appear on both `:hover` and `:focus`, so keyboard users can trigger them.
+- Tooltips appear on `:hover`, `:focus`, and `:focus-within`, so keyboard users can trigger wrapped controls.
 - Add `tabindex="0"` to non-interactive elements (e.g. `<span>`) that carry tooltips.
+- Icon-only controls still need an accessible name such as `aria-label`; tooltip text alone is not a replacement.
 - Keep tooltip text concise—one line maximum for readability.
 - For essential information, use visible text instead of tooltips.
 - Do not rely on tooltips for form validation messages; use inline errors.

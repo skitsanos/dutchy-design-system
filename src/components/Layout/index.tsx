@@ -13,7 +13,7 @@ interface LayoutProps {
   styles?: string[];
 }
 
-const ASSET_VERSION = '2.1.1';
+const ASSET_VERSION = '2.1.2';
 
 const Layout: FC<LayoutProps> = ({ title, children, meta, scripts = [], styles = [] }) => {
   return (

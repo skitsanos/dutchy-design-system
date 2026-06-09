@@ -1,13 +1,14 @@
 {
   "name": "dutchy-design-system",
   "description": "Dutchy Design System",
-  "version": "2.1.1",
+  "version": "2.1.2",
   "module": "src/index.ts",
   "type": "module",
   "private": true,
   "scripts": {
     "dev": "bun run --watch src/index.ts",
     "start": "NODE_ENV=production bun run src/index.ts",
+    "build": "bun run build:css",
     "build:css": "bunx tailwindcss -i src/styles/input.css -o public/assets/css/styles.css --minify",
     "dev:css": "bunx tailwindcss -i src/styles/input.css -o public/assets/css/styles.css --watch",
     "typecheck": "bunx tsc --noEmit",

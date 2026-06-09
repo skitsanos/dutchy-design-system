@@ -169,17 +169,24 @@
   }
   /* Show on hover/focus */
   [data-tooltip]:hover::before,
-  [data-tooltip]:focus::before {
+  [data-tooltip]:focus::before,
+  [data-tooltip]:focus-within::before {
     content: "";
   }
   [data-tooltip]:hover::after,
-  [data-tooltip]:focus::after {
+  [data-tooltip]:focus::after,
+  [data-tooltip]:focus-within::after {
     content: attr(data-tooltip);
   }
   [data-tooltip]:hover::before,
   [data-tooltip]:hover::after,
   [data-tooltip]:focus::before,
   [data-tooltip]:focus::after {
+    display: block;
+    opacity: 1;
+  }
+  [data-tooltip]:focus-within::before,
+  [data-tooltip]:focus-within::after {
     display: block;
     opacity: 1;
   }
