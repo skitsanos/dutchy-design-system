@@ -282,12 +282,14 @@ const FlexPage: FC = () => (
               Header Bar
             </p>
             <Flex
+              wrap
               align="center"
               justify="between"
+              gap={4}
               className="bg-foreground text-background px-6 py-4"
             >
               <span className="font-display font-bold uppercase tracking-tight text-lg">Logo</span>
-              <Flex gap={6}>
+              <Flex wrap gap={4}>
                 <a
                   href="#flex"
                   className="text-sm font-bold uppercase hover:text-primary transition-colors"

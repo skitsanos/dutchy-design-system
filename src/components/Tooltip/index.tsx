@@ -12,7 +12,7 @@ const Tooltip: FC<TooltipProps> = ({ text, position, children, className = '' })
     <span
       data-tooltip={text}
       {...(position ? { 'data-tooltip-position': position } : {})}
-      className={`tooltip-trigger relative cursor-help ${className}`}
+      className={`tooltip-trigger relative inline-flex items-center align-middle cursor-help ${className}`}
     >
       {children}
     </span>

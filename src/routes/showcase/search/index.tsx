@@ -1,11 +1,13 @@
 import Badge from '@/components/Badge';
 import Button from '@/components/Button';
 import Checkbox from '@/components/Checkbox';
+import Flex from '@/components/Flex';
 import Footer from '@/components/Footer';
 import Header from '@/components/Header';
 import Icon from '@/components/Icon';
 import Layout from '@/components/Layout';
 import Pagination from '@/components/Pagination';
+import SearchForm from '@/components/SearchForm';
 import Select from '@/components/Select';
 
 const headerNavLinks = [
@@ -107,25 +109,13 @@ const SearchPage = ({ request }: { request: Request }) => {
               Search Components
             </h1>
             {/* Search Box */}
-            <form
-              method="GET"
+            <SearchForm
               action="/showcase/search"
-              className="flex gap-0 bg-background border-4 border-foreground"
-            >
-              <div className="flex items-center px-4">
-                <Icon name="search" className="text-muted-foreground w-6 h-6" />
-              </div>
-              <input
-                type="text"
-                name="q"
-                placeholder="Search for components..."
-                defaultValue={query}
-                className="flex-1 py-4 px-2 bg-transparent font-sans text-lg focus:outline-none"
-              />
-              <Button type="submit" size="lg">
-                Search
-              </Button>
-            </form>
+              placeholder="Search for components..."
+              defaultValue={query}
+              submitLabel="Search"
+              className="bg-background border-4 border-foreground"
+            />
             <p className="text-center mt-4 text-muted-foreground">
               <span className="font-bold text-foreground">{searchResults.length} results</span>{' '}
               found for "{query}"
@@ -147,22 +137,22 @@ const SearchPage = ({ request }: { request: Request }) => {
                     Category
                   </h3>
                   <div className="space-y-3">
-                    <div className="flex items-center justify-between">
+                    <Flex align="center" justify="between">
                       <Checkbox label="UI Components" defaultChecked />
                       <span className="font-mono text-xs text-muted-foreground">8</span>
-                    </div>
-                    <div className="flex items-center justify-between">
+                    </Flex>
+                    <Flex align="center" justify="between">
                       <Checkbox label="Forms" />
                       <span className="font-mono text-xs text-muted-foreground">2</span>
-                    </div>
-                    <div className="flex items-center justify-between">
+                    </Flex>
+                    <Flex align="center" justify="between">
                       <Checkbox label="Navigation" />
                       <span className="font-mono text-xs text-muted-foreground">1</span>
-                    </div>
-                    <div className="flex items-center justify-between">
+                    </Flex>
+                    <Flex align="center" justify="between">
                       <Checkbox label="Feedback" />
                       <span className="font-mono text-xs text-muted-foreground">1</span>
-                    </div>
+                    </Flex>
                   </div>
                 </div>
 
@@ -172,18 +162,18 @@ const SearchPage = ({ request }: { request: Request }) => {
                     Status
                   </h3>
                   <div className="space-y-3">
-                    <div className="flex items-center justify-between">
+                    <Flex align="center" justify="between">
                       <Checkbox label="Stable" defaultChecked />
                       <span className="font-mono text-xs text-muted-foreground">10</span>
-                    </div>
-                    <div className="flex items-center justify-between">
+                    </Flex>
+                    <Flex align="center" justify="between">
                       <Checkbox label="Beta" />
                       <span className="font-mono text-xs text-muted-foreground">2</span>
-                    </div>
-                    <div className="flex items-center justify-between">
+                    </Flex>
+                    <Flex align="center" justify="between">
                       <Checkbox label="Deprecated" />
                       <span className="font-mono text-xs text-muted-foreground">0</span>
-                    </div>
+                    </Flex>
                   </div>
                 </div>
 
@@ -200,8 +190,8 @@ const SearchPage = ({ request }: { request: Request }) => {
             {/* Results Grid */}
             <div className="lg:col-span-3">
               {/* Sort Bar */}
-              <div className="flex items-center justify-between mb-8 pb-4 border-b border-border">
-                <div className="flex items-center gap-4">
+              <Flex align="center" justify="between" className="mb-8 pb-4 border-b border-border">
+                <Flex align="center" gap={4}>
                   <span className="font-mono text-sm text-muted-foreground uppercase tracking-wider">
                     Sort by:
                   </span>
@@ -214,24 +204,28 @@ const SearchPage = ({ request }: { request: Request }) => {
                     ]}
                     defaultValue="relevance"
                   />
-                </div>
-                <div className="flex gap-2">
-                  <button
-                    type="button"
+                </Flex>
+                <Flex gap={2}>
+                  <Button
+                    variant="secondary"
+                    icon
+                    size="sm"
                     className="p-2 bg-foreground text-background"
                     aria-label="Grid view"
                   >
                     <Icon name="grid" size="md" />
-                  </button>
-                  <button
-                    type="button"
+                  </Button>
+                  <Button
+                    variant="ghost"
+                    icon
+                    size="sm"
                     className="p-2 bg-muted text-muted-foreground hover:bg-border transition-colors cursor-pointer"
                     aria-label="List view"
                   >
                     <Icon name="list" size="md" />
-                  </button>
-                </div>
-              </div>
+                  </Button>
+                </Flex>
+              </Flex>
 
               {/* Results Cards */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-0.5 bg-border">
@@ -241,19 +235,19 @@ const SearchPage = ({ request }: { request: Request }) => {
                     href={result.href}
                     className="bg-background p-6 group hover:bg-muted/50 transition-colors"
                   >
-                    <div className="flex items-start justify-between mb-4">
-                      <div className="w-12 h-12 bg-primary/10 flex items-center justify-center">
+                    <Flex align="start" justify="between" className="mb-4">
+                      <Flex align="center" justify="center" className="w-12 h-12 bg-primary/10">
                         <Icon name={result.icon} className="text-primary w-6 h-6" />
-                      </div>
+                      </Flex>
                       <Badge variant={result.statusVariant} className="text-xs">
                         {result.status}
                       </Badge>
-                    </div>
+                    </Flex>
                     <h3 className="font-display text-xl font-bold uppercase mb-2 group-hover:text-primary transition-colors">
                       {result.name}
                     </h3>
                     <p className="text-sm text-muted-foreground mb-4">{result.description}</p>
-                    <div className="flex items-center justify-between">
+                    <Flex align="center" justify="between">
                       <span className="font-mono text-xs text-muted-foreground">
                         {result.category}
                       </span>
@@ -262,7 +256,7 @@ const SearchPage = ({ request }: { request: Request }) => {
                         size="sm"
                         className="text-muted-foreground group-hover:text-primary group-hover:translate-x-1 transition-all"
                       />
-                    </div>
+                    </Flex>
                   </a>
                 ))}
               </div>

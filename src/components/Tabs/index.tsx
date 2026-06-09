@@ -165,11 +165,11 @@ const Tabs: FC<TabsProps> = ({
       if (scrollable) {
         return (
           <div className="bg-muted p-1">
-            <div data-tabs-nav-wrapper="" className="flex items-center">
+            <div data-tabs-nav-wrapper="" className="flex min-w-0 items-center">
               {renderScrollArrows()}
               <div
                 data-tabs-nav=""
-                className="overflow-x-auto dutchy-scrollbar-hide flex-1 flex"
+                className="dutchy-scrollbar-hide flex min-w-0 flex-1 overflow-x-auto"
                 role="tablist"
               >
                 {tabButtons}
@@ -182,7 +182,7 @@ const Tabs: FC<TabsProps> = ({
       }
 
       return (
-        <div className="flex bg-muted p-1" role="tablist">
+        <div className="flex overflow-x-auto bg-muted p-1" role="tablist">
           {tabButtons}
         </div>
       );
@@ -192,11 +192,11 @@ const Tabs: FC<TabsProps> = ({
     if (scrollable) {
       return (
         <div className="border-b-2 border-border">
-          <div data-tabs-nav-wrapper="" className="flex items-center">
+          <div data-tabs-nav-wrapper="" className="flex min-w-0 items-center">
             {renderScrollArrows()}
             <div
               data-tabs-nav=""
-              className="overflow-x-auto dutchy-scrollbar-hide flex-1 flex gap-0"
+              className="dutchy-scrollbar-hide flex min-w-0 flex-1 gap-0 overflow-x-auto"
               role="tablist"
             >
               {tabButtons}
@@ -210,7 +210,7 @@ const Tabs: FC<TabsProps> = ({
 
     return (
       <div className="border-b-2 border-border">
-        <div className="flex gap-0" role="tablist">
+        <div className="flex gap-0 overflow-x-auto" role="tablist">
           {tabButtons}
         </div>
       </div>
@@ -222,7 +222,7 @@ const Tabs: FC<TabsProps> = ({
       data-tabs={isSegmented ? 'boxed' : ''}
       {...(scrollable ? { 'data-tabs-scrollable': '' } : {})}
       {...(closable ? { 'data-tabs-closable': '' } : {})}
-      className={className}
+      className={`min-w-0 max-w-full ${className}`}
     >
       {renderNav()}
 

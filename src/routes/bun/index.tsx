@@ -30,7 +30,7 @@ const BunPage: FC = () => {
             </h1>
             <p className="text-xl text-muted-foreground leading-relaxed max-w-2xl mb-8">
               Build high-performance server-rendered applications using Dutchy Design System with
-              Bun's native JSX support. No build step required.
+              Bun's native TypeScript and JSX support. No TypeScript build step required.
             </p>
             <div className="flex flex-wrap gap-4">
               <a
@@ -126,7 +126,8 @@ bun init -y
 
 # Install dependencies
 bun add react react-dom
-bun add -d @types/react @types/react-dom`}</code>
+bun add -d @types/bun @types/react @types/react-dom typescript
+bun add -d tailwindcss @tailwindcss/cli`}</code>
               </pre>
             </div>
 
@@ -228,7 +229,7 @@ console.log('Server running at http://localhost:3000');`}</code>
             <div className="bg-background p-8">
               <div className="mb-6">
                 <span className="font-mono text-xs font-bold text-muted-foreground uppercase tracking-wider">
-                  Any Bun
+                  Bun API
                 </span>
               </div>
               <h3 className="font-display text-2xl font-bold uppercase mb-4">FileSystem Router</h3>
@@ -264,7 +265,7 @@ console.log('Server running at http://localhost:3000');`}</code>
                 <code>{`routes/
 ├── index.tsx      → GET /
 ├── api/users/
-│   ├── index.ts   → GET
+│   ├── get.ts     → GET
 │   ├── post.ts    → POST
 │   └── $id/
 │       └── put.ts → PUT`}</code>
@@ -300,7 +301,7 @@ console.log('Server running at http://localhost:3000');`}</code>
               <pre className="bg-foreground text-background p-6 text-sm overflow-x-auto h-[400px]">
                 <code>{`// src/routes/index.tsx
 import type { FC } from 'react';
-import Layout from '@/ui/Layout';
+import Layout from '@/components/Layout';
 
 interface HomePageProps {
   request: Request;
@@ -312,14 +313,14 @@ const HomePage: FC<HomePageProps> = ({ request }) => {
       title="Home"
       scripts={['/assets/js/app.js']}
     >
-      <section class="py-20 border-b-8 border-primary">
-        <div class="container mx-auto px-4">
-          <h1 class="font-display text-6xl font-bold uppercase">
-            Hello<span class="text-primary">.</span>
+      <section className="py-20 border-b-8 border-primary">
+        <div className="container mx-auto px-4">
+          <h1 className="font-display text-6xl font-bold uppercase">
+            Hello<span className="text-primary">.</span>
           </h1>
           <button type="button"
             id="cta-btn"
-            class="bg-primary text-white px-8 py-4 mt-8"
+            className="bg-primary text-primary-foreground px-8 py-4 mt-8"
           >
             Click Me
           </button>
@@ -505,7 +506,7 @@ document.querySelectorAll('[data-product-id]')
 │   │               ├── index.ts  # GET /api/users/:id
 │   │               ├── put.ts    # PUT /api/users/:id
 │   │               └── delete.ts # DELETE /api/users/:id
-│   ├── ui/
+│   ├── components/
 │   │   ├── Layout/
 │   │   ├── Header/
 │   │   ├── Footer/
@@ -531,7 +532,7 @@ document.querySelectorAll('[data-product-id]')
                 </p>
               </div>
               <div className="border-l-4 border-border pl-6">
-                <h4 className="font-display font-bold uppercase mb-2">ui/</h4>
+                <h4 className="font-display font-bold uppercase mb-2">components/</h4>
                 <p className="text-muted-foreground text-sm">
                   Reusable JSX components. One folder per component with index.tsx as entry point.
                 </p>

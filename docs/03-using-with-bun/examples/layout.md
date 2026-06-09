@@ -331,33 +331,39 @@ export default Layout;
 
 ## CSS Variables Setup
 
-Your `input.css` should define theme variables:
+Your `input.css` should define Tailwind 4 theme tokens and runtime theme variables:
 
 ```css
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+
+@source "../**/*.{ts,tsx}";
+@source "../../public/assets/js/**/*.js";
+
+@theme {
+  --color-background: hsl(40 30% 97%);
+  --color-foreground: hsl(25 20% 6%);
+  --color-primary: hsl(var(--primary));
+  --color-primary-foreground: hsl(0 0% 100%);
+  --color-muted: hsl(40 20% 94%);
+  --color-muted-foreground: hsl(25 10% 40%);
+  --color-border: hsl(25 20% 88%);
+  --font-display: "Space Grotesk", sans-serif;
+  --font-body: "Inter", sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+}
 
 @layer base {
   :root {
     /* Light theme (default) */
     --primary: 25 95% 53%;
-    --primary-foreground: 0 0% 100%;
-    --background: 0 0% 100%;
-    --foreground: 0 0% 4%;
-    --muted: 0 0% 96%;
-    --muted-foreground: 0 0% 45%;
-    --border: 0 0% 90%;
-    --destructive: 0 84% 50%;
-    --destructive-foreground: 0 0% 100%;
   }
 
-  [data-theme="dark"] {
-    --background: 0 0% 4%;
-    --foreground: 0 0% 98%;
-    --muted: 0 0% 15%;
-    --muted-foreground: 0 0% 64%;
-    --border: 0 0% 20%;
+  [data-theme="purple"] {
+    --primary: 263 70% 58%;
+  }
+
+  [data-theme="crimson"] {
+    --primary: 0 84% 50%;
   }
 
   * {

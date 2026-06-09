@@ -2,6 +2,7 @@ import type { FC } from 'react';
 import Button from '@/components/Button';
 import Checkbox from '@/components/Checkbox';
 import FileUpload from '@/components/FileUpload';
+import Flex from '@/components/Flex';
 import Footer from '@/components/Footer';
 import Form from '@/components/Form';
 import Header from '@/components/Header';
@@ -70,12 +71,12 @@ const ContactPage: FC<{ request: Request }> = ({ request }) => {
         {success && (
           <section className="bg-success/10 border-b border-success">
             <div className="container mx-auto px-4 md:px-6 py-4">
-              <div className="flex items-center gap-3">
+              <Flex align="center" gap={3}>
                 <Icon name="check-circle" className="text-success" />
                 <p className="font-bold text-success">
                   Your message has been sent successfully! We'll get back to you soon.
                 </p>
-              </div>
+              </Flex>
             </div>
           </section>
         )}
@@ -188,10 +189,14 @@ const ContactPage: FC<{ request: Request }> = ({ request }) => {
                       Quick Contact
                     </h3>
                     <div className="space-y-6">
-                      <div className="flex items-start gap-4">
-                        <div className="w-10 h-10 bg-primary flex items-center justify-center flex-shrink-0">
+                      <Flex align="start" gap={4}>
+                        <Flex
+                          align="center"
+                          justify="center"
+                          className="w-10 h-10 bg-primary flex-shrink-0"
+                        >
                           <Icon name="mail" className="text-primary-foreground" />
-                        </div>
+                        </Flex>
                         <div>
                           <p className="font-mono text-xs text-background/60 uppercase tracking-wider mb-1">
                             Email
@@ -203,29 +208,37 @@ const ContactPage: FC<{ request: Request }> = ({ request }) => {
                             hello@dutchy.design
                           </a>
                         </div>
-                      </div>
-                      <div className="flex items-start gap-4">
-                        <div className="w-10 h-10 bg-primary flex items-center justify-center flex-shrink-0">
+                      </Flex>
+                      <Flex align="start" gap={4}>
+                        <Flex
+                          align="center"
+                          justify="center"
+                          className="w-10 h-10 bg-primary flex-shrink-0"
+                        >
                           <Icon name="map-pin" className="text-primary-foreground" />
-                        </div>
+                        </Flex>
                         <div>
                           <p className="font-mono text-xs text-background/60 uppercase tracking-wider mb-1">
                             Location
                           </p>
                           <p>Amsterdam, Netherlands</p>
                         </div>
-                      </div>
-                      <div className="flex items-start gap-4">
-                        <div className="w-10 h-10 bg-primary flex items-center justify-center flex-shrink-0">
+                      </Flex>
+                      <Flex align="start" gap={4}>
+                        <Flex
+                          align="center"
+                          justify="center"
+                          className="w-10 h-10 bg-primary flex-shrink-0"
+                        >
                           <Icon name="clock" className="text-primary-foreground" />
-                        </div>
+                        </Flex>
                         <div>
                           <p className="font-mono text-xs text-background/60 uppercase tracking-wider mb-1">
                             Response Time
                           </p>
                           <p>Within 24-48 hours</p>
                         </div>
-                      </div>
+                      </Flex>
                     </div>
                   </div>
 
@@ -315,7 +328,7 @@ const ContactPage: FC<{ request: Request }> = ({ request }) => {
                   Our team works remotely across Europe, with our headquarters in the Netherlands.
                   We embrace the Dutch design philosophy of simplicity and functionality.
                 </p>
-                <div className="flex gap-4">
+                <Flex gap={4}>
                   <div className="bg-primary text-primary-foreground px-6 py-3">
                     <p className="font-display text-2xl font-bold">CET</p>
                     <p className="text-xs uppercase tracking-wider opacity-70">Timezone</p>
@@ -326,27 +339,12 @@ const ContactPage: FC<{ request: Request }> = ({ request }) => {
                       Languages
                     </p>
                   </div>
-                </div>
+                </Flex>
               </div>
               <div className="bg-muted/10 p-8 border-4 border-primary/30">
-                <div className="aspect-video flex items-center justify-center">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="96"
-                    height="96"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="1"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    className="text-primary/40"
-                  >
-                    <path d="M14.106 5.553a2 2 0 0 0 1.788 0l3.659-1.83A1 1 0 0 1 21 4.619v12.764a1 1 0 0 1-.553.894l-4.553 2.277a2 2 0 0 1-1.788 0l-4.212-2.106a2 2 0 0 0-1.788 0l-3.659 1.83A1 1 0 0 1 3 19.381V6.618a1 1 0 0 1 .553-.894l4.553-2.277a2 2 0 0 1 1.788 0z" />
-                    <path d="M15 5.764v15" />
-                    <path d="M9 3.236v15" />
-                  </svg>
-                </div>
+                <Flex align="center" justify="center" className="aspect-video">
+                  <Icon name="map-pin" className="w-24 h-24 text-primary/40" />
+                </Flex>
               </div>
             </div>
           </div>

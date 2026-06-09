@@ -13,6 +13,8 @@ interface LayoutProps {
   styles?: string[];
 }
 
+const ASSET_VERSION = '2.1.1';
+
 const Layout: FC<LayoutProps> = ({ title, children, meta, scripts = [], styles = [] }) => {
   return (
     <html lang="en">
@@ -47,7 +49,7 @@ const Layout: FC<LayoutProps> = ({ title, children, meta, scripts = [], styles =
         />
 
         {/* Main Stylesheet */}
-        <link rel="stylesheet" href="/assets/css/styles.css" />
+        <link rel="stylesheet" href={`/assets/css/styles.css?v=${ASSET_VERSION}`} />
 
         {/* Additional Stylesheets */}
         {styles.map((href, index) => (

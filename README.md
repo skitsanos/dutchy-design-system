@@ -23,7 +23,7 @@ Open `http://localhost:3000`
 
 - **Runtime**: [Bun](https://bun.sh)
 - **Rendering**: React SSR via `renderToReadableStream()` (no hydration)
-- **Styling**: Tailwind CSS + CSS variables (themes)
+- **Styling**: Tailwind CSS 4 + CSS-first design tokens
 - **Routing**: file-based (see `src/utils/loadRoutes.ts`)
 - **Interactivity**: vanilla JS modules + `data-*` hooks (see `public/assets/js/`)
 
@@ -58,7 +58,8 @@ public/assets/
   css/styles.css            # Compiled Tailwind output
   js/                       # Vanilla JS modules (tabs, modal, toast, ...)
 docs/                       # Design system docs (tokens/components/patterns)
-website/                    # Static site (if/when exported)
+.claude/skills/             # Claude Code project skills
+.agents/skills/             # Codex project skills
 ```
 
 ## Routing Conventions
@@ -72,6 +73,13 @@ Routes are discovered under `src/routes/`:
 ## Theming
 
 Themes are CSS variables (default, purple, crimson). Tailwind utilities (`bg-primary`, `text-primary`, `border-primary`, including opacity modifiers) follow the active theme.
+
+## Tooling Notes
+
+- Tailwind 4 is configured in `src/styles/input.css` with `@import "tailwindcss"`, `@source`, and `@theme`. There is no required `tailwind.config.js` for the app.
+- Renovate is configured to create update branches and PRs against `develop` only.
+- Claude Code project skills live in `.claude/skills/`; Codex project skills live in `.agents/skills/`.
+- `.claude/settings.local.json` stays ignored because it is machine-local.
 
 ## Scripts
 
@@ -88,8 +96,8 @@ Themes are CSS variables (default, purple, crimson). Tailwind utilities (`bg-pri
 ## Docker
 
 ```bash
-docker build -t dutchy:2.1.0 .
-docker run -p 3000:3000 dutchy:2.1.0
+docker build -t dutchy:2.1.1 .
+docker run -p 3000:3000 dutchy:2.1.1
 ```
 
 The image builds Tailwind CSS at build time and serves the Bun SSR app on port 3000.

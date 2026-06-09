@@ -257,20 +257,13 @@ Used for code, technical content, and labels.
 | `font-semibold` | 600 | Subheadings |
 | `font-bold` | 700 | Headings, buttons |
 
-## TailwindCSS Configuration
+## Tailwind CSS 4 Tokens
 
-```js
-// tailwind.config.js
-module.exports = {
-  theme: {
-    extend: {
-      fontFamily: {
-        display: ['Space Grotesk', 'sans-serif'],
-        body: ['Inter', 'sans-serif'],
-        mono: ['JetBrains Mono', 'monospace'],
-      },
-    },
-  },
+```css
+@theme {
+  --font-display: "Space Grotesk", sans-serif;
+  --font-body: "Inter", sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
 }
 ```
 

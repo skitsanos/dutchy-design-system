@@ -1,6 +1,5 @@
 import type { FC } from 'react';
 import ComponentPageLayout from '@/components/ComponentPageLayout';
-import Flex from '@/components/Flex';
 import Text from '@/components/Text';
 
 const TextPage: FC = () => (
@@ -78,7 +77,7 @@ const TextPage: FC = () => (
             { size: 'sm' as const, label: '14px' },
             { size: 'xs' as const, label: '12px' },
           ].map(({ size, label }) => (
-            <Flex key={size} align="baseline" gap={4}>
+            <div key={size} className="flex flex-col gap-2 sm:flex-row sm:items-baseline sm:gap-4">
               <Text
                 family="mono"
                 size="xs"
@@ -100,7 +99,7 @@ const TextPage: FC = () => (
               >
                 Dutchy
               </Text>
-            </Flex>
+            </div>
           ))}
         </div>
       </div>
@@ -112,7 +111,7 @@ const TextPage: FC = () => (
         </h3>
         <div className="space-y-3">
           {(['normal', 'medium', 'semibold', 'bold'] as const).map((w) => (
-            <Flex key={w} align="baseline" gap={4}>
+            <div key={w} className="flex flex-col gap-2 sm:flex-row sm:items-baseline sm:gap-4">
               <Text
                 family="mono"
                 size="xs"
@@ -126,7 +125,7 @@ const TextPage: FC = () => (
               <Text size="2xl" weight={w} as="span">
                 The quick brown fox jumps over the lazy dog
               </Text>
-            </Flex>
+            </div>
           ))}
         </div>
       </div>
@@ -138,7 +137,7 @@ const TextPage: FC = () => (
         </h3>
         <div className="space-y-3">
           {(['tighter', 'tight', 'normal', 'wide', 'wider', 'widest'] as const).map((t) => (
-            <Flex key={t} align="baseline" gap={4}>
+            <div key={t} className="flex flex-col gap-2 sm:flex-row sm:items-baseline sm:gap-4">
               <Text
                 family="mono"
                 size="xs"
@@ -152,7 +151,7 @@ const TextPage: FC = () => (
               <Text family="display" size="xl" weight="bold" uppercase tracking={t} as="span">
                 Typography
               </Text>
-            </Flex>
+            </div>
           ))}
         </div>
       </div>
@@ -302,7 +301,7 @@ const TextPage: FC = () => (
         </h3>
         <div className="space-y-3">
           {(['foreground', 'muted', 'primary', 'destructive', 'success'] as const).map((c) => (
-            <Flex key={c} align="center" gap={4}>
+            <div key={c} className="flex flex-col gap-2 sm:flex-row sm:items-center sm:gap-4">
               <Text
                 family="mono"
                 size="xs"
@@ -324,10 +323,10 @@ const TextPage: FC = () => (
               >
                 Dutchy Design System
               </Text>
-            </Flex>
+            </div>
           ))}
           <div className="bg-foreground p-4 mt-4">
-            <Flex align="center" gap={4}>
+            <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:gap-4">
               <Text
                 family="mono"
                 size="xs"
@@ -348,7 +347,7 @@ const TextPage: FC = () => (
               >
                 Dutchy Design System
               </Text>
-            </Flex>
+            </div>
           </div>
         </div>
       </div>

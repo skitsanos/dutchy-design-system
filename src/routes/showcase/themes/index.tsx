@@ -1,5 +1,6 @@
 import Button from '@/components/Button';
 import FeatureGrid from '@/components/FeatureGrid';
+import Flex from '@/components/Flex';
 import Footer from '@/components/Footer';
 import Form from '@/components/Form';
 import Header from '@/components/Header';
@@ -40,37 +41,46 @@ const ThemesPage = () => {
         {/* Theme Switcher Controls */}
         <div className="border-b border-border bg-muted/30">
           <div className="container mx-auto px-4 md:px-6 py-4">
-            <div className="flex items-center justify-center gap-4">
+            <Flex align="center" justify="center" gap={4}>
               <span className="text-sm font-bold uppercase tracking-wider text-muted-foreground">
                 Theme:
               </span>
-              <div className="flex gap-2">
-                <button
+              <Flex gap={2}>
+                <Button
                   type="button"
-                  className="w-8 h-8 hover:scale-110 transition-transform"
+                  variant="ghost"
+                  icon
+                  size="sm"
+                  className="w-8 h-8 p-0 hover:scale-110 transition-transform"
                   style={{ backgroundColor: 'hsl(25 95% 53%)' }}
                   aria-label="Dutch Orange theme"
                   title="Dutch Orange"
                   data-theme-switch="orange"
                 />
-                <button
+                <Button
                   type="button"
-                  className="w-8 h-8 hover:scale-110 transition-transform"
+                  variant="ghost"
+                  icon
+                  size="sm"
+                  className="w-8 h-8 p-0 hover:scale-110 transition-transform"
                   style={{ backgroundColor: 'hsl(263 70% 58%)' }}
                   aria-label="Royal Purple theme"
                   title="Royal Purple"
                   data-theme-switch="purple"
                 />
-                <button
+                <Button
                   type="button"
-                  className="w-8 h-8 hover:scale-110 transition-transform"
+                  variant="ghost"
+                  icon
+                  size="sm"
+                  className="w-8 h-8 p-0 hover:scale-110 transition-transform"
                   style={{ backgroundColor: 'hsl(0 84% 50%)' }}
                   aria-label="Crimson Red theme"
                   title="Crimson Red"
                   data-theme-switch="crimson"
                 />
-              </div>
-            </div>
+              </Flex>
+            </Flex>
           </div>
         </div>
 
@@ -90,10 +100,10 @@ const ThemesPage = () => {
                 Switch between Dutch Orange, Royal Purple, and Crimson Red themes using the buttons
                 above.
               </p>
-              <div className="flex flex-wrap gap-4">
+              <Flex wrap gap={4}>
                 <Button variant="primary">Primary Button</Button>
                 <Button variant="outline">Secondary Button</Button>
-              </div>
+              </Flex>
             </div>
           </div>
         </section>
@@ -181,27 +191,24 @@ const ThemesPage = () => {
               </h2>
             </div>
 
-            <div className="flex flex-wrap gap-6">
+            <Flex wrap gap={6}>
               <Button variant="primary">Primary</Button>
-              <a
-                href="#"
-                className="bg-background text-foreground px-8 py-3 font-bold uppercase tracking-wide hover:bg-background/90 transition-colors inline-flex items-center"
-              >
+              <Button variant="secondary" className="bg-background text-foreground">
                 Secondary
-              </a>
-              <a
-                href="#"
-                className="border-2 border-background text-background px-8 py-3 font-bold uppercase tracking-wide hover:bg-background hover:text-foreground transition-colors inline-flex items-center"
+              </Button>
+              <Button
+                variant="outline"
+                className="border-background text-background hover:bg-background hover:text-foreground"
               >
                 Outline
-              </a>
-              <a
-                href="#"
-                className="text-background px-8 py-3 font-bold uppercase tracking-wide hover:text-primary transition-colors inline-flex items-center"
+              </Button>
+              <Button
+                variant="ghost"
+                className="text-background hover:bg-transparent hover:text-primary"
               >
                 Ghost
-              </a>
-            </div>
+              </Button>
+            </Flex>
           </div>
         </section>
 

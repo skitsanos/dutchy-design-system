@@ -3,6 +3,7 @@ import Activity from '@/components/Activity';
 import Badge from '@/components/Badge';
 import Button from '@/components/Button';
 import DataTable from '@/components/DataTable';
+import Flex from '@/components/Flex';
 import Icon from '@/components/Icon';
 import Input from '@/components/Input';
 import Layout from '@/components/Layout';
@@ -26,7 +27,7 @@ const AdminDashboardPage: FC<{ request: Request }> = () => {
         '/assets/js/badge-close.js',
       ]}
     >
-      <div className="min-h-screen flex">
+      <Flex className="min-h-screen">
         <Sidebar
           brand="Admin"
           brandHref="/showcase/admin"
@@ -45,10 +46,10 @@ const AdminDashboardPage: FC<{ request: Request }> = () => {
         />
 
         {/* Main Content */}
-        <div className="flex-1 flex flex-col">
+        <Flex direction="col" className="flex-1">
           {/* Header */}
           <header className="bg-background border-b-4 border-primary">
-            <div className="px-6 h-16 flex items-center justify-between">
+            <Flex align="center" justify="between" className="px-6 h-16">
               {/* Mobile menu button */}
               <Button
                 variant="ghost"
@@ -62,7 +63,7 @@ const AdminDashboardPage: FC<{ request: Request }> = () => {
               </Button>
 
               {/* Search */}
-              <div className="hidden md:block relative flex-1 max-w-md">
+              <div className="hidden md:block relative grow max-w-md">
                 <Input type="search" placeholder="Search..." className="pl-10 pr-4 py-2 text-sm" />
                 <Icon
                   name="search"
@@ -72,7 +73,7 @@ const AdminDashboardPage: FC<{ request: Request }> = () => {
               </div>
 
               {/* Right side */}
-              <div className="flex items-center gap-4">
+              <Flex align="center" gap={4}>
                 {/* Notifications */}
                 <Tooltip text="Notifications">
                   <Button variant="ghost" icon size="sm" id="notifBell" className="relative">
@@ -82,14 +83,14 @@ const AdminDashboardPage: FC<{ request: Request }> = () => {
                 </Tooltip>
 
                 {/* Profile */}
-                <div className="flex items-center gap-3">
-                  <div className="w-8 h-8 bg-foreground flex items-center justify-center">
+                <Flex align="center" gap={3}>
+                  <Flex align="center" justify="center" className="w-8 h-8 bg-foreground">
                     <span className="text-background text-sm font-bold">JD</span>
-                  </div>
+                  </Flex>
                   <span className="hidden md:block text-sm font-medium">John Doe</span>
-                </div>
-              </div>
-            </div>
+                </Flex>
+              </Flex>
+            </Flex>
           </header>
 
           {/* Page Content */}
@@ -132,12 +133,16 @@ const AdminDashboardPage: FC<{ request: Request }> = () => {
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
               {/* Recent Orders */}
               <div className="lg:col-span-2 border-l-4 border-primary">
-                <div className="bg-background border-b border-border px-6 py-4 flex items-center justify-between">
+                <Flex
+                  align="center"
+                  justify="between"
+                  className="bg-background border-b border-border px-6 py-4"
+                >
                   <h2 className="font-display text-lg font-bold uppercase">Recent Orders</h2>
                   <Button variant="outline" size="sm" id="skeletonToggle">
                     Toggle Loading
                   </Button>
-                </div>
+                </Flex>
                 <DataTable
                   bordered={false}
                   columns={[
@@ -217,8 +222,8 @@ const AdminDashboardPage: FC<{ request: Request }> = () => {
               />
             </div>
           </main>
-        </div>
-      </div>
+        </Flex>
+      </Flex>
 
       <ToastContainer />
     </Layout>

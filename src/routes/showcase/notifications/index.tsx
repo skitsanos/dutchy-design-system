@@ -5,6 +5,7 @@ import Button from '@/components/Button';
 import Checkbox from '@/components/Checkbox';
 import Drawer from '@/components/Drawer';
 import EmptyState from '@/components/EmptyState';
+import Flex from '@/components/Flex';
 import Icon from '@/components/Icon';
 import Input from '@/components/Input';
 import Layout from '@/components/Layout';
@@ -74,7 +75,7 @@ const NotificationsPage: FC<{ request: Request }> = () => {
         '/assets/js/badge-close.js',
       ]}
     >
-      <div className="min-h-screen flex">
+      <Flex className="min-h-screen">
         {/* Sidebar */}
         <Sidebar
           brand="Admin"
@@ -88,14 +89,14 @@ const NotificationsPage: FC<{ request: Request }> = () => {
         />
 
         {/* Main Content */}
-        <div className="flex-1 flex flex-col">
+        <Flex direction="col" className="flex-1">
           {/* Header */}
           <header className="bg-background border-b-4 border-primary">
-            <div className="px-6 h-16 flex items-center justify-between">
+            <Flex align="center" justify="between" className="px-6 h-16">
               <div className="hidden md:block font-display text-lg font-bold uppercase tracking-tight">
                 Notification Center
               </div>
-              <div className="flex items-center gap-4">
+              <Flex align="center" gap={4}>
                 <Tooltip text="Preferences">
                   <Button
                     variant="ghost"
@@ -107,11 +108,11 @@ const NotificationsPage: FC<{ request: Request }> = () => {
                     <Icon name="settings" />
                   </Button>
                 </Tooltip>
-                <div className="w-8 h-8 bg-foreground flex items-center justify-center">
+                <Flex align="center" justify="center" className="w-8 h-8 bg-foreground">
                   <span className="text-background text-sm font-bold">JD</span>
-                </div>
-              </div>
-            </div>
+                </Flex>
+              </Flex>
+            </Flex>
           </header>
 
           <main className="flex-1 p-6">
@@ -130,7 +131,7 @@ const NotificationsPage: FC<{ request: Request }> = () => {
               <p className="font-display font-bold uppercase text-sm tracking-wider mb-3">
                 Toast Demo
               </p>
-              <div className="flex flex-wrap gap-2">
+              <Flex wrap gap={2}>
                 <Button
                   size="sm"
                   className="bg-success text-success-foreground hover:bg-success/90"
@@ -166,7 +167,7 @@ const NotificationsPage: FC<{ request: Request }> = () => {
                 >
                   Warning
                 </Button>
-              </div>
+              </Flex>
             </div>
 
             {/* Tabs + Notification Content */}
@@ -178,7 +179,7 @@ const NotificationsPage: FC<{ request: Request }> = () => {
                   label: 'All',
                   content: (
                     <>
-                      <div className="flex items-center justify-between mb-4">
+                      <Flex align="center" justify="between" className="mb-4">
                         <p className="text-sm text-muted-foreground">
                           <span id="notifCount">4</span> notifications
                         </p>
@@ -193,7 +194,7 @@ const NotificationsPage: FC<{ request: Request }> = () => {
                             Clear All
                           </Button>
                         </Tooltip>
-                      </div>
+                      </Flex>
                       <div className="space-y-2">
                         {notifications.map((notif) => (
                           <div
@@ -203,22 +204,22 @@ const NotificationsPage: FC<{ request: Request }> = () => {
                             data-notif={notif.id}
                             data-modal-open="content-modal"
                           >
-                            <div className="flex items-start justify-between">
-                              <div className="flex-1">
-                                <div className="flex items-center gap-2 mb-1">
+                            <Flex align="start" justify="between">
+                              <div className="grow">
+                                <Flex align="center" gap={2} className="mb-1">
                                   <Badge variant={notif.typeVariant} className="text-[10px]">
                                     {notif.type}
                                   </Badge>
                                   <span className="text-xs text-muted-foreground font-mono">
                                     {notif.time}
                                   </span>
-                                </div>
+                                </Flex>
                                 <p className="font-medium text-sm">{notif.title}</p>
                                 <p className="text-xs text-muted-foreground mt-1">
                                   {notif.description}
                                 </p>
                               </div>
-                              <div className="flex gap-1 ml-4">
+                              <Flex gap={1} className="ml-4">
                                 <Tooltip text="Archive">
                                   <Button
                                     variant="ghost"
@@ -239,8 +240,8 @@ const NotificationsPage: FC<{ request: Request }> = () => {
                                     <Icon name="trash" size="sm" />
                                   </Button>
                                 </Tooltip>
-                              </div>
-                            </div>
+                              </Flex>
+                            </Flex>
                           </div>
                         ))}
                       </div>
@@ -264,22 +265,22 @@ const NotificationsPage: FC<{ request: Request }> = () => {
                               data-notif={notif.id}
                               data-modal-open="content-modal"
                             >
-                              <div className="flex items-start justify-between">
-                                <div className="flex-1">
-                                  <div className="flex items-center gap-2 mb-1">
+                              <Flex align="start" justify="between">
+                                <div className="grow">
+                                  <Flex align="center" gap={2} className="mb-1">
                                     <Badge variant={notif.typeVariant} className="text-[10px]">
                                       {notif.type}
                                     </Badge>
                                     <span className="text-xs text-muted-foreground font-mono">
                                       {notif.time}
                                     </span>
-                                  </div>
+                                  </Flex>
                                   <p className="font-medium text-sm">{notif.title}</p>
                                   <p className="text-xs text-muted-foreground mt-1">
                                     {notif.description}
                                   </p>
                                 </div>
-                                <div className="flex gap-1 ml-4">
+                                <Flex gap={1} className="ml-4">
                                   <Tooltip text="Archive">
                                     <Button
                                       variant="ghost"
@@ -300,8 +301,8 @@ const NotificationsPage: FC<{ request: Request }> = () => {
                                       <Icon name="trash" size="sm" />
                                     </Button>
                                   </Tooltip>
-                                </div>
-                              </div>
+                                </Flex>
+                              </Flex>
                             </div>
                           ))}
                       </div>
@@ -329,8 +330,8 @@ const NotificationsPage: FC<{ request: Request }> = () => {
               &copy; 2025 Dutchy Design System
             </p>
           </footer>
-        </div>
-      </div>
+        </Flex>
+      </Flex>
 
       {/* Content Modal */}
       <Modal id="content-modal" title="Notification Details">
@@ -358,9 +359,13 @@ const NotificationsPage: FC<{ request: Request }> = () => {
         }
       >
         <div className="text-center">
-          <div className="w-12 h-12 bg-destructive/10 flex items-center justify-center mx-auto mb-4">
+          <Flex
+            align="center"
+            justify="center"
+            className="w-12 h-12 bg-destructive/10 mx-auto mb-4"
+          >
             <Icon name="warning" className="text-destructive" size="lg" />
-          </div>
+          </Flex>
           <p className="text-sm text-muted-foreground">
             This action cannot be undone. All notifications will be permanently removed.
           </p>

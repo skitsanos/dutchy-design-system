@@ -31,12 +31,14 @@ export interface StaticAssetsConfig {
   assetsPath: string;
   urlPrefix?: string;
   cacheControl?: string;
+  headers?: HeadersInit;
 }
 
 const staticAssets = ({
   assetsPath,
   urlPrefix = '/assets',
   cacheControl = 'public, max-age=31536000, immutable',
+  headers = {},
 }: StaticAssetsConfig) => {
   return async (req: Request): Promise<Response> => {
     const url = new URL(req.url);
@@ -58,6 +60,7 @@ const staticAssets = ({
         'Content-Length': String(file.size),
         'Cache-Control': cacheControl,
         'Accept-Ranges': 'bytes',
+        ...headers,
       },
     });
   };

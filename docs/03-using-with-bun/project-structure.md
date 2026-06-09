@@ -78,7 +78,7 @@ my-dutchy-app/
 │   └── products.json
 ├── package.json
 ├── tsconfig.json
-├── tailwind.config.js
+├── biome.jsonc
 └── README.md
 ```
 

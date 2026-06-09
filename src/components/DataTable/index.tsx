@@ -1,4 +1,4 @@
-import type { FC, ReactNode } from 'react';
+import type { FC, HTMLAttributes, ReactNode } from 'react';
 import Spinner from '@/components/Spinner';
 
 interface Column {
@@ -11,16 +11,22 @@ interface Column {
   className?: string;
 }
 
+type TableRowProps = HTMLAttributes<HTMLTableRowElement> & {
+  [key: `data-${string}`]: string | number | boolean | undefined;
+};
+
 interface DataTableProps {
   columns: Column[];
   data: Record<string, ReactNode>[];
   id?: string;
+  tbodyId?: string;
   className?: string;
   emptyText?: ReactNode;
   striped?: boolean;
   bordered?: boolean;
   headerClassName?: string;
   loading?: boolean;
+  getRowProps?: (row: Record<string, ReactNode>, index: number) => TableRowProps;
 }
 
 const alignClass = {
@@ -33,12 +39,14 @@ const DataTable: FC<DataTableProps> = ({
   columns,
   data,
   id,
+  tbodyId,
   className = '',
   emptyText,
   striped = false,
   bordered = true,
   headerClassName,
   loading = false,
+  getRowProps,
 }) => {
   return (
     <div
@@ -85,7 +93,7 @@ const DataTable: FC<DataTableProps> = ({
             ))}
           </tr>
         </thead>
-        <tbody>
+        <tbody {...(tbodyId ? { id: tbodyId } : {})}>
           {data.length === 0 ? (
             <tr>
               <td colSpan={columns.length} className="px-6 py-16 text-center">
@@ -97,30 +105,36 @@ const DataTable: FC<DataTableProps> = ({
               </td>
             </tr>
           ) : (
-            data.map((row, rowIndex) => (
-              <tr
-                key={rowIndex}
-                className={`border-b border-border hover:bg-muted/50 transition-colors ${
-                  striped && rowIndex % 2 === 1 ? 'bg-muted/30' : ''
-                }`}
-                data-row={JSON.stringify(row)}
-              >
-                {columns.map((col) => {
-                  const value = row[col.key];
-                  const rendered = col.render ? col.render(value, row, rowIndex) : value;
+            data.map((row, rowIndex) => {
+              const rowProps = getRowProps?.(row, rowIndex) ?? {};
+              const { className: rowClassName = '', ...restRowProps } = rowProps;
 
-                  return (
-                    <td
-                      key={col.key}
-                      className={`px-6 py-4 text-sm ${alignClass[col.align ?? 'left']} ${col.className ?? ''}`}
-                      {...(col.width ? { style: { width: col.width } } : {})}
-                    >
-                      {rendered}
-                    </td>
-                  );
-                })}
-              </tr>
-            ))
+              return (
+                <tr
+                  key={rowIndex}
+                  className={`border-b border-border hover:bg-muted/50 transition-colors ${
+                    striped && rowIndex % 2 === 1 ? 'bg-muted/30' : ''
+                  } ${rowClassName}`}
+                  data-row={JSON.stringify(row)}
+                  {...restRowProps}
+                >
+                  {columns.map((col) => {
+                    const value = row[col.key];
+                    const rendered = col.render ? col.render(value, row, rowIndex) : value;
+
+                    return (
+                      <td
+                        key={col.key}
+                        className={`px-6 py-4 text-sm ${alignClass[col.align ?? 'left']} ${col.className ?? ''}`}
+                        {...(col.width ? { style: { width: col.width } } : {})}
+                      >
+                        {rendered}
+                      </td>
+                    );
+                  })}
+                </tr>
+              );
+            })
           )}
         </tbody>
       </table>

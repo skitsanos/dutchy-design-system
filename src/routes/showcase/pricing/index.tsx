@@ -1,4 +1,7 @@
 import Accordion from '@/components/Accordion';
+import Button from '@/components/Button';
+import DataTable from '@/components/DataTable';
+import Flex from '@/components/Flex';
 import Footer from '@/components/Footer';
 import Header from '@/components/Header';
 import Icon from '@/components/Icon';
@@ -51,12 +54,13 @@ const PricingPage = () => {
               library and design tokens.
             </p>
             {/* Toggle */}
-            <div className="flex items-center justify-center gap-4" data-pricing-toggle="">
-              <button type="button" className="font-bold text-foreground" data-pricing-monthly="">
+            <Flex align="center" justify="center" gap={4} data-pricing-toggle="">
+              <Button variant="ghost" size="sm" className="font-bold" data-pricing-monthly="">
                 Monthly
-              </button>
-              <button
-                type="button"
+              </Button>
+              <Button
+                variant="ghost"
+                icon
                 className="w-14 h-8 bg-foreground flex items-center p-1 cursor-pointer"
                 data-pricing-switch=""
                 role="switch"
@@ -64,9 +68,10 @@ const PricingPage = () => {
                 aria-label="Toggle between monthly and yearly billing"
               >
                 <span className="w-6 h-6 bg-primary transform translate-x-0 transition-transform" />
-              </button>
-              <button
-                type="button"
+              </Button>
+              <Button
+                variant="ghost"
+                size="sm"
                 className="font-bold text-muted-foreground"
                 data-pricing-yearly=""
               >
@@ -74,8 +79,8 @@ const PricingPage = () => {
                 <span className="ml-2 bg-primary/20 text-primary px-2 py-1 font-mono text-xs">
                   Save 20%
                 </span>
-              </button>
-            </div>
+              </Button>
+            </Flex>
           </div>
         </section>
 
@@ -84,7 +89,7 @@ const PricingPage = () => {
           <div className="container mx-auto px-4 md:px-6">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-0.5 bg-border max-w-5xl mx-auto">
               {/* Free Plan */}
-              <div className="bg-background p-8 flex flex-col">
+              <Flex direction="col" className="bg-background p-8">
                 <div className="mb-8">
                   <h2 className="font-display text-2xl font-bold uppercase tracking-tight mb-2">
                     Starter
@@ -97,7 +102,7 @@ const PricingPage = () => {
                   </p>
                 </div>
                 <div className="mb-8">
-                  <div className="flex items-baseline gap-1">
+                  <Flex align="baseline" gap={1}>
                     <span
                       className="font-display text-5xl font-bold"
                       data-price-monthly="$0"
@@ -108,7 +113,7 @@ const PricingPage = () => {
                     <span className="text-muted-foreground" data-period="">
                       /month
                     </span>
-                  </div>
+                  </Flex>
                 </div>
                 <ul className="space-y-4 mb-8 flex-grow">
                   <li className="flex items-center gap-3">
@@ -142,10 +147,10 @@ const PricingPage = () => {
                 >
                   Get Started
                 </a>
-              </div>
+              </Flex>
 
               {/* Pro Plan - Featured */}
-              <div className="bg-foreground text-background p-8 flex flex-col relative">
+              <Flex direction="col" className="bg-foreground text-background p-8 relative">
                 <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-primary text-primary-foreground px-4 py-1 font-mono text-xs font-bold uppercase tracking-widest">
                   Most Popular
                 </div>
@@ -158,7 +163,7 @@ const PricingPage = () => {
                   </p>
                 </div>
                 <div className="mb-8">
-                  <div className="flex items-baseline gap-1">
+                  <Flex align="baseline" gap={1}>
                     <span
                       className="font-display text-5xl font-bold"
                       data-price-monthly="$29"
@@ -169,7 +174,7 @@ const PricingPage = () => {
                     <span className="text-background/60" data-period="">
                       /month
                     </span>
-                  </div>
+                  </Flex>
                 </div>
                 <ul className="space-y-4 mb-8 flex-grow">
                   <li className="flex items-center gap-3">
@@ -203,10 +208,10 @@ const PricingPage = () => {
                 >
                   Start Free Trial
                 </a>
-              </div>
+              </Flex>
 
               {/* Enterprise Plan */}
-              <div className="bg-background p-8 flex flex-col">
+              <Flex direction="col" className="bg-background p-8">
                 <div className="mb-8">
                   <h2 className="font-display text-2xl font-bold uppercase tracking-tight mb-2">
                     Enterprise
@@ -219,7 +224,7 @@ const PricingPage = () => {
                   </p>
                 </div>
                 <div className="mb-8">
-                  <div className="flex items-baseline gap-1">
+                  <Flex align="baseline" gap={1}>
                     <span
                       className="font-display text-5xl font-bold"
                       data-price-monthly="$99"
@@ -230,7 +235,7 @@ const PricingPage = () => {
                     <span className="text-muted-foreground" data-period="">
                       /month
                     </span>
-                  </div>
+                  </Flex>
                 </div>
                 <ul className="space-y-4 mb-8 flex-grow">
                   <li className="flex items-center gap-3">
@@ -264,7 +269,7 @@ const PricingPage = () => {
                 >
                   Contact Sales
                 </a>
-              </div>
+              </Flex>
             </div>
           </div>
         </section>
@@ -281,106 +286,88 @@ const PricingPage = () => {
               </p>
             </div>
 
-            <div className="max-w-5xl mx-auto overflow-x-auto">
-              <table
-                className="w-full border-collapse"
-                aria-label="Feature comparison across pricing plans"
-              >
-                <thead>
-                  <tr className="bg-foreground text-background">
-                    <th
-                      scope="col"
-                      className="text-left p-4 font-display font-bold uppercase text-sm tracking-wider"
-                    >
-                      Feature
-                    </th>
-                    <th
-                      scope="col"
-                      className="text-center p-4 font-display font-bold uppercase text-sm tracking-wider"
-                    >
-                      Starter
-                    </th>
-                    <th
-                      scope="col"
-                      className="text-center p-4 font-display font-bold uppercase text-sm tracking-wider bg-primary text-primary-foreground"
-                    >
-                      Pro
-                    </th>
-                    <th
-                      scope="col"
-                      className="text-center p-4 font-display font-bold uppercase text-sm tracking-wider"
-                    >
-                      Enterprise
-                    </th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr className="border-b border-border bg-background">
-                    <td className="p-4 font-bold">Core Components</td>
-                    <td className="p-4 text-center">
-                      <Icon name="check" className="w-6 h-6 text-primary mx-auto" />
-                      <span className="sr-only">Included</span>
-                    </td>
-                    <td className="p-4 text-center bg-primary/5">
-                      <Icon name="check" className="w-6 h-6 text-primary mx-auto" />
-                      <span className="sr-only">Included</span>
-                    </td>
-                    <td className="p-4 text-center">
-                      <Icon name="check" className="w-6 h-6 text-primary mx-auto" />
-                      <span className="sr-only">Included</span>
-                    </td>
-                  </tr>
-                  <tr className="border-b border-border bg-muted/50">
-                    <td className="p-4 font-bold">Design Tokens</td>
-                    <td className="p-4 text-center font-mono text-sm">Basic</td>
-                    <td className="p-4 text-center font-mono text-sm bg-primary/5">Full</td>
-                    <td className="p-4 text-center font-mono text-sm">Custom</td>
-                  </tr>
-                  <tr className="border-b border-border bg-background">
-                    <td className="p-4 font-bold">Projects</td>
-                    <td className="p-4 text-center font-mono text-sm">1</td>
-                    <td className="p-4 text-center font-mono text-sm bg-primary/5">Unlimited</td>
-                    <td className="p-4 text-center font-mono text-sm">Unlimited</td>
-                  </tr>
-                  <tr className="border-b border-border bg-muted/50">
-                    <td className="p-4 font-bold">Premium Templates</td>
-                    <td className="p-4 text-center">
-                      <Icon name="x" className="w-6 h-6 text-muted-foreground mx-auto" />
-                      <span className="sr-only">Not included</span>
-                    </td>
-                    <td className="p-4 text-center bg-primary/5">
-                      <Icon name="check" className="w-6 h-6 text-primary mx-auto" />
-                      <span className="sr-only">Included</span>
-                    </td>
-                    <td className="p-4 text-center">
-                      <Icon name="check" className="w-6 h-6 text-primary mx-auto" />
-                      <span className="sr-only">Included</span>
-                    </td>
-                  </tr>
-                  <tr className="border-b border-border bg-background">
-                    <td className="p-4 font-bold">Figma Files</td>
-                    <td className="p-4 text-center">
-                      <Icon name="x" className="w-6 h-6 text-muted-foreground mx-auto" />
-                      <span className="sr-only">Not included</span>
-                    </td>
-                    <td className="p-4 text-center bg-primary/5">
-                      <Icon name="check" className="w-6 h-6 text-primary mx-auto" />
-                      <span className="sr-only">Included</span>
-                    </td>
-                    <td className="p-4 text-center">
-                      <Icon name="check" className="w-6 h-6 text-primary mx-auto" />
-                      <span className="sr-only">Included</span>
-                    </td>
-                  </tr>
-                  <tr className="border-b border-border bg-muted/50">
-                    <td className="p-4 font-bold">Support</td>
-                    <td className="p-4 text-center font-mono text-sm">Community</td>
-                    <td className="p-4 text-center font-mono text-sm bg-primary/5">Email</td>
-                    <td className="p-4 text-center font-mono text-sm">Dedicated</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
+            <DataTable
+              className="max-w-5xl mx-auto"
+              headerClassName="bg-foreground text-background"
+              columns={[
+                { key: 'feature', label: 'Feature', className: 'font-bold' },
+                {
+                  key: 'starter',
+                  label: 'Starter',
+                  align: 'center',
+                  render: (value) =>
+                    value === 'included' ? (
+                      <>
+                        <Icon name="check" className="w-6 h-6 text-primary mx-auto" />
+                        <span className="sr-only">Included</span>
+                      </>
+                    ) : value === 'excluded' ? (
+                      <>
+                        <Icon name="x" className="w-6 h-6 text-muted-foreground mx-auto" />
+                        <span className="sr-only">Not included</span>
+                      </>
+                    ) : (
+                      <span className="font-mono text-sm">{value}</span>
+                    ),
+                },
+                {
+                  key: 'pro',
+                  label: 'Pro',
+                  align: 'center',
+                  render: (value) =>
+                    value === 'included' ? (
+                      <>
+                        <Icon name="check" className="w-6 h-6 text-primary mx-auto" />
+                        <span className="sr-only">Included</span>
+                      </>
+                    ) : (
+                      <span className="font-mono text-sm">{value}</span>
+                    ),
+                },
+                {
+                  key: 'enterprise',
+                  label: 'Enterprise',
+                  align: 'center',
+                  render: (value) =>
+                    value === 'included' ? (
+                      <>
+                        <Icon name="check" className="w-6 h-6 text-primary mx-auto" />
+                        <span className="sr-only">Included</span>
+                      </>
+                    ) : (
+                      <span className="font-mono text-sm">{value}</span>
+                    ),
+                },
+              ]}
+              data={[
+                {
+                  feature: 'Core Components',
+                  starter: 'included',
+                  pro: 'included',
+                  enterprise: 'included',
+                },
+                { feature: 'Design Tokens', starter: 'Basic', pro: 'Full', enterprise: 'Custom' },
+                { feature: 'Projects', starter: '1', pro: 'Unlimited', enterprise: 'Unlimited' },
+                {
+                  feature: 'Premium Templates',
+                  starter: 'excluded',
+                  pro: 'included',
+                  enterprise: 'included',
+                },
+                {
+                  feature: 'Figma Files',
+                  starter: 'excluded',
+                  pro: 'included',
+                  enterprise: 'included',
+                },
+                {
+                  feature: 'Support',
+                  starter: 'Community',
+                  pro: 'Email',
+                  enterprise: 'Dedicated',
+                },
+              ]}
+            />
           </div>
         </section>
 
@@ -431,7 +418,7 @@ const PricingPage = () => {
             <p className="text-background/70 max-w-xl mx-auto mb-8">
               Join thousands of developers building with Dutchy Design System.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Flex direction="col" gap={4} className="sm:flex-row justify-center">
               <a
                 href="/showcase/register"
                 className="bg-primary text-primary-foreground px-8 py-4 font-bold uppercase tracking-wider hover:bg-primary/90 transition-colors inline-flex items-center justify-center gap-2"
@@ -445,7 +432,7 @@ const PricingPage = () => {
               >
                 Contact Sales
               </a>
-            </div>
+            </Flex>
           </div>
         </section>
       </main>

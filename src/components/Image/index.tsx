@@ -6,7 +6,7 @@ interface ImageProps {
   caption?: string;
   captionSource?: string;
   expandable?: boolean;
-  aspect?: 'square' | 'video' | '4/3';
+  aspect?: 'square' | 'video' | '4/3' | '16/10';
   height?: string;
   className?: string;
 }
@@ -15,6 +15,7 @@ const aspectMap: Record<string, string> = {
   square: 'aspect-square',
   video: 'aspect-video',
   '4/3': 'aspect-[4/3]',
+  '16/10': 'aspect-[16/10]',
 };
 
 const Image: FC<ImageProps> = ({

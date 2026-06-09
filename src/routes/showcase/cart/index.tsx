@@ -1,8 +1,10 @@
 import type { FC } from 'react';
 import Button from '@/components/Button';
+import Flex from '@/components/Flex';
 import Footer from '@/components/Footer';
 import Header from '@/components/Header';
 import Icon from '@/components/Icon';
+import Image from '@/components/Image';
 import Input from '@/components/Input';
 import Layout from '@/components/Layout';
 import SectionTitle from '@/components/SectionTitle';
@@ -39,7 +41,7 @@ const CartPage: FC<{ request: Request }> = () => {
     {
       name: 'Backpack',
       price: '$199.00',
-      image: 'https://images.unsplash.com/photo-1491553895911-0055uj2f6dc4?w=400',
+      image: 'https://images.unsplash.com/photo-1622560480605-d83c853bc5c3?w=400',
     },
     {
       name: 'Belt',
@@ -99,19 +101,15 @@ const CartPage: FC<{ request: Request }> = () => {
                   className={`py-8 ${index < cartItems.length - 1 ? 'border-b-2 border-border' : ''} ${index === 0 ? 'first:pt-0' : ''}`}
                   data-cart-item=""
                 >
-                  <div className="flex gap-6">
+                  <Flex direction="col" gap={6} className="sm:flex-row">
                     {/* Product Image */}
                     <div className="w-32 h-32 bg-muted shrink-0">
-                      <img
-                        src={item.image}
-                        alt={item.name}
-                        className="w-full h-full object-cover"
-                      />
+                      <Image src={item.image} alt={item.name} aspect="square" />
                     </div>
 
                     {/* Product Details */}
-                    <div className="flex-1">
-                      <div className="flex justify-between gap-4">
+                    <div className="grow min-w-0">
+                      <Flex justify="between" gap={4}>
                         <div>
                           <h3 className="font-display text-lg font-bold uppercase">{item.name}</h3>
                           <p className="text-muted-foreground text-sm mt-1">{item.variant}</p>
@@ -123,11 +121,11 @@ const CartPage: FC<{ request: Request }> = () => {
                         >
                           ${(item.priceValue * item.quantity).toFixed(2)}
                         </p>
-                      </div>
+                      </Flex>
 
-                      <div className="flex items-center justify-between mt-6">
+                      <Flex align="center" justify="between" className="mt-6">
                         {/* Quantity */}
-                        <div className="flex items-center border-2 border-border">
+                        <Flex align="center" className="border-2 border-border">
                           <Button
                             variant="ghost"
                             icon
@@ -154,7 +152,7 @@ const CartPage: FC<{ request: Request }> = () => {
                           >
                             <Icon name="plus" size="sm" />
                           </Button>
-                        </div>
+                        </Flex>
 
                         {/* Remove */}
                         <Button
@@ -165,9 +163,9 @@ const CartPage: FC<{ request: Request }> = () => {
                         >
                           Remove
                         </Button>
-                      </div>
+                      </Flex>
                     </div>
-                  </div>
+                  </Flex>
                 </div>
               ))}
             </div>
@@ -179,34 +177,34 @@ const CartPage: FC<{ request: Request }> = () => {
 
                 {/* Summary Lines */}
                 <div className="space-y-4 mb-8">
-                  <div className="flex justify-between">
+                  <Flex justify="between">
                     <span className="text-muted-foreground">Subtotal</span>
                     <span className="font-medium" data-cart-subtotal="">
                       $626.00
                     </span>
-                  </div>
-                  <div className="flex justify-between">
+                  </Flex>
+                  <Flex justify="between">
                     <span className="text-muted-foreground">Shipping</span>
                     <span className="font-medium" data-cart-shipping="15">
                       $15.00
                     </span>
-                  </div>
-                  <div className="flex justify-between">
+                  </Flex>
+                  <Flex justify="between">
                     <span className="text-muted-foreground">Tax</span>
                     <span className="font-medium" data-cart-tax="50.08">
                       $50.08
                     </span>
-                  </div>
+                  </Flex>
                 </div>
 
                 {/* Divider */}
                 <div className="border-t-2 border-border pt-4 mb-8">
-                  <div className="flex justify-between">
+                  <Flex justify="between">
                     <span className="font-display text-lg font-bold uppercase">Total</span>
                     <span className="font-display text-2xl font-bold" data-cart-total="">
                       $691.08
                     </span>
-                  </div>
+                  </Flex>
                 </div>
 
                 {/* Promo Code */}
@@ -233,16 +231,16 @@ const CartPage: FC<{ request: Request }> = () => {
 
               {/* Trust Badges */}
               <div className="mt-6 grid grid-cols-2 gap-4">
-                <div className="flex items-center gap-3 p-4 border-2 border-border">
+                <Flex align="center" gap={3} className="p-4 border-2 border-border">
                   <Icon name="lock" className="text-primary" size="lg" />
                   <span className="text-xs font-bold uppercase tracking-wide">Secure Checkout</span>
-                </div>
-                <div className="flex items-center gap-3 p-4 border-2 border-border">
+                </Flex>
+                <Flex align="center" gap={3} className="p-4 border-2 border-border">
                   <Icon name="credit-card" className="text-primary" size="lg" />
                   <span className="text-xs font-bold uppercase tracking-wide">
                     All Cards Accepted
                   </span>
-                </div>
+                </Flex>
               </div>
             </div>
           </div>
@@ -255,13 +253,7 @@ const CartPage: FC<{ request: Request }> = () => {
               {relatedProducts.map((product, index) => (
                 <div key={index} className="bg-background">
                   <a href="#" className="block">
-                    <div className="aspect-square bg-muted">
-                      <img
-                        src={product.image}
-                        alt={product.name}
-                        className="w-full h-full object-cover"
-                      />
-                    </div>
+                    <Image src={product.image} alt={product.name} aspect="square" />
                     <div className="p-6">
                       <h3 className="font-display text-lg font-bold uppercase hover:text-primary transition-colors">
                         {product.name}

@@ -51,16 +51,16 @@ const Stepper: FC<StepperProps> = ({
   if (variant === 'compact') {
     return (
       <nav aria-label="Progress" className={className}>
-        <Flex align="center" gap={2}>
+        <Flex align="center" gap={1} className="sm:gap-2">
           {steps.map((_, index) => {
             const stepNumber = index + 1;
             const isCompleted = stepNumber < currentStep;
             const isCurrent = stepNumber === currentStep;
 
             return (
-              <Flex key={index} align="center" gap={2}>
+              <Flex key={index} align="center" gap={1} className="sm:gap-2">
                 <div
-                  className={`w-8 h-8 flex items-center justify-center font-bold text-xs ${
+                  className={`w-7 h-7 sm:w-8 sm:h-8 flex items-center justify-center font-bold text-xs ${
                     isCompleted
                       ? 'bg-primary text-primary-foreground'
                       : isCurrent
@@ -72,7 +72,7 @@ const Stepper: FC<StepperProps> = ({
                 </div>
                 {index < steps.length - 1 && (
                   <div
-                    className={`w-8 h-0.5 ${stepNumber < currentStep ? 'bg-primary' : 'bg-border'}`}
+                    className={`w-5 sm:w-8 h-0.5 ${stepNumber < currentStep ? 'bg-primary' : 'bg-border'}`}
                   />
                 )}
               </Flex>
@@ -86,7 +86,7 @@ const Stepper: FC<StepperProps> = ({
   // Standard variant
   return (
     <div
-      className={`flex items-start ${className}`}
+      className={`flex items-start overflow-hidden ${className}`}
       data-stepper=""
       data-current-step={currentStep}
     >

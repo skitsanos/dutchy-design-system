@@ -2,6 +2,7 @@ import type { FC } from 'react';
 import Alert from '@/components/Alert';
 import Button from '@/components/Button';
 import Checkbox from '@/components/Checkbox';
+import Flex from '@/components/Flex';
 import Form from '@/components/Form';
 import Icon from '@/components/Icon';
 import Input from '@/components/Input';
@@ -26,7 +27,12 @@ const LoginPage: FC<{ request: Request }> = ({ request }) => {
     >
       <div className="min-h-screen grid grid-cols-1 lg:grid-cols-2">
         {/* Left: Branding Panel */}
-        <div className="hidden lg:flex flex-col justify-between p-12 bg-foreground text-background relative overflow-hidden">
+        <Flex
+          direction="col"
+          justify="between"
+          displayClassName="hidden lg:flex"
+          className="p-12 bg-foreground text-background relative overflow-hidden"
+        >
           {/* Decorative Elements */}
           <div className="absolute top-0 right-0 w-64 h-64 bg-primary/10" />
           <div className="absolute bottom-0 left-0 w-96 h-96 bg-primary/5" />
@@ -36,9 +42,13 @@ const LoginPage: FC<{ request: Request }> = ({ request }) => {
           {/* Logo */}
           <div className="relative z-10">
             <a href="/showcase" className="flex items-center gap-3">
-              <div className="bg-primary text-primary-foreground w-12 h-12 flex items-center justify-center font-display font-bold text-2xl">
+              <Flex
+                align="center"
+                justify="center"
+                className="bg-primary text-primary-foreground w-12 h-12 font-display font-bold text-2xl"
+              >
                 D.
-              </div>
+              </Flex>
               <span className="font-display font-bold text-3xl tracking-tighter uppercase text-background">
                 Dutchy
               </span>
@@ -64,27 +74,35 @@ const LoginPage: FC<{ request: Request }> = ({ request }) => {
               "Dutchy's bold design system has transformed how we approach UI development. The
               sharp, functional aesthetic is exactly what we needed."
             </p>
-            <div className="flex items-center gap-4">
-              <div className="w-10 h-10 bg-primary flex items-center justify-center font-display font-bold text-primary-foreground">
+            <Flex align="center" gap={4}>
+              <Flex
+                align="center"
+                justify="center"
+                className="w-10 h-10 bg-primary font-display font-bold text-primary-foreground"
+              >
                 JD
-              </div>
+              </Flex>
               <div>
                 <p className="font-bold">Jane Developer</p>
                 <p className="text-sm text-background/60">Lead Engineer @ TechCorp</p>
               </div>
-            </div>
+            </Flex>
           </div>
-        </div>
+        </Flex>
 
         {/* Right: Auth Form */}
-        <div className="flex items-center justify-center p-8 bg-background">
+        <Flex align="center" justify="center" className="p-8 bg-background">
           <div className="w-full max-w-md">
             {/* Mobile Logo */}
             <div className="lg:hidden mb-8 text-center">
               <a href="/showcase" className="inline-flex items-center gap-3">
-                <div className="bg-primary text-primary-foreground w-10 h-10 flex items-center justify-center font-display font-bold text-xl">
+                <Flex
+                  align="center"
+                  justify="center"
+                  className="bg-primary text-primary-foreground w-10 h-10 font-display font-bold text-xl"
+                >
                   D.
-                </div>
+                </Flex>
                 <span className="font-display font-bold text-2xl tracking-tighter uppercase text-foreground">
                   Dutchy
                 </span>
@@ -94,20 +112,21 @@ const LoginPage: FC<{ request: Request }> = ({ request }) => {
             {/* Auth Card */}
             <div className="bg-background">
               {/* Tab Switcher */}
-              <div className="flex border-b-4 border-border mb-8">
-                <button
+              <Flex className="border-b-4 border-border mb-8">
+                <Button
                   type="button"
-                  className="flex-1 py-4 font-display font-bold uppercase tracking-wider text-sm border-b-4 border-primary -mb-1 text-primary"
+                  variant="ghost"
+                  className="flex-1 py-4 h-auto font-display border-b-4 border-primary -mb-1 text-primary hover:bg-transparent"
                 >
                   Sign In
-                </button>
+                </Button>
                 <a
                   href="/showcase/register"
                   className="flex-1 py-4 font-display font-bold uppercase tracking-wider text-sm text-muted-foreground hover:text-foreground transition-colors text-center"
                 >
                   Sign Up
                 </a>
-              </div>
+              </Flex>
 
               {/* Error Message */}
               {error && (
@@ -131,7 +150,7 @@ const LoginPage: FC<{ request: Request }> = ({ request }) => {
 
                 {/* Password */}
                 <div>
-                  <div className="flex items-center justify-between mb-2">
+                  <Flex align="center" justify="between" className="mb-2">
                     <label
                       className="text-xs font-bold uppercase tracking-wider"
                       htmlFor="password"
@@ -144,7 +163,7 @@ const LoginPage: FC<{ request: Request }> = ({ request }) => {
                     >
                       Forgot?
                     </a>
-                  </div>
+                  </Flex>
                   <div className="relative" data-password-toggle="">
                     <Input
                       type="password"
@@ -160,9 +179,9 @@ const LoginPage: FC<{ request: Request }> = ({ request }) => {
                       type="button"
                       data-toggle-btn=""
                       aria-label="Toggle password visibility"
-                      className="absolute right-2 top-1/2 -translate-y-1/2 w-auto h-auto p-1"
+                      className="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 p-0"
                     >
-                      <Icon name="eye" />
+                      <Icon name="eye" size="sm" />
                     </Button>
                   </div>
                 </div>
@@ -177,13 +196,13 @@ const LoginPage: FC<{ request: Request }> = ({ request }) => {
               </Form>
 
               {/* Divider */}
-              <div className="flex items-center gap-4 my-8">
-                <div className="flex-1 h-px bg-border" />
+              <Flex align="center" gap={4} className="my-8">
+                <div className="grow h-px bg-border" />
                 <span className="font-mono text-xs text-muted-foreground uppercase tracking-wider">
                   Or continue with
                 </span>
-                <div className="flex-1 h-px bg-border" />
-              </div>
+                <div className="grow h-px bg-border" />
+              </Flex>
 
               {/* Social Buttons */}
               <div className="grid grid-cols-2 gap-4">
@@ -241,7 +260,12 @@ const LoginPage: FC<{ request: Request }> = ({ request }) => {
             </div>
 
             {/* Footer Links */}
-            <div className="mt-12 flex items-center justify-center gap-6 text-xs text-muted-foreground">
+            <Flex
+              align="center"
+              justify="center"
+              gap={6}
+              className="mt-12 text-xs text-muted-foreground"
+            >
               <a href="#" className="hover:text-foreground transition-colors">
                 Privacy Policy
               </a>
@@ -253,9 +277,9 @@ const LoginPage: FC<{ request: Request }> = ({ request }) => {
               <a href="#" className="hover:text-foreground transition-colors">
                 Help
               </a>
-            </div>
+            </Flex>
           </div>
-        </div>
+        </Flex>
       </div>
     </Layout>
   );
