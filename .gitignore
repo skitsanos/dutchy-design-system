@@ -4,6 +4,7 @@
 
 .DS_Store
 Thumbs.db
+*.zip
 
 # Node.js
 node_modules/
