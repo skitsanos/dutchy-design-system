@@ -1,148 +1,85 @@
 ---
 name: implement
-description: Orchestrate feature implementation by analyzing the codebase, decomposing work into parallel-safe units, and preparing an agent team handoff. Use when the user says "/implement", "implement this feature", "build this in parallel", asks to "spin up a team" for development, or references implementation plans and feature specs. Handles analysis and planning automatically via subagents, then provides ready-to-use agent team configuration for parallel execution.
-disable-model-invocation: true
+description: Prepare a Codex multi-agent implementation handoff only when the user explicitly says "/implement", asks to build in parallel, asks to spawn agents, or requests an implementation plan for parallel execution in this repository.
 ---
 
 # Implement
 
-Analyze a feature request, decompose it into parallel-safe work units using subagents, and produce a ready-to-use agent team configuration for the user to execute.
+Analyze a feature request, decompose it into parallel-safe work units, and either use available Codex multi-agent tools or produce a ready-to-run handoff plan.
 
 ## Workflow
 
-### Phase 1: Understand the feature
+### Phase 1: Confirm Scope
 
 1. If the user references a plan file, read it.
-2. If inline, restate the feature scope in 2-3 sentences and ask "Does this capture it, or should I adjust?"
-3. Identify deliverables: what new capabilities should exist when done?
+2. If the request is inline, summarize the feature scope in 2-3 sentences.
+3. Identify the concrete deliverables and the files or areas likely to change.
+4. If the scope is ambiguous enough to affect architecture, ask 1-2 focused questions.
 
-Keep this fast. Shared understanding, not a specification document.
+Keep this short. The goal is shared understanding, not a full specification.
 
-### Phase 2: Analyze the codebase
+### Phase 2: Analyze The Codebase
 
-Launch parallel subagents (Task tool with `subagent_type: Explore`) to analyze the codebase simultaneously:
+Use parallel local reads where possible. Inspect:
 
-**Subagent A — Reference implementation finder:**
-Find an existing feature in the codebase that follows the same structural pattern (components, services, routes, tests). Report the directory structure, file naming conventions, and architectural patterns used.
+1. A reference implementation that follows the same component, route, utility, or test pattern.
+2. Shared integration files such as registries, route loaders, barrel files, navigation manifests, config files, and tests.
+3. File ownership boundaries that can be changed independently.
+4. Project checks from `package.json` and repository guidance from `AGENTS.md`.
 
-**Subagent B — Shared file mapper:**
-Identify all shared/integration files: barrel exports (index.ts/js), router configs, navigation manifests, migration runners, dependency injection registries, and any file that aggregates or registers feature modules. List each file path and what it aggregates.
+If multi-agent tools are available through tool discovery, use them only after the ownership boundaries are clear.
 
-**Subagent C — Project structure scanner:**
-Map the project's directory layout, build system, test framework, and package structure. Report the tech stack, directory conventions, and how existing features are organized.
+### Phase 3: Decide Whether Parallel Work Is Worth It
 
-Synthesize subagent results to determine:
-- The reference implementation pattern to follow
-- Independently ownable file groups (these become agent roles)
-- Shared files that must be touched last (integration agent scope)
-- The right number of agents based on actual file boundaries
+Skip multi-agent handoff and implement directly when:
 
-### Phase 3: Propose the team structure
+- The change is smaller than two independent file groups.
+- Most work is in a single shared file.
+- The feature requires tight sequential design decisions.
+- The user asked for implementation, not planning, and direct implementation is faster.
 
-Present the analysis and proposed team. Format:
+Use a handoff when the work has clear independent ownership boundaries.
 
-```
-## Proposed team for: [Feature Name]
+### Phase 4: Propose Work Units
 
-**Reference pattern:** [path to existing feature used as template]
+Format the proposal like this:
 
-**Agents:**
+```md
+## Proposed Work Units For: [Feature Name]
 
-1. [Role] — [What they build].
-   Owns: [directory pattern from codebase analysis]
+Reference pattern: [path]
 
-2. [Role] — [What they build].
-   Owns: [directory pattern]
+1. [Role] - [What this unit builds]
+   Owns: [specific paths]
 
-3. Integration (runs last) — Wires up shared files.
-   Owns: [specific shared files from Subagent B results]
+2. [Role] - [What this unit builds]
+   Owns: [specific paths]
 
-**Coordination points:**
-- [e.g., "Backend and Frontend agree on API response shapes before implementing"]
+3. Integration - Wires shared files after other units land
+   Owns: [specific shared files]
 
-**Feature too small?** If analysis reveals fewer than 2 independent file groups, say so and offer to implement directly in a single session.
-```
-
-Wait for user approval. Adjust roles/boundaries if requested.
-
-### Phase 4: Generate spawn prompts
-
-After approval, generate a complete spawn prompt for each teammate. Each prompt must include:
-- Scope: what they're building
-- Owned paths: directories they can read/write
-- Reference paths: directories to read for patterns (especially the reference implementation)
-- Coordination: who to message and about what
-- Acceptance criteria: concrete definition of done
-
-Example:
-```
-You are building the backend service layer for [Feature Name].
-
-Own (read/write): src/features/[feature-name]/services/**, models/**, routes/**
-Reference (read-only): src/features/[existing-feature]/ — follow the same patterns.
-
-Before implementing API routes, message the Frontend teammate to agree on response shapes.
-
-Done when: all endpoints return correct data, models have migrations, service layer has unit tests for core logic.
+Coordination points:
+- [API shape, component props, shared tokens, migration order, etc.]
 ```
 
-### Phase 5: Hand off to user
+### Phase 5: Handoff Or Execute
 
-Present the user with exact instructions they need to execute. Format:
+If Codex multi-agent tools are available, use the discovered tool schema and pass each role a bounded prompt containing:
 
-```
-## Ready to launch
+- Scope
+- Owned paths
+- Read-only reference paths
+- Coordination requirements
+- Acceptance criteria
+- Required checks
 
-### 1. Ensure agent teams are enabled
-Add to your settings.json or environment:
-CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS=1
+If those tools are not available, return the prompts to the user in copy-ready form.
 
-### 2. Create the team
-Paste this into Codex:
+## Agent Role Guidelines
 
-> Create an agent team for [Feature Name].
-> Require plan approval before any teammate makes changes.
->
-> Spawn these teammates:
->
-> **[Role 1]:** [full spawn prompt]
->
-> **[Role 2]:** [full spawn prompt]
->
-> **[Integration]:** [full spawn prompt, noting dependencies]
-
-### 3. Enable delegate mode
-Press Shift+Tab after team creation to restrict the lead to coordination only.
-
-### 4. Plan approval criteria
-When teammates submit plans, approve only if:
-- File ownership is respected (no files outside their owned set)
-- No shared file modifications (only Integration touches those)
-- Test coverage is specified
-- Reference implementation patterns are followed
-- Acceptance criteria are concrete, not vague
-
-### 5. After completion
-Ask the lead to produce a summary: files created/modified per agent, test results, unresolved issues.
-Then ask the lead to clean up the team.
-```
-
-## Agent role guidelines
-
-Roles emerge from codebase analysis. Common patterns:
-
-- **Integration agent** — Always include when shared files exist. Runs last, owns only index/config files.
-- **Frontend agent** — Components, hooks, views, client-side state.
-- **Backend agent** — Services, models, routes, server-side logic.
-- **Tests agent** — Unit tests, integration tests, E2E scenarios.
-- **Data/Schema agent** — Complex data modeling, migrations, schema design.
-
-Avoid: agents with no file ownership, more agents than independent file groups, agents whose only job is reviewing.
-
-## Edge cases
-
-**Feature too small:** If fewer than 2 independent file groups, skip the team and implement directly.
-
-**Unclear scope:** Ask 1-2 focused clarifying questions before Phase 2.
-
-**No reference implementation:** Propose directory structure explicitly in Phase 3 and confirm with user.
+- Integration roles touch registries, navigation, route aggregators, and config after feature roles finish.
+- Frontend roles own SSR components, routes, and client handlers for their feature slice.
+- Backend roles own utilities, middleware, route handlers, and data contracts.
+- Test roles own focused test files and verification commands.
+- Avoid roles with no file ownership.
+- Avoid more roles than independent work streams.

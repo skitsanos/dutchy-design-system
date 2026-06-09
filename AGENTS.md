@@ -4,7 +4,7 @@ Guidance for automated agents working in this repository.
 
 ## Project Purpose
 - Dutchy Design System: Dutch-inspired, zero-radius geometry, bold typography (Space Grotesk, Inter, JetBrains Mono), high contrast, MIT-licensed.
-- Outputs: design tokens, component/pattern docs, HTML showcases, Bun SSR utilities, static website.
+- Outputs: design tokens, component/pattern docs, HTML showcases, Bun SSR utilities, and the Bun-served design-system website.
 
 ## General Rules
 - Preserve the visual language: sharp edges (no border-radius), bold type, high contrast, accent borders.
@@ -14,7 +14,7 @@ Guidance for automated agents working in this repository.
 
 ## Code & Structure
 - Docs live in `docs/` (design system, tokens, components, patterns, showcases).
-- Static site in `website/`.
+- The Bun-served website lives in `src/routes/` and shared UI lives in `src/components/`.
 - Server helpers in `src/utils/` (e.g., `loadRoutes` for Bun SSR routing).
 - Middleware in `src/middleware/` (e.g., `corsResponse` for OPTIONS preflight).
 - Default to ASCII; add comments only when clarifying non-obvious logic.
@@ -32,7 +32,7 @@ Guidance for automated agents working in this repository.
 - When adding new sections, mirror existing formatting styles and typography references.
 
 ## Frontend Styling
-- Tailwind via CDN in showcases; fonts from Google Fonts as already configured.
+- Tailwind 4 is compiled from `src/styles/input.css` to `public/assets/css/styles.css`; fonts come from Google Fonts as already configured.
 - Avoid introducing rounded corners or low-contrast schemes.
 - Use accent borders (4px/8px) and tight grids where patterns call for them.
 
