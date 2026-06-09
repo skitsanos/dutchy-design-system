@@ -1,4 +1,4 @@
-(function() {
+(() => {
   const fileStore = new Map();
 
   const dropzones = document.querySelectorAll('[data-dropzone]');
@@ -63,7 +63,10 @@
         const sizeMB = file.size / (1024 * 1024);
         if (sizeMB > maxSizeMB) {
           if (window.toast) {
-            window.toast.show(`File too large: ${file.name} (${sizeMB.toFixed(1)}MB > ${maxSizeMB}MB)`, 'error');
+            window.toast.show(
+              `File too large: ${file.name} (${sizeMB.toFixed(1)}MB > ${maxSizeMB}MB)`,
+              'error',
+            );
           }
           return;
         }

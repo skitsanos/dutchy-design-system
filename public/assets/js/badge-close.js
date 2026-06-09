@@ -1,4 +1,4 @@
-(function() {
+(() => {
   // Handle [data-badge-close] buttons
   document.querySelectorAll('[data-badge-close]').forEach((btn) => {
     btn.addEventListener('click', () => {

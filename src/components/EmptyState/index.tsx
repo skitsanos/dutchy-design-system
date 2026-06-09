@@ -20,22 +20,18 @@ const EmptyState: FC<EmptyStateProps> = ({
   className = '',
 }) => {
   return (
-    <div className={`flex flex-col items-center justify-center py-16 px-6 text-center ${className}`}>
+    <div
+      className={`flex flex-col items-center justify-center py-16 px-6 text-center ${className}`}
+    >
       {icon && (
         <div className="w-16 h-16 bg-muted flex items-center justify-center mb-6 text-muted-foreground">
           <Icon name={icon} size="lg" />
         </div>
       )}
 
-      <h3 className="font-display text-xl font-bold uppercase tracking-tight mb-2">
-        {title}
-      </h3>
+      <h3 className="font-display text-xl font-bold uppercase tracking-tight mb-2">{title}</h3>
 
-      {description && (
-        <p className="text-sm text-muted-foreground max-w-sm mb-6">
-          {description}
-        </p>
-      )}
+      {description && <p className="text-sm text-muted-foreground max-w-sm mb-6">{description}</p>}
 
       {actionText && actionHref && (
         <a

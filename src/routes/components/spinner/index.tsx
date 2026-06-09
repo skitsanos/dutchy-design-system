@@ -8,7 +8,9 @@ const SpinnerPage: FC = () => (
     <>
       {/* Sizes */}
       <div className="bg-white border-4 border-border p-8 md:p-12 mb-8">
-        <h3 className="font-display font-bold uppercase text-sm tracking-wider mb-6 text-muted-foreground">Sizes</h3>
+        <h3 className="font-display font-bold uppercase text-sm tracking-wider mb-6 text-muted-foreground">
+          Sizes
+        </h3>
         <Flex wrap gap={8} align="center">
           <Flex direction="col" align="center" gap={2}>
             <Spinner size="sm" />
@@ -27,7 +29,9 @@ const SpinnerPage: FC = () => (
 
       {/* Inherits Color */}
       <div className="bg-white border-4 border-border p-8 md:p-12 mb-8">
-        <h3 className="font-display font-bold uppercase text-sm tracking-wider mb-6 text-muted-foreground">Inherits Color</h3>
+        <h3 className="font-display font-bold uppercase text-sm tracking-wider mb-6 text-muted-foreground">
+          Inherits Color
+        </h3>
         <Flex wrap gap={8} align="center">
           <Flex align="center" gap={2} className="text-primary">
             <Spinner size="md" />
@@ -50,7 +54,9 @@ const SpinnerPage: FC = () => (
 
       {/* On Dark Background */}
       <div className="bg-foreground border-4 border-border p-8 md:p-12">
-        <h3 className="font-display font-bold uppercase text-sm tracking-wider mb-6 text-background">On Dark Background</h3>
+        <h3 className="font-display font-bold uppercase text-sm tracking-wider mb-6 text-background">
+          On Dark Background
+        </h3>
         <Flex wrap gap={8} align="center" className="text-background">
           <Spinner size="sm" />
           <Spinner size="md" />

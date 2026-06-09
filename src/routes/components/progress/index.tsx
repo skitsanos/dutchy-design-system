@@ -1,15 +1,17 @@
 import type { FC } from 'react';
 import ComponentPageLayout from '@/components/ComponentPageLayout';
-import Progress from '@/components/Progress';
 import Flex from '@/components/Flex';
 import Icon from '@/components/Icon';
+import Progress from '@/components/Progress';
 
 const ProgressPage: FC = () => (
   <ComponentPageLayout componentId="progress">
     <>
       {/* Sizes */}
       <div className="bg-white border-4 border-border p-8 md:p-12 mb-8">
-        <h3 className="font-display font-bold uppercase text-sm tracking-wider mb-6 text-muted-foreground">Sizes</h3>
+        <h3 className="font-display font-bold uppercase text-sm tracking-wider mb-6 text-muted-foreground">
+          Sizes
+        </h3>
         <div className="space-y-6 max-w-lg">
           <Progress value={60} size="sm" label="Small" showValue />
           <Progress value={60} size="md" label="Medium" showValue />
@@ -19,7 +21,9 @@ const ProgressPage: FC = () => (
 
       {/* Variants */}
       <div className="bg-white border-4 border-border p-8 md:p-12 mb-8">
-        <h3 className="font-display font-bold uppercase text-sm tracking-wider mb-6 text-muted-foreground">Variants</h3>
+        <h3 className="font-display font-bold uppercase text-sm tracking-wider mb-6 text-muted-foreground">
+          Variants
+        </h3>
         <div className="space-y-6 max-w-lg">
           <Progress value={75} variant="primary" label="Primary" showValue />
           <Progress value={100} variant="success" label="Success" showValue />
@@ -30,7 +34,9 @@ const ProgressPage: FC = () => (
 
       {/* Without Labels */}
       <div className="bg-white border-4 border-border p-8 md:p-12 mb-8">
-        <h3 className="font-display font-bold uppercase text-sm tracking-wider mb-6 text-muted-foreground">Minimal</h3>
+        <h3 className="font-display font-bold uppercase text-sm tracking-wider mb-6 text-muted-foreground">
+          Minimal
+        </h3>
         <div className="space-y-4 max-w-lg">
           <Progress value={45} />
           <Progress value={80} variant="success" />
@@ -40,7 +46,9 @@ const ProgressPage: FC = () => (
 
       {/* File Upload Pattern */}
       <div className="bg-white border-4 border-border p-8 md:p-12 mb-8">
-        <h3 className="font-display font-bold uppercase text-sm tracking-wider mb-6 text-muted-foreground">File Upload Pattern</h3>
+        <h3 className="font-display font-bold uppercase text-sm tracking-wider mb-6 text-muted-foreground">
+          File Upload Pattern
+        </h3>
         <div className="space-y-4 max-w-lg">
           <Flex align="center" gap={4} className="p-3 border-2 border-border">
             <Icon name="file" className="text-muted-foreground flex-shrink-0" />
@@ -71,7 +79,9 @@ const ProgressPage: FC = () => (
 
       {/* Custom Max */}
       <div className="bg-white border-4 border-border p-8 md:p-12">
-        <h3 className="font-display font-bold uppercase text-sm tracking-wider mb-6 text-muted-foreground">Steps Progress</h3>
+        <h3 className="font-display font-bold uppercase text-sm tracking-wider mb-6 text-muted-foreground">
+          Steps Progress
+        </h3>
         <div className="space-y-6 max-w-lg">
           <Progress value={2} max={5} size="lg" label="Step 2 of 5" showValue />
           <Progress value={4} max={4} size="lg" variant="success" label="Complete" showValue />

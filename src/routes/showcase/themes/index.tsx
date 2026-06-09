@@ -1,13 +1,13 @@
-import Layout from '@/components/Layout';
-import Header from '@/components/Header';
+import Button from '@/components/Button';
+import FeatureGrid from '@/components/FeatureGrid';
 import Footer from '@/components/Footer';
+import Form from '@/components/Form';
+import Header from '@/components/Header';
 import Icon from '@/components/Icon';
+import Input from '@/components/Input';
+import Layout from '@/components/Layout';
 import SectionTitle from '@/components/SectionTitle';
 import StatsGrid from '@/components/StatsGrid';
-import FeatureGrid from '@/components/FeatureGrid';
-import Button from '@/components/Button';
-import Form from '@/components/Form';
-import Input from '@/components/Input';
 import Textarea from '@/components/Textarea';
 
 const headerNavLinks = [
@@ -17,7 +17,7 @@ const headerNavLinks = [
   { href: '/showcase/blog', label: 'Blog' },
 ];
 
-const ThemesPage = ({ request }: { request: Request }) => {
+const ThemesPage = () => {
   return (
     <Layout
       title="Theme Switcher | Dutchy Design System"
@@ -26,10 +26,7 @@ const ThemesPage = ({ request }: { request: Request }) => {
           'Explore dynamic theme switching with the Dutchy Design System. Switch between Dutch Orange, Royal Purple, and Crimson Red.',
         keywords: 'themes, theme switcher, CSS variables, design system',
       }}
-      scripts={[
-        '/assets/js/mobile-menu.js',
-        '/assets/js/theme-switcher.js',
-      ]}
+      scripts={['/assets/js/mobile-menu.js', '/assets/js/theme-switcher.js']}
     >
       <Header
         siteName="Dutchy"
@@ -49,6 +46,7 @@ const ThemesPage = ({ request }: { request: Request }) => {
               </span>
               <div className="flex gap-2">
                 <button
+                  type="button"
                   className="w-8 h-8 hover:scale-110 transition-transform"
                   style={{ backgroundColor: 'hsl(25 95% 53%)' }}
                   aria-label="Dutch Orange theme"
@@ -56,6 +54,7 @@ const ThemesPage = ({ request }: { request: Request }) => {
                   data-theme-switch="orange"
                 />
                 <button
+                  type="button"
                   className="w-8 h-8 hover:scale-110 transition-transform"
                   style={{ backgroundColor: 'hsl(263 70% 58%)' }}
                   aria-label="Royal Purple theme"
@@ -63,6 +62,7 @@ const ThemesPage = ({ request }: { request: Request }) => {
                   data-theme-switch="purple"
                 />
                 <button
+                  type="button"
                   className="w-8 h-8 hover:scale-110 transition-transform"
                   style={{ backgroundColor: 'hsl(0 84% 50%)' }}
                   aria-label="Crimson Red theme"
@@ -87,8 +87,8 @@ const ThemesPage = ({ request }: { request: Request }) => {
                 <span className="text-primary">Themes.</span>
               </h1>
               <p className="text-xl text-muted-foreground leading-relaxed mb-8 max-w-lg">
-                Switch between Dutch Orange, Royal Purple, and Crimson Red
-                themes using the buttons above.
+                Switch between Dutch Orange, Royal Purple, and Crimson Red themes using the buttons
+                above.
               </p>
               <div className="flex flex-wrap gap-4">
                 <Button variant="primary">Primary Button</Button>
@@ -151,36 +151,20 @@ const ThemesPage = ({ request }: { request: Request }) => {
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-0.5 bg-border">
               <div className="bg-foreground text-background p-10">
-                <h3 className="font-display text-2xl font-bold uppercase mb-4">
-                  Dark Block
-                </h3>
-                <p className="text-background/70">
-                  High contrast inverted content.
-                </p>
+                <h3 className="font-display text-2xl font-bold uppercase mb-4">Dark Block</h3>
+                <p className="text-background/70">High contrast inverted content.</p>
               </div>
               <div className="bg-primary text-primary-foreground p-10">
-                <h3 className="font-display text-2xl font-bold uppercase mb-4">
-                  Primary Block
-                </h3>
-                <p className="text-primary-foreground/80">
-                  Dynamic theme color block.
-                </p>
+                <h3 className="font-display text-2xl font-bold uppercase mb-4">Primary Block</h3>
+                <p className="text-primary-foreground/80">Dynamic theme color block.</p>
               </div>
               <div className="bg-background p-10">
-                <h3 className="font-display text-2xl font-bold uppercase mb-4">
-                  Light Block
-                </h3>
-                <p className="text-muted-foreground">
-                  Standard content block.
-                </p>
+                <h3 className="font-display text-2xl font-bold uppercase mb-4">Light Block</h3>
+                <p className="text-muted-foreground">Standard content block.</p>
               </div>
               <div className="bg-muted p-10">
-                <h3 className="font-display text-2xl font-bold uppercase mb-4">
-                  Muted Block
-                </h3>
-                <p className="text-muted-foreground">
-                  Subtle background block.
-                </p>
+                <h3 className="font-display text-2xl font-bold uppercase mb-4">Muted Block</h3>
+                <p className="text-muted-foreground">Subtle background block.</p>
               </div>
             </div>
           </div>
@@ -233,23 +217,9 @@ const ThemesPage = ({ request }: { request: Request }) => {
               </div>
 
               <Form spacing="md">
-                <Input
-                  label="Name"
-                  type="text"
-                  placeholder="Your name"
-                  name="name"
-                />
-                <Input
-                  label="Email"
-                  type="email"
-                  placeholder="your@email.com"
-                  name="email"
-                />
-                <Textarea
-                  label="Message"
-                  placeholder="Your message"
-                  name="message"
-                />
+                <Input label="Name" type="text" placeholder="Your name" name="name" />
+                <Input label="Email" type="email" placeholder="your@email.com" name="email" />
+                <Textarea label="Message" placeholder="Your message" name="message" />
                 <Button variant="primary" fullWidth type="submit">
                   Send Message
                 </Button>
@@ -266,7 +236,7 @@ const ThemesPage = ({ request }: { request: Request }) => {
             <div className="bg-foreground text-background p-8 overflow-x-auto">
               <pre className="font-mono text-sm">
                 <code>
-{`/* CSS Variables for Theme */
+                  {`/* CSS Variables for Theme */
 :root {
   /* Dutch Orange (Default) */
   --primary-h: 25;

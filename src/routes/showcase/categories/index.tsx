@@ -1,8 +1,8 @@
-import Layout from '@/components/Layout';
-import Header from '@/components/Header';
-import Footer from '@/components/Footer';
-import Icon from '@/components/Icon';
 import Badge from '@/components/Badge';
+import Footer from '@/components/Footer';
+import Header from '@/components/Header';
+import Icon from '@/components/Icon';
+import Layout from '@/components/Layout';
 
 const headerNavLinks = [
   { href: '/showcase', label: 'Home' },
@@ -11,7 +11,7 @@ const headerNavLinks = [
   { href: '/showcase/blog', label: 'Blog' },
 ];
 
-const CategoriesPage = ({ request }: { request: Request }) => {
+const CategoriesPage = () => {
   return (
     <Layout
       title="Categories | Dutchy Design System"
@@ -44,17 +44,15 @@ const CategoriesPage = ({ request }: { request: Request }) => {
                 By <span className="text-primary">Category.</span>
               </h1>
               <p className="text-xl text-muted-foreground max-w-lg leading-relaxed">
-                Explore our comprehensive component library organized by
-                function. Find UI elements, patterns, and complete solutions.
+                Explore our comprehensive component library organized by function. Find UI elements,
+                patterns, and complete solutions.
               </p>
             </div>
             {/* Stats Grid */}
             <div className="grid grid-cols-2 gap-4">
               <div className="bg-foreground text-background p-6">
                 <p className="font-display text-4xl font-bold">50+</p>
-                <p className="text-sm text-background/60 uppercase tracking-wider">
-                  Components
-                </p>
+                <p className="text-sm text-background/60 uppercase tracking-wider">Components</p>
               </div>
               <div className="bg-primary text-primary-foreground p-6">
                 <p className="font-display text-4xl font-bold">6</p>
@@ -79,11 +77,7 @@ const CategoriesPage = ({ request }: { request: Request }) => {
               <div className="h-full flex flex-col">
                 <div className="flex justify-between items-start mb-6">
                   <div className="w-16 h-16 bg-primary/10 flex items-center justify-center">
-                    <Icon
-                      name="layers"
-                      size="lg"
-                      className="w-10 h-10 text-primary"
-                    />
+                    <Icon name="layers" size="lg" className="w-10 h-10 text-primary" />
                   </div>
                   <Icon
                     name="arrow-right"
@@ -103,9 +97,7 @@ const CategoriesPage = ({ request }: { request: Request }) => {
                   <h2 className="font-display text-3xl md:text-4xl font-bold uppercase mb-2 group-hover:text-primary transition-colors">
                     UI Components
                   </h2>
-                  <p className="text-muted-foreground">
-                    Core building blocks for any interface
-                  </p>
+                  <p className="text-muted-foreground">Core building blocks for any interface</p>
                 </div>
               </div>
             </a>
@@ -118,11 +110,7 @@ const CategoriesPage = ({ request }: { request: Request }) => {
               <div className="h-full flex flex-col min-h-[280px]">
                 <div className="flex justify-between items-start mb-4">
                   <div className="w-12 h-12 bg-primary/10 flex items-center justify-center">
-                    <Icon
-                      name="grid"
-                      size="lg"
-                      className="w-8 h-8 text-primary"
-                    />
+                    <Icon name="grid" size="lg" className="w-8 h-8 text-primary" />
                   </div>
                   <Icon
                     name="arrow-right"
@@ -158,11 +146,7 @@ const CategoriesPage = ({ request }: { request: Request }) => {
               <div className="h-full flex flex-col min-h-[280px]">
                 <div className="flex justify-between items-start mb-4">
                   <div className="w-12 h-12 bg-primary/10 flex items-center justify-center">
-                    <Icon
-                      name="edit"
-                      size="lg"
-                      className="w-8 h-8 text-primary"
-                    />
+                    <Icon name="edit" size="lg" className="w-8 h-8 text-primary" />
                   </div>
                   <Icon
                     name="arrow-right"
@@ -198,11 +182,7 @@ const CategoriesPage = ({ request }: { request: Request }) => {
               <div className="h-full flex flex-col min-h-[280px]">
                 <div className="flex justify-between items-start mb-4">
                   <div className="w-12 h-12 bg-primary/10 flex items-center justify-center">
-                    <Icon
-                      name="send"
-                      size="lg"
-                      className="w-8 h-8 text-primary"
-                    />
+                    <Icon name="send" size="lg" className="w-8 h-8 text-primary" />
                   </div>
                   <Icon
                     name="arrow-right"
@@ -238,11 +218,7 @@ const CategoriesPage = ({ request }: { request: Request }) => {
               <div className="h-full flex flex-col min-h-[280px]">
                 <div className="flex justify-between items-start mb-4">
                   <div className="w-12 h-12 bg-primary/10 flex items-center justify-center">
-                    <Icon
-                      name="bell"
-                      size="lg"
-                      className="w-8 h-8 text-primary"
-                    />
+                    <Icon name="bell" size="lg" className="w-8 h-8 text-primary" />
                   </div>
                   <Icon
                     name="arrow-right"
@@ -278,11 +254,7 @@ const CategoriesPage = ({ request }: { request: Request }) => {
               <div className="h-full flex flex-col min-h-[280px]">
                 <div className="flex justify-between items-start mb-4">
                   <div className="w-12 h-12 bg-primary/10 flex items-center justify-center">
-                    <Icon
-                      name="settings"
-                      size="lg"
-                      className="w-8 h-8 text-primary"
-                    />
+                    <Icon name="settings" size="lg" className="w-8 h-8 text-primary" />
                   </div>
                   <Icon
                     name="arrow-right"
@@ -321,9 +293,7 @@ const CategoriesPage = ({ request }: { request: Request }) => {
               <h2 className="font-display text-3xl md:text-4xl font-bold uppercase tracking-tighter mb-2">
                 Can't find what you need?
               </h2>
-              <p className="text-background/70">
-                Browse all 50+ components in our full library
-              </p>
+              <p className="text-background/70">Browse all 50+ components in our full library</p>
             </div>
             <a
               href="/showcase/search"

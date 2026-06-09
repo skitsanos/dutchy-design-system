@@ -1,4 +1,4 @@
-import type { FC, ButtonHTMLAttributes, ReactNode } from 'react';
+import type { ButtonHTMLAttributes, FC, ReactNode } from 'react';
 
 interface MenuItemProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: 'default' | 'destructive';
@@ -24,6 +24,7 @@ const MenuItem: FC<MenuItemProps> = ({
 
   return (
     <button
+      type="button"
       role="menuitem"
       className={`${base} ${variants[variant]} ${className}`}
       {...props}

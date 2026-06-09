@@ -1,4 +1,4 @@
-(function () {
+(() => {
   const tabContainers = document.querySelectorAll('[data-tabs]');
 
   tabContainers.forEach((container) => {
@@ -42,9 +42,7 @@
 
       // Sync overflow dropdown active indicator
       if (isScrollable) {
-        const overflowItems = container.querySelectorAll(
-          '[data-tabs-overflow-item]',
-        );
+        const overflowItems = container.querySelectorAll('[data-tabs-overflow-item]');
         overflowItems.forEach((item) => {
           const isActive = item.dataset.tabsOverflowItem === tabId;
           item.classList.toggle('bg-muted', isActive);
@@ -54,9 +52,7 @@
         });
 
         // Scroll active trigger into view
-        const activeEl = container.querySelector(
-          `[data-tab-trigger="${tabId}"]`,
-        );
+        const activeEl = container.querySelector(`[data-tab-trigger="${tabId}"]`);
         if (activeEl) {
           activeEl.scrollIntoView({
             behavior: 'smooth',
@@ -72,16 +68,11 @@
       const triggers = container.querySelectorAll('[data-tab-trigger]');
       if (triggers.length <= 1) return; // never close the last tab
 
-      const trigger = container.querySelector(
-        `[data-tab-trigger="${tabId}"]`,
-      );
+      const trigger = container.querySelector(`[data-tab-trigger="${tabId}"]`);
       const panel = container.querySelector(`[data-tab-panel="${tabId}"]`);
-      const overflowItem = container.querySelector(
-        `[data-tabs-overflow-item="${tabId}"]`,
-      );
+      const overflowItem = container.querySelector(`[data-tabs-overflow-item="${tabId}"]`);
 
-      const wasActive =
-        trigger && trigger.getAttribute('aria-selected') === 'true';
+      const wasActive = trigger && trigger.getAttribute('aria-selected') === 'true';
 
       if (wasActive) {
         const arr = Array.from(triggers);
@@ -99,8 +90,7 @@
 
     // ── Event delegation on nav ──
     const navElement =
-      container.querySelector('[data-tabs-nav]') ||
-      container.querySelector('[role="tablist"]');
+      container.querySelector('[data-tabs-nav]') || container.querySelector('[role="tablist"]');
 
     if (navElement) {
       navElement.addEventListener('click', (e) => {
@@ -130,51 +120,38 @@
     }
 
     // ── Scrollable: arrows + overflow dropdown ──
-    var updateScrollState = null;
+    let updateScrollState = null;
 
     if (isScrollable) {
       const nav = container.querySelector('[data-tabs-nav]');
       const scrollLeftBtn = container.querySelector('[data-tabs-scroll-left]');
-      const scrollRightBtn = container.querySelector(
-        '[data-tabs-scroll-right]',
-      );
-      const overflowDropdown = container.querySelector(
-        '[data-tabs-overflow-dropdown]',
-      );
-      const overflowTrigger = container.querySelector(
-        '[data-tabs-overflow-trigger]',
-      );
-      const overflowMenu = container.querySelector(
-        '[data-tabs-overflow-menu]',
-      );
+      const scrollRightBtn = container.querySelector('[data-tabs-scroll-right]');
+      const overflowDropdown = container.querySelector('[data-tabs-overflow-dropdown]');
+      const overflowTrigger = container.querySelector('[data-tabs-overflow-trigger]');
+      const overflowMenu = container.querySelector('[data-tabs-overflow-menu]');
 
-      updateScrollState = function () {
+      updateScrollState = () => {
         if (!nav) return;
         const hasOverflow = nav.scrollWidth > nav.clientWidth + 1;
 
         if (scrollLeftBtn)
-          scrollLeftBtn.classList.toggle(
-            'hidden',
-            !hasOverflow || nav.scrollLeft <= 0,
-          );
+          scrollLeftBtn.classList.toggle('hidden', !hasOverflow || nav.scrollLeft <= 0);
         if (scrollRightBtn)
           scrollRightBtn.classList.toggle(
             'hidden',
-            !hasOverflow ||
-              nav.scrollLeft >= nav.scrollWidth - nav.clientWidth - 1,
+            !hasOverflow || nav.scrollLeft >= nav.scrollWidth - nav.clientWidth - 1,
           );
-        if (overflowDropdown)
-          overflowDropdown.classList.toggle('hidden', !hasOverflow);
+        if (overflowDropdown) overflowDropdown.classList.toggle('hidden', !hasOverflow);
       };
 
       // Scroll arrow clicks
       if (scrollLeftBtn) {
-        scrollLeftBtn.addEventListener('click', function () {
+        scrollLeftBtn.addEventListener('click', () => {
           nav.scrollBy({ left: -200, behavior: 'smooth' });
         });
       }
       if (scrollRightBtn) {
-        scrollRightBtn.addEventListener('click', function () {
+        scrollRightBtn.addEventListener('click', () => {
           nav.scrollBy({ left: 200, behavior: 'smooth' });
         });
       }
@@ -182,40 +159,36 @@
       // Recalculate on scroll & resize
       if (nav) {
         nav.addEventListener('scroll', updateScrollState);
-        var ro = new ResizeObserver(updateScrollState);
+        const ro = new ResizeObserver(updateScrollState);
         ro.observe(nav);
       }
 
       // Overflow dropdown
       if (overflowTrigger && overflowMenu && overflowDropdown) {
-        overflowTrigger.addEventListener('click', function (e) {
+        overflowTrigger.addEventListener('click', (e) => {
           e.stopPropagation();
-          var wasHidden = overflowMenu.classList.contains('hidden');
+          const wasHidden = overflowMenu.classList.contains('hidden');
           overflowMenu.classList.toggle('hidden');
 
           // Refresh active indicators when opening
           if (wasHidden) {
-            var activeTrigger = container.querySelector(
+            const activeTrigger = container.querySelector(
               '[data-tab-trigger][aria-selected="true"]',
             );
-            var activeId = activeTrigger
-              ? activeTrigger.dataset.tabTrigger
-              : null;
-            overflowMenu
-              .querySelectorAll('[data-tabs-overflow-item]')
-              .forEach(function (item) {
-                var isActive = item.dataset.tabsOverflowItem === activeId;
-                item.classList.toggle('bg-muted', isActive);
-                item.classList.toggle('font-bold', isActive);
-                item.classList.toggle('text-foreground', isActive);
-                item.classList.toggle('text-muted-foreground', !isActive);
-              });
+            const activeId = activeTrigger ? activeTrigger.dataset.tabTrigger : null;
+            overflowMenu.querySelectorAll('[data-tabs-overflow-item]').forEach((item) => {
+              const isActive = item.dataset.tabsOverflowItem === activeId;
+              item.classList.toggle('bg-muted', isActive);
+              item.classList.toggle('font-bold', isActive);
+              item.classList.toggle('text-foreground', isActive);
+              item.classList.toggle('text-muted-foreground', !isActive);
+            });
           }
         });
 
         // Overflow item click → activate tab + close dropdown
-        overflowMenu.addEventListener('click', function (e) {
-          var item = e.target.closest('[data-tabs-overflow-item]');
+        overflowMenu.addEventListener('click', (e) => {
+          const item = e.target.closest('[data-tabs-overflow-item]');
           if (item) {
             activateTab(item.dataset.tabsOverflowItem);
             overflowMenu.classList.add('hidden');
@@ -223,14 +196,14 @@
         });
 
         // Close dropdown on outside click
-        document.addEventListener('click', function (e) {
+        document.addEventListener('click', (e) => {
           if (!overflowDropdown.contains(e.target)) {
             overflowMenu.classList.add('hidden');
           }
         });
 
         // Close dropdown on Escape
-        document.addEventListener('keydown', function (e) {
+        document.addEventListener('keydown', (e) => {
           if (e.key === 'Escape') {
             overflowMenu.classList.add('hidden');
           }

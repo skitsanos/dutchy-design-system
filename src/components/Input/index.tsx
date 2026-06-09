@@ -6,23 +6,13 @@ interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   helpText?: string;
 }
 
-const Input: FC<InputProps> = ({
-  label,
-  error,
-  helpText,
-  className = '',
-  id,
-  ...props
-}) => {
+const Input: FC<InputProps> = ({ label, error, helpText, className = '', id, ...props }) => {
   const inputId = id || `input-${Math.random().toString(36).slice(2, 9)}`;
 
   return (
     <div className="space-y-2">
       {label && (
-        <label
-          htmlFor={inputId}
-          className="block text-xs font-bold uppercase tracking-wider"
-        >
+        <label htmlFor={inputId} className="block text-xs font-bold uppercase tracking-wider">
           {label}
           {props.required && <span className="text-primary ml-1">*</span>}
         </label>
@@ -40,13 +30,9 @@ const Input: FC<InputProps> = ({
         {...props}
       />
 
-      {error && (
-        <p className="text-destructive text-sm">{error}</p>
-      )}
+      {error && <p className="text-destructive text-sm">{error}</p>}
 
-      {helpText && !error && (
-        <p className="text-muted-foreground text-sm">{helpText}</p>
-      )}
+      {helpText && !error && <p className="text-muted-foreground text-sm">{helpText}</p>}
     </div>
   );
 };

@@ -1,7 +1,7 @@
 import type { FC } from 'react';
-import Layout from '@/components/Layout';
-import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import Header from '@/components/Header';
+import Layout from '@/components/Layout';
 
 interface PageNotFoundProps {
   request?: Request;
@@ -13,9 +13,7 @@ const PageNotFound: FC<PageNotFoundProps> = () => {
       <Header />
       <main className="min-h-[60vh] flex items-center justify-center py-20">
         <div className="container mx-auto px-4 md:px-6 text-center">
-          <p className="font-display text-8xl md:text-9xl font-bold text-muted mb-8">
-            404
-          </p>
+          <p className="font-display text-8xl md:text-9xl font-bold text-muted mb-8">404</p>
           <h1 className="font-display text-3xl md:text-4xl font-bold uppercase tracking-tighter mb-4">
             Page Not Found
           </h1>

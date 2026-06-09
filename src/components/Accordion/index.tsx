@@ -58,17 +58,10 @@ const Accordion: FC<AccordionProps> = ({
               stroke="currentColor"
               viewBox="0 0 24 24"
             >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="m6 9 6 6 6-6"
-              />
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="m6 9 6 6 6-6" />
             </svg>
           </summary>
-          <div className={contentClasses}>
-            {item.content}
-          </div>
+          <div className={contentClasses}>{item.content}</div>
         </details>
       ))}
     </div>

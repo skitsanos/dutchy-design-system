@@ -1,7 +1,7 @@
 import type { FC } from 'react';
+import Flex from '@/components/Flex';
 import Icon from '@/components/Icon';
 import Progress from '@/components/Progress';
-import Flex from '@/components/Flex';
 
 interface StepperProps {
   steps: string[];
@@ -72,9 +72,7 @@ const Stepper: FC<StepperProps> = ({
                 </div>
                 {index < steps.length - 1 && (
                   <div
-                    className={`w-8 h-0.5 ${
-                      stepNumber < currentStep ? 'bg-primary' : 'bg-border'
-                    }`}
+                    className={`w-8 h-0.5 ${stepNumber < currentStep ? 'bg-primary' : 'bg-border'}`}
                   />
                 )}
               </Flex>
@@ -98,16 +96,13 @@ const Stepper: FC<StepperProps> = ({
         const isCurrent = stepNumber === currentStep;
         const isUpcoming = stepNumber > currentStep;
 
-        const circleClass = isCompleted || isCurrent
-          ? 'bg-primary text-primary-foreground'
-          : 'bg-muted text-muted-foreground';
+        const circleClass =
+          isCompleted || isCurrent
+            ? 'bg-primary text-primary-foreground'
+            : 'bg-muted text-muted-foreground';
 
         return (
-          <div
-            key={index}
-            className="flex-1 flex flex-col items-center relative"
-            data-step={index}
-          >
+          <div key={index} className="flex-1 flex flex-col items-center relative" data-step={index}>
             {index > 0 && (
               <div
                 className={`absolute top-5 right-1/2 w-full h-0.5 -z-10 ${
@@ -120,11 +115,7 @@ const Stepper: FC<StepperProps> = ({
               data-step-circle=""
               className={`w-10 h-10 flex items-center justify-center font-bold text-sm ${circleClass}`}
             >
-              {isCompleted ? (
-                <Icon name="check" size="sm" />
-              ) : (
-                stepNumber
-              )}
+              {isCompleted ? <Icon name="check" size="sm" /> : stepNumber}
             </div>
 
             <span

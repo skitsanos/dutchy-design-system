@@ -1,4 +1,4 @@
-import { join, extname } from 'path';
+import { extname, join } from 'node:path';
 
 const MIME_TYPES: Record<string, string> = {
   '.html': 'text/html',

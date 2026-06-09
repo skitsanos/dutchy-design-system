@@ -2,17 +2,22 @@
  * DutchyForm — Declarative form validation inspired by Ant Design's rule-based approach.
  * Vanilla JS, zero dependencies. Exposed as a global IIFE.
  */
-const DutchyForm = (() => {
+window.DutchyForm = (() => {
   const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
   function validateUrl(val) {
-    try { new URL(val); return true; } catch { return false; }
+    try {
+      new URL(val);
+      return true;
+    } catch {
+      return false;
+    }
   }
 
   const TYPE_VALIDATORS = {
     email: (v) => EMAIL_RE.test(v),
     url: (v) => validateUrl(v),
-    number: (v) => !isNaN(v) && v.trim() !== '',
+    number: (v) => v.trim() !== '' && !Number.isNaN(Number(v)),
   };
 
   function getField(form, name) {
@@ -54,7 +59,10 @@ const DutchyForm = (() => {
     field.removeAttribute('aria-invalid');
     field.removeAttribute('aria-describedby');
     const el = wrapper.querySelector(`[data-field-error="${name}"]`);
-    if (el) { el.textContent = ''; el.style.display = 'none'; }
+    if (el) {
+      el.textContent = '';
+      el.style.display = 'none';
+    }
   }
 
   function clearField(field, name) {
@@ -63,14 +71,17 @@ const DutchyForm = (() => {
     field.removeAttribute('aria-invalid');
     field.removeAttribute('aria-describedby');
     const el = wrapper.querySelector(`[data-field-error="${name}"]`);
-    if (el) { el.textContent = ''; el.style.display = 'none'; }
+    if (el) {
+      el.textContent = '';
+      el.style.display = 'none';
+    }
     const spinner = wrapper.querySelector('.dutchy-validating-spinner');
     if (spinner) spinner.remove();
   }
 
   function showSpinner(field, name) {
     const wrapper = getWrapper(field);
-    let el = getOrCreateError(field, name);
+    const el = getOrCreateError(field, name);
     el.innerHTML = '<span class="dutchy-validating-spinner"></span> Validating\u2026';
     el.style.display = '';
     wrapper.classList.remove('dutchy-field-error', 'dutchy-field-success');

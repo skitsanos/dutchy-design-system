@@ -68,11 +68,7 @@ const HeroSection: FC<HeroSectionProps> = ({
           </div>
 
           {/* Visual */}
-          {visual && (
-            <div>
-              {visual}
-            </div>
-          )}
+          {visual && <div>{visual}</div>}
         </div>
       </div>
     </section>

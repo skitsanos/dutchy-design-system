@@ -21,11 +21,7 @@ const widthClasses = {
   md: 'max-w-md',
 };
 
-const Menu: FC<MenuProps> = ({
-  width = 'xs',
-  className = '',
-  children,
-}) => (
+const Menu: FC<MenuProps> = ({ width = 'xs', className = '', children }) => (
   <div
     className={`${widthClasses[width]} border-2 border-border bg-background shadow-md divide-y divide-border ${className}`}
     role="menu"
@@ -35,18 +31,18 @@ const Menu: FC<MenuProps> = ({
 );
 
 const MenuDivider: FC<MenuDividerProps> = ({ className = '' }) => (
-  <div className={`border-t-2 border-border ${className}`} role="separator" />
+  <hr className={`border-t-2 border-border ${className}`} />
 );
 
 const MenuGroup: FC<MenuGroupProps> = ({ label, children }) => (
-  <div role="group" aria-label={label}>
-    <div className="px-4 py-2">
-      <p className="text-xs font-bold uppercase tracking-wider text-muted-foreground">{label}</p>
-    </div>
-    <div className="divide-y divide-border">
-      {children}
-    </div>
-  </div>
+  <fieldset className="min-w-0">
+    <legend className="px-4 py-2">
+      <span className="text-xs font-bold uppercase tracking-wider text-muted-foreground">
+        {label}
+      </span>
+    </legend>
+    <div className="divide-y divide-border">{children}</div>
+  </fieldset>
 );
 
 export default Menu;

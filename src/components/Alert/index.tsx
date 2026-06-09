@@ -1,6 +1,6 @@
 import type { FC, ReactNode } from 'react';
-import type { IconName } from '@/components/Icon';
 import Flex from '@/components/Flex';
+import type { IconName } from '@/components/Icon';
 import Icon from '@/components/Icon';
 
 type AlertVariant = 'info' | 'success' | 'warning' | 'error';
@@ -13,7 +13,10 @@ interface AlertProps {
   children: ReactNode;
 }
 
-const variantConfig: Record<AlertVariant, { bg: string; border: string; color: string; icon: IconName }> = {
+const variantConfig: Record<
+  AlertVariant,
+  { bg: string; border: string; color: string; icon: IconName }
+> = {
   info: {
     bg: 'hsla(25, 95%, 53%, 0.1)',
     border: 'hsl(25 95% 53%)',
@@ -75,6 +78,7 @@ const Alert: FC<AlertProps> = ({
             {contentEl}
           </Flex>
           <button
+            type="button"
             data-dismiss="alert"
             className="shrink-0 text-muted-foreground hover:text-foreground transition-colors p-1"
             aria-label="Dismiss"

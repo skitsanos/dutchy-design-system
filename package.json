@@ -1,30 +1,37 @@
 {
   "name": "dutchy-design-system",
   "description": "Dutchy Design System",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "module": "src/index.ts",
   "type": "module",
   "private": true,
   "scripts": {
     "dev": "bun run --watch src/index.ts",
+    "start": "NODE_ENV=production bun run src/index.ts",
     "build:css": "bunx tailwindcss -i src/styles/input.css -o public/assets/css/styles.css --minify",
     "dev:css": "bunx tailwindcss -i src/styles/input.css -o public/assets/css/styles.css --watch",
+    "typecheck": "bunx tsc --noEmit",
+    "lint": "bunx biome check .",
+    "lint:fix": "bunx biome check --write .",
+    "format": "bunx biome format --write .",
     "test": "bun test ./tests/"
   },
   "devDependencies": {
+    "@biomejs/biome": "^2.4.16",
+    "@tailwindcss/cli": "^4.3.0",
     "@types/bun": "latest",
-    "@types/react": "^19.2.14",
+    "@types/react": "^19.2.17",
     "@types/react-dom": "^19.2.3",
-    "autoprefixer": "^10.4.24",
-    "postcss": "^8.5.6",
-    "tailwindcss": "3"
+    "autoprefixer": "^10.5.0",
+    "postcss": "^8.5.15",
+    "tailwindcss": "^4.3.0"
   },
   "peerDependencies": {
-    "typescript": "^5"
+    "typescript": "^5.9.3"
   },
   "dependencies": {
-    "react": "^19.2.4",
-    "react-dom": "^19.2.4",
-    "zod": "^4.3.6"
+    "react": "^19.2.7",
+    "react-dom": "^19.2.7",
+    "zod": "^4.4.3"
   }
 }

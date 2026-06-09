@@ -23,11 +23,7 @@ const colorClasses: Record<ActivityColor, string> = {
   muted: 'bg-muted-foreground',
 };
 
-const Activity: FC<ActivityProps> = ({
-  title = 'Activity',
-  items,
-  className = '',
-}) => {
+const Activity: FC<ActivityProps> = ({ title = 'Activity', items, className = '' }) => {
   return (
     <div className={`bg-background border-l-4 border-foreground ${className}`}>
       <div className="border-b border-border px-6 py-4">
@@ -48,5 +44,5 @@ const Activity: FC<ActivityProps> = ({
   );
 };
 
-export type { ActivityItem, ActivityColor, ActivityProps };
+export type { ActivityColor, ActivityItem, ActivityProps };
 export default Activity;

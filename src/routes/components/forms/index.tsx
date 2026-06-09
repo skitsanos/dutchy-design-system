@@ -1,15 +1,15 @@
 import type { FC } from 'react';
-import ComponentPageLayout from '@/components/ComponentPageLayout';
 import Button from '@/components/Button';
-import Flex from '@/components/Flex';
-import Icon from '@/components/Icon';
-import Input from '@/components/Input';
-import Textarea from '@/components/Textarea';
 import Checkbox from '@/components/Checkbox';
-import Radio from '@/components/Radio';
-import Select from '@/components/Select';
+import ComponentPageLayout from '@/components/ComponentPageLayout';
+import Flex from '@/components/Flex';
 import Form from '@/components/Form';
 import FormField from '@/components/FormField';
+import Icon from '@/components/Icon';
+import Input from '@/components/Input';
+import Radio from '@/components/Radio';
+import Select from '@/components/Select';
+import Textarea from '@/components/Textarea';
 
 const FormsPage: FC = () => (
   <ComponentPageLayout componentId="forms">
@@ -17,7 +17,9 @@ const FormsPage: FC = () => (
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
         {/* Text Inputs */}
         <div className="bg-background border-4 border-border p-8">
-          <h3 className="font-display font-bold uppercase text-sm tracking-wider mb-6">Text Inputs</h3>
+          <h3 className="font-display font-bold uppercase text-sm tracking-wider mb-6">
+            Text Inputs
+          </h3>
           <Form spacing="md">
             <Input label="Default Input" placeholder="Enter text..." />
             <Input
@@ -26,11 +28,7 @@ const FormsPage: FC = () => (
               placeholder="email@example.com"
               helpText="We'll never share your email."
             />
-            <Input
-              label="Disabled"
-              placeholder="Disabled input"
-              disabled
-            />
+            <Input label="Disabled" placeholder="Disabled input" disabled />
           </Form>
         </div>
 
@@ -46,9 +44,7 @@ const FormsPage: FC = () => (
             </div>
             <Flex gap={0}>
               <Input type="search" placeholder="Search..." className="border-r-0" />
-              <Button className="border-2 border-primary flex-shrink-0">
-                Search
-              </Button>
+              <Button className="border-2 border-primary flex-shrink-0">Search</Button>
             </Flex>
           </Form>
         </div>
@@ -58,7 +54,12 @@ const FormsPage: FC = () => (
           <h3 className="font-display font-bold uppercase text-sm tracking-wider mb-6">Password</h3>
           <Form spacing="md">
             <div className="relative" data-password-toggle="">
-              <Input type="password" label="Password" placeholder="Enter password..." className="pr-12" />
+              <Input
+                type="password"
+                label="Password"
+                placeholder="Enter password..."
+                className="pr-12"
+              />
               <Button
                 variant="ghost"
                 icon
@@ -71,7 +72,12 @@ const FormsPage: FC = () => (
               </Button>
             </div>
             <div className="relative" data-password-toggle="">
-              <Input type="password" label="Confirm Password" placeholder="Confirm password..." className="pr-12" />
+              <Input
+                type="password"
+                label="Confirm Password"
+                placeholder="Confirm password..."
+                className="pr-12"
+              />
               <Button
                 variant="ghost"
                 icon
@@ -88,7 +94,9 @@ const FormsPage: FC = () => (
 
         {/* Select & Textarea */}
         <div className="bg-background border-4 border-border p-8">
-          <h3 className="font-display font-bold uppercase text-sm tracking-wider mb-6">Select &amp; Textarea</h3>
+          <h3 className="font-display font-bold uppercase text-sm tracking-wider mb-6">
+            Select &amp; Textarea
+          </h3>
           <Form spacing="md">
             <Select
               label="Select"
@@ -105,7 +113,9 @@ const FormsPage: FC = () => (
 
         {/* Checkboxes & Radios */}
         <div className="bg-background border-4 border-border p-8">
-          <h3 className="font-display font-bold uppercase text-sm tracking-wider mb-6">Checkboxes &amp; Radios</h3>
+          <h3 className="font-display font-bold uppercase text-sm tracking-wider mb-6">
+            Checkboxes &amp; Radios
+          </h3>
           <div className="space-y-6">
             <div className="space-y-3">
               <Checkbox label="Option checked" defaultChecked />
@@ -121,7 +131,9 @@ const FormsPage: FC = () => (
 
       {/* Complete Form Example */}
       <div className="mt-8 mb-8 bg-background border-4 border-border p-8 md:p-12">
-        <h3 className="font-display font-bold uppercase text-sm tracking-wider mb-8">Complete Form Example</h3>
+        <h3 className="font-display font-bold uppercase text-sm tracking-wider mb-8">
+          Complete Form Example
+        </h3>
         <Form maxWidth="lg">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <Input label="First Name" placeholder="John" required />
@@ -140,7 +152,9 @@ const FormsPage: FC = () => (
 
       {/* Form Validation - Live Demo */}
       <div className="mb-8 bg-white border-4 border-border p-8 md:p-12">
-        <h3 className="font-display font-bold uppercase text-sm tracking-wider mb-6 text-muted-foreground">Form Validation</h3>
+        <h3 className="font-display font-bold uppercase text-sm tracking-wider mb-6 text-muted-foreground">
+          Form Validation
+        </h3>
         <Form id="validation-demo" maxWidth="md" noValidate>
           <FormField>
             <Input name="fullname" label="Full Name" placeholder="John Doe" />
@@ -149,24 +163,46 @@ const FormsPage: FC = () => (
             <Input name="email" label="Email" placeholder="john@example.com" />
           </FormField>
           <FormField>
-            <Input name="password" type="password" label="Password" placeholder="Min 8 chars, uppercase + number" />
+            <Input
+              name="password"
+              type="password"
+              label="Password"
+              placeholder="Min 8 chars, uppercase + number"
+            />
           </FormField>
           <FormField>
-            <Input name="website" label="Website" placeholder="https://example.com" helpText="Optional" />
+            <Input
+              name="website"
+              label="Website"
+              placeholder="https://example.com"
+              helpText="Optional"
+            />
           </FormField>
           <FormField>
-            <Textarea name="bio" label="Bio" rows={3} placeholder="Tell us about yourself..." resize="none" showCount maxLength={200} />
+            <Textarea
+              name="bio"
+              label="Bio"
+              rows={3}
+              placeholder="Tell us about yourself..."
+              resize="none"
+              showCount
+              maxLength={200}
+            />
           </FormField>
           <Flex gap={4}>
             <Button type="submit">Submit</Button>
-            <Button variant="outline" type="reset">Reset</Button>
+            <Button variant="outline" type="reset">
+              Reset
+            </Button>
           </Flex>
         </Form>
       </div>
 
       {/* Validation Code Example */}
       <div className="bg-white border-4 border-border p-8 md:p-12">
-        <h3 className="font-display font-bold uppercase text-sm tracking-wider mb-6 text-muted-foreground">Validation Usage</h3>
+        <h3 className="font-display font-bold uppercase text-sm tracking-wider mb-6 text-muted-foreground">
+          Validation Usage
+        </h3>
         <pre className="bg-foreground text-background p-6 overflow-x-auto">
           <code className="text-sm">{`const form = DutchyForm.create(document.getElementById('my-form'), {
   rules: {

@@ -25,9 +25,7 @@ const Scribble: FC<ScribbleProps> = ({
   className = '',
 }) => (
   <div data-scribble className={className}>
-    {label && (
-      <label className="block text-sm font-bold uppercase tracking-wider mb-2">{label}</label>
-    )}
+    {label && <div className="block text-sm font-bold uppercase tracking-wider mb-2">{label}</div>}
     <div className="relative border-2 border-border bg-white rounded-none">
       <canvas
         data-scribble-canvas
@@ -58,7 +56,9 @@ const Scribble: FC<ScribbleProps> = ({
     {name && <input type="hidden" data-scribble-value name={name} />}
     {showPreview && (
       <div data-scribble-preview-container className="mt-4" style={{ display: 'none' }}>
-        <p className="text-xs font-bold uppercase tracking-wider text-muted-foreground mb-2">Exported PNG</p>
+        <p className="text-xs font-bold uppercase tracking-wider text-muted-foreground mb-2">
+          Exported PNG
+        </p>
         <div className="border-2 border-dashed border-border p-4 bg-muted/30">
           <img data-scribble-preview alt="Exported scribble" className="w-full" />
         </div>

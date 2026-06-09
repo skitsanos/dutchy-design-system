@@ -1,8 +1,8 @@
-(function() {
-  // Open modal/drawer via [data-open-modal] — uses native <dialog>
-  document.querySelectorAll('[data-open-modal]').forEach((trigger) => {
+(() => {
+  // Open modal/drawer via [data-open-modal] or legacy [data-modal-open].
+  document.querySelectorAll('[data-open-modal], [data-modal-open]').forEach((trigger) => {
     trigger.addEventListener('click', () => {
-      const modalId = trigger.dataset.openModal;
+      const modalId = trigger.dataset.openModal || trigger.dataset.modalOpen;
       const dialog = document.getElementById(modalId);
       if (dialog && dialog.tagName === 'DIALOG') {
         dialog.showModal();

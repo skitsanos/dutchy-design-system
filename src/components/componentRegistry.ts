@@ -10,16 +10,23 @@ export const COMPONENTS: ComponentMeta[] = [
   {
     id: 'buttons',
     name: 'Buttons',
-    description: 'Call-to-action elements with multiple variants for different purposes and emphasis levels.',
+    description:
+      'Call-to-action elements with multiple variants for different purposes and emphasis levels.',
     category: 'UI',
     scripts: [],
   },
   {
     id: 'forms',
     name: 'Forms',
-    description: 'Form wrapper with consistent spacing, plus input elements for collecting user data.',
+    description:
+      'Form wrapper with consistent spacing, plus input elements for collecting user data.',
     category: 'Input',
-    scripts: ['/assets/js/select.js', '/assets/js/password-toggle.js', '/assets/js/dutchy-form.js', '/assets/js/dutchy-form-demo.js'],
+    scripts: [
+      '/assets/js/select.js',
+      '/assets/js/password-toggle.js',
+      '/assets/js/dutchy-form.js',
+      '/assets/js/dutchy-form-demo.js',
+    ],
   },
   {
     id: 'cards',
@@ -66,7 +73,8 @@ export const COMPONENTS: ComponentMeta[] = [
   {
     id: 'progress',
     name: 'Progress',
-    description: 'Determinate progress bars with sizes, color variants, labels, and custom max values.',
+    description:
+      'Determinate progress bars with sizes, color variants, labels, and custom max values.',
     category: 'Feedback',
     scripts: [],
   },
@@ -150,7 +158,8 @@ export const COMPONENTS: ComponentMeta[] = [
   {
     id: 'image',
     name: 'Image',
-    description: 'Responsive images with captions, expand-to-fullscreen lightbox, gallery grids, and overlay text.',
+    description:
+      'Responsive images with captions, expand-to-fullscreen lightbox, gallery grids, and overlay text.',
     category: 'Display',
     scripts: ['/assets/js/image-expand.js'],
   },
@@ -164,35 +173,40 @@ export const COMPONENTS: ComponentMeta[] = [
   {
     id: 'flex',
     name: 'Flex',
-    description: 'Flexible box layout component for arranging items with direction, alignment, gap, and wrapping.',
+    description:
+      'Flexible box layout component for arranging items with direction, alignment, gap, and wrapping.',
     category: 'Layout',
     scripts: [],
   },
   {
     id: 'menu',
     name: 'Menu',
-    description: 'Action lists and context menus with icons, keyboard shortcuts, and destructive variants.',
+    description:
+      'Action lists and context menus with icons, keyboard shortcuts, and destructive variants.',
     category: 'Interactive',
     scripts: ['/assets/js/dropdown.js'],
   },
   {
     id: 'text',
     name: 'Text',
-    description: 'Composable typography component with family, size, weight, tracking, leading, and color props.',
+    description:
+      'Composable typography component with family, size, weight, tracking, leading, and color props.',
     category: 'Display',
     scripts: [],
   },
   {
     id: 'scribble',
     name: 'Scribble',
-    description: 'Canvas-based drawing pad for signatures and freehand sketches with export support.',
+    description:
+      'Canvas-based drawing pad for signatures and freehand sketches with export support.',
     category: 'Input',
     scripts: ['/assets/js/scribble.js'],
   },
   {
     id: 'textarea',
     name: 'Textarea',
-    description: 'Multi-line text input with resize control, character counting, and validation states.',
+    description:
+      'Multi-line text input with resize control, character counting, and validation states.',
     category: 'Input',
     scripts: ['/assets/js/textarea.js'],
   },

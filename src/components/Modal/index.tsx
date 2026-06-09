@@ -1,6 +1,6 @@
 import type { FC, ReactNode } from 'react';
-import Icon from '@/components/Icon';
 import Flex from '@/components/Flex';
+import Icon from '@/components/Icon';
 
 interface ModalProps {
   id: string;
@@ -26,6 +26,7 @@ const Modal: FC<ModalProps> = ({
     <Flex align="center" justify="between" className="px-6 py-4 border-b-2 border-border">
       <h2 className="font-display text-lg font-bold uppercase tracking-tight">{title}</h2>
       <button
+        type="button"
         data-close-modal=""
         className="p-1 text-muted-foreground hover:text-foreground transition-colors"
         aria-label="Close"

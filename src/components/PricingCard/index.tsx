@@ -37,9 +37,7 @@ const PricingCard: FC<PricingCardProps> = ({
           <h3 className="font-display text-2xl font-bold uppercase tracking-tight mb-2 text-primary">
             {name}
           </h3>
-          {description && (
-            <p className="text-sm text-background/70">{description}</p>
-          )}
+          {description && <p className="text-sm text-background/70">{description}</p>}
         </div>
 
         <div className="mb-8">
@@ -83,17 +81,13 @@ const PricingCard: FC<PricingCardProps> = ({
   return (
     <div className={`bg-background border-2 border-border p-8 flex flex-col ${className}`}>
       <div className="mb-8">
-        <h3 className="font-display text-2xl font-bold uppercase tracking-tight mb-2">
-          {name}
-        </h3>
+        <h3 className="font-display text-2xl font-bold uppercase tracking-tight mb-2">{name}</h3>
         {badge && (
           <span className="inline-block bg-muted text-muted-foreground px-3 py-1 text-xs font-bold uppercase tracking-widest mb-2">
             {badge}
           </span>
         )}
-        {description && (
-          <p className="text-sm text-muted-foreground">{description}</p>
-        )}
+        {description && <p className="text-sm text-muted-foreground">{description}</p>}
       </div>
 
       <div className="mb-8">

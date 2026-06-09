@@ -9,7 +9,9 @@ const SkeletonPage: FC = () => (
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {/* Card skeleton */}
         <div className="bg-background border-4 border-border p-6 space-y-4">
-          <h3 className="font-display font-bold uppercase text-xs tracking-wider mb-4 text-muted-foreground">Card Skeleton</h3>
+          <h3 className="font-display font-bold uppercase text-xs tracking-wider mb-4 text-muted-foreground">
+            Card Skeleton
+          </h3>
           <Skeleton variant="title" />
           <Skeleton variant="text" count={2} />
           <div className="animate-skeleton h-10 w-32 mt-4" />
@@ -17,7 +19,9 @@ const SkeletonPage: FC = () => (
 
         {/* List skeleton */}
         <div className="bg-background border-4 border-border p-6">
-          <h3 className="font-display font-bold uppercase text-xs tracking-wider mb-4 text-muted-foreground">List Skeleton</h3>
+          <h3 className="font-display font-bold uppercase text-xs tracking-wider mb-4 text-muted-foreground">
+            List Skeleton
+          </h3>
           <div className="space-y-3">
             <Flex align="center" gap={3}>
               <Skeleton variant="avatar" className="shrink-0" />
@@ -45,7 +49,9 @@ const SkeletonPage: FC = () => (
 
         {/* Content skeleton */}
         <div className="bg-background border-4 border-border p-6">
-          <h3 className="font-display font-bold uppercase text-xs tracking-wider mb-4 text-muted-foreground">Content Skeleton</h3>
+          <h3 className="font-display font-bold uppercase text-xs tracking-wider mb-4 text-muted-foreground">
+            Content Skeleton
+          </h3>
           <div className="space-y-4">
             <Skeleton variant="title" className="w-1/2" />
             <Skeleton variant="text" count={3} />

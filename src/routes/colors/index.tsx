@@ -1,7 +1,7 @@
 import type { FC } from 'react';
 import Layout from '@/components/Layout';
-import WebsiteHeader from '@/components/WebsiteHeader';
 import WebsiteFooter from '@/components/WebsiteFooter';
+import WebsiteHeader from '@/components/WebsiteHeader';
 
 const ColorsPage: FC = () => {
   return (
@@ -28,7 +28,8 @@ const ColorsPage: FC = () => {
               Colors
             </h1>
             <p className="text-xl text-muted-foreground leading-relaxed">
-              A warm, earthy palette inspired by Dutch design. The vibrant orange primary creates focal points while neutral backgrounds provide structural stability.
+              A warm, earthy palette inspired by Dutch design. The vibrant orange primary creates
+              focal points while neutral backgrounds provide structural stability.
             </p>
           </div>
         </div>
@@ -41,7 +42,8 @@ const ColorsPage: FC = () => {
             Primary Palette
           </h2>
           <p className="text-muted-foreground mb-12 max-w-2xl">
-            The core colors that define Dutchy's visual identity. Warm orange for action, dark brown for text, and cream for backgrounds.
+            The core colors that define Dutchy's visual identity. Warm orange for action, dark brown
+            for text, and cream for backgrounds.
           </p>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-0.5 bg-border">
@@ -57,8 +59,12 @@ const ColorsPage: FC = () => {
                   <span className="font-mono text-xs bg-muted px-2 py-1">--primary</span>
                 </div>
                 <div className="space-y-2 font-mono text-xs">
-                  <p><span className="text-muted-foreground">HSL:</span> 25 95% 53%</p>
-                  <p><span className="text-muted-foreground">HEX:</span> #F97316</p>
+                  <p>
+                    <span className="text-muted-foreground">HSL:</span> 25 95% 53%
+                  </p>
+                  <p>
+                    <span className="text-muted-foreground">HEX:</span> #F97316
+                  </p>
                 </div>
               </div>
             </div>
@@ -75,8 +81,12 @@ const ColorsPage: FC = () => {
                   <span className="font-mono text-xs bg-muted px-2 py-1">--foreground</span>
                 </div>
                 <div className="space-y-2 font-mono text-xs">
-                  <p><span className="text-muted-foreground">HSL:</span> 25 20% 6%</p>
-                  <p><span className="text-muted-foreground">HEX:</span> #130F0C</p>
+                  <p>
+                    <span className="text-muted-foreground">HSL:</span> 25 20% 6%
+                  </p>
+                  <p>
+                    <span className="text-muted-foreground">HEX:</span> #130F0C
+                  </p>
                 </div>
               </div>
             </div>
@@ -93,8 +103,12 @@ const ColorsPage: FC = () => {
                   <span className="font-mono text-xs bg-muted px-2 py-1">--background</span>
                 </div>
                 <div className="space-y-2 font-mono text-xs">
-                  <p><span className="text-muted-foreground">HSL:</span> 40 30% 97%</p>
-                  <p><span className="text-muted-foreground">HEX:</span> #FAF8F5</p>
+                  <p>
+                    <span className="text-muted-foreground">HSL:</span> 40 30% 97%
+                  </p>
+                  <p>
+                    <span className="text-muted-foreground">HEX:</span> #FAF8F5
+                  </p>
                 </div>
               </div>
             </div>
@@ -191,7 +205,9 @@ const ColorsPage: FC = () => {
             {/* Primary on White */}
             <div className="border-4 border-border">
               <div className="bg-white p-8 text-center">
-                <span className="text-primary font-display text-2xl font-bold uppercase">Primary Text</span>
+                <span className="text-primary font-display text-2xl font-bold uppercase">
+                  Primary Text
+                </span>
               </div>
               <div className="p-4 bg-muted">
                 <p className="font-mono text-xs">primary on background</p>
@@ -202,7 +218,9 @@ const ColorsPage: FC = () => {
             {/* White on Primary */}
             <div className="border-4 border-border">
               <div className="bg-primary p-8 text-center">
-                <span className="text-primary-foreground font-display text-2xl font-bold uppercase">White Text</span>
+                <span className="text-primary-foreground font-display text-2xl font-bold uppercase">
+                  White Text
+                </span>
               </div>
               <div className="p-4 bg-muted">
                 <p className="font-mono text-xs">primary-foreground on primary</p>
@@ -213,7 +231,9 @@ const ColorsPage: FC = () => {
             {/* Foreground on Background */}
             <div className="border-4 border-border">
               <div className="bg-background p-8 text-center">
-                <span className="text-foreground font-display text-2xl font-bold uppercase">Dark Text</span>
+                <span className="text-foreground font-display text-2xl font-bold uppercase">
+                  Dark Text
+                </span>
               </div>
               <div className="p-4 bg-muted">
                 <p className="font-mono text-xs">foreground on background</p>
@@ -224,7 +244,9 @@ const ColorsPage: FC = () => {
             {/* Background on Foreground */}
             <div className="border-4 border-border">
               <div className="bg-foreground p-8 text-center">
-                <span className="text-background font-display text-2xl font-bold uppercase">Light Text</span>
+                <span className="text-background font-display text-2xl font-bold uppercase">
+                  Light Text
+                </span>
               </div>
               <div className="p-4 bg-muted">
                 <p className="font-mono text-xs">background on foreground</p>
@@ -235,7 +257,9 @@ const ColorsPage: FC = () => {
             {/* Primary on Foreground */}
             <div className="border-4 border-border">
               <div className="bg-foreground p-8 text-center">
-                <span className="text-primary font-display text-2xl font-bold uppercase">Accent Text</span>
+                <span className="text-primary font-display text-2xl font-bold uppercase">
+                  Accent Text
+                </span>
               </div>
               <div className="p-4 bg-muted">
                 <p className="font-mono text-xs">primary on foreground</p>
@@ -246,7 +270,9 @@ const ColorsPage: FC = () => {
             {/* Muted Foreground */}
             <div className="border-4 border-border">
               <div className="bg-background p-8 text-center">
-                <span className="text-muted-foreground font-display text-2xl font-bold uppercase">Muted Text</span>
+                <span className="text-muted-foreground font-display text-2xl font-bold uppercase">
+                  Muted Text
+                </span>
               </div>
               <div className="p-4 bg-muted">
                 <p className="font-mono text-xs">muted-foreground on background</p>
@@ -269,10 +295,31 @@ const ColorsPage: FC = () => {
             <div className="bg-background p-8 border-l-4 border-primary">
               <h3 className="font-display font-bold uppercase mb-6">Buttons</h3>
               <div className="flex flex-wrap gap-4">
-                <button className="bg-primary text-primary-foreground px-6 py-3 font-bold uppercase tracking-wide">Primary</button>
-                <button className="bg-secondary text-secondary-foreground px-6 py-3 font-bold uppercase tracking-wide border-2 border-border">Secondary</button>
-                <button className="bg-foreground text-background px-6 py-3 font-bold uppercase tracking-wide">Dark</button>
-                <button className="px-6 py-3 font-bold uppercase tracking-wide border-2 border-foreground" style={{ backgroundColor: 'hsl(0 84% 60%)', color: 'white' }}>Destructive</button>
+                <button
+                  type="button"
+                  className="bg-primary text-primary-foreground px-6 py-3 font-bold uppercase tracking-wide"
+                >
+                  Primary
+                </button>
+                <button
+                  type="button"
+                  className="bg-secondary text-secondary-foreground px-6 py-3 font-bold uppercase tracking-wide border-2 border-border"
+                >
+                  Secondary
+                </button>
+                <button
+                  type="button"
+                  className="bg-foreground text-background px-6 py-3 font-bold uppercase tracking-wide"
+                >
+                  Dark
+                </button>
+                <button
+                  type="button"
+                  className="px-6 py-3 font-bold uppercase tracking-wide border-2 border-foreground"
+                  style={{ backgroundColor: 'hsl(0 84% 60%)', color: 'white' }}
+                >
+                  Destructive
+                </button>
               </div>
             </div>
 
@@ -284,13 +331,29 @@ const ColorsPage: FC = () => {
                   <p className="font-bold text-sm">Information</p>
                   <p className="text-sm text-muted-foreground">This is an informational message.</p>
                 </div>
-                <div className="border-l-4 p-4" style={{ backgroundColor: 'hsla(142, 76%, 36%, 0.1)', borderColor: 'hsl(142 76% 36%)' }}>
+                <div
+                  className="border-l-4 p-4"
+                  style={{
+                    backgroundColor: 'hsla(142, 76%, 36%, 0.1)',
+                    borderColor: 'hsl(142 76% 36%)',
+                  }}
+                >
                   <p className="font-bold text-sm">Success</p>
-                  <p className="text-sm text-muted-foreground">Your action was completed successfully.</p>
+                  <p className="text-sm text-muted-foreground">
+                    Your action was completed successfully.
+                  </p>
                 </div>
-                <div className="border-l-4 p-4" style={{ backgroundColor: 'hsla(0, 84%, 60%, 0.1)', borderColor: 'hsl(0 84% 60%)' }}>
+                <div
+                  className="border-l-4 p-4"
+                  style={{
+                    backgroundColor: 'hsla(0, 84%, 60%, 0.1)',
+                    borderColor: 'hsl(0 84% 60%)',
+                  }}
+                >
                   <p className="font-bold text-sm">Error</p>
-                  <p className="text-sm text-muted-foreground">Something went wrong. Please try again.</p>
+                  <p className="text-sm text-muted-foreground">
+                    Something went wrong. Please try again.
+                  </p>
                 </div>
               </div>
             </div>
@@ -314,12 +377,30 @@ const ColorsPage: FC = () => {
             <div className="bg-background p-8 border-l-4 border-primary">
               <h3 className="font-display font-bold uppercase mb-6">Tags &amp; Badges</h3>
               <div className="flex flex-wrap gap-3">
-                <span className="bg-primary text-primary-foreground px-3 py-1 font-mono text-xs font-bold uppercase">New</span>
-                <span className="bg-foreground text-background px-3 py-1 font-mono text-xs font-bold uppercase">Featured</span>
-                <span className="bg-muted text-muted-foreground px-3 py-1 font-mono text-xs font-bold uppercase">Draft</span>
-                <span className="px-3 py-1 font-mono text-xs font-bold uppercase text-white" style={{ backgroundColor: 'hsl(142 76% 36%)' }}>Active</span>
-                <span className="px-3 py-1 font-mono text-xs font-bold uppercase text-white" style={{ backgroundColor: 'hsl(0 84% 60%)' }}>Deprecated</span>
-                <span className="bg-secondary text-secondary-foreground px-3 py-1 font-mono text-xs font-bold uppercase border border-border">Default</span>
+                <span className="bg-primary text-primary-foreground px-3 py-1 font-mono text-xs font-bold uppercase">
+                  New
+                </span>
+                <span className="bg-foreground text-background px-3 py-1 font-mono text-xs font-bold uppercase">
+                  Featured
+                </span>
+                <span className="bg-muted text-muted-foreground px-3 py-1 font-mono text-xs font-bold uppercase">
+                  Draft
+                </span>
+                <span
+                  className="px-3 py-1 font-mono text-xs font-bold uppercase text-white"
+                  style={{ backgroundColor: 'hsl(142 76% 36%)' }}
+                >
+                  Active
+                </span>
+                <span
+                  className="px-3 py-1 font-mono text-xs font-bold uppercase text-white"
+                  style={{ backgroundColor: 'hsl(0 84% 60%)' }}
+                >
+                  Deprecated
+                </span>
+                <span className="bg-secondary text-secondary-foreground px-3 py-1 font-mono text-xs font-bold uppercase border border-border">
+                  Default
+                </span>
               </div>
             </div>
           </div>
@@ -334,7 +415,10 @@ const ColorsPage: FC = () => {
           </h2>
 
           <div className="bg-foreground text-background p-6 md:p-8 font-mono text-sm overflow-x-auto">
-            <pre><code dangerouslySetInnerHTML={{ __html: `<span class="text-muted-foreground">/* Dutchy Color Tokens */</span>
+            <pre>
+              <code
+                dangerouslySetInnerHTML={{
+                  __html: `<span class="text-muted-foreground">/* Dutchy Color Tokens */</span>
 :root {
   <span class="text-primary">--background</span>: 40 30% 97%;
   <span class="text-primary">--foreground</span>: 25 20% 6%;
@@ -363,7 +447,10 @@ const ColorsPage: FC = () => {
 .element {
   background-color: hsl(var(<span class="text-primary">--primary</span>));
   color: hsl(var(<span class="text-primary">--primary-foreground</span>));
-}` }} /></pre>
+}`,
+                }}
+              />
+            </pre>
           </div>
         </div>
       </section>

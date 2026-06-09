@@ -1,9 +1,9 @@
 import type { FC } from 'react';
+import Button from '@/components/Button';
 import ComponentPageLayout from '@/components/ComponentPageLayout';
 import FileUpload from '@/components/FileUpload';
 import Flex from '@/components/Flex';
 import Icon from '@/components/Icon';
-import Button from '@/components/Button';
 import Progress from '@/components/Progress';
 
 const FileUploadPage: FC = () => (
@@ -11,13 +11,17 @@ const FileUploadPage: FC = () => (
     <>
       {/* Drag & Drop */}
       <div className="bg-background border-4 border-border p-8 md:p-12 mb-8">
-        <h3 className="font-display font-bold uppercase text-sm tracking-wider mb-6 text-muted-foreground">Drag &amp; Drop</h3>
+        <h3 className="font-display font-bold uppercase text-sm tracking-wider mb-6 text-muted-foreground">
+          Drag &amp; Drop
+        </h3>
         <FileUpload id="demo-upload" label="Drop files here or click to browse" multiple />
       </div>
 
       {/* Styled Input */}
       <div className="bg-background border-4 border-border p-8 md:p-12 mb-8">
-        <h3 className="font-display font-bold uppercase text-sm tracking-wider mb-6 text-muted-foreground">Styled Input</h3>
+        <h3 className="font-display font-bold uppercase text-sm tracking-wider mb-6 text-muted-foreground">
+          Styled Input
+        </h3>
         <Button variant="outline" size="sm" onClick={() => {}}>
           <Icon name="plus" size="sm" />
           Choose File
@@ -27,7 +31,9 @@ const FileUploadPage: FC = () => (
 
       {/* Progress */}
       <div className="bg-background border-4 border-border p-8 md:p-12">
-        <h3 className="font-display font-bold uppercase text-sm tracking-wider mb-6 text-muted-foreground">Progress Indicators</h3>
+        <h3 className="font-display font-bold uppercase text-sm tracking-wider mb-6 text-muted-foreground">
+          Progress Indicators
+        </h3>
         <div className="space-y-4 max-w-lg">
           <Flex align="center" gap={4} className="p-3 border-2 border-border">
             <span className="text-sm font-bold flex-shrink-0">report.pdf</span>

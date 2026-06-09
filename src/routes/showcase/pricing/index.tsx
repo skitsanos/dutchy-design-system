@@ -1,9 +1,8 @@
-import Layout from '@/components/Layout';
-import Header from '@/components/Header';
-import Footer from '@/components/Footer';
-import Icon from '@/components/Icon';
-import PricingCard from '@/components/PricingCard';
 import Accordion from '@/components/Accordion';
+import Footer from '@/components/Footer';
+import Header from '@/components/Header';
+import Icon from '@/components/Icon';
+import Layout from '@/components/Layout';
 
 const headerNavLinks = [
   { href: '/showcase', label: 'Home' },
@@ -12,7 +11,7 @@ const headerNavLinks = [
   { href: '/showcase/blog', label: 'Blog' },
 ];
 
-const PricingPage = ({ request }: { request: Request }) => {
+const PricingPage = () => {
   return (
     <Layout
       title="Pricing | Dutchy Design System"
@@ -48,32 +47,34 @@ const PricingPage = ({ request }: { request: Request }) => {
               <span className="text-primary">Plan.</span>
             </h1>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed mb-8">
-              Start free and scale as you grow. All plans include access to our
-              complete component library and design tokens.
+              Start free and scale as you grow. All plans include access to our complete component
+              library and design tokens.
             </p>
             {/* Toggle */}
-            <div className="flex items-center justify-center gap-4">
-              <span className="font-bold text-foreground" data-pricing-label="monthly">
+            <div className="flex items-center justify-center gap-4" data-pricing-toggle="">
+              <button type="button" className="font-bold text-foreground" data-pricing-monthly="">
                 Monthly
-              </span>
+              </button>
               <button
+                type="button"
                 className="w-14 h-8 bg-foreground flex items-center p-1 cursor-pointer"
-                data-pricing-toggle=""
+                data-pricing-switch=""
                 role="switch"
-                aria-checked="true"
+                aria-checked="false"
                 aria-label="Toggle between monthly and yearly billing"
               >
-                <span className="w-6 h-6 bg-primary transform translate-x-6 transition-transform" />
+                <span className="w-6 h-6 bg-primary transform translate-x-0 transition-transform" />
               </button>
-              <span
+              <button
+                type="button"
                 className="font-bold text-muted-foreground"
-                data-pricing-label="yearly"
+                data-pricing-yearly=""
               >
                 Yearly
                 <span className="ml-2 bg-primary/20 text-primary px-2 py-1 font-mono text-xs">
                   Save 20%
                 </span>
-              </span>
+              </button>
             </div>
           </div>
         </section>
@@ -97,51 +98,41 @@ const PricingPage = ({ request }: { request: Request }) => {
                 </div>
                 <div className="mb-8">
                   <div className="flex items-baseline gap-1">
-                    <span className="font-display text-5xl font-bold">$0</span>
-                    <span className="text-muted-foreground">/month</span>
+                    <span
+                      className="font-display text-5xl font-bold"
+                      data-price-monthly="$0"
+                      data-price-yearly="$0"
+                    >
+                      $0
+                    </span>
+                    <span className="text-muted-foreground" data-period="">
+                      /month
+                    </span>
                   </div>
                 </div>
                 <ul className="space-y-4 mb-8 flex-grow">
                   <li className="flex items-center gap-3">
-                    <Icon
-                      name="check"
-                      className="w-5 h-5 text-primary flex-shrink-0"
-                    />
+                    <Icon name="check" className="w-5 h-5 text-primary flex-shrink-0" />
                     <span className="text-sm">All core components</span>
                   </li>
                   <li className="flex items-center gap-3">
-                    <Icon
-                      name="check"
-                      className="w-5 h-5 text-primary flex-shrink-0"
-                    />
+                    <Icon name="check" className="w-5 h-5 text-primary flex-shrink-0" />
                     <span className="text-sm">Basic design tokens</span>
                   </li>
                   <li className="flex items-center gap-3">
-                    <Icon
-                      name="check"
-                      className="w-5 h-5 text-primary flex-shrink-0"
-                    />
+                    <Icon name="check" className="w-5 h-5 text-primary flex-shrink-0" />
                     <span className="text-sm">Community support</span>
                   </li>
                   <li className="flex items-center gap-3">
-                    <Icon
-                      name="check"
-                      className="w-5 h-5 text-primary flex-shrink-0"
-                    />
+                    <Icon name="check" className="w-5 h-5 text-primary flex-shrink-0" />
                     <span className="text-sm">1 project</span>
                   </li>
                   <li className="flex items-center gap-3 text-muted-foreground">
-                    <Icon
-                      name="x"
-                      className="w-5 h-5 flex-shrink-0"
-                    />
+                    <Icon name="x" className="w-5 h-5 flex-shrink-0" />
                     <span className="text-sm">Premium templates</span>
                   </li>
                   <li className="flex items-center gap-3 text-muted-foreground">
-                    <Icon
-                      name="x"
-                      className="w-5 h-5 flex-shrink-0"
-                    />
+                    <Icon name="x" className="w-5 h-5 flex-shrink-0" />
                     <span className="text-sm">Priority support</span>
                   </li>
                 </ul>
@@ -168,51 +159,41 @@ const PricingPage = ({ request }: { request: Request }) => {
                 </div>
                 <div className="mb-8">
                   <div className="flex items-baseline gap-1">
-                    <span className="font-display text-5xl font-bold">$29</span>
-                    <span className="text-background/60">/month</span>
+                    <span
+                      className="font-display text-5xl font-bold"
+                      data-price-monthly="$29"
+                      data-price-yearly="$279"
+                    >
+                      $29
+                    </span>
+                    <span className="text-background/60" data-period="">
+                      /month
+                    </span>
                   </div>
                 </div>
                 <ul className="space-y-4 mb-8 flex-grow">
                   <li className="flex items-center gap-3">
-                    <Icon
-                      name="check"
-                      className="w-5 h-5 text-primary flex-shrink-0"
-                    />
+                    <Icon name="check" className="w-5 h-5 text-primary flex-shrink-0" />
                     <span className="text-sm">Everything in Starter</span>
                   </li>
                   <li className="flex items-center gap-3">
-                    <Icon
-                      name="check"
-                      className="w-5 h-5 text-primary flex-shrink-0"
-                    />
+                    <Icon name="check" className="w-5 h-5 text-primary flex-shrink-0" />
                     <span className="text-sm">Advanced components</span>
                   </li>
                   <li className="flex items-center gap-3">
-                    <Icon
-                      name="check"
-                      className="w-5 h-5 text-primary flex-shrink-0"
-                    />
+                    <Icon name="check" className="w-5 h-5 text-primary flex-shrink-0" />
                     <span className="text-sm">Premium templates</span>
                   </li>
                   <li className="flex items-center gap-3">
-                    <Icon
-                      name="check"
-                      className="w-5 h-5 text-primary flex-shrink-0"
-                    />
+                    <Icon name="check" className="w-5 h-5 text-primary flex-shrink-0" />
                     <span className="text-sm">Unlimited projects</span>
                   </li>
                   <li className="flex items-center gap-3">
-                    <Icon
-                      name="check"
-                      className="w-5 h-5 text-primary flex-shrink-0"
-                    />
+                    <Icon name="check" className="w-5 h-5 text-primary flex-shrink-0" />
                     <span className="text-sm">Email support</span>
                   </li>
                   <li className="flex items-center gap-3">
-                    <Icon
-                      name="check"
-                      className="w-5 h-5 text-primary flex-shrink-0"
-                    />
+                    <Icon name="check" className="w-5 h-5 text-primary flex-shrink-0" />
                     <span className="text-sm">Figma files included</span>
                   </li>
                 </ul>
@@ -239,51 +220,41 @@ const PricingPage = ({ request }: { request: Request }) => {
                 </div>
                 <div className="mb-8">
                   <div className="flex items-baseline gap-1">
-                    <span className="font-display text-5xl font-bold">$99</span>
-                    <span className="text-muted-foreground">/month</span>
+                    <span
+                      className="font-display text-5xl font-bold"
+                      data-price-monthly="$99"
+                      data-price-yearly="$950"
+                    >
+                      $99
+                    </span>
+                    <span className="text-muted-foreground" data-period="">
+                      /month
+                    </span>
                   </div>
                 </div>
                 <ul className="space-y-4 mb-8 flex-grow">
                   <li className="flex items-center gap-3">
-                    <Icon
-                      name="check"
-                      className="w-5 h-5 text-primary flex-shrink-0"
-                    />
+                    <Icon name="check" className="w-5 h-5 text-primary flex-shrink-0" />
                     <span className="text-sm">Everything in Pro</span>
                   </li>
                   <li className="flex items-center gap-3">
-                    <Icon
-                      name="check"
-                      className="w-5 h-5 text-primary flex-shrink-0"
-                    />
+                    <Icon name="check" className="w-5 h-5 text-primary flex-shrink-0" />
                     <span className="text-sm">Custom components</span>
                   </li>
                   <li className="flex items-center gap-3">
-                    <Icon
-                      name="check"
-                      className="w-5 h-5 text-primary flex-shrink-0"
-                    />
+                    <Icon name="check" className="w-5 h-5 text-primary flex-shrink-0" />
                     <span className="text-sm">White-label option</span>
                   </li>
                   <li className="flex items-center gap-3">
-                    <Icon
-                      name="check"
-                      className="w-5 h-5 text-primary flex-shrink-0"
-                    />
+                    <Icon name="check" className="w-5 h-5 text-primary flex-shrink-0" />
                     <span className="text-sm">Dedicated support</span>
                   </li>
                   <li className="flex items-center gap-3">
-                    <Icon
-                      name="check"
-                      className="w-5 h-5 text-primary flex-shrink-0"
-                    />
+                    <Icon name="check" className="w-5 h-5 text-primary flex-shrink-0" />
                     <span className="text-sm">SLA guarantee</span>
                   </li>
                   <li className="flex items-center gap-3">
-                    <Icon
-                      name="check"
-                      className="w-5 h-5 text-primary flex-shrink-0"
-                    />
+                    <Icon name="check" className="w-5 h-5 text-primary flex-shrink-0" />
                     <span className="text-sm">Onboarding training</span>
                   </li>
                 </ul>
@@ -311,19 +282,34 @@ const PricingPage = ({ request }: { request: Request }) => {
             </div>
 
             <div className="max-w-5xl mx-auto overflow-x-auto">
-              <table className="w-full border-collapse" aria-label="Feature comparison across pricing plans">
+              <table
+                className="w-full border-collapse"
+                aria-label="Feature comparison across pricing plans"
+              >
                 <thead>
                   <tr className="bg-foreground text-background">
-                    <th scope="col" className="text-left p-4 font-display font-bold uppercase text-sm tracking-wider">
+                    <th
+                      scope="col"
+                      className="text-left p-4 font-display font-bold uppercase text-sm tracking-wider"
+                    >
                       Feature
                     </th>
-                    <th scope="col" className="text-center p-4 font-display font-bold uppercase text-sm tracking-wider">
+                    <th
+                      scope="col"
+                      className="text-center p-4 font-display font-bold uppercase text-sm tracking-wider"
+                    >
                       Starter
                     </th>
-                    <th scope="col" className="text-center p-4 font-display font-bold uppercase text-sm tracking-wider bg-primary text-primary-foreground">
+                    <th
+                      scope="col"
+                      className="text-center p-4 font-display font-bold uppercase text-sm tracking-wider bg-primary text-primary-foreground"
+                    >
                       Pro
                     </th>
-                    <th scope="col" className="text-center p-4 font-display font-bold uppercase text-sm tracking-wider">
+                    <th
+                      scope="col"
+                      className="text-center p-4 font-display font-bold uppercase text-sm tracking-wider"
+                    >
                       Enterprise
                     </th>
                   </tr>
@@ -332,108 +318,65 @@ const PricingPage = ({ request }: { request: Request }) => {
                   <tr className="border-b border-border bg-background">
                     <td className="p-4 font-bold">Core Components</td>
                     <td className="p-4 text-center">
-                      <Icon
-                        name="check"
-                        className="w-6 h-6 text-primary mx-auto"
-                      />
+                      <Icon name="check" className="w-6 h-6 text-primary mx-auto" />
                       <span className="sr-only">Included</span>
                     </td>
                     <td className="p-4 text-center bg-primary/5">
-                      <Icon
-                        name="check"
-                        className="w-6 h-6 text-primary mx-auto"
-                      />
+                      <Icon name="check" className="w-6 h-6 text-primary mx-auto" />
                       <span className="sr-only">Included</span>
                     </td>
                     <td className="p-4 text-center">
-                      <Icon
-                        name="check"
-                        className="w-6 h-6 text-primary mx-auto"
-                      />
+                      <Icon name="check" className="w-6 h-6 text-primary mx-auto" />
                       <span className="sr-only">Included</span>
                     </td>
                   </tr>
                   <tr className="border-b border-border bg-muted/50">
                     <td className="p-4 font-bold">Design Tokens</td>
-                    <td className="p-4 text-center font-mono text-sm">
-                      Basic
-                    </td>
-                    <td className="p-4 text-center font-mono text-sm bg-primary/5">
-                      Full
-                    </td>
-                    <td className="p-4 text-center font-mono text-sm">
-                      Custom
-                    </td>
+                    <td className="p-4 text-center font-mono text-sm">Basic</td>
+                    <td className="p-4 text-center font-mono text-sm bg-primary/5">Full</td>
+                    <td className="p-4 text-center font-mono text-sm">Custom</td>
                   </tr>
                   <tr className="border-b border-border bg-background">
                     <td className="p-4 font-bold">Projects</td>
                     <td className="p-4 text-center font-mono text-sm">1</td>
-                    <td className="p-4 text-center font-mono text-sm bg-primary/5">
-                      Unlimited
-                    </td>
-                    <td className="p-4 text-center font-mono text-sm">
-                      Unlimited
-                    </td>
+                    <td className="p-4 text-center font-mono text-sm bg-primary/5">Unlimited</td>
+                    <td className="p-4 text-center font-mono text-sm">Unlimited</td>
                   </tr>
                   <tr className="border-b border-border bg-muted/50">
                     <td className="p-4 font-bold">Premium Templates</td>
                     <td className="p-4 text-center">
-                      <Icon
-                        name="x"
-                        className="w-6 h-6 text-muted-foreground mx-auto"
-                      />
+                      <Icon name="x" className="w-6 h-6 text-muted-foreground mx-auto" />
                       <span className="sr-only">Not included</span>
                     </td>
                     <td className="p-4 text-center bg-primary/5">
-                      <Icon
-                        name="check"
-                        className="w-6 h-6 text-primary mx-auto"
-                      />
+                      <Icon name="check" className="w-6 h-6 text-primary mx-auto" />
                       <span className="sr-only">Included</span>
                     </td>
                     <td className="p-4 text-center">
-                      <Icon
-                        name="check"
-                        className="w-6 h-6 text-primary mx-auto"
-                      />
+                      <Icon name="check" className="w-6 h-6 text-primary mx-auto" />
                       <span className="sr-only">Included</span>
                     </td>
                   </tr>
                   <tr className="border-b border-border bg-background">
                     <td className="p-4 font-bold">Figma Files</td>
                     <td className="p-4 text-center">
-                      <Icon
-                        name="x"
-                        className="w-6 h-6 text-muted-foreground mx-auto"
-                      />
+                      <Icon name="x" className="w-6 h-6 text-muted-foreground mx-auto" />
                       <span className="sr-only">Not included</span>
                     </td>
                     <td className="p-4 text-center bg-primary/5">
-                      <Icon
-                        name="check"
-                        className="w-6 h-6 text-primary mx-auto"
-                      />
+                      <Icon name="check" className="w-6 h-6 text-primary mx-auto" />
                       <span className="sr-only">Included</span>
                     </td>
                     <td className="p-4 text-center">
-                      <Icon
-                        name="check"
-                        className="w-6 h-6 text-primary mx-auto"
-                      />
+                      <Icon name="check" className="w-6 h-6 text-primary mx-auto" />
                       <span className="sr-only">Included</span>
                     </td>
                   </tr>
                   <tr className="border-b border-border bg-muted/50">
                     <td className="p-4 font-bold">Support</td>
-                    <td className="p-4 text-center font-mono text-sm">
-                      Community
-                    </td>
-                    <td className="p-4 text-center font-mono text-sm bg-primary/5">
-                      Email
-                    </td>
-                    <td className="p-4 text-center font-mono text-sm">
-                      Dedicated
-                    </td>
+                    <td className="p-4 text-center font-mono text-sm">Community</td>
+                    <td className="p-4 text-center font-mono text-sm bg-primary/5">Email</td>
+                    <td className="p-4 text-center font-mono text-sm">Dedicated</td>
                   </tr>
                 </tbody>
               </table>
@@ -456,7 +399,7 @@ const PricingPage = ({ request }: { request: Request }) => {
                   {
                     title: 'Can I switch plans later?',
                     content:
-                      'Yes, you can upgrade or downgrade your plan at any time. Changes take effect immediately, and we\'ll prorate the difference.',
+                      "Yes, you can upgrade or downgrade your plan at any time. Changes take effect immediately, and we'll prorate the difference.",
                   },
                   {
                     title: 'Is there a free trial for Pro?',

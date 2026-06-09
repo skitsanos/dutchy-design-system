@@ -1,4 +1,4 @@
-(function() {
+(() => {
   // Quantity increment buttons
   document.querySelectorAll('[data-qty-plus]').forEach((btn) => {
     btn.addEventListener('click', () => {

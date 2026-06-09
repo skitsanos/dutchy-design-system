@@ -19,13 +19,7 @@ const maxWidthMap = {
   full: '',
 };
 
-const Form: FC<FormProps> = ({
-  spacing = 'md',
-  maxWidth,
-  className = '',
-  children,
-  ...props
-}) => (
+const Form: FC<FormProps> = ({ spacing = 'md', maxWidth, className = '', children, ...props }) => (
   <form
     className={`${spacingMap[spacing]} ${maxWidth ? maxWidthMap[maxWidth] : ''} ${className}`}
     {...props}

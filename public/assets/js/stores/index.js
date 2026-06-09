@@ -28,7 +28,9 @@ export function atom(initialValue) {
     set(newValue) {
       if (value !== newValue) {
         value = newValue;
-        listeners.forEach((fn) => fn(value));
+        listeners.forEach((fn) => {
+          fn(value);
+        });
       }
     },
     subscribe(fn) {
@@ -62,7 +64,9 @@ export function computed(stores, fn) {
       const newValue = compute();
       if (cachedValue !== newValue) {
         cachedValue = newValue;
-        listeners.forEach((listener) => listener(cachedValue));
+        listeners.forEach((listener) => {
+          listener(cachedValue);
+        });
       }
     });
   });
@@ -89,7 +93,9 @@ export function map(initialValue = {}) {
   const listeners = new Set();
 
   function notify() {
-    listeners.forEach((fn) => fn(value));
+    listeners.forEach((fn) => {
+      fn(value);
+    });
   }
 
   return {

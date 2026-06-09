@@ -1,6 +1,18 @@
-import type { FC, ReactNode, ElementType } from 'react';
+import type { ElementType, FC, ReactNode } from 'react';
 
-type TextSize = 'xs' | 'sm' | 'base' | 'lg' | 'xl' | '2xl' | '3xl' | '4xl' | '5xl' | '6xl' | '7xl' | '8xl';
+type TextSize =
+  | 'xs'
+  | 'sm'
+  | 'base'
+  | 'lg'
+  | 'xl'
+  | '2xl'
+  | '3xl'
+  | '4xl'
+  | '5xl'
+  | '6xl'
+  | '7xl'
+  | '8xl';
 type TextWeight = 'normal' | 'medium' | 'semibold' | 'bold';
 type TextFamily = 'display' | 'sans' | 'mono';
 type TextTracking = 'tighter' | 'tight' | 'normal' | 'wide' | 'wider' | 'widest';

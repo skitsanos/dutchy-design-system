@@ -30,13 +30,16 @@ const Tabs: FC<TabsProps> = ({
   const renderCloseButton = (tab: Tab) => (
     <span
       data-tab-close={tab.id}
-      role="button"
-      tabIndex={0}
       className="ml-1 w-4 h-4 inline-flex items-center justify-center opacity-50 hover:opacity-100 transition-opacity"
-      aria-label={`Close ${tab.label}`}
+      title={`Close ${tab.label}`}
     >
       <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth={2}
+          d="M6 18L18 6M6 6l12 12"
+        />
       </svg>
     </span>
   );
@@ -48,6 +51,7 @@ const Tabs: FC<TabsProps> = ({
       if (isSegmented) {
         return (
           <button
+            type="button"
             key={tab.id}
             role="tab"
             className={`${scrollable ? 'whitespace-nowrap px-6' : 'flex-1'} py-3 text-sm font-bold uppercase tracking-wide${closable ? ' flex items-center justify-center gap-1' : ''} ${
@@ -72,6 +76,7 @@ const Tabs: FC<TabsProps> = ({
 
       return (
         <button
+          type="button"
           key={tab.id}
           role="tab"
           className={`px-6 py-4 text-sm font-bold uppercase tracking-wide${scrollable ? ' whitespace-nowrap' : ' -mb-0.5'} border-b-4${closable ? ' flex items-center gap-1' : ''} ${
@@ -97,6 +102,7 @@ const Tabs: FC<TabsProps> = ({
   const renderOverflowDropdown = () => (
     <div data-tabs-overflow-dropdown="" className="relative flex items-center hidden">
       <button
+        type="button"
         data-tabs-overflow-trigger=""
         className="p-2 text-muted-foreground hover:text-foreground transition-colors"
         aria-label="Show all tabs"
@@ -111,6 +117,7 @@ const Tabs: FC<TabsProps> = ({
           const isActive = tab.id === activeTabId;
           return (
             <button
+              type="button"
               key={tab.id}
               data-tabs-overflow-item={tab.id}
               className={`block w-full text-left px-4 py-2 text-sm ${
@@ -132,6 +139,7 @@ const Tabs: FC<TabsProps> = ({
   const renderScrollArrows = () => (
     <>
       <button
+        type="button"
         data-tabs-scroll-left=""
         className="hidden p-1 text-muted-foreground hover:text-foreground transition-colors flex-shrink-0"
         aria-label="Scroll left"
@@ -143,6 +151,7 @@ const Tabs: FC<TabsProps> = ({
 
   const renderScrollArrowRight = () => (
     <button
+      type="button"
       data-tabs-scroll-right=""
       className="hidden p-1 text-muted-foreground hover:text-foreground transition-colors flex-shrink-0"
       aria-label="Scroll right"
@@ -185,13 +194,13 @@ const Tabs: FC<TabsProps> = ({
         <div className="border-b-2 border-border">
           <div data-tabs-nav-wrapper="" className="flex items-center">
             {renderScrollArrows()}
-            <nav
+            <div
               data-tabs-nav=""
               className="overflow-x-auto dutchy-scrollbar-hide flex-1 flex gap-0"
               role="tablist"
             >
               {tabButtons}
-            </nav>
+            </div>
             {renderScrollArrowRight()}
             {renderOverflowDropdown()}
           </div>
@@ -201,9 +210,9 @@ const Tabs: FC<TabsProps> = ({
 
     return (
       <div className="border-b-2 border-border">
-        <nav className="flex gap-0" role="tablist">
+        <div className="flex gap-0" role="tablist">
           {tabButtons}
-        </nav>
+        </div>
       </div>
     );
   };

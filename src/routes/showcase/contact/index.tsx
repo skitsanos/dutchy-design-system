@@ -1,15 +1,15 @@
 import type { FC } from 'react';
-import Layout from '@/components/Layout';
-import Header from '@/components/Header';
-import Footer from '@/components/Footer';
-import Icon from '@/components/Icon';
-import FileUpload from '@/components/FileUpload';
 import Button from '@/components/Button';
-import Form from '@/components/Form';
-import Input from '@/components/Input';
-import Textarea from '@/components/Textarea';
-import Select from '@/components/Select';
 import Checkbox from '@/components/Checkbox';
+import FileUpload from '@/components/FileUpload';
+import Footer from '@/components/Footer';
+import Form from '@/components/Form';
+import Header from '@/components/Header';
+import Icon from '@/components/Icon';
+import Input from '@/components/Input';
+import Layout from '@/components/Layout';
+import Select from '@/components/Select';
+import Textarea from '@/components/Textarea';
 import { ToastContainer } from '@/components/Toast';
 
 const ContactPage: FC<{ request: Request }> = ({ request }) => {
@@ -20,11 +20,13 @@ const ContactPage: FC<{ request: Request }> = ({ request }) => {
     <Layout
       title="Contact Us | Dutchy"
       meta={{
-        description: 'Get in touch with the Dutchy Design System team. We would love to hear from you.',
+        description:
+          'Get in touch with the Dutchy Design System team. We would love to hear from you.',
         keywords: 'contact, support, dutchy, design system',
       }}
       scripts={[
         '/assets/js/mobile-menu.js',
+        '/assets/js/select.js',
         '/assets/js/form-validation.js',
         '/assets/js/file-upload.js',
         '/assets/js/toast.js',
@@ -52,11 +54,13 @@ const ContactPage: FC<{ request: Request }> = ({ request }) => {
                 Get in Touch
               </div>
               <h1 className="font-display text-5xl md:text-7xl font-bold uppercase leading-[0.9] tracking-tighter mb-6">
-                Contact<br />
+                Contact
+                <br />
                 <span className="text-primary">Us.</span>
               </h1>
               <p className="text-xl text-muted-foreground leading-relaxed">
-                Have questions about our design system? Want to contribute or report an issue? We'd love to hear from you.
+                Have questions about our design system? Want to contribute or report an issue? We'd
+                love to hear from you.
               </p>
             </div>
           </div>
@@ -68,7 +72,9 @@ const ContactPage: FC<{ request: Request }> = ({ request }) => {
             <div className="container mx-auto px-4 md:px-6 py-4">
               <div className="flex items-center gap-3">
                 <Icon name="check-circle" className="text-success" />
-                <p className="font-bold text-success">Your message has been sent successfully! We'll get back to you soon.</p>
+                <p className="font-bold text-success">
+                  Your message has been sent successfully! We'll get back to you soon.
+                </p>
               </div>
             </div>
           </section>
@@ -78,10 +84,15 @@ const ContactPage: FC<{ request: Request }> = ({ request }) => {
         <section className="py-16 md:py-20">
           <div className="container mx-auto px-4 md:px-6">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
-
               {/* Contact Form */}
               <div className="lg:col-span-7">
-                <Form id="contactForm" action="/showcase/contact" method="POST" spacing="lg" noValidate>
+                <Form
+                  id="contactForm"
+                  action="/showcase/contact"
+                  method="POST"
+                  spacing="lg"
+                  noValidate
+                >
                   {/* Name Fields */}
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                     <Input
@@ -142,9 +153,9 @@ const ContactPage: FC<{ request: Request }> = ({ request }) => {
 
                   {/* File Attachment */}
                   <div>
-                    <label className="block font-display font-bold uppercase text-sm tracking-wider mb-3">
+                    <div className="block font-display font-bold uppercase text-sm tracking-wider mb-3">
                       File Attachment
-                    </label>
+                    </div>
                     <FileUpload
                       id="contact-dropzone"
                       label="Drag and drop files here or click to browse"
@@ -173,15 +184,24 @@ const ContactPage: FC<{ request: Request }> = ({ request }) => {
                 <div className="space-y-8">
                   {/* Quick Contact */}
                   <div className="bg-foreground text-background p-8">
-                    <h3 className="font-display font-bold uppercase tracking-wider mb-6 text-primary">Quick Contact</h3>
+                    <h3 className="font-display font-bold uppercase tracking-wider mb-6 text-primary">
+                      Quick Contact
+                    </h3>
                     <div className="space-y-6">
                       <div className="flex items-start gap-4">
                         <div className="w-10 h-10 bg-primary flex items-center justify-center flex-shrink-0">
                           <Icon name="mail" className="text-primary-foreground" />
                         </div>
                         <div>
-                          <p className="font-mono text-xs text-background/60 uppercase tracking-wider mb-1">Email</p>
-                          <a href="mailto:hello@dutchy.design" className="hover:text-primary transition-colors">hello@dutchy.design</a>
+                          <p className="font-mono text-xs text-background/60 uppercase tracking-wider mb-1">
+                            Email
+                          </p>
+                          <a
+                            href="mailto:hello@dutchy.design"
+                            className="hover:text-primary transition-colors"
+                          >
+                            hello@dutchy.design
+                          </a>
                         </div>
                       </div>
                       <div className="flex items-start gap-4">
@@ -189,7 +209,9 @@ const ContactPage: FC<{ request: Request }> = ({ request }) => {
                           <Icon name="map-pin" className="text-primary-foreground" />
                         </div>
                         <div>
-                          <p className="font-mono text-xs text-background/60 uppercase tracking-wider mb-1">Location</p>
+                          <p className="font-mono text-xs text-background/60 uppercase tracking-wider mb-1">
+                            Location
+                          </p>
                           <p>Amsterdam, Netherlands</p>
                         </div>
                       </div>
@@ -198,7 +220,9 @@ const ContactPage: FC<{ request: Request }> = ({ request }) => {
                           <Icon name="clock" className="text-primary-foreground" />
                         </div>
                         <div>
-                          <p className="font-mono text-xs text-background/60 uppercase tracking-wider mb-1">Response Time</p>
+                          <p className="font-mono text-xs text-background/60 uppercase tracking-wider mb-1">
+                            Response Time
+                          </p>
                           <p>Within 24-48 hours</p>
                         </div>
                       </div>
@@ -207,33 +231,68 @@ const ContactPage: FC<{ request: Request }> = ({ request }) => {
 
                   {/* Alternative Channels */}
                   <div className="border-l-4 border-primary bg-muted p-8">
-                    <h3 className="font-display font-bold uppercase tracking-wider mb-4">Other Ways to Reach Us</h3>
+                    <h3 className="font-display font-bold uppercase tracking-wider mb-4">
+                      Other Ways to Reach Us
+                    </h3>
                     <div className="space-y-4">
                       <a href="#" className="flex items-center gap-3 group">
-                        <Icon name="github" className="text-muted-foreground group-hover:text-primary transition-colors" />
-                        <span className="text-sm group-hover:text-primary transition-colors">Open an Issue on GitHub</span>
-                        <Icon name="arrow-right" size="sm" className="text-muted-foreground group-hover:text-primary group-hover:translate-x-1 transition-all ml-auto" />
+                        <Icon
+                          name="github"
+                          className="text-muted-foreground group-hover:text-primary transition-colors"
+                        />
+                        <span className="text-sm group-hover:text-primary transition-colors">
+                          Open an Issue on GitHub
+                        </span>
+                        <Icon
+                          name="arrow-right"
+                          size="sm"
+                          className="text-muted-foreground group-hover:text-primary group-hover:translate-x-1 transition-all ml-auto"
+                        />
                       </a>
                       <a href="#" className="flex items-center gap-3 group">
-                        <Icon name="message-square" className="text-muted-foreground group-hover:text-primary transition-colors" />
-                        <span className="text-sm group-hover:text-primary transition-colors">Join our Discord Community</span>
-                        <Icon name="arrow-right" size="sm" className="text-muted-foreground group-hover:text-primary group-hover:translate-x-1 transition-all ml-auto" />
+                        <Icon
+                          name="message-square"
+                          className="text-muted-foreground group-hover:text-primary transition-colors"
+                        />
+                        <span className="text-sm group-hover:text-primary transition-colors">
+                          Join our Discord Community
+                        </span>
+                        <Icon
+                          name="arrow-right"
+                          size="sm"
+                          className="text-muted-foreground group-hover:text-primary group-hover:translate-x-1 transition-all ml-auto"
+                        />
                       </a>
                       <a href="#" className="flex items-center gap-3 group">
-                        <Icon name="twitter" className="text-muted-foreground group-hover:text-primary transition-colors" />
-                        <span className="text-sm group-hover:text-primary transition-colors">Follow us on Twitter</span>
-                        <Icon name="arrow-right" size="sm" className="text-muted-foreground group-hover:text-primary group-hover:translate-x-1 transition-all ml-auto" />
+                        <Icon
+                          name="twitter"
+                          className="text-muted-foreground group-hover:text-primary transition-colors"
+                        />
+                        <span className="text-sm group-hover:text-primary transition-colors">
+                          Follow us on Twitter
+                        </span>
+                        <Icon
+                          name="arrow-right"
+                          size="sm"
+                          className="text-muted-foreground group-hover:text-primary group-hover:translate-x-1 transition-all ml-auto"
+                        />
                       </a>
                     </div>
                   </div>
 
                   {/* FAQ Teaser */}
                   <div className="bg-background border-4 border-border p-8">
-                    <h3 className="font-display font-bold uppercase tracking-wider mb-4">Frequently Asked</h3>
+                    <h3 className="font-display font-bold uppercase tracking-wider mb-4">
+                      Frequently Asked
+                    </h3>
                     <p className="text-sm text-muted-foreground mb-6">
-                      Check our FAQ section for quick answers to common questions about the design system.
+                      Check our FAQ section for quick answers to common questions about the design
+                      system.
                     </p>
-                    <a href="#" className="inline-flex items-center gap-2 text-sm font-bold uppercase tracking-wider text-primary hover:underline decoration-2 underline-offset-4">
+                    <a
+                      href="#"
+                      className="inline-flex items-center gap-2 text-sm font-bold uppercase tracking-wider text-primary hover:underline decoration-2 underline-offset-4"
+                    >
                       View FAQ
                       <Icon name="arrow-right" size="sm" />
                     </a>
@@ -263,13 +322,26 @@ const ContactPage: FC<{ request: Request }> = ({ request }) => {
                   </div>
                   <div className="bg-background text-foreground px-6 py-3">
                     <p className="font-display text-2xl font-bold">EN/NL</p>
-                    <p className="text-xs uppercase tracking-wider text-muted-foreground">Languages</p>
+                    <p className="text-xs uppercase tracking-wider text-muted-foreground">
+                      Languages
+                    </p>
                   </div>
                 </div>
               </div>
               <div className="bg-muted/10 p-8 border-4 border-primary/30">
                 <div className="aspect-video flex items-center justify-center">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="96" height="96" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" className="text-primary/40">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="96"
+                    height="96"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="1"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    className="text-primary/40"
+                  >
                     <path d="M14.106 5.553a2 2 0 0 0 1.788 0l3.659-1.83A1 1 0 0 1 21 4.619v12.764a1 1 0 0 1-.553.894l-4.553 2.277a2 2 0 0 1-1.788 0l-4.212-2.106a2 2 0 0 0-1.788 0l-3.659 1.83A1 1 0 0 1 3 19.381V6.618a1 1 0 0 1 .553-.894l4.553-2.277a2 2 0 0 1 1.788 0z" />
                     <path d="M15 5.764v15" />
                     <path d="M9 3.236v15" />

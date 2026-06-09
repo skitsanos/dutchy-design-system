@@ -1,5 +1,5 @@
 import type { FC, ReactNode } from 'react';
-import Card, { CardTitle, CardDescription } from '@/components/Card';
+import Card, { CardDescription, CardTitle } from '@/components/Card';
 
 interface Feature {
   icon?: ReactNode;
@@ -12,10 +12,7 @@ interface FeatureGridProps {
   columns?: 2 | 3;
 }
 
-const FeatureGrid: FC<FeatureGridProps> = ({
-  features,
-  columns = 3,
-}) => {
+const FeatureGrid: FC<FeatureGridProps> = ({ features, columns = 3 }) => {
   const columnClasses = {
     2: 'md:grid-cols-2',
     3: 'md:grid-cols-2 lg:grid-cols-3',
@@ -27,9 +24,7 @@ const FeatureGrid: FC<FeatureGridProps> = ({
         <Card key={index} variant="accent">
           {feature.icon && (
             <div className="w-12 h-12 bg-primary flex items-center justify-center mb-6">
-              <div className="text-primary-foreground">
-                {feature.icon}
-              </div>
+              <div className="text-primary-foreground">{feature.icon}</div>
             </div>
           )}
           <CardTitle>{feature.title}</CardTitle>

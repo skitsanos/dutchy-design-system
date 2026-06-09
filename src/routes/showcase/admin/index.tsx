@@ -1,15 +1,15 @@
 import type { FC } from 'react';
-import Layout from '@/components/Layout';
-import Icon from '@/components/Icon';
-import Input from '@/components/Input';
+import Activity from '@/components/Activity';
 import Badge from '@/components/Badge';
 import Button from '@/components/Button';
-import Tooltip from '@/components/Tooltip';
-import StatsGrid from '@/components/StatsGrid';
-import Sidebar from '@/components/Sidebar';
-import Activity from '@/components/Activity';
 import DataTable from '@/components/DataTable';
+import Icon from '@/components/Icon';
+import Input from '@/components/Input';
+import Layout from '@/components/Layout';
+import Sidebar from '@/components/Sidebar';
+import StatsGrid from '@/components/StatsGrid';
 import { ToastContainer } from '@/components/Toast';
+import Tooltip from '@/components/Tooltip';
 
 const AdminDashboardPage: FC<{ request: Request }> = () => {
   return (
@@ -50,18 +50,25 @@ const AdminDashboardPage: FC<{ request: Request }> = () => {
           <header className="bg-background border-b-4 border-primary">
             <div className="px-6 h-16 flex items-center justify-between">
               {/* Mobile menu button */}
-              <Button variant="ghost" icon size="sm" className="lg:hidden" aria-label="Open menu" id="mobile-menu-btn">
+              <Button
+                variant="ghost"
+                icon
+                size="sm"
+                className="lg:hidden"
+                aria-label="Open menu"
+                id="mobile-menu-btn"
+              >
                 <Icon name="menu" size="lg" />
               </Button>
 
               {/* Search */}
               <div className="hidden md:block relative flex-1 max-w-md">
-                <Input
-                  type="search"
-                  placeholder="Search..."
-                  className="pl-10 pr-4 py-2 text-sm"
+                <Input type="search" placeholder="Search..." className="pl-10 pr-4 py-2 text-sm" />
+                <Icon
+                  name="search"
+                  size="sm"
+                  className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground"
                 />
-                <Icon name="search" size="sm" className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" />
               </div>
 
               {/* Right side */}
@@ -99,9 +106,21 @@ const AdminDashboardPage: FC<{ request: Request }> = () => {
             <div className="mb-8">
               <StatsGrid
                 stats={[
-                  { value: '$45,231', label: 'Total Revenue', trend: { value: '+20.1% from last month', direction: 'up' } },
-                  { value: '2,350', label: 'Orders', trend: { value: '+15.3% from last month', direction: 'up' } },
-                  { value: '1,247', label: 'Customers', trend: { value: '+12.5% from last month', direction: 'up' } },
+                  {
+                    value: '$45,231',
+                    label: 'Total Revenue',
+                    trend: { value: '+20.1% from last month', direction: 'up' },
+                  },
+                  {
+                    value: '2,350',
+                    label: 'Orders',
+                    trend: { value: '+15.3% from last month', direction: 'up' },
+                  },
+                  {
+                    value: '1,247',
+                    label: 'Customers',
+                    trend: { value: '+12.5% from last month', direction: 'up' },
+                  },
                   { value: '573', label: 'Active Now' },
                 ]}
                 columns={4}
@@ -136,17 +155,52 @@ const AdminDashboardPage: FC<{ request: Request }> = () => {
                           cancelled: 'destructive',
                         };
                         const label = String(value);
-                        return <Badge variant={variants[label] || 'default'}>{label.charAt(0).toUpperCase() + label.slice(1)}</Badge>;
+                        return (
+                          <Badge variant={variants[label] || 'default'}>
+                            {label.charAt(0).toUpperCase() + label.slice(1)}
+                          </Badge>
+                        );
                       },
                     },
-                    { key: 'amount', label: 'Amount', sortable: true, align: 'right', className: 'font-medium' },
+                    {
+                      key: 'amount',
+                      label: 'Amount',
+                      sortable: true,
+                      align: 'right',
+                      className: 'font-medium',
+                    },
                   ]}
                   data={[
-                    { order: '#3210', customer: 'Olivia Martin', status: 'completed', amount: '$1,999.00' },
-                    { order: '#3209', customer: 'Jackson Lee', status: 'processing', amount: '$39.00' },
-                    { order: '#3208', customer: 'Isabella Nguyen', status: 'completed', amount: '$299.00' },
-                    { order: '#3207', customer: 'William Kim', status: 'shipped', amount: '$99.00' },
-                    { order: '#3206', customer: 'Sofia Davis', status: 'cancelled', amount: '$150.00' },
+                    {
+                      order: '#3210',
+                      customer: 'Olivia Martin',
+                      status: 'completed',
+                      amount: '$1,999.00',
+                    },
+                    {
+                      order: '#3209',
+                      customer: 'Jackson Lee',
+                      status: 'processing',
+                      amount: '$39.00',
+                    },
+                    {
+                      order: '#3208',
+                      customer: 'Isabella Nguyen',
+                      status: 'completed',
+                      amount: '$299.00',
+                    },
+                    {
+                      order: '#3207',
+                      customer: 'William Kim',
+                      status: 'shipped',
+                      amount: '$99.00',
+                    },
+                    {
+                      order: '#3206',
+                      customer: 'Sofia Davis',
+                      status: 'cancelled',
+                      amount: '$150.00',
+                    },
                   ]}
                 />
               </div>

@@ -7,12 +7,7 @@ interface TooltipProps {
   className?: string;
 }
 
-const Tooltip: FC<TooltipProps> = ({
-  text,
-  position,
-  children,
-  className = '',
-}) => {
+const Tooltip: FC<TooltipProps> = ({ text, position, children, className = '' }) => {
   return (
     <span
       data-tooltip={text}

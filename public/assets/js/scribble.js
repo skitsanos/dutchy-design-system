@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-  document.querySelectorAll('[data-scribble]').forEach(container => {
+  document.querySelectorAll('[data-scribble]').forEach((container) => {
     const canvas = container.querySelector('[data-scribble-canvas]');
     const placeholder = container.querySelector('[data-scribble-placeholder]');
     const clearBtn = container.querySelector('[data-scribble-clear]');
@@ -102,9 +102,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       }
 
-      container.dispatchEvent(
-        new CustomEvent('scribble:clear', { bubbles: true }),
-      );
+      container.dispatchEvent(new CustomEvent('scribble:clear', { bubbles: true }));
     }
 
     // Mouse events
@@ -114,20 +112,32 @@ document.addEventListener('DOMContentLoaded', () => {
     canvas.addEventListener('mouseleave', stopDrawing);
 
     // Touch events
-    canvas.addEventListener('touchstart', e => {
-      e.preventDefault();
-      startDrawing(e);
-    }, { passive: false });
+    canvas.addEventListener(
+      'touchstart',
+      (e) => {
+        e.preventDefault();
+        startDrawing(e);
+      },
+      { passive: false },
+    );
 
-    canvas.addEventListener('touchmove', e => {
-      e.preventDefault();
-      draw(e);
-    }, { passive: false });
+    canvas.addEventListener(
+      'touchmove',
+      (e) => {
+        e.preventDefault();
+        draw(e);
+      },
+      { passive: false },
+    );
 
-    canvas.addEventListener('touchend', e => {
-      e.preventDefault();
-      stopDrawing();
-    }, { passive: false });
+    canvas.addEventListener(
+      'touchend',
+      (e) => {
+        e.preventDefault();
+        stopDrawing();
+      },
+      { passive: false },
+    );
 
     // Clear button
     if (clearBtn) {

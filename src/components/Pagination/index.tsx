@@ -1,6 +1,6 @@
 import type { FC } from 'react';
-import Icon from '@/components/Icon';
 import Flex from '@/components/Flex';
+import Icon from '@/components/Icon';
 
 interface PaginationProps {
   currentPage: number;
@@ -69,7 +69,8 @@ const Pagination: FC<PaginationProps> = ({
             </span>
           )}
           <span className="text-sm text-muted-foreground">
-            Page <strong className="text-foreground">{currentPage}</strong> of <strong className="text-foreground">{totalPages}</strong>
+            Page <strong className="text-foreground">{currentPage}</strong> of{' '}
+            <strong className="text-foreground">{totalPages}</strong>
           </span>
           {currentPage < totalPages ? (
             <a

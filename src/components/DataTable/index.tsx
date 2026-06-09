@@ -41,17 +41,15 @@ const DataTable: FC<DataTableProps> = ({
   loading = false,
 }) => {
   return (
-    <div className={`bg-background ${bordered ? 'border-2 border-border' : ''} overflow-x-auto relative ${className}`}>
+    <div
+      className={`bg-background ${bordered ? 'border-2 border-border' : ''} overflow-x-auto relative ${className}`}
+    >
       {loading && (
         <div className="absolute inset-0 z-10 bg-background/80 flex items-center justify-center">
           <Spinner size="lg" className="text-primary" />
         </div>
       )}
-      <table
-        className="w-full"
-        data-sortable=""
-        {...(id ? { id } : {})}
-      >
+      <table className="w-full" data-sortable="" {...(id ? { id } : {})}>
         <thead>
           <tr className={headerClassName ?? 'border-b-2 border-border'}>
             {columns.map((col) => (
@@ -63,7 +61,9 @@ const DataTable: FC<DataTableProps> = ({
                 {...(col.sortable ? { 'data-sort': col.key } : {})}
                 {...(col.width ? { style: { width: col.width } } : {})}
               >
-                <span className={`inline-flex items-center gap-1 ${col.align === 'right' ? 'justify-end' : col.align === 'center' ? 'justify-center' : ''}`}>
+                <span
+                  className={`inline-flex items-center gap-1 ${col.align === 'right' ? 'justify-end' : col.align === 'center' ? 'justify-center' : ''}`}
+                >
                   {col.label}
                   {col.sortable && (
                     <svg
@@ -107,9 +107,7 @@ const DataTable: FC<DataTableProps> = ({
               >
                 {columns.map((col) => {
                   const value = row[col.key];
-                  const rendered = col.render
-                    ? col.render(value, row, rowIndex)
-                    : value;
+                  const rendered = col.render ? col.render(value, row, rowIndex) : value;
 
                   return (
                     <td

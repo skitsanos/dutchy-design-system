@@ -1,4 +1,4 @@
-(function() {
+(() => {
   // Handle single-open accordion behavior
   // When data-accordion="single", only one <details> can be open at a time
   const accordions = document.querySelectorAll('[data-accordion="single"]');

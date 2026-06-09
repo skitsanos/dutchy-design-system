@@ -1,11 +1,9 @@
-import Layout from '@/components/Layout';
-import Header from '@/components/Header';
-import Footer from '@/components/Footer';
-import Icon from '@/components/Icon';
-import SectionTitle from '@/components/SectionTitle';
-import NewsletterForm from '@/components/NewsletterForm';
 import Badge from '@/components/Badge';
-import Button from '@/components/Button';
+import Footer from '@/components/Footer';
+import Header from '@/components/Header';
+import Layout from '@/components/Layout';
+import NewsletterForm from '@/components/NewsletterForm';
+import SectionTitle from '@/components/SectionTitle';
 
 const headerNavLinks = [
   { href: '/showcase', label: 'Home' },
@@ -16,8 +14,7 @@ const headerNavLinks = [
 
 const articles = [
   {
-    image:
-      'https://images.unsplash.com/photo-1558655146-9f40138edfeb?w=600',
+    image: 'https://images.unsplash.com/photo-1558655146-9f40138edfeb?w=600',
     category: 'Design',
     title: 'Typography in UI: Best Practices',
     description:
@@ -26,8 +23,7 @@ const articles = [
     date: 'Nov 27, 2025',
   },
   {
-    image:
-      'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600',
+    image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600',
     category: 'Development',
     title: 'Building Scalable APIs',
     description:
@@ -36,8 +32,7 @@ const articles = [
     date: 'Nov 26, 2025',
   },
   {
-    image:
-      'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600',
+    image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600',
     category: 'Business',
     title: 'Metrics That Matter',
     description:
@@ -46,28 +41,23 @@ const articles = [
     date: 'Nov 25, 2025',
   },
   {
-    image:
-      'https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?w=600',
+    image: 'https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?w=600',
     category: 'Design',
     title: 'Color Theory Fundamentals',
-    description:
-      'Master the basics of color theory and learn how to create harmonious palettes.',
+    description: 'Master the basics of color theory and learn how to create harmonious palettes.',
     author: 'Emma Brown',
     date: 'Nov 24, 2025',
   },
   {
-    image:
-      'https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=600',
+    image: 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=600',
     category: 'Development',
     title: 'Modern CSS Techniques',
-    description:
-      'Explore cutting-edge CSS features that simplify complex layouts and animations.',
+    description: 'Explore cutting-edge CSS features that simplify complex layouts and animations.',
     author: 'David Lee',
     date: 'Nov 23, 2025',
   },
   {
-    image:
-      'https://images.unsplash.com/photo-1553484771-371a605b060b?w=600',
+    image: 'https://images.unsplash.com/photo-1553484771-371a605b060b?w=600',
     category: 'Strategy',
     title: 'Remote Team Management',
     description:
@@ -77,7 +67,7 @@ const articles = [
   },
 ];
 
-const BlogPage = ({ request }: { request: Request }) => {
+const BlogPage = () => {
   return (
     <Layout
       title="Blog | Dutchy Design System"
@@ -86,7 +76,7 @@ const BlogPage = ({ request }: { request: Request }) => {
           'Insights on design, development, and digital strategy from the Dutchy Design System team.',
         keywords: 'blog, design, development, articles',
       }}
-      scripts={['/assets/js/mobile-menu.js']}
+      scripts={['/assets/js/mobile-menu.js', '/assets/js/form-validation.js']}
     >
       <Header
         siteName="Dutchy"
@@ -112,23 +102,23 @@ const BlogPage = ({ request }: { request: Request }) => {
 
               {/* Content */}
               <div>
-                <Badge variant="primary" className="mb-6">Featured</Badge>
+                <Badge variant="primary" className="mb-6">
+                  Featured
+                </Badge>
                 <h1 className="font-display text-4xl md:text-5xl font-bold uppercase leading-[0.95] tracking-tighter mb-6">
                   The Future of
                   <br />
                   Design Systems
                 </h1>
                 <p className="text-lg text-muted-foreground leading-relaxed mb-6">
-                  Exploring how modern design systems are evolving to meet the
-                  demands of complex digital products and diverse teams.
+                  Exploring how modern design systems are evolving to meet the demands of complex
+                  digital products and diverse teams.
                 </p>
                 <div className="flex items-center gap-4 mb-8">
                   <div className="w-10 h-10 bg-foreground" />
                   <div>
                     <p className="font-bold text-sm">Sarah Johnson</p>
-                    <p className="text-muted-foreground text-sm">
-                      Nov 28, 2025
-                    </p>
+                    <p className="text-muted-foreground text-sm">Nov 28, 2025</p>
                   </div>
                 </div>
                 <a
@@ -160,9 +150,7 @@ const BlogPage = ({ request }: { request: Request }) => {
                       />
                     </div>
                     <div className="p-8">
-                      <Badge variant="primary">
-                        {article.category}
-                      </Badge>
+                      <Badge variant="primary">{article.category}</Badge>
                       <h3 className="font-display text-xl font-bold uppercase mt-3 mb-4 hover:text-primary transition-colors">
                         {article.title}
                       </h3>
@@ -172,12 +160,8 @@ const BlogPage = ({ request }: { request: Request }) => {
                       <div className="flex items-center gap-3">
                         <div className="w-8 h-8 bg-foreground" />
                         <div>
-                          <p className="text-sm font-medium">
-                            {article.author}
-                          </p>
-                          <p className="text-xs text-muted-foreground">
-                            {article.date}
-                          </p>
+                          <p className="text-sm font-medium">{article.author}</p>
+                          <p className="text-xs text-muted-foreground">{article.date}</p>
                         </div>
                       </div>
                     </div>
@@ -208,8 +192,7 @@ const BlogPage = ({ request }: { request: Request }) => {
                 <span className="text-primary">Updated.</span>
               </h2>
               <p className="text-background/70 text-lg mb-8">
-                Get the latest articles delivered straight to your inbox. No
-                spam, ever.
+                Get the latest articles delivered straight to your inbox. No spam, ever.
               </p>
               <NewsletterForm variant="dark" action="/api/newsletter" />
             </div>

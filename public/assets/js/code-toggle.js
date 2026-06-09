@@ -1,4 +1,4 @@
-(function() {
+(() => {
   const toggleButtons = document.querySelectorAll('[data-code-toggle]');
 
   toggleButtons.forEach((btn) => {

@@ -1,6 +1,40 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+
+@source "../**/*.{ts,tsx}";
+@source "../../public/assets/js/**/*.js";
+
+@theme {
+  --color-border: hsl(25 20% 88%);
+  --color-background: hsl(40 30% 97%);
+  --color-foreground: hsl(25 20% 6%);
+  --color-primary: hsl(var(--primary));
+  --color-primary-foreground: hsl(0 0% 100%);
+  --color-secondary: hsl(25 30% 92%);
+  --color-secondary-foreground: hsl(25 25% 15%);
+  --color-muted: hsl(40 20% 94%);
+  --color-muted-foreground: hsl(25 10% 40%);
+  --color-destructive: hsl(0 84% 60%);
+  --color-destructive-foreground: hsl(0 0% 100%);
+  --color-success: hsl(142 76% 36%);
+  --color-success-foreground: hsl(0 0% 100%);
+  --color-accent: hsl(25 30% 92%);
+  --color-accent-foreground: hsl(25 25% 10%);
+  --color-info: hsl(210 92% 45%);
+  --color-info-foreground: hsl(0 0% 100%);
+  --color-warning: hsl(38 92% 50%);
+  --color-warning-foreground: hsl(0 0% 100%);
+  --font-display: "Space Grotesk", sans-serif;
+  --font-body: "Inter", sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+  --radius-xs: 0px;
+  --radius-sm: 0px;
+  --radius-md: 0px;
+  --radius-lg: 0px;
+  --radius-xl: 0px;
+  --radius-2xl: 0px;
+  --radius-3xl: 0px;
+  --radius-4xl: 0px;
+}
 
 @layer base {
   :root {
@@ -16,7 +50,7 @@
     border-radius: 0 !important;
   }
   body {
-    font-family: 'Inter', sans-serif;
+    font-family: "Inter", sans-serif;
   }
 }
 
@@ -44,7 +78,7 @@
     letter-spacing: 0.02em;
   }
   [data-tooltip]::before {
-    content: '';
+    content: "";
     border: 5px solid transparent;
   }
   /* Top (default) */
@@ -143,7 +177,9 @@
 }
 
 @keyframes dutchy-spin {
-  to { transform: rotate(360deg); }
+  to {
+    transform: rotate(360deg);
+  }
 }
 .dutchy-spinner {
   border: 2px solid currentColor;
@@ -175,12 +211,24 @@
 @layer utilities {
   /* Toast animations */
   @keyframes slide-in-right {
-    from { opacity: 0; transform: translateX(100%); }
-    to { opacity: 1; transform: translateX(0); }
+    from {
+      opacity: 0;
+      transform: translateX(100%);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
   }
   @keyframes slide-out-right {
-    from { opacity: 1; transform: translateX(0); }
-    to { opacity: 0; transform: translateX(100%); }
+    from {
+      opacity: 1;
+      transform: translateX(0);
+    }
+    to {
+      opacity: 0;
+      transform: translateX(100%);
+    }
   }
   .animate-slide-in {
     animation: slide-in-right 0.3s ease-out;
@@ -191,8 +239,13 @@
 
   /* Skeleton pulse */
   @keyframes skeleton-pulse {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.4; }
+    0%,
+    100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.4;
+    }
   }
   .animate-skeleton {
     animation: skeleton-pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;

@@ -52,19 +52,16 @@ const Footer: FC<FooterProps> = ({
               href="/"
               className="font-display text-2xl font-bold uppercase tracking-tight inline-block mb-6"
             >
-              {siteName}<span className="text-primary">.</span>
+              {siteName}
+              <span className="text-primary">.</span>
             </a>
-            <p className="text-background/70 text-sm leading-relaxed max-w-sm">
-              {description}
-            </p>
+            <p className="text-background/70 text-sm leading-relaxed max-w-sm">{description}</p>
           </div>
 
           {/* Link Columns */}
           {columns.map((column, index) => (
             <div key={index}>
-              <h3 className="font-bold uppercase tracking-wider text-sm mb-6">
-                {column.title}
-              </h3>
+              <h3 className="font-bold uppercase tracking-wider text-sm mb-6">{column.title}</h3>
               <ul className="space-y-3">
                 {column.links.map((link) => (
                   <li key={link.href}>
@@ -85,9 +82,7 @@ const Footer: FC<FooterProps> = ({
       {/* Copyright Bar */}
       <div className="border-t border-background/10 py-6">
         <div className="container mx-auto px-4 md:px-6">
-          <p className="text-background/60 text-sm text-center">
-            {copyrightText}
-          </p>
+          <p className="text-background/60 text-sm text-center">{copyrightText}</p>
         </div>
       </div>
     </footer>

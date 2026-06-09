@@ -1,6 +1,6 @@
 import type { FC } from 'react';
-import ComponentPageLayout from '@/components/ComponentPageLayout';
 import Accordion from '@/components/Accordion';
+import ComponentPageLayout from '@/components/ComponentPageLayout';
 
 const AccordionPage: FC = () => (
   <ComponentPageLayout componentId="accordion">
@@ -8,18 +8,22 @@ const AccordionPage: FC = () => (
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
         {/* Multi-open */}
         <div>
-          <h3 className="font-display font-bold uppercase text-sm tracking-wider mb-4 text-muted-foreground">Multi-Open</h3>
+          <h3 className="font-display font-bold uppercase text-sm tracking-wider mb-4 text-muted-foreground">
+            Multi-Open
+          </h3>
           <Accordion
             variant="bordered"
             defaultOpenIndex={0}
             items={[
               {
                 title: 'What is the Dutchy Design System?',
-                content: 'A bold, structured design language inspired by Dutch graphic design traditions.',
+                content:
+                  'A bold, structured design language inspired by Dutch graphic design traditions.',
               },
               {
                 title: 'What frameworks does it support?',
-                content: 'Works with vanilla HTML/CSS, TailwindCSS, React, Vue, or any CSS framework.',
+                content:
+                  'Works with vanilla HTML/CSS, TailwindCSS, React, Vue, or any CSS framework.',
               },
               {
                 title: 'Is it accessible?',
@@ -31,7 +35,9 @@ const AccordionPage: FC = () => (
 
         {/* Single-open */}
         <div>
-          <h3 className="font-display font-bold uppercase text-sm tracking-wider mb-4 text-muted-foreground">Single-Open (JS)</h3>
+          <h3 className="font-display font-bold uppercase text-sm tracking-wider mb-4 text-muted-foreground">
+            Single-Open (JS)
+          </h3>
           <Accordion
             variant="bordered"
             singleOpen

@@ -1,8 +1,8 @@
 import type { FC, ReactNode } from 'react';
-import Layout from '@/components/Layout';
-import WebsiteHeader from '@/components/WebsiteHeader';
-import WebsiteFooter from '@/components/WebsiteFooter';
 import { COMPONENTS } from '@/components/componentRegistry';
+import Layout from '@/components/Layout';
+import WebsiteFooter from '@/components/WebsiteFooter';
+import WebsiteHeader from '@/components/WebsiteHeader';
 
 interface ComponentPageLayoutProps {
   componentId: string;
@@ -10,7 +10,7 @@ interface ComponentPageLayoutProps {
 }
 
 const ComponentPageLayout: FC<ComponentPageLayoutProps> = ({ componentId, children }) => {
-  const meta = COMPONENTS.find(c => c.id === componentId);
+  const meta = COMPONENTS.find((c) => c.id === componentId);
 
   if (!meta) {
     return (
@@ -22,7 +22,10 @@ const ComponentPageLayout: FC<ComponentPageLayoutProps> = ({ componentId, childr
         <div className="container mx-auto px-4 md:px-6 py-24 text-center">
           <h1 className="font-display text-4xl font-bold uppercase tracking-tighter mb-4">404</h1>
           <p className="text-muted-foreground mb-8">Component not found.</p>
-          <a href="/components" className="bg-primary text-primary-foreground px-6 py-3 font-bold uppercase tracking-wide hover:bg-primary/90 transition-colors">
+          <a
+            href="/components"
+            className="bg-primary text-primary-foreground px-6 py-3 font-bold uppercase tracking-wide hover:bg-primary/90 transition-colors"
+          >
             Back to Components
           </a>
         </div>
@@ -49,21 +52,26 @@ const ComponentPageLayout: FC<ComponentPageLayoutProps> = ({ componentId, childr
           {/* Sidebar - 3 cols */}
           <aside className="lg:col-span-3">
             <nav className="sticky top-28">
-              <h3 className="font-display font-bold uppercase text-xs tracking-widest mb-4 text-muted-foreground">Components</h3>
+              <h3 className="font-display font-bold uppercase text-xs tracking-widest mb-4 text-muted-foreground">
+                Components
+              </h3>
               <ul className="space-y-1">
-                {[...COMPONENTS].sort((a, b) => a.name.localeCompare(b.name)).map(c => (
-                  <li key={c.id}>
-                    <a
-                      href={`/components/${c.id}`}
-                      className={c.id === componentId
-                        ? 'block py-2 px-4 text-sm font-bold text-primary border-l-4 border-primary bg-primary/5'
-                        : 'block py-2 px-4 text-sm text-muted-foreground hover:text-foreground hover:bg-muted/50 border-l-4 border-transparent transition-colors'
-                      }
-                    >
-                      {c.name}
-                    </a>
-                  </li>
-                ))}
+                {[...COMPONENTS]
+                  .sort((a, b) => a.name.localeCompare(b.name))
+                  .map((c) => (
+                    <li key={c.id}>
+                      <a
+                        href={`/components/${c.id}`}
+                        className={
+                          c.id === componentId
+                            ? 'block py-2 px-4 text-sm font-bold text-primary border-l-4 border-primary bg-primary/5'
+                            : 'block py-2 px-4 text-sm text-muted-foreground hover:text-foreground hover:bg-muted/50 border-l-4 border-transparent transition-colors'
+                        }
+                      >
+                        {c.name}
+                      </a>
+                    </li>
+                  ))}
               </ul>
             </nav>
           </aside>
@@ -71,8 +79,12 @@ const ComponentPageLayout: FC<ComponentPageLayoutProps> = ({ componentId, childr
           {/* Content - 9 cols */}
           <main className="lg:col-span-9">
             <div className="mb-8">
-              <span className="inline-block bg-muted px-3 py-1 font-mono text-xs font-bold uppercase tracking-wider text-muted-foreground mb-4">{meta.category}</span>
-              <h1 className="font-display text-4xl md:text-5xl font-bold uppercase tracking-tighter mb-4">{meta.name}</h1>
+              <span className="inline-block bg-muted px-3 py-1 font-mono text-xs font-bold uppercase tracking-wider text-muted-foreground mb-4">
+                {meta.category}
+              </span>
+              <h1 className="font-display text-4xl md:text-5xl font-bold uppercase tracking-tighter mb-4">
+                {meta.name}
+              </h1>
               <p className="text-lg text-muted-foreground">{meta.description}</p>
             </div>
             {children}

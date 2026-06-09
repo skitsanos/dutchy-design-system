@@ -1,4 +1,4 @@
-import type { FC, ButtonHTMLAttributes, ReactNode } from 'react';
+import type { ButtonHTMLAttributes, FC, ReactNode } from 'react';
 import Spinner from '@/components/Spinner';
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
@@ -33,7 +33,8 @@ const Button: FC<ButtonProps> = ({
     secondary: 'bg-foreground text-background hover:bg-foreground/90 focus-visible:ring-foreground',
     outline: 'border-2 border-foreground text-foreground hover:bg-foreground hover:text-background',
     ghost: 'text-foreground hover:bg-muted',
-    destructive: 'bg-destructive text-destructive-foreground hover:bg-destructive/90 focus-visible:ring-destructive',
+    destructive:
+      'bg-destructive text-destructive-foreground hover:bg-destructive/90 focus-visible:ring-destructive',
   };
 
   const iconSizes = {
@@ -53,6 +54,7 @@ const Button: FC<ButtonProps> = ({
 
   return (
     <button
+      type="button"
       className={`${baseStyles} ${variants[variant]} ${sizeStyles} ${width} ${className}`}
       disabled={loading || props.disabled}
       aria-busy={loading || undefined}

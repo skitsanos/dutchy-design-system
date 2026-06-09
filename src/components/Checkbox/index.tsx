@@ -4,12 +4,7 @@ interface CheckboxProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 'typ
   label: string;
 }
 
-const Checkbox: FC<CheckboxProps> = ({
-  label,
-  className = '',
-  id,
-  ...props
-}) => {
+const Checkbox: FC<CheckboxProps> = ({ label, className = '', id, ...props }) => {
   const checkboxId = id || `checkbox-${Math.random().toString(36).slice(2, 9)}`;
 
   return (

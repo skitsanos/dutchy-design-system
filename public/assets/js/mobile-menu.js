@@ -1,4 +1,4 @@
-(function() {
+(() => {
   const btn = document.getElementById('mobile-menu-btn');
   const nav = document.getElementById('mobile-nav');
   const menuIcon = document.getElementById('menu-icon');

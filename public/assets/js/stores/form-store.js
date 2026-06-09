@@ -23,7 +23,7 @@
  *   showWhen(form, 'provider', value => value !== 'local', document.getElementById('credential-field'));
  */
 
-import { atom, map, computed } from '/assets/js/stores/index.js';
+import { atom, computed, map } from '/assets/js/stores/index.js';
 
 /**
  * Create a form state store with multiple fields

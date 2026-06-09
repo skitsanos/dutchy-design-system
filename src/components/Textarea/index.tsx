@@ -33,10 +33,7 @@ const Textarea: FC<TextareaProps> = ({
   return (
     <div className="space-y-2">
       {label && (
-        <label
-          htmlFor={textareaId}
-          className="block text-xs font-bold uppercase tracking-wider"
-        >
+        <label htmlFor={textareaId} className="block text-xs font-bold uppercase tracking-wider">
           {label}
           {props.required && <span className="text-primary ml-1">*</span>}
         </label>
@@ -57,12 +54,8 @@ const Textarea: FC<TextareaProps> = ({
 
       <div className="flex items-center justify-between gap-4">
         <div className="flex-1">
-          {error && (
-            <p className="text-destructive text-sm">{error}</p>
-          )}
-          {helpText && !error && (
-            <p className="text-muted-foreground text-sm">{helpText}</p>
-          )}
+          {error && <p className="text-destructive text-sm">{error}</p>}
+          {helpText && !error && <p className="text-muted-foreground text-sm">{helpText}</p>}
         </div>
         {showCount && (
           <p className="text-muted-foreground text-xs tabular-nums shrink-0" data-textarea-count="">

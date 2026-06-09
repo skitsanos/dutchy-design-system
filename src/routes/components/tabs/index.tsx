@@ -178,27 +178,21 @@ const TabsPage: FC = () => (
                 id: 'customers',
                 label: 'Customers',
                 content: (
-                  <p className="text-muted-foreground text-sm">
-                    Customer management and profiles.
-                  </p>
+                  <p className="text-muted-foreground text-sm">Customer management and profiles.</p>
                 ),
               },
               {
                 id: 'products',
                 label: 'Products',
                 content: (
-                  <p className="text-muted-foreground text-sm">
-                    Product catalog and inventory.
-                  </p>
+                  <p className="text-muted-foreground text-sm">Product catalog and inventory.</p>
                 ),
               },
               {
                 id: 'orders',
                 label: 'Orders',
                 content: (
-                  <p className="text-muted-foreground text-sm">
-                    Order management and fulfillment.
-                  </p>
+                  <p className="text-muted-foreground text-sm">Order management and fulfillment.</p>
                 ),
               },
               {
@@ -241,9 +235,7 @@ const TabsPage: FC = () => (
                 id: 'team',
                 label: 'Team',
                 content: (
-                  <p className="text-muted-foreground text-sm">
-                    Team member management and roles.
-                  </p>
+                  <p className="text-muted-foreground text-sm">Team member management and roles.</p>
                 ),
               },
               {

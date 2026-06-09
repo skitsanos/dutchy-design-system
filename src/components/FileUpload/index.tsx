@@ -26,19 +26,11 @@ const FileUpload: FC<FileUploadProps> = ({
   >
     <Icon name="upload" size="lg" className="mx-auto mb-4 text-muted-foreground" />
 
-    <p className="font-bold text-sm uppercase tracking-wider mb-1">
-      {label}
-    </p>
+    <p className="font-bold text-sm uppercase tracking-wider mb-1">{label}</p>
 
-    {accept && (
-      <p className="text-xs text-muted-foreground">
-        Accepted formats: {accept}
-      </p>
-    )}
+    {accept && <p className="text-xs text-muted-foreground">Accepted formats: {accept}</p>}
 
-    <p className="text-xs text-muted-foreground mt-1">
-      Max file size: {maxSizeMB}MB
-    </p>
+    <p className="text-xs text-muted-foreground mt-1">Max file size: {maxSizeMB}MB</p>
 
     {/* Hidden file input */}
     <input

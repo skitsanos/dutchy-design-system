@@ -1,36 +1,105 @@
 import type { FC } from 'react';
 import Layout from '@/components/Layout';
-import WebsiteHeader from '@/components/WebsiteHeader';
 import WebsiteFooter from '@/components/WebsiteFooter';
+import WebsiteHeader from '@/components/WebsiteHeader';
 
 const showcaseItems = [
-  { slug: 'admin', title: 'Admin Dashboard', description: 'Full admin panel with sidebar, stats, and data tables', icon: 'layout-dashboard' },
-  { slug: 'blog', title: 'Blog', description: 'Featured articles, grid layout, newsletter signup', icon: 'file-text' },
-  { slug: 'cart', title: 'Shopping Cart', description: 'Product list, order summary, checkout flow', icon: 'shopping-cart' },
-  { slug: 'categories', title: 'Categories', description: 'Browse components by category with tiled grid', icon: 'grid-3x3' },
-  { slug: 'contact', title: 'Contact', description: 'Contact form with validation and success feedback', icon: 'mail' },
-  { slug: 'data', title: 'Data Management', description: 'User management table with filtering and modals', icon: 'database' },
-  { slug: 'login', title: 'Login', description: 'Authentication form with tabs and social login', icon: 'log-in' },
-  { slug: 'notifications', title: 'Notifications', description: 'Notification center with sidebar and filtering', icon: 'bell' },
-  { slug: 'pricing', title: 'Pricing', description: 'Pricing tiers with toggle and feature comparison', icon: 'credit-card' },
-  { slug: 'register', title: 'Registration', description: 'Multi-step registration wizard with stepper', icon: 'user-plus' },
-  { slug: 'search', title: 'Search', description: 'Full-text search with filters and result cards', icon: 'search' },
-  { slug: 'themes', title: 'Themes', description: 'Theme showcase with live color previews', icon: 'palette' },
+  {
+    slug: 'admin',
+    title: 'Admin Dashboard',
+    description: 'Full admin panel with sidebar, stats, and data tables',
+    icon: 'layout-dashboard',
+  },
+  {
+    slug: 'blog',
+    title: 'Blog',
+    description: 'Featured articles, grid layout, newsletter signup',
+    icon: 'file-text',
+  },
+  {
+    slug: 'cart',
+    title: 'Shopping Cart',
+    description: 'Product list, order summary, checkout flow',
+    icon: 'shopping-cart',
+  },
+  {
+    slug: 'categories',
+    title: 'Categories',
+    description: 'Browse components by category with tiled grid',
+    icon: 'grid-3x3',
+  },
+  {
+    slug: 'contact',
+    title: 'Contact',
+    description: 'Contact form with validation and success feedback',
+    icon: 'mail',
+  },
+  {
+    slug: 'data',
+    title: 'Data Management',
+    description: 'User management table with filtering and modals',
+    icon: 'database',
+  },
+  {
+    slug: 'login',
+    title: 'Login',
+    description: 'Authentication form with tabs and social login',
+    icon: 'log-in',
+  },
+  {
+    slug: 'notifications',
+    title: 'Notifications',
+    description: 'Notification center with sidebar and filtering',
+    icon: 'bell',
+  },
+  {
+    slug: 'pricing',
+    title: 'Pricing',
+    description: 'Pricing tiers with toggle and feature comparison',
+    icon: 'credit-card',
+  },
+  {
+    slug: 'register',
+    title: 'Registration',
+    description: 'Multi-step registration wizard with stepper',
+    icon: 'user-plus',
+  },
+  {
+    slug: 'search',
+    title: 'Search',
+    description: 'Full-text search with filters and result cards',
+    icon: 'search',
+  },
+  {
+    slug: 'themes',
+    title: 'Themes',
+    description: 'Theme showcase with live color previews',
+    icon: 'palette',
+  },
 ];
 
 const iconPaths: Record<string, string> = {
-  'layout-dashboard': '<rect width="7" height="9" x="3" y="3"/><rect width="7" height="5" x="14" y="3"/><rect width="7" height="9" x="14" y="12"/><rect width="7" height="5" x="3" y="16"/>',
-  'file-text': '<path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"/><path d="M18 14h-8"/><path d="M15 18h-5"/><path d="M10 6h8v4h-8V6Z"/>',
-  'shopping-cart': '<circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/>',
-  'grid-3x3': '<rect width="7" height="7" x="3" y="3"/><rect width="7" height="7" x="14" y="3"/><rect width="7" height="7" x="14" y="14"/><rect width="7" height="7" x="3" y="14"/>',
-  'mail': '<rect width="20" height="16" x="2" y="4"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>',
-  'database': '<ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5V19A9 3 0 0 0 21 19V5"/><path d="M3 12A9 3 0 0 0 21 12"/>',
-  'log-in': '<path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/><polyline points="10 17 15 12 10 7"/><line x1="15" x2="3" y1="12" y2="12"/>',
-  'bell': '<path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/>',
-  'credit-card': '<rect width="20" height="14" x="2" y="5" rx="2"/><line x1="2" x2="22" y1="10" y2="10"/>',
-  'user-plus': '<path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><line x1="19" x2="19" y1="8" y2="14"/><line x1="22" x2="16" y1="11" y2="11"/>',
-  'search': '<circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/>',
-  'palette': '<circle cx="13.5" cy="6.5" r="0.5" fill="currentColor"/><circle cx="17.5" cy="10.5" r="0.5" fill="currentColor"/><circle cx="8.5" cy="7.5" r="0.5" fill="currentColor"/><circle cx="6.5" cy="12.5" r="0.5" fill="currentColor"/><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.554C21.965 6.012 17.461 2 12 2z"/>',
+  'layout-dashboard':
+    '<rect width="7" height="9" x="3" y="3"/><rect width="7" height="5" x="14" y="3"/><rect width="7" height="9" x="14" y="12"/><rect width="7" height="5" x="3" y="16"/>',
+  'file-text':
+    '<path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"/><path d="M18 14h-8"/><path d="M15 18h-5"/><path d="M10 6h8v4h-8V6Z"/>',
+  'shopping-cart':
+    '<circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/>',
+  'grid-3x3':
+    '<rect width="7" height="7" x="3" y="3"/><rect width="7" height="7" x="14" y="3"/><rect width="7" height="7" x="14" y="14"/><rect width="7" height="7" x="3" y="14"/>',
+  mail: '<rect width="20" height="16" x="2" y="4"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>',
+  database:
+    '<ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5V19A9 3 0 0 0 21 19V5"/><path d="M3 12A9 3 0 0 0 21 12"/>',
+  'log-in':
+    '<path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/><polyline points="10 17 15 12 10 7"/><line x1="15" x2="3" y1="12" y2="12"/>',
+  bell: '<path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/>',
+  'credit-card':
+    '<rect width="20" height="14" x="2" y="5" rx="2"/><line x1="2" x2="22" y1="10" y2="10"/>',
+  'user-plus':
+    '<path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><line x1="19" x2="19" y1="8" y2="14"/><line x1="22" x2="16" y1="11" y2="11"/>',
+  search: '<circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/>',
+  palette:
+    '<circle cx="13.5" cy="6.5" r="0.5" fill="currentColor"/><circle cx="17.5" cy="10.5" r="0.5" fill="currentColor"/><circle cx="8.5" cy="7.5" r="0.5" fill="currentColor"/><circle cx="6.5" cy="12.5" r="0.5" fill="currentColor"/><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.554C21.965 6.012 17.461 2 12 2z"/>',
 };
 
 const SmallIcon: FC<{ name: string; size: number }> = ({ name, size }) => (
@@ -49,7 +118,11 @@ const SmallIcon: FC<{ name: string; size: number }> = ({ name, size }) => (
   />
 );
 
-const LargeIcon: FC<{ name: string; size: number; className: string }> = ({ name, size, className }) => (
+const LargeIcon: FC<{ name: string; size: number; className: string }> = ({
+  name,
+  size,
+  className,
+}) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width={size}
@@ -65,7 +138,11 @@ const LargeIcon: FC<{ name: string; size: number; className: string }> = ({ name
   />
 );
 
-const RegularLargeIcon: FC<{ name: string; size: number; className: string }> = ({ name, size, className }) => (
+const RegularLargeIcon: FC<{ name: string; size: number; className: string }> = ({
+  name,
+  size,
+  className,
+}) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width={size}
@@ -101,10 +178,7 @@ const ArrowIcon: FC<{ size: number }> = ({ size }) => (
 
 const ShowcasePage: FC = () => {
   return (
-    <Layout
-      title="Showcase | Dutchy Design System"
-      scripts={['/assets/js/mobile-menu.js']}
-    >
+    <Layout title="Showcase | Dutchy Design System" scripts={['/assets/js/mobile-menu.js']}>
       <WebsiteHeader currentPath="/showcase" />
 
       {/* Header Section */}
@@ -117,7 +191,8 @@ const ShowcasePage: FC = () => {
             Showcase
           </h1>
           <p className="text-xl text-muted-foreground max-w-lg leading-relaxed">
-            Complete page templates and layouts built with the Dutchy Design System. Browse real-world examples.
+            Complete page templates and layouts built with the Dutchy Design System. Browse
+            real-world examples.
           </p>
         </div>
       </section>

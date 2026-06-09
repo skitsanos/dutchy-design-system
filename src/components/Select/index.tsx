@@ -37,13 +37,10 @@ const Select: FC<SelectProps> = ({
   return (
     <div className="space-y-2">
       {label && (
-        <label
-          id={`${selectId}-label`}
-          className="block text-xs font-bold uppercase tracking-wider"
-        >
+        <div id={`${selectId}-label`} className="block text-xs font-bold uppercase tracking-wider">
           {label}
           {required && <span className="text-primary ml-1">*</span>}
-        </label>
+        </div>
       )}
 
       <div
@@ -51,7 +48,6 @@ const Select: FC<SelectProps> = ({
         data-select=""
         data-value={defaultValue ?? ''}
         id={selectId}
-        aria-labelledby={label ? `${selectId}-label` : undefined}
       >
         {/* Hidden input for form submission */}
         <input
@@ -70,21 +66,21 @@ const Select: FC<SelectProps> = ({
               ? 'border-destructive focus:border-destructive'
               : 'border-border focus:border-foreground'
           } ${
-            disabled
-              ? 'bg-muted opacity-50 cursor-not-allowed'
-              : 'bg-background cursor-pointer'
+            disabled ? 'bg-muted opacity-50 cursor-not-allowed' : 'bg-background cursor-pointer'
           }`}
           disabled={disabled}
           aria-haspopup="listbox"
           aria-expanded="false"
+          aria-labelledby={label ? `${selectId}-label` : undefined}
         >
-          <span
-            data-select-value=""
-            className={selectedOption ? '' : 'text-muted-foreground'}
-          >
+          <span data-select-value="" className={selectedOption ? '' : 'text-muted-foreground'}>
             {selectedOption?.label ?? placeholder}
           </span>
-          <Icon name="chevron-down" size="sm" className="text-muted-foreground transition-transform" />
+          <Icon
+            name="chevron-down"
+            size="sm"
+            className="text-muted-foreground transition-transform"
+          />
         </button>
 
         {/* Options menu */}
@@ -99,11 +95,10 @@ const Select: FC<SelectProps> = ({
               data-select-option=""
               data-value={option.value}
               role="option"
+              tabIndex={-1}
               aria-selected={option.value === defaultValue}
               className={`px-4 py-3 cursor-pointer transition-colors text-sm hover:bg-primary hover:text-primary-foreground ${
-                option.value === defaultValue
-                  ? 'bg-muted font-bold'
-                  : ''
+                option.value === defaultValue ? 'bg-muted font-bold' : ''
               }`}
             >
               {option.label}
@@ -112,9 +107,7 @@ const Select: FC<SelectProps> = ({
         </div>
       </div>
 
-      {error && (
-        <p className="text-destructive text-sm">{error}</p>
-      )}
+      {error && <p className="text-destructive text-sm">{error}</p>}
     </div>
   );
 };

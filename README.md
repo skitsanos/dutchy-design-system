@@ -80,13 +80,16 @@ Themes are CSS variables (default, purple, crimson). Tailwind utilities (`bg-pri
 | `bun run dev` | Start Bun server in watch mode |
 | `bun run dev:css` | Watch and rebuild Tailwind CSS |
 | `bun run build:css` | One-time Tailwind CSS build (minified) |
+| `bun run typecheck` | Run TypeScript without emitting files |
+| `bun run lint` | Run Biome format, lint, and import checks |
+| `bun run lint:fix` | Apply Biome safe fixes |
 | `bun test` | Run tests in `tests/` |
 
 ## Docker
 
 ```bash
-docker build -t dutchy:2.0.0 .
-docker run -p 3000:3000 dutchy:2.0.0
+docker build -t dutchy:2.1.0 .
+docker run -p 3000:3000 dutchy:2.1.0
 ```
 
 The image builds Tailwind CSS at build time and serves the Bun SSR app on port 3000.

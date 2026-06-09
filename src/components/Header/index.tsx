@@ -29,11 +29,9 @@ const Header: FC<HeaderProps> = ({
       <div className="container mx-auto px-4 md:px-6">
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
-          <a
-            href="/"
-            className="font-display text-2xl font-bold uppercase tracking-tight"
-          >
-            {siteName}<span className="text-primary">.</span>
+          <a href="/" className="font-display text-2xl font-bold uppercase tracking-tight">
+            {siteName}
+            <span className="text-primary">.</span>
           </a>
 
           {/* Desktop Navigation */}
@@ -63,16 +61,12 @@ const Header: FC<HeaderProps> = ({
 
           {/* Mobile Menu Button */}
           <button
+            type="button"
             className="md:hidden p-2"
             aria-label="Toggle menu"
             id="mobile-menu-btn"
           >
-            <svg
-              className="w-6 h-6"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path
                 strokeLinecap="round"
                 strokeLinejoin="round"

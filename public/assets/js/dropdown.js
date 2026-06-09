@@ -1,4 +1,4 @@
-(function() {
+(() => {
   const dropdowns = document.querySelectorAll('[data-dropdown]');
 
   dropdowns.forEach((dropdown) => {

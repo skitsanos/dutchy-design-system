@@ -41,7 +41,8 @@ const Sidebar: FC<SidebarProps> = ({
             href={brandHref}
             className="font-display text-xl font-bold uppercase tracking-tight block mb-10"
           >
-            {brand}<span className="text-primary">.</span>
+            {brand}
+            <span className="text-primary">.</span>
           </a>
         )}
 

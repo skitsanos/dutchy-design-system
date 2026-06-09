@@ -1,9 +1,9 @@
 import type { FC } from 'react';
-import ComponentPageLayout from '@/components/ComponentPageLayout';
 import Button from '@/components/Button';
+import ComponentPageLayout from '@/components/ComponentPageLayout';
+import EmptyState from '@/components/EmptyState';
 import Flex from '@/components/Flex';
 import Icon from '@/components/Icon';
-import EmptyState from '@/components/EmptyState';
 
 const EmptyStatePage: FC = () => (
   <ComponentPageLayout componentId="emptystate">
@@ -25,11 +25,17 @@ const EmptyStatePage: FC = () => (
             <div className="w-20 h-20 bg-primary/10 flex items-center justify-center mb-6">
               <Icon name="dashboard" size="lg" className="text-primary w-10 h-10" />
             </div>
-            <h3 className="font-display text-2xl font-bold uppercase tracking-tight mb-2">Set up your dashboard</h3>
-            <p className="text-muted-foreground max-w-md mb-8">Your dashboard is empty. Add widgets to monitor key metrics.</p>
+            <h3 className="font-display text-2xl font-bold uppercase tracking-tight mb-2">
+              Set up your dashboard
+            </h3>
+            <p className="text-muted-foreground max-w-md mb-8">
+              Your dashboard is empty. Add widgets to monitor key metrics.
+            </p>
             <Flex gap={4}>
               <Button size="sm">Add Widget</Button>
-              <Button variant="outline" size="sm">Browse Templates</Button>
+              <Button variant="outline" size="sm">
+                Browse Templates
+              </Button>
             </Flex>
           </div>
         </div>

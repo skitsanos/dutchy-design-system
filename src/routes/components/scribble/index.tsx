@@ -7,7 +7,9 @@ const ScribblePage: FC = () => (
     <>
       {/* Signature Pad */}
       <div className="bg-white border-4 border-border p-8 md:p-12 mb-8">
-        <h3 className="font-display font-bold uppercase text-sm tracking-wider mb-6 text-muted-foreground">Signature Pad</h3>
+        <h3 className="font-display font-bold uppercase text-sm tracking-wider mb-6 text-muted-foreground">
+          Signature Pad
+        </h3>
         <div className="max-w-2xl">
           <Scribble
             width={600}
@@ -21,7 +23,9 @@ const ScribblePage: FC = () => (
 
       {/* Sketch Pad */}
       <div className="bg-white border-4 border-border p-8 md:p-12 mb-8">
-        <h3 className="font-display font-bold uppercase text-sm tracking-wider mb-6 text-muted-foreground">Sketch Pad</h3>
+        <h3 className="font-display font-bold uppercase text-sm tracking-wider mb-6 text-muted-foreground">
+          Sketch Pad
+        </h3>
         <div className="max-w-2xl">
           <Scribble
             width={600}
@@ -35,7 +39,9 @@ const ScribblePage: FC = () => (
 
       {/* Colored Ink */}
       <div className="bg-white border-4 border-border p-8 md:p-12 mb-8">
-        <h3 className="font-display font-bold uppercase text-sm tracking-wider mb-6 text-muted-foreground">Colored Ink</h3>
+        <h3 className="font-display font-bold uppercase text-sm tracking-wider mb-6 text-muted-foreground">
+          Colored Ink
+        </h3>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           <Scribble
             width={400}
@@ -63,7 +69,9 @@ const ScribblePage: FC = () => (
 
       {/* Export Preview */}
       <div className="bg-white border-4 border-border p-8 md:p-12">
-        <h3 className="font-display font-bold uppercase text-sm tracking-wider mb-6 text-muted-foreground">Export Preview</h3>
+        <h3 className="font-display font-bold uppercase text-sm tracking-wider mb-6 text-muted-foreground">
+          Export Preview
+        </h3>
         <div className="max-w-2xl">
           <Scribble
             width={600}

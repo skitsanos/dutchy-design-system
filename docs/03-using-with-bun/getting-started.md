@@ -40,10 +40,13 @@ bun init -y
 bun add react react-dom
 
 # Development dependencies
-bun add -d @types/react @types/react-dom typescript
+bun add -d @types/bun @types/react @types/react-dom typescript
 
-# Optional: Tailwind CSS
-bun add -d tailwindcss
+# Tailwind CSS 4 CLI
+bun add -d tailwindcss @tailwindcss/cli
+
+# Optional: Biome formatter/linter
+bun add -d @biomejs/biome
 ```
 
 ## Project Setup
@@ -92,18 +95,23 @@ Update `package.json`:
     "dev": "bun run --watch src/index.ts",
     "start": "NODE_ENV=production bun run src/index.ts",
     "build:css": "bunx tailwindcss -i src/styles/input.css -o public/assets/css/styles.css --minify",
-    "build:css:watch": "bunx tailwindcss -i src/styles/input.css -o public/assets/css/styles.css --watch"
+    "dev:css": "bunx tailwindcss -i src/styles/input.css -o public/assets/css/styles.css --watch",
+    "typecheck": "bunx tsc --noEmit",
+    "lint": "bunx biome check .",
+    "lint:fix": "bunx biome check --write ."
   },
   "dependencies": {
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0"
   },
   "devDependencies": {
+    "@biomejs/biome": "^2.4.0",
+    "@tailwindcss/cli": "^4.3.0",
     "@types/bun": "latest",
-    "@types/react": "^19.0.0",
-    "@types/react-dom": "^19.0.0",
-    "tailwindcss": "3",
-    "typescript": "^5.7.0"
+    "@types/react": "^19.2.0",
+    "@types/react-dom": "^19.2.0",
+    "tailwindcss": "^4.3.0",
+    "typescript": "^5.9.0"
   }
 }
 ```
@@ -740,7 +748,7 @@ export default HomePage;
 
 ```bash
 # Build Tailwind CSS (in one terminal)
-bun run build:css:watch
+bun run dev:css
 
 # Start server with hot reload (in another terminal)
 bun run dev

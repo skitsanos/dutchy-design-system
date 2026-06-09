@@ -1,4 +1,4 @@
-(function() {
+(() => {
   const tables = document.querySelectorAll('[data-sortable]');
 
   tables.forEach((table) => {
@@ -41,14 +41,14 @@
           // Try parsing as number
           const aNum = parseFloat(aVal);
           const bNum = parseFloat(bVal);
-          if (!isNaN(aNum) && !isNaN(bNum)) {
+          if (!Number.isNaN(aNum) && !Number.isNaN(bNum)) {
             return newDir === 'asc' ? aNum - bNum : bNum - aNum;
           }
 
           // Try parsing as date
           const aDate = Date.parse(aVal);
           const bDate = Date.parse(bVal);
-          if (!isNaN(aDate) && !isNaN(bDate)) {
+          if (!Number.isNaN(aDate) && !Number.isNaN(bDate)) {
             return newDir === 'asc' ? aDate - bDate : bDate - aDate;
           }
 
@@ -62,7 +62,9 @@
         });
 
         // Re-append sorted rows
-        rows.forEach((row) => tbody.appendChild(row));
+        rows.forEach((row) => {
+          tbody.appendChild(row);
+        });
       });
     });
   });
@@ -78,7 +80,7 @@
       try {
         const parsed = JSON.parse(rowData);
         if (parsed[key] !== undefined) return String(parsed[key]);
-      } catch (e) {
+      } catch {
         // ignore parse errors
       }
     }

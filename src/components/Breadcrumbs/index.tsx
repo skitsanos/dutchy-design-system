@@ -12,11 +12,7 @@ interface BreadcrumbsProps {
   className?: string;
 }
 
-const Breadcrumbs: FC<BreadcrumbsProps> = ({
-  items,
-  separator = 'chevron',
-  className = '',
-}) => {
+const Breadcrumbs: FC<BreadcrumbsProps> = ({ items, separator = 'chevron', className = '' }) => {
   return (
     <nav aria-label="Breadcrumb" className={className}>
       <ol className="flex flex-wrap items-center gap-2 text-sm">
@@ -26,9 +22,11 @@ const Breadcrumbs: FC<BreadcrumbsProps> = ({
           return (
             <li key={index} className="flex items-center gap-2">
               {/* Separator (not on the first item) */}
-              {index > 0 && (
-                separator === 'slash' ? (
-                  <span className="text-muted-foreground" aria-hidden="true">/</span>
+              {index > 0 &&
+                (separator === 'slash' ? (
+                  <span className="text-muted-foreground" aria-hidden="true">
+                    /
+                  </span>
                 ) : (
                   <svg
                     className="w-4 h-4 text-muted-foreground"
@@ -44,14 +42,10 @@ const Breadcrumbs: FC<BreadcrumbsProps> = ({
                       d="m9 18 6-6-6-6"
                     />
                   </svg>
-                )
-              )}
+                ))}
 
               {isLast ? (
-                <span
-                  className="font-bold uppercase tracking-wide"
-                  aria-current="page"
-                >
+                <span className="font-bold uppercase tracking-wide" aria-current="page">
                   {item.icon || item.label}
                 </span>
               ) : (

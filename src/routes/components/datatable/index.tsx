@@ -1,10 +1,10 @@
 import type { FC, ReactNode } from 'react';
+import Badge from '@/components/Badge';
+import Button from '@/components/Button';
 import ComponentPageLayout from '@/components/ComponentPageLayout';
 import DataTable from '@/components/DataTable';
-import Badge from '@/components/Badge';
 import Flex from '@/components/Flex';
 import Icon from '@/components/Icon';
-import Button from '@/components/Button';
 
 const statusVariant: Record<string, 'success' | 'muted' | 'destructive'> = {
   Active: 'success',
@@ -24,17 +24,13 @@ const columns = [
     label: 'Status',
     sortable: true,
     render: (val: ReactNode) => (
-      <Badge variant={statusVariant[val as string] ?? 'muted'}>
-        {val}
-      </Badge>
+      <Badge variant={statusVariant[val as string] ?? 'muted'}>{val}</Badge>
     ),
   },
   {
     key: 'role',
     label: 'Role',
-    render: (val: ReactNode) => (
-      <span className="text-muted-foreground">{val}</span>
-    ),
+    render: (val: ReactNode) => <span className="text-muted-foreground">{val}</span>,
   },
   {
     key: 'amount',
@@ -75,9 +71,7 @@ const actionsColumns = [
   {
     key: 'email',
     label: 'Email',
-    render: (val: ReactNode) => (
-      <span className="text-muted-foreground">{val}</span>
-    ),
+    render: (val: ReactNode) => <span className="text-muted-foreground">{val}</span>,
   },
   {
     key: 'role',
@@ -127,7 +121,9 @@ const DataTablePage: FC = () => (
 
       {/* Table with Actions */}
       <div className="mb-8">
-        <h3 className="font-display font-bold uppercase text-sm tracking-wider mb-4 text-muted-foreground">With Actions</h3>
+        <h3 className="font-display font-bold uppercase text-sm tracking-wider mb-4 text-muted-foreground">
+          With Actions
+        </h3>
         <DataTable
           columns={actionsColumns}
           data={actionsData}
@@ -137,7 +133,9 @@ const DataTablePage: FC = () => (
 
       {/* Loading State */}
       <div className="mb-8">
-        <h3 className="font-display font-bold uppercase text-sm tracking-wider mb-4 text-muted-foreground">Loading State</h3>
+        <h3 className="font-display font-bold uppercase text-sm tracking-wider mb-4 text-muted-foreground">
+          Loading State
+        </h3>
         <DataTable
           columns={columns}
           data={data}
@@ -153,18 +151,17 @@ const DataTablePage: FC = () => (
         headerClassName="bg-muted border-b-2 border-border"
         emptyText={
           <>
-            <p className="font-display font-bold uppercase text-sm mb-1">
-              No data available
-            </p>
-            <p className="text-sm text-muted-foreground">
-              Try adjusting your search or filters.
-            </p>
+            <p className="font-display font-bold uppercase text-sm mb-1">No data available</p>
+            <p className="text-sm text-muted-foreground">Try adjusting your search or filters.</p>
           </>
         }
       />
 
       {/* Delete Confirmation Dialog */}
-      <dialog id="delete-confirm" className="bg-background border-4 border-border p-0 w-full max-w-md backdrop:bg-foreground/50">
+      <dialog
+        id="delete-confirm"
+        className="bg-background border-4 border-border p-0 w-full max-w-md backdrop:bg-foreground/50"
+      >
         <div className="p-8">
           <Flex align="center" gap={3} className="mb-4">
             <div className="w-10 h-10 bg-destructive/10 flex items-center justify-center flex-shrink-0">
@@ -172,16 +169,31 @@ const DataTablePage: FC = () => (
             </div>
             <h2 className="font-display text-xl font-bold uppercase tracking-tight">Delete Item</h2>
           </Flex>
-          <p className="text-muted-foreground text-sm mb-8">Are you sure you want to delete this item? This action cannot be undone.</p>
+          <p className="text-muted-foreground text-sm mb-8">
+            Are you sure you want to delete this item? This action cannot be undone.
+          </p>
           <Flex justify="end" gap={3}>
-            <Button variant="ghost" data-close-modal size="sm" className="px-6 border-2 border-border">Cancel</Button>
-            <Button variant="destructive" data-close-modal size="sm" className="px-6">Delete</Button>
+            <Button
+              variant="ghost"
+              data-close-modal
+              size="sm"
+              className="px-6 border-2 border-border"
+            >
+              Cancel
+            </Button>
+            <Button variant="destructive" data-close-modal size="sm" className="px-6">
+              Delete
+            </Button>
           </Flex>
         </div>
       </dialog>
 
       {/* Toast Container */}
-      <div id="toast-container" className="fixed bottom-6 right-6 z-[100] space-y-3" aria-live="polite"></div>
+      <div
+        id="toast-container"
+        className="fixed bottom-6 right-6 z-[100] space-y-3"
+        aria-live="polite"
+      ></div>
     </>
   </ComponentPageLayout>
 );

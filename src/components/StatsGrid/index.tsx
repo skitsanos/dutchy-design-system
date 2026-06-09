@@ -24,12 +24,7 @@ const TrendArrow: FC<{ direction: 'up' | 'down'; className?: string }> = ({
   direction,
   className = '',
 }) => (
-  <svg
-    className={`w-4 h-4 ${className}`}
-    fill="none"
-    stroke="currentColor"
-    viewBox="0 0 24 24"
-  >
+  <svg className={`w-4 h-4 ${className}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
     {direction === 'up' ? (
       <path
         strokeLinecap="round"
@@ -49,8 +44,7 @@ const TrendArrow: FC<{ direction: 'up' | 'down'; className?: string }> = ({
 );
 
 const TrendIndicator: FC<{ trend: StatTrend }> = ({ trend }) => {
-  const colorClass =
-    trend.sentiment === 'negative' ? 'text-destructive' : 'text-success';
+  const colorClass = trend.sentiment === 'negative' ? 'text-destructive' : 'text-success';
 
   return (
     <div className={`flex items-center gap-1.5 ${colorClass}`}>
@@ -111,13 +105,8 @@ const StatsGrid: FC<StatsGridProps> = ({
   return (
     <div className={`grid ${columnClasses[columns]} gap-0.5 bg-border`}>
       {stats.map((stat, index) => (
-        <div
-          key={index}
-          className={`${variants[stat.variant || 'light']} ${s.cell}`}
-        >
-          <p className={`font-display ${s.value} font-bold mb-2`}>
-            {stat.value}
-          </p>
+        <div key={index} className={`${variants[stat.variant || 'light']} ${s.cell}`}>
+          <p className={`font-display ${s.value} font-bold mb-2`}>{stat.value}</p>
           <p
             className={`${textVariants[stat.variant || 'light']} text-sm uppercase tracking-wider${stat.trend ? ' mb-2' : ''}`}
           >

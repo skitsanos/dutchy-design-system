@@ -1,7 +1,7 @@
 import { serve } from 'bun';
+import corsResponse from '@/middleware/corsResponse';
 import { createReactHandler, loadRoutes, resolveRoute } from '@/utils/loadRoutes';
 import staticAssets from '@/utils/staticAssets';
-import corsResponse from '@/middleware/corsResponse';
 
 const PORT = process.env.PORT || 3000;
 const IS_PRODUCTION = process.env.NODE_ENV === 'production';
@@ -12,9 +12,7 @@ async function startServer() {
   const assetHandler = staticAssets({
     assetsPath: 'public/assets',
     urlPrefix: '/assets',
-    cacheControl: IS_PRODUCTION
-      ? 'public, max-age=31536000, immutable'
-      : 'no-cache',
+    cacheControl: IS_PRODUCTION ? 'public, max-age=31536000, immutable' : 'no-cache',
   });
 
   serve({

@@ -13,13 +13,7 @@ interface LayoutProps {
   styles?: string[];
 }
 
-const Layout: FC<LayoutProps> = ({
-  title,
-  children,
-  meta,
-  scripts = [],
-  styles = [],
-}) => {
+const Layout: FC<LayoutProps> = ({ title, children, meta, scripts = [], styles = [] }) => {
   return (
     <html lang="en">
       <head>
@@ -28,35 +22,21 @@ const Layout: FC<LayoutProps> = ({
         <title>{title}</title>
 
         {/* SEO Meta Tags */}
-        {meta?.description && (
-          <meta name="description" content={meta.description} />
-        )}
-        {meta?.keywords && (
-          <meta name="keywords" content={meta.keywords} />
-        )}
+        {meta?.description && <meta name="description" content={meta.description} />}
+        {meta?.keywords && <meta name="keywords" content={meta.keywords} />}
 
         {/* Open Graph */}
         <meta property="og:type" content="website" />
         <meta property="og:title" content={title} />
-        {meta?.description && (
-          <meta property="og:description" content={meta.description} />
-        )}
-        {meta?.image && (
-          <meta property="og:image" content={meta.image} />
-        )}
-        {meta?.url && (
-          <meta property="og:url" content={meta.url} />
-        )}
+        {meta?.description && <meta property="og:description" content={meta.description} />}
+        {meta?.image && <meta property="og:image" content={meta.image} />}
+        {meta?.url && <meta property="og:url" content={meta.url} />}
 
         {/* Twitter Card */}
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={title} />
-        {meta?.description && (
-          <meta name="twitter:description" content={meta.description} />
-        )}
-        {meta?.image && (
-          <meta name="twitter:image" content={meta.image} />
-        )}
+        {meta?.description && <meta name="twitter:description" content={meta.description} />}
+        {meta?.image && <meta name="twitter:image" content={meta.image} />}
 
         {/* Google Fonts */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />

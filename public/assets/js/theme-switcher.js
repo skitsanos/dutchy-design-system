@@ -1,4 +1,4 @@
-(function() {
+(() => {
   const STORAGE_KEY = 'dutchy-theme';
 
   // Apply saved theme on page load

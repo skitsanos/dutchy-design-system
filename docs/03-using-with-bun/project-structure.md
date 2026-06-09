@@ -55,7 +55,7 @@ my-dutchy-app/
 │   │   ├── response.ts             # Response helpers
 │   │   └── mimeTypes.ts            # MIME type mapping
 │   ├── middleware/                 # Middleware functions
-│   │   ├── cors.ts                 # CORS handling
+│   │   ├── corsResponse.ts         # CORS preflight handling
 │   │   └── auth.ts                 # Authentication
 │   ├── schemas/                    # Validation schemas (Zod)
 │   │   └── contact.ts
@@ -208,32 +208,18 @@ export const response = {
 Request/response middleware functions.
 
 ```typescript
-// src/middleware/cors.ts
-export interface CorsOptions {
-  origin?: string | string[];
-  methods?: string[];
-  headers?: string[];
-}
+// src/middleware/corsResponse.ts
+const corsResponse = () => new Response(null, {
+  status: 204,
+  headers: {
+    'Access-Control-Allow-Origin': '*',
+    'Access-Control-Allow-Methods': 'GET, POST, PUT, PATCH, DELETE, OPTIONS, HEAD',
+    'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+    'Access-Control-Max-Age': '86400',
+  },
+});
 
-const defaultOptions: CorsOptions = {
-  origin: '*',
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-  headers: ['Content-Type', 'Authorization'],
-};
-
-export const corsHeaders = (options: CorsOptions = {}) => {
-  const opts = { ...defaultOptions, ...options };
-  return {
-    'Access-Control-Allow-Origin': Array.isArray(opts.origin)
-      ? opts.origin.join(', ')
-      : opts.origin || '*',
-    'Access-Control-Allow-Methods': opts.methods!.join(', '),
-    'Access-Control-Allow-Headers': opts.headers!.join(', '),
-  };
-};
-
-export const corsResponse = (options?: CorsOptions) =>
-  new Response(null, { status: 204, headers: corsHeaders(options) });
+export default corsResponse;
 ```
 
 #### `src/schemas/`

@@ -1,15 +1,15 @@
 import type { FC } from 'react';
-import Layout from '@/components/Layout';
-import Header from '@/components/Header';
 import Breadcrumbs from '@/components/Breadcrumbs';
-import Stepper from '@/components/Stepper';
-import Tooltip from '@/components/Tooltip';
-import FileUpload from '@/components/FileUpload';
-import Skeleton from '@/components/Skeleton';
-import { ToastContainer } from '@/components/Toast';
 import Button from '@/components/Button';
+import FileUpload from '@/components/FileUpload';
+import Header from '@/components/Header';
 import Input from '@/components/Input';
+import Layout from '@/components/Layout';
+import Skeleton from '@/components/Skeleton';
+import Stepper from '@/components/Stepper';
 import Textarea from '@/components/Textarea';
+import { ToastContainer } from '@/components/Toast';
+import Tooltip from '@/components/Tooltip';
 
 const RegisterPage: FC<{ request: Request }> = () => {
   const interests = ['Design', 'Frontend', 'Backend', 'DevOps', 'Mobile', 'AI'];
@@ -60,8 +60,12 @@ const RegisterPage: FC<{ request: Request }> = () => {
       <main className="py-12 md:py-16">
         <div className="container mx-auto px-4 md:px-6 max-w-3xl">
           <div className="text-center mb-10">
-            <h1 className="font-display text-4xl md:text-5xl font-bold uppercase tracking-tighter mb-4">Create Account</h1>
-            <p className="text-muted-foreground">Complete the steps below to set up your account.</p>
+            <h1 className="font-display text-4xl md:text-5xl font-bold uppercase tracking-tighter mb-4">
+              Create Account
+            </h1>
+            <p className="text-muted-foreground">
+              Complete the steps below to set up your account.
+            </p>
           </div>
 
           {/* Stepper */}
@@ -72,13 +76,18 @@ const RegisterPage: FC<{ request: Request }> = () => {
           />
 
           {/* Step Panels */}
-          <div className="bg-background border-4 border-border p-8 md:p-10" data-stepper="">
+          <div className="bg-background border-4 border-border p-8 md:p-10">
             {/* Step 1: Account */}
-            <div className="step-panel" data-panel="1">
-              <h2 className="font-display text-2xl font-bold uppercase tracking-tight mb-6">Account Details</h2>
+            <div className="step-panel" data-step-content="1">
+              <h2 className="font-display text-2xl font-bold uppercase tracking-tight mb-6">
+                Account Details
+              </h2>
               <div className="space-y-6">
                 <div data-field="">
-                  <label className="block font-display font-bold uppercase text-sm tracking-wider mb-3" htmlFor="regEmail">
+                  <label
+                    className="block font-display font-bold uppercase text-sm tracking-wider mb-3"
+                    htmlFor="regEmail"
+                  >
                     Email{' '}
                     <Tooltip text="This field is required">
                       <span className="text-primary">*</span>
@@ -94,7 +103,10 @@ const RegisterPage: FC<{ request: Request }> = () => {
                   <p className="field-error">Please enter a valid email address</p>
                 </div>
                 <div data-field="">
-                  <label className="block font-display font-bold uppercase text-sm tracking-wider mb-3" htmlFor="regPassword">
+                  <label
+                    className="block font-display font-bold uppercase text-sm tracking-wider mb-3"
+                    htmlFor="regPassword"
+                  >
                     Password{' '}
                     <Tooltip text="This field is required">
                       <span className="text-primary">*</span>
@@ -111,7 +123,10 @@ const RegisterPage: FC<{ request: Request }> = () => {
                   <p className="field-error">Password must be at least 8 characters</p>
                 </div>
                 <div data-field="">
-                  <label className="block font-display font-bold uppercase text-sm tracking-wider mb-3" htmlFor="regConfirm">
+                  <label
+                    className="block font-display font-bold uppercase text-sm tracking-wider mb-3"
+                    htmlFor="regConfirm"
+                  >
                     Confirm Password{' '}
                     <Tooltip text="This field is required">
                       <span className="text-primary">*</span>
@@ -130,11 +145,16 @@ const RegisterPage: FC<{ request: Request }> = () => {
             </div>
 
             {/* Step 2: Profile */}
-            <div className="step-panel hidden" data-panel="2">
-              <h2 className="font-display text-2xl font-bold uppercase tracking-tight mb-6">Profile Information</h2>
+            <div className="step-panel hidden" data-step-content="2">
+              <h2 className="font-display text-2xl font-bold uppercase tracking-tight mb-6">
+                Profile Information
+              </h2>
               <div className="space-y-6">
                 <div data-field="">
-                  <label className="block font-display font-bold uppercase text-sm tracking-wider mb-3" htmlFor="fullName">
+                  <label
+                    className="block font-display font-bold uppercase text-sm tracking-wider mb-3"
+                    htmlFor="fullName"
+                  >
                     Full Name{' '}
                     <Tooltip text="This field is required">
                       <span className="text-primary">*</span>
@@ -165,7 +185,9 @@ const RegisterPage: FC<{ request: Request }> = () => {
                   resize="none"
                 />
                 <div>
-                  <label className="block font-display font-bold uppercase text-sm tracking-wider mb-3">Avatar</label>
+                  <div className="block font-display font-bold uppercase text-sm tracking-wider mb-3">
+                    Avatar
+                  </div>
                   <FileUpload
                     id="avatar-dropzone"
                     label="Drop your avatar here or click to browse"
@@ -177,9 +199,13 @@ const RegisterPage: FC<{ request: Request }> = () => {
             </div>
 
             {/* Step 3: Interests */}
-            <div className="step-panel hidden" data-panel="3">
-              <h2 className="font-display text-2xl font-bold uppercase tracking-tight mb-6">Select Interests</h2>
-              <p className="text-sm text-muted-foreground mb-6">Click to select your interests. Click the X to remove.</p>
+            <div className="step-panel hidden" data-step-content="3">
+              <h2 className="font-display text-2xl font-bold uppercase tracking-tight mb-6">
+                Select Interests
+              </h2>
+              <p className="text-sm text-muted-foreground mb-6">
+                Click to select your interests. Click the X to remove.
+              </p>
               <div className="flex flex-wrap gap-2 mb-8" id="interestTags">
                 {interests.map((interest) => (
                   <button
@@ -193,13 +219,19 @@ const RegisterPage: FC<{ request: Request }> = () => {
                 ))}
               </div>
               <div className="mb-4">
-                <p className="font-display font-bold uppercase text-sm tracking-wider mb-3">Selected:</p>
+                <p className="font-display font-bold uppercase text-sm tracking-wider mb-3">
+                  Selected:
+                </p>
                 <div id="selectedInterests" className="flex flex-wrap gap-2 min-h-[40px]">
-                  <span className="text-sm text-muted-foreground italic" id="noInterests">No interests selected</span>
+                  <span className="text-sm text-muted-foreground italic" id="noInterests">
+                    No interests selected
+                  </span>
                 </div>
               </div>
               <div className="mt-8">
-                <label className="block font-display font-bold uppercase text-sm tracking-wider mb-3">Documents</label>
+                <div className="block font-display font-bold uppercase text-sm tracking-wider mb-3">
+                  Documents
+                </div>
                 <FileUpload
                   id="doc-dropzone"
                   label="Drop documents here or click to browse"
@@ -211,8 +243,10 @@ const RegisterPage: FC<{ request: Request }> = () => {
             </div>
 
             {/* Step 4: Confirm */}
-            <div className="step-panel hidden" data-panel="4">
-              <h2 className="font-display text-2xl font-bold uppercase tracking-tight mb-6">Review &amp; Confirm</h2>
+            <div className="step-panel hidden" data-step-content="4">
+              <h2 className="font-display text-2xl font-bold uppercase tracking-tight mb-6">
+                Review &amp; Confirm
+              </h2>
               <div id="reviewContent">
                 <div id="reviewSkeleton" className="space-y-4">
                   <Skeleton variant="title" />
@@ -224,14 +258,18 @@ const RegisterPage: FC<{ request: Request }> = () => {
                 </div>
                 <div id="reviewData" className="hidden space-y-6">
                   <div className="border-l-4 border-primary p-4 bg-muted/30">
-                    <h3 className="font-display font-bold uppercase text-sm tracking-wider mb-2">Account</h3>
+                    <h3 className="font-display font-bold uppercase text-sm tracking-wider mb-2">
+                      Account
+                    </h3>
                     <p className="text-sm">
                       <span className="text-muted-foreground">Email:</span>{' '}
                       <span id="reviewEmail" className="font-medium" />
                     </p>
                   </div>
                   <div className="border-l-4 border-primary p-4 bg-muted/30">
-                    <h3 className="font-display font-bold uppercase text-sm tracking-wider mb-2">Profile</h3>
+                    <h3 className="font-display font-bold uppercase text-sm tracking-wider mb-2">
+                      Profile
+                    </h3>
                     <p className="text-sm">
                       <span className="text-muted-foreground">Name:</span>{' '}
                       <span id="reviewName" className="font-medium" />
@@ -242,7 +280,9 @@ const RegisterPage: FC<{ request: Request }> = () => {
                     </p>
                   </div>
                   <div className="border-l-4 border-primary p-4 bg-muted/30">
-                    <h3 className="font-display font-bold uppercase text-sm tracking-wider mb-2">Interests</h3>
+                    <h3 className="font-display font-bold uppercase text-sm tracking-wider mb-2">
+                      Interests
+                    </h3>
                     <div id="reviewInterests" className="flex flex-wrap gap-2 mt-2" />
                   </div>
                 </div>
@@ -251,17 +291,28 @@ const RegisterPage: FC<{ request: Request }> = () => {
 
             {/* Navigation Buttons */}
             <div className="flex items-center justify-between mt-10 pt-6 border-t border-border">
-              <Button variant="outline" id="prevBtn" className="hidden">Back</Button>
+              <Button variant="outline" id="prevBtn" data-step-prev="" className="hidden">
+                Back
+              </Button>
               <div className="flex-1" />
-              <Button id="nextBtn">Continue</Button>
+              <Button id="nextBtn" data-step-next="">
+                Continue
+              </Button>
             </div>
 
             {/* Progress */}
             <div className="mt-6">
               <div className="w-full bg-muted h-2">
-                <div id="progressBar" className="bg-primary h-2 transition-all duration-300" style={{ width: '25%' }} />
+                <div
+                  id="progressBar"
+                  className="bg-primary h-2 transition-all duration-300"
+                  style={{ width: '25%' }}
+                />
               </div>
-              <p id="progressText" className="text-center text-xs text-muted-foreground mt-2 font-mono uppercase tracking-wider">
+              <p
+                id="progressText"
+                className="text-center text-xs text-muted-foreground mt-2 font-mono uppercase tracking-wider"
+              >
                 Step 1 of 4 -- 25%
               </p>
             </div>
@@ -272,7 +323,9 @@ const RegisterPage: FC<{ request: Request }> = () => {
       {/* Footer */}
       <footer className="bg-foreground text-background py-8 mt-16">
         <div className="container mx-auto px-4 md:px-6 text-center">
-          <p className="font-mono text-xs opacity-60 uppercase tracking-widest">&copy; 2025 Dutchy Design System</p>
+          <p className="font-mono text-xs opacity-60 uppercase tracking-widest">
+            &copy; 2025 Dutchy Design System
+          </p>
         </div>
       </footer>
 

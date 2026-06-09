@@ -1,4 +1,4 @@
-(function() {
+(() => {
   const forms = document.querySelectorAll('form[data-endpoint], form:has([data-validate])');
 
   if (!forms.length) return;
@@ -119,7 +119,7 @@
         if (window.toast) {
           window.toast.show('Form submitted successfully!', 'success');
         }
-      } catch (err) {
+      } catch {
         if (window.toast) {
           window.toast.show('Submission failed. Please try again.', 'error');
         }

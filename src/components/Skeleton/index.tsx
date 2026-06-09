@@ -14,10 +14,7 @@ const variantClasses: Record<string, string> = {
   'table-row': '',
 };
 
-const SkeletonItem: FC<{ variant: string; className: string }> = ({
-  variant,
-  className,
-}) => {
+const SkeletonItem: FC<{ variant: string; className: string }> = ({ variant, className }) => {
   if (variant === 'table-row') {
     return (
       <div className={`flex gap-4 ${className}`}>
@@ -29,18 +26,10 @@ const SkeletonItem: FC<{ variant: string; className: string }> = ({
     );
   }
 
-  return (
-    <div
-      className={`animate-skeleton ${variantClasses[variant]} ${className}`}
-    />
-  );
+  return <div className={`animate-skeleton ${variantClasses[variant]} ${className}`} />;
 };
 
-const Skeleton: FC<SkeletonProps> = ({
-  variant = 'text',
-  count = 1,
-  className = '',
-}) => {
+const Skeleton: FC<SkeletonProps> = ({ variant = 'text', count = 1, className = '' }) => {
   const items = Array.from({ length: count }, (_, i) => i);
 
   return (

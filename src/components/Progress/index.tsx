@@ -38,9 +38,7 @@ const Progress: FC<ProgressProps> = ({
     <div className={className}>
       {(label || showValue) && (
         <div className="flex items-center justify-between mb-2">
-          {label && (
-            <span className="text-xs font-bold uppercase tracking-wider">{label}</span>
-          )}
+          {label && <span className="text-xs font-bold uppercase tracking-wider">{label}</span>}
           {showValue && (
             <span className="text-xs text-muted-foreground font-mono">{Math.round(percent)}%</span>
           )}

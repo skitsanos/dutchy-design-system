@@ -1,6 +1,6 @@
 import type { FC } from 'react';
-import Icon from '@/components/Icon';
 import type { IconName } from '@/components/Icon';
+import Icon from '@/components/Icon';
 
 type ToastVariant = 'info' | 'success' | 'error' | 'warning';
 type ToastPosition = 'top-right' | 'top-left' | 'bottom-right' | 'bottom-left';
@@ -37,13 +37,10 @@ const positionClasses: Record<ToastPosition, string> = {
   'bottom-left': 'bottom-6 left-6',
 };
 
-const Toast: FC<ToastProps> = ({
-  variant = 'info',
-  title,
-  message,
-  className = '',
-}) => (
-  <div className={`${variantStyles[variant]} px-6 py-4 font-bold uppercase text-sm border-l-4 border-background/20 flex items-center gap-3 ${className}`}>
+const Toast: FC<ToastProps> = ({ variant = 'info', title, message, className = '' }) => (
+  <div
+    className={`${variantStyles[variant]} px-6 py-4 font-bold uppercase text-sm border-l-4 border-background/20 flex items-center gap-3 ${className}`}
+  >
     <Icon name={variantIcons[variant]} className="flex-shrink-0" />
     <span>{title ? `${title}: ${message}` : message}</span>
   </div>
@@ -58,6 +55,6 @@ const ToastContainer: FC<ToastContainerProps> = ({ position = 'bottom-right' }) 
   />
 );
 
-export { Toast, ToastContainer };
 export type { ToastPosition };
+export { Toast, ToastContainer };
 export default Toast;

@@ -1,19 +1,19 @@
 import type { FC } from 'react';
-import Layout from '@/components/Layout';
-import Header from '@/components/Header';
-import Footer from '@/components/Footer';
-import Icon from '@/components/Icon';
+import Accordion from '@/components/Accordion';
 import Badge from '@/components/Badge';
 import Breadcrumbs from '@/components/Breadcrumbs';
-import Accordion from '@/components/Accordion';
-import Modal from '@/components/Modal';
 import Button from '@/components/Button';
-import Input from '@/components/Input';
-import Select from '@/components/Select';
-import Tooltip from '@/components/Tooltip';
 import Checkbox from '@/components/Checkbox';
+import Footer from '@/components/Footer';
+import Header from '@/components/Header';
+import Icon from '@/components/Icon';
+import Input from '@/components/Input';
+import Layout from '@/components/Layout';
+import Modal from '@/components/Modal';
+import Select from '@/components/Select';
 import StatsGrid from '@/components/StatsGrid';
 import { ToastContainer } from '@/components/Toast';
+import Tooltip from '@/components/Tooltip';
 
 const DataManagementPage: FC<{ request: Request }> = () => {
   const users = [
@@ -121,7 +121,9 @@ const DataManagementPage: FC<{ request: Request }> = () => {
             className="mb-6"
           />
 
-          <h1 className="font-display text-3xl md:text-4xl font-bold uppercase tracking-tighter mb-8">User Management</h1>
+          <h1 className="font-display text-3xl md:text-4xl font-bold uppercase tracking-tighter mb-8">
+            User Management
+          </h1>
 
           {/* Stats Row */}
           <div className="mb-8">
@@ -177,23 +179,31 @@ const DataManagementPage: FC<{ request: Request }> = () => {
           {/* Action Bar */}
           <div className="bg-background border-l-4 border-primary p-4 mb-6">
             <div className="flex flex-wrap items-center gap-3">
-              <Button size="sm" data-modal-open="edit-modal">Add User</Button>
+              <Button size="sm" data-modal-open="edit-modal">
+                Add User
+              </Button>
               <div className="relative flex-1 max-w-xs">
-                <Input
-                  type="search"
-                  placeholder="Search users..."
-                  className="pl-9 py-2 text-sm"
+                <Input type="search" placeholder="Search users..." className="pl-9 py-2 text-sm" />
+                <Icon
+                  name="search"
+                  size="sm"
+                  className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground"
                 />
-                <Icon name="search" size="sm" className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" />
               </div>
               <div id="activeFilters" className="flex flex-wrap gap-1" />
-              <Button variant="ghost" size="sm" id="clearFilters" className="hidden">Clear Filters</Button>
+              <Button variant="ghost" size="sm" id="clearFilters" className="hidden">
+                Clear Filters
+              </Button>
               <div className="ml-auto flex gap-2">
                 <Tooltip text="Simulate loading">
-                  <Button variant="outline" size="sm" id="skeletonBtn">Loading</Button>
+                  <Button variant="outline" size="sm" id="skeletonBtn">
+                    Loading
+                  </Button>
                 </Tooltip>
                 <Tooltip text="Toggle empty state">
-                  <Button variant="outline" size="sm" id="emptyBtn">Empty</Button>
+                  <Button variant="outline" size="sm" id="emptyBtn">
+                    Empty
+                  </Button>
                 </Tooltip>
               </div>
             </div>
@@ -205,27 +215,78 @@ const DataManagementPage: FC<{ request: Request }> = () => {
               <table className="w-full" data-sortable="" id="usersTable">
                 <thead>
                   <tr className="border-b-2 border-border">
-                    <th className="text-left px-6 py-3 text-xs font-bold uppercase tracking-wider text-muted-foreground cursor-pointer select-none" data-sort="name">
+                    <th
+                      className="text-left px-6 py-3 text-xs font-bold uppercase tracking-wider text-muted-foreground cursor-pointer select-none"
+                      data-sort="name"
+                    >
                       <span className="flex items-center gap-1">
                         Name
-                        <svg className="sort-icon w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16V4m0 0L3 8m4-4l4 4m6 0v12m0 0l4-4m-4 4l-4-4" /></svg>
+                        <svg
+                          className="sort-icon w-3 h-3"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M7 16V4m0 0L3 8m4-4l4 4m6 0v12m0 0l4-4m-4 4l-4-4"
+                          />
+                        </svg>
                       </span>
                     </th>
-                    <th className="text-left px-6 py-3 text-xs font-bold uppercase tracking-wider text-muted-foreground cursor-pointer select-none" data-sort="email">
+                    <th
+                      className="text-left px-6 py-3 text-xs font-bold uppercase tracking-wider text-muted-foreground cursor-pointer select-none"
+                      data-sort="email"
+                    >
                       <span className="flex items-center gap-1">
                         Email
-                        <svg className="sort-icon w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16V4m0 0L3 8m4-4l4 4m6 0v12m0 0l4-4m-4 4l-4-4" /></svg>
+                        <svg
+                          className="sort-icon w-3 h-3"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M7 16V4m0 0L3 8m4-4l4 4m6 0v12m0 0l4-4m-4 4l-4-4"
+                          />
+                        </svg>
                       </span>
                     </th>
-                    <th className="text-left px-6 py-3 text-xs font-bold uppercase tracking-wider text-muted-foreground">Role</th>
-                    <th className="text-left px-6 py-3 text-xs font-bold uppercase tracking-wider text-muted-foreground">Status</th>
-                    <th className="text-left px-6 py-3 text-xs font-bold uppercase tracking-wider text-muted-foreground cursor-pointer select-none" data-sort="lastActive">
+                    <th className="text-left px-6 py-3 text-xs font-bold uppercase tracking-wider text-muted-foreground">
+                      Role
+                    </th>
+                    <th className="text-left px-6 py-3 text-xs font-bold uppercase tracking-wider text-muted-foreground">
+                      Status
+                    </th>
+                    <th
+                      className="text-left px-6 py-3 text-xs font-bold uppercase tracking-wider text-muted-foreground cursor-pointer select-none"
+                      data-sort="lastActive"
+                    >
                       <span className="flex items-center gap-1">
                         Last Active
-                        <svg className="sort-icon w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16V4m0 0L3 8m4-4l4 4m6 0v12m0 0l4-4m-4 4l-4-4" /></svg>
+                        <svg
+                          className="sort-icon w-3 h-3"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M7 16V4m0 0L3 8m4-4l4 4m6 0v12m0 0l4-4m-4 4l-4-4"
+                          />
+                        </svg>
                       </span>
                     </th>
-                    <th className="text-right px-6 py-3 text-xs font-bold uppercase tracking-wider text-muted-foreground">Actions</th>
+                    <th className="text-right px-6 py-3 text-xs font-bold uppercase tracking-wider text-muted-foreground">
+                      Actions
+                    </th>
                   </tr>
                 </thead>
                 <tbody id="usersBody">
@@ -238,22 +299,42 @@ const DataManagementPage: FC<{ request: Request }> = () => {
                       data-lastactive={user.dataLastactive}
                     >
                       <td className="px-6 py-4 text-sm font-medium">{user.name}</td>
-                      <td className="px-6 py-4 text-sm font-mono text-muted-foreground">{user.email}</td>
-                      <td className="px-6 py-4">
-                        <Badge variant={user.roleVariant} className="text-[10px]">{user.role}</Badge>
+                      <td className="px-6 py-4 text-sm font-mono text-muted-foreground">
+                        {user.email}
                       </td>
                       <td className="px-6 py-4">
-                        <Badge variant={user.statusVariant} className="text-[10px]">{user.status}</Badge>
+                        <Badge variant={user.roleVariant} className="text-[10px]">
+                          {user.role}
+                        </Badge>
                       </td>
-                      <td className="px-6 py-4 text-sm text-muted-foreground font-mono">{user.lastActive}</td>
+                      <td className="px-6 py-4">
+                        <Badge variant={user.statusVariant} className="text-[10px]">
+                          {user.status}
+                        </Badge>
+                      </td>
+                      <td className="px-6 py-4 text-sm text-muted-foreground font-mono">
+                        {user.lastActive}
+                      </td>
                       <td className="px-6 py-4 text-right">
                         <Tooltip text="Edit">
-                          <Button variant="ghost" size="sm" icon className="p-1 text-muted-foreground hover:text-primary" data-modal-open="edit-modal">
+                          <Button
+                            variant="ghost"
+                            size="sm"
+                            icon
+                            className="p-1 text-muted-foreground hover:text-primary"
+                            data-modal-open="edit-modal"
+                          >
                             <Icon name="edit" size="sm" />
                           </Button>
                         </Tooltip>
                         <Tooltip text="Delete">
-                          <Button variant="ghost" size="sm" icon className="p-1 text-muted-foreground hover:text-destructive" data-modal-open="delete-modal">
+                          <Button
+                            variant="ghost"
+                            size="sm"
+                            icon
+                            className="p-1 text-muted-foreground hover:text-destructive"
+                            data-modal-open="delete-modal"
+                          >
                             <Icon name="trash" size="sm" />
                           </Button>
                         </Tooltip>
@@ -266,32 +347,64 @@ const DataManagementPage: FC<{ request: Request }> = () => {
 
             {/* Empty State */}
             <div id="emptyState" className="hidden text-center py-16 px-6">
-              <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" className="mx-auto mb-4 text-muted-foreground/40">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="64"
+                height="64"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1"
+                className="mx-auto mb-4 text-muted-foreground/40"
+              >
                 <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
                 <circle cx="9" cy="7" r="4" />
                 <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
                 <path d="M16 3.13a4 4 0 0 1 0 7.75" />
               </svg>
-              <h3 className="font-display text-xl font-bold uppercase tracking-tight mb-2">No Users Found</h3>
+              <h3 className="font-display text-xl font-bold uppercase tracking-tight mb-2">
+                No Users Found
+              </h3>
               <p className="text-sm text-muted-foreground max-w-sm mx-auto mb-4">
-                No users match the current filters. Try adjusting your search criteria or add a new user.
+                No users match the current filters. Try adjusting your search criteria or add a new
+                user.
               </p>
-              <Button size="sm" data-modal-open="edit-modal">Add User</Button>
+              <Button size="sm" data-modal-open="edit-modal">
+                Add User
+              </Button>
             </div>
 
             {/* Pagination */}
-            <div className="border-t border-border px-6 py-4 flex items-center justify-between" id="pagination">
+            <div
+              className="border-t border-border px-6 py-4 flex items-center justify-between"
+              id="pagination"
+            >
               <p className="text-sm text-muted-foreground">
-                Showing <span className="font-bold text-foreground">1-5</span> of <span className="font-bold text-foreground">24</span> users
+                Showing <span className="font-bold text-foreground">1-5</span> of{' '}
+                <span className="font-bold text-foreground">24</span> users
               </p>
               <div className="flex gap-1">
-                <Button variant="outline" size="sm" icon className="w-10 h-10" disabled>&laquo;</Button>
-                <Button variant="secondary" size="sm" icon className="w-10 h-10">1</Button>
-                <Button variant="outline" size="sm" icon className="w-10 h-10">2</Button>
-                <Button variant="outline" size="sm" icon className="w-10 h-10">3</Button>
-                <Button variant="outline" size="sm" icon className="w-10 h-10">4</Button>
-                <Button variant="outline" size="sm" icon className="w-10 h-10">5</Button>
-                <Button variant="outline" size="sm" icon className="w-10 h-10">&raquo;</Button>
+                <Button variant="outline" size="sm" icon className="w-10 h-10" disabled>
+                  &laquo;
+                </Button>
+                <Button variant="secondary" size="sm" icon className="w-10 h-10">
+                  1
+                </Button>
+                <Button variant="outline" size="sm" icon className="w-10 h-10">
+                  2
+                </Button>
+                <Button variant="outline" size="sm" icon className="w-10 h-10">
+                  3
+                </Button>
+                <Button variant="outline" size="sm" icon className="w-10 h-10">
+                  4
+                </Button>
+                <Button variant="outline" size="sm" icon className="w-10 h-10">
+                  5
+                </Button>
+                <Button variant="outline" size="sm" icon className="w-10 h-10">
+                  &raquo;
+                </Button>
               </div>
             </div>
           </div>
@@ -328,8 +441,17 @@ const DataManagementPage: FC<{ request: Request }> = () => {
         maxWidth="max-w-lg"
         footer={
           <>
-            <Button variant="ghost" data-close-modal="" size="sm" className="px-6 border-2 border-border">Cancel</Button>
-            <Button data-close-modal="" size="sm" className="px-6">Save</Button>
+            <Button
+              variant="ghost"
+              data-close-modal=""
+              size="sm"
+              className="px-6 border-2 border-border"
+            >
+              Cancel
+            </Button>
+            <Button data-close-modal="" size="sm" className="px-6">
+              Save
+            </Button>
           </>
         }
       >
@@ -354,8 +476,17 @@ const DataManagementPage: FC<{ request: Request }> = () => {
         title="Delete User?"
         footer={
           <>
-            <Button variant="ghost" data-close-modal="" size="sm" className="px-6 border-2 border-border">Cancel</Button>
-            <Button variant="destructive" data-close-modal="" size="sm" className="px-6">Delete</Button>
+            <Button
+              variant="ghost"
+              data-close-modal=""
+              size="sm"
+              className="px-6 border-2 border-border"
+            >
+              Cancel
+            </Button>
+            <Button variant="destructive" data-close-modal="" size="sm" className="px-6">
+              Delete
+            </Button>
           </>
         }
       >

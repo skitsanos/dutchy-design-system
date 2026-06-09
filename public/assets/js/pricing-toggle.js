@@ -1,10 +1,9 @@
-(function() {
+(() => {
   const toggles = document.querySelectorAll('[data-pricing-toggle]');
 
   toggles.forEach((toggle) => {
     let isYearly = false;
 
-    const buttons = toggle.querySelectorAll('button, [data-pricing-monthly], [data-pricing-yearly]');
     const monthlyBtn = toggle.querySelector('[data-pricing-monthly]');
     const yearlyBtn = toggle.querySelector('[data-pricing-yearly]');
     const toggleSwitch = toggle.querySelector('[data-pricing-switch]');
@@ -39,6 +38,7 @@
 
       // Update toggle switch position
       if (toggleSwitch) {
+        toggleSwitch.setAttribute('aria-checked', String(isYearly));
         const thumb = toggleSwitch.querySelector('span');
         if (thumb) {
           if (isYearly) {

@@ -47,42 +47,26 @@ const Card: FC<CardProps> = ({
 export const CardHeader: FC<{ children: ReactNode; className?: string }> = ({
   children,
   className = '',
-}) => (
-  <div className={`mb-4 ${className}`}>{children}</div>
-);
+}) => <div className={`mb-4 ${className}`}>{children}</div>;
 
 export const CardTitle: FC<{ children: ReactNode; className?: string }> = ({
   children,
   className = '',
-}) => (
-  <h3 className={`font-display text-xl font-bold uppercase ${className}`}>
-    {children}
-  </h3>
-);
+}) => <h3 className={`font-display text-xl font-bold uppercase ${className}`}>{children}</h3>;
 
 export const CardDescription: FC<{ children: ReactNode; className?: string }> = ({
   children,
   className = '',
-}) => (
-  <p className={`text-muted-foreground text-sm leading-relaxed ${className}`}>
-    {children}
-  </p>
-);
+}) => <p className={`text-muted-foreground text-sm leading-relaxed ${className}`}>{children}</p>;
 
 export const CardContent: FC<{ children: ReactNode; className?: string }> = ({
   children,
   className = '',
-}) => (
-  <div className={className}>{children}</div>
-);
+}) => <div className={className}>{children}</div>;
 
 export const CardFooter: FC<{ children: ReactNode; className?: string }> = ({
   children,
   className = '',
-}) => (
-  <div className={`mt-6 pt-4 border-t border-border ${className}`}>
-    {children}
-  </div>
-);
+}) => <div className={`mt-6 pt-4 border-t border-border ${className}`}>{children}</div>;
 
 export default Card;

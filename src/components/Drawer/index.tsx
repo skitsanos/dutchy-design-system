@@ -1,6 +1,6 @@
 import type { FC, ReactNode } from 'react';
-import Icon from '@/components/Icon';
 import Flex from '@/components/Flex';
+import Icon from '@/components/Icon';
 
 interface DrawerProps {
   id: string;
@@ -10,16 +10,8 @@ interface DrawerProps {
   className?: string;
 }
 
-const Drawer: FC<DrawerProps> = ({
-  id,
-  title,
-  children,
-  position = 'right',
-  className = '',
-}) => {
-  const positionClasses = position === 'right'
-    ? 'ml-auto border-l-4'
-    : 'mr-auto border-r-4';
+const Drawer: FC<DrawerProps> = ({ id, title, children, position = 'right', className = '' }) => {
+  const positionClasses = position === 'right' ? 'ml-auto border-l-4' : 'mr-auto border-r-4';
 
   return (
     <dialog
@@ -29,6 +21,7 @@ const Drawer: FC<DrawerProps> = ({
       <Flex align="center" justify="between" className="px-6 py-4 border-b-2 border-border">
         <h2 className="font-display text-lg font-bold uppercase tracking-tight">{title}</h2>
         <button
+          type="button"
           data-close-modal=""
           className="p-1 text-muted-foreground hover:text-foreground transition-colors"
           aria-label="Close"

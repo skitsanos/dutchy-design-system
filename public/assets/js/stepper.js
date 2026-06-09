@@ -1,4 +1,4 @@
-(function() {
+(() => {
   const steppers = document.querySelectorAll('[data-stepper]');
 
   steppers.forEach((stepper) => {
@@ -7,6 +7,8 @@
     const stepCircles = stepper.querySelectorAll('[data-step]');
 
     function updateStepper() {
+      const maxStep = stepCircles.length;
+
       // Update step circles
       stepCircles.forEach((circle) => {
         const stepIndex = parseInt(circle.dataset.step, 10);
@@ -19,19 +21,29 @@
 
         if (stepNum < currentStep) {
           // Completed
-          circleEl.className = 'w-10 h-10 flex items-center justify-center font-bold text-sm bg-primary text-primary-foreground';
-          circleEl.innerHTML = '<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>';
-          if (labelEl) labelEl.className = 'mt-2 text-xs font-bold uppercase tracking-wider text-center text-foreground';
+          circleEl.className =
+            'w-10 h-10 flex items-center justify-center font-bold text-sm bg-primary text-primary-foreground';
+          circleEl.innerHTML =
+            '<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>';
+          if (labelEl)
+            labelEl.className =
+              'mt-2 text-xs font-bold uppercase tracking-wider text-center text-foreground';
         } else if (stepNum === currentStep) {
           // Current
-          circleEl.className = 'w-10 h-10 flex items-center justify-center font-bold text-sm bg-primary text-primary-foreground';
+          circleEl.className =
+            'w-10 h-10 flex items-center justify-center font-bold text-sm bg-primary text-primary-foreground';
           circleEl.textContent = stepNum;
-          if (labelEl) labelEl.className = 'mt-2 text-xs font-bold uppercase tracking-wider text-center text-foreground';
+          if (labelEl)
+            labelEl.className =
+              'mt-2 text-xs font-bold uppercase tracking-wider text-center text-foreground';
         } else {
           // Upcoming
-          circleEl.className = 'w-10 h-10 flex items-center justify-center font-bold text-sm bg-muted text-muted-foreground';
+          circleEl.className =
+            'w-10 h-10 flex items-center justify-center font-bold text-sm bg-muted text-muted-foreground';
           circleEl.textContent = stepNum;
-          if (labelEl) labelEl.className = 'mt-2 text-xs font-bold uppercase tracking-wider text-center text-muted-foreground';
+          if (labelEl)
+            labelEl.className =
+              'mt-2 text-xs font-bold uppercase tracking-wider text-center text-muted-foreground';
         }
 
         // Update connecting lines
@@ -53,6 +65,14 @@
 
       // Update stepper data attribute
       stepper.dataset.currentStep = currentStep;
+
+      document.querySelectorAll('[data-step-prev]').forEach((btn) => {
+        btn.classList.toggle('hidden', currentStep === 1);
+      });
+
+      document.querySelectorAll('[data-step-next]').forEach((btn) => {
+        btn.textContent = currentStep === maxStep ? 'Create Account' : 'Continue';
+      });
     }
 
     // Next step buttons

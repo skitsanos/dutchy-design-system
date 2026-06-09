@@ -4,12 +4,7 @@ interface RadioProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 'type'>
   label: string;
 }
 
-const Radio: FC<RadioProps> = ({
-  label,
-  className = '',
-  id,
-  ...props
-}) => {
+const Radio: FC<RadioProps> = ({ label, className = '', id, ...props }) => {
   const radioId = id || `radio-${Math.random().toString(36).slice(2, 9)}`;
 
   return (
