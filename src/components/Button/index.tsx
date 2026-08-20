@@ -7,7 +7,7 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   icon?: boolean;
   fullWidth?: boolean;
   loading?: boolean;
-  children: ReactNode;
+  children?: ReactNode;
 }
 
 const Button: FC<ButtonProps> = ({

@@ -8,7 +8,7 @@ Bun provides built-in support for JSX/TSX files and server-side rendering throug
 
 ### Why Bun + JSX?
 
-- **Zero Build Step**: Bun natively understands JSX/TSX
+- **No TypeScript Build Step**: Bun natively understands JSX/TSX
 - **Streaming HTML**: Efficient `renderToReadableStream()` for fast TTFB
 - **File-Based Routing**: Automatic route discovery from filesystem
 - **TypeScript Native**: No transpilation needed
@@ -137,15 +137,22 @@ import staticAssets from './utils/staticAssets';
 
 const PORT = process.env.PORT || 3000;
 const IS_PRODUCTION = process.env.NODE_ENV === 'production';
+const ASSET_CACHE_HEADERS = IS_PRODUCTION
+  ? {
+      'Cache-Control': 'public, max-age=31536000, immutable',
+    }
+  : {
+      'Cache-Control': 'no-store, no-cache, must-revalidate, max-age=0',
+      Pragma: 'no-cache',
+      Expires: '0',
+    };
 
 async function startServer() {
   const routes = await loadRoutes('routes');
   const assetHandler = staticAssets({
     assetsPath: 'public/assets',
     urlPrefix: '/assets',
-    cacheControl: IS_PRODUCTION
-      ? 'public, max-age=31536000, immutable'
-      : 'no-cache',
+    headers: ASSET_CACHE_HEADERS,
   });
 
   serve({
@@ -211,6 +218,7 @@ bun run src/index.ts
 - [Project Structure](./project-structure.md) - Recommended file organization
 - [Routing](./routing.md) - File-based routing system
 - [Components](./components.md) - Building Dutchy components
+- [Theme and CSS Build Lifecycle](./theme-and-css-build.md) - How Tailwind, runtime themes, Bun static assets, Docker, and Railway fit together
 
 ### Examples
 
@@ -278,7 +286,9 @@ import staticAssets from './utils/staticAssets';
 const assetHandler = staticAssets({
   assetsPath: 'public/assets',
   urlPrefix: '/assets',
-  cacheControl: 'public, max-age=31536000, immutable',
+  headers: {
+    'Cache-Control': 'public, max-age=31536000, immutable',
+  },
 });
 
 serve({

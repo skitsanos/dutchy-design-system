@@ -17,8 +17,11 @@ const CardsPage: FC = () => (
           <p className="text-muted-foreground text-sm mb-4">
             A simple card with border. Perfect for containing any content with clear boundaries.
           </p>
-          <a href="#" className="text-primary font-bold uppercase text-sm hover:underline">
-            Learn more
+          <a
+            href="/components"
+            className="text-primary font-bold uppercase text-sm hover:underline"
+          >
+            Browse components
           </a>
         </Card>
 
@@ -39,8 +42,11 @@ const CardsPage: FC = () => (
           <p className="text-background/70 text-sm mb-4">
             Inverted colors for emphasis and visual variety in layouts.
           </p>
-          <a href="#" className="text-primary font-bold uppercase text-sm hover:underline">
-            Explore
+          <a
+            href="/components"
+            className="text-primary font-bold uppercase text-sm hover:underline"
+          >
+            Explore components
           </a>
         </Card>
 
@@ -52,7 +58,7 @@ const CardsPage: FC = () => (
 
         {/* Interactive Card */}
         <a
-          href="#"
+          href="/components"
           className="bg-background border-4 border-border p-6 hover:border-primary transition-colors group block"
         >
           <div className="flex justify-between items-start mb-4">

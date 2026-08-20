@@ -130,47 +130,36 @@ All color combinations meet WCAG 2.1 AA standards:
 
 ## Implementation
 
-### TailwindCSS
-```js
-// tailwind.config.js
-module.exports = {
-  theme: {
-    extend: {
-      colors: {
-        primary: {
-          DEFAULT: 'hsl(var(--primary))',
-          foreground: 'hsl(var(--primary-foreground))',
-        },
-        background: 'hsl(var(--background))',
-        foreground: 'hsl(var(--foreground))',
-        muted: {
-          DEFAULT: 'hsl(var(--muted))',
-          foreground: 'hsl(var(--muted-foreground))',
-        },
-        border: 'hsl(var(--border))',
-      },
-    },
-  },
+### Tailwind CSS 4
+```css
+@theme {
+  --color-border: hsl(25 20% 88%);
+  --color-background: hsl(40 30% 97%);
+  --color-foreground: hsl(25 20% 6%);
+  --color-primary: hsl(var(--primary));
+  --color-primary-foreground: hsl(0 0% 100%);
+  --color-muted: hsl(40 20% 94%);
+  --color-muted-foreground: hsl(25 10% 40%);
 }
 ```
 
 ### CSS Classes
 ```css
 /* Backgrounds */
-.bg-primary { background-color: hsl(var(--primary)); }
-.bg-background { background-color: hsl(var(--background)); }
-.bg-foreground { background-color: hsl(var(--foreground)); }
-.bg-muted { background-color: hsl(var(--muted)); }
+.bg-primary { background-color: var(--color-primary); }
+.bg-background { background-color: var(--color-background); }
+.bg-foreground { background-color: var(--color-foreground); }
+.bg-muted { background-color: var(--color-muted); }
 
 /* Text */
-.text-primary { color: hsl(var(--primary)); }
-.text-foreground { color: hsl(var(--foreground)); }
-.text-muted-foreground { color: hsl(var(--muted-foreground)); }
-.text-primary-foreground { color: hsl(var(--primary-foreground)); }
+.text-primary { color: var(--color-primary); }
+.text-foreground { color: var(--color-foreground); }
+.text-muted-foreground { color: var(--color-muted-foreground); }
+.text-primary-foreground { color: var(--color-primary-foreground); }
 
 /* Borders */
-.border-primary { border-color: hsl(var(--primary)); }
-.border-border { border-color: hsl(var(--border)); }
+.border-primary { border-color: var(--color-primary); }
+.border-border { border-color: var(--color-border); }
 ```
 
 ## Color Blocks Pattern

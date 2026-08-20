@@ -115,41 +115,41 @@ const TypographyPage: FC = () => {
           <div className="space-y-0">
             {/* Display Sizes */}
             <div className="border-l-4 border-primary bg-background p-6 mb-4">
-              <div className="flex items-baseline gap-4 mb-2">
-                <span className="font-mono text-xs text-primary uppercase tracking-wider w-24 shrink-0">
+              <div className="flex flex-col sm:flex-row sm:items-baseline gap-2 sm:gap-4 mb-2">
+                <span className="font-mono text-xs text-primary uppercase tracking-wider sm:w-24 shrink-0">
                   8xl / 96px
                 </span>
-                <span className="font-display text-8xl font-bold uppercase tracking-tighter leading-none">
+                <span className="font-display text-6xl md:text-8xl font-bold uppercase tracking-tighter leading-none">
                   Display
                 </span>
               </div>
             </div>
 
             <div className="border-l-4 border-primary bg-background p-6 mb-4">
-              <div className="flex items-baseline gap-4 mb-2">
-                <span className="font-mono text-xs text-primary uppercase tracking-wider w-24 shrink-0">
+              <div className="flex flex-col sm:flex-row sm:items-baseline gap-2 sm:gap-4 mb-2">
+                <span className="font-mono text-xs text-primary uppercase tracking-wider sm:w-24 shrink-0">
                   7xl / 72px
                 </span>
-                <span className="font-display text-7xl font-bold uppercase tracking-tighter leading-none">
+                <span className="font-display text-5xl md:text-7xl font-bold uppercase tracking-tighter leading-none">
                   Headline
                 </span>
               </div>
             </div>
 
             <div className="border-l-4 border-primary bg-background p-6 mb-4">
-              <div className="flex items-baseline gap-4 mb-2">
-                <span className="font-mono text-xs text-primary uppercase tracking-wider w-24 shrink-0">
+              <div className="flex flex-col sm:flex-row sm:items-baseline gap-2 sm:gap-4 mb-2">
+                <span className="font-mono text-xs text-primary uppercase tracking-wider sm:w-24 shrink-0">
                   6xl / 60px
                 </span>
-                <span className="font-display text-6xl font-bold uppercase tracking-tighter leading-none">
+                <span className="font-display text-4xl md:text-6xl font-bold uppercase tracking-tighter leading-none">
                   Title Large
                 </span>
               </div>
             </div>
 
             <div className="border-l-4 border-border bg-background p-6 mb-4">
-              <div className="flex items-baseline gap-4 mb-2">
-                <span className="font-mono text-xs text-muted-foreground uppercase tracking-wider w-24 shrink-0">
+              <div className="flex flex-col sm:flex-row sm:items-baseline gap-2 sm:gap-4 mb-2">
+                <span className="font-mono text-xs text-muted-foreground uppercase tracking-wider sm:w-24 shrink-0">
                   5xl / 48px
                 </span>
                 <span className="font-display text-5xl font-bold uppercase tracking-tighter leading-none">
@@ -159,8 +159,8 @@ const TypographyPage: FC = () => {
             </div>
 
             <div className="border-l-4 border-border bg-background p-6 mb-4">
-              <div className="flex items-baseline gap-4 mb-2">
-                <span className="font-mono text-xs text-muted-foreground uppercase tracking-wider w-24 shrink-0">
+              <div className="flex flex-col sm:flex-row sm:items-baseline gap-2 sm:gap-4 mb-2">
+                <span className="font-mono text-xs text-muted-foreground uppercase tracking-wider sm:w-24 shrink-0">
                   4xl / 36px
                 </span>
                 <span className="font-display text-4xl font-bold uppercase tracking-tight leading-none">
@@ -170,8 +170,8 @@ const TypographyPage: FC = () => {
             </div>
 
             <div className="border-l-4 border-border bg-background p-6 mb-4">
-              <div className="flex items-baseline gap-4 mb-2">
-                <span className="font-mono text-xs text-muted-foreground uppercase tracking-wider w-24 shrink-0">
+              <div className="flex flex-col sm:flex-row sm:items-baseline gap-2 sm:gap-4 mb-2">
+                <span className="font-mono text-xs text-muted-foreground uppercase tracking-wider sm:w-24 shrink-0">
                   3xl / 30px
                 </span>
                 <span className="font-display text-3xl font-bold uppercase tracking-tight">
@@ -181,8 +181,8 @@ const TypographyPage: FC = () => {
             </div>
 
             <div className="border-l-4 border-border bg-background p-6 mb-4">
-              <div className="flex items-baseline gap-4 mb-2">
-                <span className="font-mono text-xs text-muted-foreground uppercase tracking-wider w-24 shrink-0">
+              <div className="flex flex-col sm:flex-row sm:items-baseline gap-2 sm:gap-4 mb-2">
+                <span className="font-mono text-xs text-muted-foreground uppercase tracking-wider sm:w-24 shrink-0">
                   2xl / 24px
                 </span>
                 <span className="font-display text-2xl font-bold uppercase">Subheading</span>
@@ -190,8 +190,8 @@ const TypographyPage: FC = () => {
             </div>
 
             <div className="border-l-4 border-border bg-background p-6 mb-4">
-              <div className="flex items-baseline gap-4 mb-2">
-                <span className="font-mono text-xs text-muted-foreground uppercase tracking-wider w-24 shrink-0">
+              <div className="flex flex-col sm:flex-row sm:items-baseline gap-2 sm:gap-4 mb-2">
+                <span className="font-mono text-xs text-muted-foreground uppercase tracking-wider sm:w-24 shrink-0">
                   xl / 20px
                 </span>
                 <span className="text-xl font-medium">Lead paragraph text for introductions</span>
@@ -199,8 +199,8 @@ const TypographyPage: FC = () => {
             </div>
 
             <div className="border-l-4 border-border bg-background p-6 mb-4">
-              <div className="flex items-baseline gap-4 mb-2">
-                <span className="font-mono text-xs text-muted-foreground uppercase tracking-wider w-24 shrink-0">
+              <div className="flex flex-col sm:flex-row sm:items-baseline gap-2 sm:gap-4 mb-2">
+                <span className="font-mono text-xs text-muted-foreground uppercase tracking-wider sm:w-24 shrink-0">
                   base / 16px
                 </span>
                 <span className="text-base">Body text for paragraphs and general content</span>
@@ -208,8 +208,8 @@ const TypographyPage: FC = () => {
             </div>
 
             <div className="border-l-4 border-border bg-background p-6 mb-4">
-              <div className="flex items-baseline gap-4 mb-2">
-                <span className="font-mono text-xs text-muted-foreground uppercase tracking-wider w-24 shrink-0">
+              <div className="flex flex-col sm:flex-row sm:items-baseline gap-2 sm:gap-4 mb-2">
+                <span className="font-mono text-xs text-muted-foreground uppercase tracking-wider sm:w-24 shrink-0">
                   sm / 14px
                 </span>
                 <span className="text-sm">Small text for captions and secondary content</span>
@@ -217,8 +217,8 @@ const TypographyPage: FC = () => {
             </div>
 
             <div className="border-l-4 border-border bg-background p-6">
-              <div className="flex items-baseline gap-4 mb-2">
-                <span className="font-mono text-xs text-muted-foreground uppercase tracking-wider w-24 shrink-0">
+              <div className="flex flex-col sm:flex-row sm:items-baseline gap-2 sm:gap-4 mb-2">
+                <span className="font-mono text-xs text-muted-foreground uppercase tracking-wider sm:w-24 shrink-0">
                   xs / 12px
                 </span>
                 <span className="text-xs uppercase tracking-widest">
@@ -369,14 +369,14 @@ const TypographyPage: FC = () => {
           </h2>
 
           <div className="bg-foreground text-background p-6 md:p-8 font-mono text-sm overflow-x-auto">
-            <pre>
+            <pre className="min-w-max">
               <code
                 dangerouslySetInnerHTML={{
-                  __html: `<span class="text-muted-foreground">/* Tailwind Config */</span>
-fontFamily: {
-  <span class="text-primary">display</span>: ['Space Grotesk', 'sans-serif'],
-  <span class="text-primary">sans</span>: ['Inter', 'sans-serif'],
-  <span class="text-primary">mono</span>: ['JetBrains Mono', 'monospace'],
+                  __html: `<span class="text-muted-foreground">/* Tailwind 4 theme tokens */</span>
+@theme {
+  <span class="text-primary">--font-display</span>: "Space Grotesk", sans-serif;
+  <span class="text-primary">--font-body</span>: "Inter", sans-serif;
+  <span class="text-primary">--font-mono</span>: "JetBrains Mono", monospace;
 }
 
 <span class="text-muted-foreground">/* Usage */</span>
@@ -384,7 +384,7 @@ fontFamily: {
   Display Heading
 &lt;/h1&gt;
 
-&lt;p class="<span class="text-primary">font-sans</span> text-base leading-relaxed"&gt;
+&lt;p class="<span class="text-primary">font-body</span> text-base leading-relaxed"&gt;
   Body paragraph text
 &lt;/p&gt;
 

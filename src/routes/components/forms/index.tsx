@@ -53,41 +53,57 @@ const FormsPage: FC = () => (
         <div className="bg-background border-4 border-border p-8">
           <h3 className="font-display font-bold uppercase text-sm tracking-wider mb-6">Password</h3>
           <Form spacing="md">
-            <div className="relative" data-password-toggle="">
-              <Input
-                type="password"
-                label="Password"
-                placeholder="Enter password..."
-                className="pr-12"
-              />
-              <Button
-                variant="ghost"
-                icon
-                size="sm"
-                data-toggle-btn=""
-                className="absolute right-2 bottom-1"
-                aria-label="Toggle password visibility"
+            <div className="space-y-2" data-password-toggle="">
+              <label
+                htmlFor="forms-password"
+                className="block text-xs font-bold uppercase tracking-wider"
               >
-                <Icon name="eye" size="sm" />
-              </Button>
+                Password
+              </label>
+              <div className="relative">
+                <Input
+                  id="forms-password"
+                  type="password"
+                  placeholder="Enter password..."
+                  className="pr-12"
+                />
+                <Button
+                  variant="ghost"
+                  icon
+                  size="sm"
+                  data-toggle-btn=""
+                  className="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 p-0"
+                  aria-label="Toggle password visibility"
+                >
+                  <Icon name="eye" size="sm" />
+                </Button>
+              </div>
             </div>
-            <div className="relative" data-password-toggle="">
-              <Input
-                type="password"
-                label="Confirm Password"
-                placeholder="Confirm password..."
-                className="pr-12"
-              />
-              <Button
-                variant="ghost"
-                icon
-                size="sm"
-                data-toggle-btn=""
-                className="absolute right-2 bottom-1"
-                aria-label="Toggle password visibility"
+            <div className="space-y-2" data-password-toggle="">
+              <label
+                htmlFor="forms-confirm-password"
+                className="block text-xs font-bold uppercase tracking-wider"
               >
-                <Icon name="eye" size="sm" />
-              </Button>
+                Confirm Password
+              </label>
+              <div className="relative">
+                <Input
+                  id="forms-confirm-password"
+                  type="password"
+                  placeholder="Confirm password..."
+                  className="pr-12"
+                />
+                <Button
+                  variant="ghost"
+                  icon
+                  size="sm"
+                  data-toggle-btn=""
+                  className="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 p-0"
+                  aria-label="Toggle password visibility"
+                >
+                  <Icon name="eye" size="sm" />
+                </Button>
+              </div>
             </div>
           </Form>
         </div>

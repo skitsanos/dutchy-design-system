@@ -96,7 +96,7 @@ const StatsGrid: FC<StatsGridProps> = ({
   }
 
   const sizeStyles = {
-    default: { cell: 'p-8', value: 'text-4xl md:text-5xl' },
+    default: { cell: 'p-6 sm:p-8', value: 'text-3xl sm:text-4xl md:text-5xl' },
     sm: { cell: 'p-6', value: 'text-3xl' },
   };
 

@@ -4,6 +4,8 @@ import Badge from '@/components/Badge';
 import Breadcrumbs from '@/components/Breadcrumbs';
 import Button from '@/components/Button';
 import Checkbox from '@/components/Checkbox';
+import DataTable from '@/components/DataTable';
+import Flex from '@/components/Flex';
 import Footer from '@/components/Footer';
 import Header from '@/components/Header';
 import Icon from '@/components/Icon';
@@ -147,30 +149,30 @@ const DataManagementPage: FC<{ request: Request }> = () => {
               {
                 title: 'Status Filter',
                 content: (
-                  <div className="flex flex-wrap gap-2">
+                  <Flex wrap gap={2}>
                     <Checkbox label="Active" defaultChecked data-filter-status="active" />
                     <Checkbox label="Inactive" defaultChecked data-filter-status="inactive" />
                     <Checkbox label="Suspended" defaultChecked data-filter-status="suspended" />
-                  </div>
+                  </Flex>
                 ),
               },
               {
                 title: 'Role Filter',
                 content: (
-                  <div className="flex flex-wrap gap-2">
+                  <Flex wrap gap={2}>
                     <Checkbox label="Admin" defaultChecked data-filter-role="admin" />
                     <Checkbox label="Editor" defaultChecked data-filter-role="editor" />
                     <Checkbox label="Viewer" defaultChecked data-filter-role="viewer" />
-                  </div>
+                  </Flex>
                 ),
               },
               {
                 title: 'Date Range',
                 content: (
-                  <div className="flex gap-4">
+                  <Flex direction="col" gap={4} className="sm:flex-row">
                     <Input label="From" type="date" />
                     <Input label="To" type="date" />
-                  </div>
+                  </Flex>
                 ),
               },
             ]}
@@ -178,11 +180,11 @@ const DataManagementPage: FC<{ request: Request }> = () => {
 
           {/* Action Bar */}
           <div className="bg-background border-l-4 border-primary p-4 mb-6">
-            <div className="flex flex-wrap items-center gap-3">
+            <Flex wrap align="center" gap={3}>
               <Button size="sm" data-modal-open="edit-modal">
                 Add User
               </Button>
-              <div className="relative flex-1 max-w-xs">
+              <div className="relative grow max-w-xs">
                 <Input type="search" placeholder="Search users..." className="pl-9 py-2 text-sm" />
                 <Icon
                   name="search"
@@ -190,11 +192,11 @@ const DataManagementPage: FC<{ request: Request }> = () => {
                   className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground"
                 />
               </div>
-              <div id="activeFilters" className="flex flex-wrap gap-1" />
+              <Flex id="activeFilters" wrap gap={1} />
               <Button variant="ghost" size="sm" id="clearFilters" className="hidden">
                 Clear Filters
               </Button>
-              <div className="ml-auto flex gap-2">
+              <Flex gap={2} className="ml-auto">
                 <Tooltip text="Simulate loading">
                   <Button variant="outline" size="sm" id="skeletonBtn">
                     Loading
@@ -205,145 +207,110 @@ const DataManagementPage: FC<{ request: Request }> = () => {
                     Empty
                   </Button>
                 </Tooltip>
-              </div>
-            </div>
+              </Flex>
+            </Flex>
           </div>
 
           {/* Data Table */}
           <div className="bg-background border-l-4 border-foreground" id="tableWrapper">
-            <div className="overflow-x-auto">
-              <table className="w-full" data-sortable="" id="usersTable">
-                <thead>
-                  <tr className="border-b-2 border-border">
-                    <th
-                      className="text-left px-6 py-3 text-xs font-bold uppercase tracking-wider text-muted-foreground cursor-pointer select-none"
-                      data-sort="name"
-                    >
-                      <span className="flex items-center gap-1">
-                        Name
-                        <svg
-                          className="sort-icon w-3 h-3"
-                          fill="none"
-                          stroke="currentColor"
-                          viewBox="0 0 24 24"
+            <DataTable
+              id="usersTable"
+              tbodyId="usersBody"
+              bordered={false}
+              columns={[
+                { key: 'name', label: 'Name', sortable: true, className: 'font-medium' },
+                {
+                  key: 'email',
+                  label: 'Email',
+                  sortable: true,
+                  className: 'font-mono text-muted-foreground',
+                },
+                {
+                  key: 'role',
+                  label: 'Role',
+                  render: (_value, _record, index) => {
+                    const user = users[index];
+
+                    if (!user) {
+                      return null;
+                    }
+
+                    return (
+                      <Badge variant={user.roleVariant} className="text-[10px]">
+                        {user.role}
+                      </Badge>
+                    );
+                  },
+                },
+                {
+                  key: 'status',
+                  label: 'Status',
+                  render: (_value, _record, index) => {
+                    const user = users[index];
+
+                    if (!user) {
+                      return null;
+                    }
+
+                    return (
+                      <Badge variant={user.statusVariant} className="text-[10px]">
+                        {user.status}
+                      </Badge>
+                    );
+                  },
+                },
+                {
+                  key: 'lastActive',
+                  label: 'Last Active',
+                  sortable: true,
+                  className: 'font-mono text-muted-foreground',
+                },
+                {
+                  key: 'actions',
+                  label: 'Actions',
+                  align: 'right',
+                  render: () => (
+                    <Flex justify="end" gap={1}>
+                      <Tooltip text="Edit">
+                        <Button
+                          variant="ghost"
+                          size="sm"
+                          icon
+                          className="p-1 text-muted-foreground hover:text-primary"
+                          data-modal-open="edit-modal"
                         >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth={2}
-                            d="M7 16V4m0 0L3 8m4-4l4 4m6 0v12m0 0l4-4m-4 4l-4-4"
-                          />
-                        </svg>
-                      </span>
-                    </th>
-                    <th
-                      className="text-left px-6 py-3 text-xs font-bold uppercase tracking-wider text-muted-foreground cursor-pointer select-none"
-                      data-sort="email"
-                    >
-                      <span className="flex items-center gap-1">
-                        Email
-                        <svg
-                          className="sort-icon w-3 h-3"
-                          fill="none"
-                          stroke="currentColor"
-                          viewBox="0 0 24 24"
+                          <Icon name="edit" size="sm" />
+                        </Button>
+                      </Tooltip>
+                      <Tooltip text="Delete">
+                        <Button
+                          variant="ghost"
+                          size="sm"
+                          icon
+                          className="p-1 text-muted-foreground hover:text-destructive"
+                          data-modal-open="delete-modal"
                         >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth={2}
-                            d="M7 16V4m0 0L3 8m4-4l4 4m6 0v12m0 0l4-4m-4 4l-4-4"
-                          />
-                        </svg>
-                      </span>
-                    </th>
-                    <th className="text-left px-6 py-3 text-xs font-bold uppercase tracking-wider text-muted-foreground">
-                      Role
-                    </th>
-                    <th className="text-left px-6 py-3 text-xs font-bold uppercase tracking-wider text-muted-foreground">
-                      Status
-                    </th>
-                    <th
-                      className="text-left px-6 py-3 text-xs font-bold uppercase tracking-wider text-muted-foreground cursor-pointer select-none"
-                      data-sort="lastActive"
-                    >
-                      <span className="flex items-center gap-1">
-                        Last Active
-                        <svg
-                          className="sort-icon w-3 h-3"
-                          fill="none"
-                          stroke="currentColor"
-                          viewBox="0 0 24 24"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth={2}
-                            d="M7 16V4m0 0L3 8m4-4l4 4m6 0v12m0 0l4-4m-4 4l-4-4"
-                          />
-                        </svg>
-                      </span>
-                    </th>
-                    <th className="text-right px-6 py-3 text-xs font-bold uppercase tracking-wider text-muted-foreground">
-                      Actions
-                    </th>
-                  </tr>
-                </thead>
-                <tbody id="usersBody">
-                  {users.map((user, index) => (
-                    <tr
-                      key={index}
-                      className={`hover:bg-muted/30 transition-colors ${index < users.length - 1 ? 'border-b border-border' : ''}`}
-                      data-name={user.dataName}
-                      data-email={user.dataEmail}
-                      data-lastactive={user.dataLastactive}
-                    >
-                      <td className="px-6 py-4 text-sm font-medium">{user.name}</td>
-                      <td className="px-6 py-4 text-sm font-mono text-muted-foreground">
-                        {user.email}
-                      </td>
-                      <td className="px-6 py-4">
-                        <Badge variant={user.roleVariant} className="text-[10px]">
-                          {user.role}
-                        </Badge>
-                      </td>
-                      <td className="px-6 py-4">
-                        <Badge variant={user.statusVariant} className="text-[10px]">
-                          {user.status}
-                        </Badge>
-                      </td>
-                      <td className="px-6 py-4 text-sm text-muted-foreground font-mono">
-                        {user.lastActive}
-                      </td>
-                      <td className="px-6 py-4 text-right">
-                        <Tooltip text="Edit">
-                          <Button
-                            variant="ghost"
-                            size="sm"
-                            icon
-                            className="p-1 text-muted-foreground hover:text-primary"
-                            data-modal-open="edit-modal"
-                          >
-                            <Icon name="edit" size="sm" />
-                          </Button>
-                        </Tooltip>
-                        <Tooltip text="Delete">
-                          <Button
-                            variant="ghost"
-                            size="sm"
-                            icon
-                            className="p-1 text-muted-foreground hover:text-destructive"
-                            data-modal-open="delete-modal"
-                          >
-                            <Icon name="trash" size="sm" />
-                          </Button>
-                        </Tooltip>
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
+                          <Icon name="trash" size="sm" />
+                        </Button>
+                      </Tooltip>
+                    </Flex>
+                  ),
+                },
+              ]}
+              data={users.map((user) => ({
+                name: user.name,
+                email: user.email,
+                role: user.role,
+                status: user.status,
+                lastActive: user.lastActive,
+                actions: '',
+              }))}
+              getRowProps={(_row, index) => ({
+                'data-name': users[index]?.dataName,
+                'data-email': users[index]?.dataEmail,
+                'data-lastactive': users[index]?.dataLastactive,
+              })}
+            />
 
             {/* Empty State */}
             <div id="emptyState" className="hidden text-center py-16 px-6">
@@ -375,15 +342,19 @@ const DataManagementPage: FC<{ request: Request }> = () => {
             </div>
 
             {/* Pagination */}
-            <div
-              className="border-t border-border px-6 py-4 flex items-center justify-between"
+            <Flex
               id="pagination"
+              direction="col"
+              align="center"
+              justify="between"
+              gap={4}
+              className="border-t border-border px-6 py-4 sm:flex-row"
             >
               <p className="text-sm text-muted-foreground">
                 Showing <span className="font-bold text-foreground">1-5</span> of{' '}
                 <span className="font-bold text-foreground">24</span> users
               </p>
-              <div className="flex gap-1">
+              <Flex wrap justify="center" gap={1}>
                 <Button variant="outline" size="sm" icon className="w-10 h-10" disabled>
                   &laquo;
                 </Button>
@@ -405,8 +376,8 @@ const DataManagementPage: FC<{ request: Request }> = () => {
                 <Button variant="outline" size="sm" icon className="w-10 h-10">
                   &raquo;
                 </Button>
-              </div>
-            </div>
+              </Flex>
+            </Flex>
           </div>
         </div>
       </main>
@@ -491,9 +462,13 @@ const DataManagementPage: FC<{ request: Request }> = () => {
         }
       >
         <div className="text-center">
-          <div className="w-12 h-12 bg-destructive/10 flex items-center justify-center mx-auto mb-4">
+          <Flex
+            align="center"
+            justify="center"
+            className="w-12 h-12 bg-destructive/10 mx-auto mb-4"
+          >
             <Icon name="warning" className="text-destructive" size="lg" />
-          </div>
+          </Flex>
           <p className="text-sm text-muted-foreground">
             This action cannot be undone. The user's data will be permanently removed.
           </p>

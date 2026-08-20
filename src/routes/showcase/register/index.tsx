@@ -2,6 +2,7 @@ import type { FC } from 'react';
 import Breadcrumbs from '@/components/Breadcrumbs';
 import Button from '@/components/Button';
 import FileUpload from '@/components/FileUpload';
+import Flex from '@/components/Flex';
 import Header from '@/components/Header';
 import Input from '@/components/Input';
 import Layout from '@/components/Layout';
@@ -206,27 +207,29 @@ const RegisterPage: FC<{ request: Request }> = () => {
               <p className="text-sm text-muted-foreground mb-6">
                 Click to select your interests. Click the X to remove.
               </p>
-              <div className="flex flex-wrap gap-2 mb-8" id="interestTags">
+              <Flex wrap gap={2} className="mb-8" id="interestTags">
                 {interests.map((interest) => (
-                  <button
+                  <Button
                     key={interest}
                     type="button"
-                    className="interest-tag inline-flex items-center gap-2 px-4 py-2 border-2 border-border text-sm font-bold uppercase tracking-wider hover:border-primary hover:text-primary transition-colors"
+                    variant="outline"
+                    size="sm"
+                    className="interest-tag border-border hover:border-primary hover:text-primary"
                     data-interest={interest}
                   >
                     {interest}
-                  </button>
+                  </Button>
                 ))}
-              </div>
+              </Flex>
               <div className="mb-4">
                 <p className="font-display font-bold uppercase text-sm tracking-wider mb-3">
                   Selected:
                 </p>
-                <div id="selectedInterests" className="flex flex-wrap gap-2 min-h-[40px]">
+                <Flex id="selectedInterests" wrap gap={2} className="min-h-[40px]">
                   <span className="text-sm text-muted-foreground italic" id="noInterests">
                     No interests selected
                   </span>
-                </div>
+                </Flex>
               </div>
               <div className="mt-8">
                 <div className="block font-display font-bold uppercase text-sm tracking-wider mb-3">
@@ -283,22 +286,22 @@ const RegisterPage: FC<{ request: Request }> = () => {
                     <h3 className="font-display font-bold uppercase text-sm tracking-wider mb-2">
                       Interests
                     </h3>
-                    <div id="reviewInterests" className="flex flex-wrap gap-2 mt-2" />
+                    <Flex id="reviewInterests" wrap gap={2} className="mt-2" />
                   </div>
                 </div>
               </div>
             </div>
 
             {/* Navigation Buttons */}
-            <div className="flex items-center justify-between mt-10 pt-6 border-t border-border">
+            <Flex align="center" justify="between" className="mt-10 pt-6 border-t border-border">
               <Button variant="outline" id="prevBtn" data-step-prev="" className="hidden">
                 Back
               </Button>
-              <div className="flex-1" />
+              <div className="grow" />
               <Button id="nextBtn" data-step-next="">
                 Continue
               </Button>
-            </div>
+            </Flex>
 
             {/* Progress */}
             <div className="mt-6">

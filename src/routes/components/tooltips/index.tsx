@@ -56,12 +56,20 @@ const TooltipsPage: FC = () => (
         </h3>
         <Flex wrap align="center" gap={8}>
           <Tooltip text="Edit item">
-            <button type="button" className="p-2 hover:text-primary transition-colors">
+            <button
+              type="button"
+              aria-label="Edit item"
+              className="p-2 hover:text-primary transition-colors"
+            >
               <Icon name="edit" />
             </button>
           </Tooltip>
           <Tooltip text="Delete item" position="bottom">
-            <button type="button" className="p-2 hover:text-destructive transition-colors">
+            <button
+              type="button"
+              aria-label="Delete item"
+              className="p-2 hover:text-destructive transition-colors"
+            >
               <Icon name="trash" />
             </button>
           </Tooltip>

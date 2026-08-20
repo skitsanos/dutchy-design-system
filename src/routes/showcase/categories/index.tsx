@@ -1,4 +1,5 @@
 import Badge from '@/components/Badge';
+import Flex from '@/components/Flex';
 import Footer from '@/components/Footer';
 import Header from '@/components/Header';
 import Icon from '@/components/Icon';
@@ -74,22 +75,22 @@ const CategoriesPage = () => {
               href="/showcase/search?q=ui+components"
               className="bg-background p-8 group hover:bg-muted/50 transition-colors lg:col-span-2 lg:row-span-2"
             >
-              <div className="h-full flex flex-col">
-                <div className="flex justify-between items-start mb-6">
-                  <div className="w-16 h-16 bg-primary/10 flex items-center justify-center">
+              <Flex direction="col" className="h-full">
+                <Flex justify="between" align="start" className="mb-6">
+                  <Flex align="center" justify="center" className="w-16 h-16 bg-primary/10">
                     <Icon name="layers" size="lg" className="w-10 h-10 text-primary" />
-                  </div>
+                  </Flex>
                   <Icon
                     name="arrow-right"
                     className="text-muted-foreground group-hover:text-primary group-hover:translate-x-1 transition-all"
                   />
-                </div>
-                <div className="flex-grow flex flex-col justify-center items-center py-8">
+                </Flex>
+                <Flex direction="col" align="center" justify="center" className="flex-grow py-8">
                   <Icon
                     name="layers"
                     className="w-48 h-48 text-primary/20 group-hover:scale-105 transition-transform"
                   />
-                </div>
+                </Flex>
                 <div>
                   <p className="font-mono text-sm text-primary font-bold uppercase tracking-wider mb-2">
                     18 components
@@ -99,7 +100,7 @@ const CategoriesPage = () => {
                   </h2>
                   <p className="text-muted-foreground">Core building blocks for any interface</p>
                 </div>
-              </div>
+              </Flex>
             </a>
 
             {/* Data Display */}
@@ -107,23 +108,23 @@ const CategoriesPage = () => {
               href="/showcase/search?q=data+display"
               className="bg-background p-8 group hover:bg-muted/50 transition-colors"
             >
-              <div className="h-full flex flex-col min-h-[280px]">
-                <div className="flex justify-between items-start mb-4">
-                  <div className="w-12 h-12 bg-primary/10 flex items-center justify-center">
+              <Flex direction="col" className="h-full min-h-[280px]">
+                <Flex justify="between" align="start" className="mb-4">
+                  <Flex align="center" justify="center" className="w-12 h-12 bg-primary/10">
                     <Icon name="grid" size="lg" className="w-8 h-8 text-primary" />
-                  </div>
+                  </Flex>
                   <Icon
                     name="arrow-right"
                     size="md"
                     className="text-muted-foreground group-hover:text-primary group-hover:translate-x-1 transition-all"
                   />
-                </div>
-                <div className="flex-grow flex items-center justify-center py-4">
+                </Flex>
+                <Flex align="center" justify="center" className="flex-grow py-4">
                   <Icon
                     name="grid"
                     className="w-24 h-24 text-primary/30 group-hover:scale-110 transition-transform"
                   />
-                </div>
+                </Flex>
                 <div className="mt-auto">
                   <p className="font-mono text-xs text-primary font-bold uppercase tracking-wider mb-1">
                     12 components
@@ -135,7 +136,7 @@ const CategoriesPage = () => {
                     Tables, lists, cards, and badges
                   </p>
                 </div>
-              </div>
+              </Flex>
             </a>
 
             {/* Forms */}
@@ -143,23 +144,23 @@ const CategoriesPage = () => {
               href="/showcase/search?q=forms"
               className="bg-background p-8 group hover:bg-muted/50 transition-colors"
             >
-              <div className="h-full flex flex-col min-h-[280px]">
-                <div className="flex justify-between items-start mb-4">
-                  <div className="w-12 h-12 bg-primary/10 flex items-center justify-center">
+              <Flex direction="col" className="h-full min-h-[280px]">
+                <Flex justify="between" align="start" className="mb-4">
+                  <Flex align="center" justify="center" className="w-12 h-12 bg-primary/10">
                     <Icon name="edit" size="lg" className="w-8 h-8 text-primary" />
-                  </div>
+                  </Flex>
                   <Icon
                     name="arrow-right"
                     size="md"
                     className="text-muted-foreground group-hover:text-primary group-hover:translate-x-1 transition-all"
                   />
-                </div>
-                <div className="flex-grow flex items-center justify-center py-4">
+                </Flex>
+                <Flex align="center" justify="center" className="flex-grow py-4">
                   <Icon
                     name="edit"
                     className="w-24 h-24 text-primary/30 group-hover:scale-110 transition-transform"
                   />
-                </div>
+                </Flex>
                 <div className="mt-auto">
                   <p className="font-mono text-xs text-primary font-bold uppercase tracking-wider mb-1">
                     10 components
@@ -171,7 +172,7 @@ const CategoriesPage = () => {
                     Inputs, selects, checkboxes, and more
                   </p>
                 </div>
-              </div>
+              </Flex>
             </a>
 
             {/* Navigation */}
@@ -179,23 +180,23 @@ const CategoriesPage = () => {
               href="/showcase/search?q=navigation"
               className="bg-background p-8 group hover:bg-muted/50 transition-colors"
             >
-              <div className="h-full flex flex-col min-h-[280px]">
-                <div className="flex justify-between items-start mb-4">
-                  <div className="w-12 h-12 bg-primary/10 flex items-center justify-center">
+              <Flex direction="col" className="h-full min-h-[280px]">
+                <Flex justify="between" align="start" className="mb-4">
+                  <Flex align="center" justify="center" className="w-12 h-12 bg-primary/10">
                     <Icon name="send" size="lg" className="w-8 h-8 text-primary" />
-                  </div>
+                  </Flex>
                   <Icon
                     name="arrow-right"
                     size="md"
                     className="text-muted-foreground group-hover:text-primary group-hover:translate-x-1 transition-all"
                   />
-                </div>
-                <div className="flex-grow flex items-center justify-center py-4">
+                </Flex>
+                <Flex align="center" justify="center" className="flex-grow py-4">
                   <Icon
                     name="send"
                     className="w-24 h-24 text-primary/30 group-hover:scale-110 transition-transform"
                   />
-                </div>
+                </Flex>
                 <div className="mt-auto">
                   <p className="font-mono text-xs text-primary font-bold uppercase tracking-wider mb-1">
                     8 components
@@ -207,7 +208,7 @@ const CategoriesPage = () => {
                     Menus, tabs, breadcrumbs, and links
                   </p>
                 </div>
-              </div>
+              </Flex>
             </a>
 
             {/* Feedback */}
@@ -215,23 +216,23 @@ const CategoriesPage = () => {
               href="/showcase/search?q=feedback"
               className="bg-background p-8 group hover:bg-muted/50 transition-colors"
             >
-              <div className="h-full flex flex-col min-h-[280px]">
-                <div className="flex justify-between items-start mb-4">
-                  <div className="w-12 h-12 bg-primary/10 flex items-center justify-center">
+              <Flex direction="col" className="h-full min-h-[280px]">
+                <Flex justify="between" align="start" className="mb-4">
+                  <Flex align="center" justify="center" className="w-12 h-12 bg-primary/10">
                     <Icon name="bell" size="lg" className="w-8 h-8 text-primary" />
-                  </div>
+                  </Flex>
                   <Icon
                     name="arrow-right"
                     size="md"
                     className="text-muted-foreground group-hover:text-primary group-hover:translate-x-1 transition-all"
                   />
-                </div>
-                <div className="flex-grow flex items-center justify-center py-4">
+                </Flex>
+                <Flex align="center" justify="center" className="flex-grow py-4">
                   <Icon
                     name="bell"
                     className="w-24 h-24 text-primary/30 group-hover:scale-110 transition-transform"
                   />
-                </div>
+                </Flex>
                 <div className="mt-auto">
                   <p className="font-mono text-xs text-primary font-bold uppercase tracking-wider mb-1">
                     6 components
@@ -243,7 +244,7 @@ const CategoriesPage = () => {
                     Alerts, toasts, modals, and progress
                   </p>
                 </div>
-              </div>
+              </Flex>
             </a>
 
             {/* Utilities */}
@@ -251,23 +252,23 @@ const CategoriesPage = () => {
               href="/showcase/search?q=utilities"
               className="bg-background p-8 group hover:bg-muted/50 transition-colors"
             >
-              <div className="h-full flex flex-col min-h-[280px]">
-                <div className="flex justify-between items-start mb-4">
-                  <div className="w-12 h-12 bg-primary/10 flex items-center justify-center">
+              <Flex direction="col" className="h-full min-h-[280px]">
+                <Flex justify="between" align="start" className="mb-4">
+                  <Flex align="center" justify="center" className="w-12 h-12 bg-primary/10">
                     <Icon name="settings" size="lg" className="w-8 h-8 text-primary" />
-                  </div>
+                  </Flex>
                   <Icon
                     name="arrow-right"
                     size="md"
                     className="text-muted-foreground group-hover:text-primary group-hover:translate-x-1 transition-all"
                   />
-                </div>
-                <div className="flex-grow flex items-center justify-center py-4">
+                </Flex>
+                <Flex align="center" justify="center" className="flex-grow py-4">
                   <Icon
                     name="settings"
                     className="w-24 h-24 text-primary/30 group-hover:scale-110 transition-transform"
                   />
-                </div>
+                </Flex>
                 <div className="mt-auto">
                   <p className="font-mono text-xs text-primary font-bold uppercase tracking-wider mb-1">
                     5 utilities
@@ -279,7 +280,7 @@ const CategoriesPage = () => {
                     Helpers, hooks, and common patterns
                   </p>
                 </div>
-              </div>
+              </Flex>
             </a>
           </div>
         </div>
@@ -288,7 +289,7 @@ const CategoriesPage = () => {
       {/* CTA Section */}
       <section className="py-16 bg-foreground text-background">
         <div className="container mx-auto px-4 md:px-6">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-8">
+          <Flex direction="col" align="center" justify="between" gap={8} className="md:flex-row">
             <div>
               <h2 className="font-display text-3xl md:text-4xl font-bold uppercase tracking-tighter mb-2">
                 Can't find what you need?
@@ -302,7 +303,7 @@ const CategoriesPage = () => {
               Browse All
               <Icon name="arrow-right" size="md" />
             </a>
-          </div>
+          </Flex>
         </div>
       </section>
 

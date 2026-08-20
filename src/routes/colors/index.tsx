@@ -63,7 +63,7 @@ const ColorsPage: FC = () => {
                     <span className="text-muted-foreground">HSL:</span> 25 95% 53%
                   </p>
                   <p>
-                    <span className="text-muted-foreground">HEX:</span> #F97316
+                    <span className="text-muted-foreground">HEX:</span> #F97415
                   </p>
                 </div>
               </div>
@@ -85,7 +85,7 @@ const ColorsPage: FC = () => {
                     <span className="text-muted-foreground">HSL:</span> 25 20% 6%
                   </p>
                   <p>
-                    <span className="text-muted-foreground">HEX:</span> #130F0C
+                    <span className="text-muted-foreground">HEX:</span> #120F0C
                   </p>
                 </div>
               </div>
@@ -131,7 +131,7 @@ const ColorsPage: FC = () => {
             <div className="bg-background p-6">
               <div className="w-full h-24 bg-secondary border-2 border-border mb-4" />
               <h3 className="font-display font-bold uppercase text-sm mb-1">Secondary</h3>
-              <p className="font-mono text-xs text-muted-foreground mb-2">hsl(25 20% 92%)</p>
+              <p className="font-mono text-xs text-muted-foreground mb-2">hsl(25 30% 92%)</p>
               <p className="text-xs text-muted-foreground">Subtle backgrounds, secondary actions</p>
             </div>
 
@@ -185,9 +185,9 @@ const ColorsPage: FC = () => {
 
             {/* Muted Foreground */}
             <div className="bg-background p-6">
-              <div className="w-full h-24 mb-4" style={{ backgroundColor: 'hsl(25 15% 40%)' }} />
+              <div className="w-full h-24 mb-4" style={{ backgroundColor: 'hsl(25 10% 40%)' }} />
               <h3 className="font-display font-bold uppercase text-sm mb-1">Muted FG</h3>
-              <p className="font-mono text-xs text-muted-foreground mb-2">hsl(25 15% 40%)</p>
+              <p className="font-mono text-xs text-muted-foreground mb-2">hsl(25 10% 40%)</p>
               <p className="text-xs text-muted-foreground">Secondary text, placeholders</p>
             </div>
           </div>
@@ -206,12 +206,12 @@ const ColorsPage: FC = () => {
             <div className="border-4 border-border">
               <div className="bg-white p-8 text-center">
                 <span className="text-primary font-display text-2xl font-bold uppercase">
-                  Primary Text
+                  Primary Accent
                 </span>
               </div>
               <div className="p-4 bg-muted">
                 <p className="font-mono text-xs">primary on background</p>
-                <p className="font-mono text-xs text-muted-foreground">Contrast: 4.5:1 AA</p>
+                <p className="font-mono text-xs text-muted-foreground">Contrast: 2.63:1</p>
               </div>
             </div>
 
@@ -219,12 +219,12 @@ const ColorsPage: FC = () => {
             <div className="border-4 border-border">
               <div className="bg-primary p-8 text-center">
                 <span className="text-primary-foreground font-display text-2xl font-bold uppercase">
-                  White Text
+                  Brand Text
                 </span>
               </div>
               <div className="p-4 bg-muted">
                 <p className="font-mono text-xs">primary-foreground on primary</p>
-                <p className="font-mono text-xs text-muted-foreground">Contrast: 4.5:1 AA</p>
+                <p className="font-mono text-xs text-muted-foreground">Contrast: 2.79:1</p>
               </div>
             </div>
 
@@ -237,7 +237,7 @@ const ColorsPage: FC = () => {
               </div>
               <div className="p-4 bg-muted">
                 <p className="font-mono text-xs">foreground on background</p>
-                <p className="font-mono text-xs text-muted-foreground">Contrast: 12.5:1 AAA</p>
+                <p className="font-mono text-xs text-muted-foreground">Contrast: 18.02:1 AAA</p>
               </div>
             </div>
 
@@ -250,7 +250,7 @@ const ColorsPage: FC = () => {
               </div>
               <div className="p-4 bg-muted">
                 <p className="font-mono text-xs">background on foreground</p>
-                <p className="font-mono text-xs text-muted-foreground">Contrast: 12.5:1 AAA</p>
+                <p className="font-mono text-xs text-muted-foreground">Contrast: 18.02:1 AAA</p>
               </div>
             </div>
 
@@ -263,7 +263,7 @@ const ColorsPage: FC = () => {
               </div>
               <div className="p-4 bg-muted">
                 <p className="font-mono text-xs">primary on foreground</p>
-                <p className="font-mono text-xs text-muted-foreground">Contrast: 4.8:1 AA</p>
+                <p className="font-mono text-xs text-muted-foreground">Contrast: 6.86:1 AA</p>
               </div>
             </div>
 
@@ -276,7 +276,7 @@ const ColorsPage: FC = () => {
               </div>
               <div className="p-4 bg-muted">
                 <p className="font-mono text-xs">muted-foreground on background</p>
-                <p className="font-mono text-xs text-muted-foreground">Contrast: 4.6:1 AA</p>
+                <p className="font-mono text-xs text-muted-foreground">Contrast: 5.40:1 AA</p>
               </div>
             </div>
           </div>
@@ -368,7 +368,7 @@ const ColorsPage: FC = () => {
                 </div>
                 <div className="bg-primary text-primary-foreground p-6">
                   <p className="font-display text-3xl font-bold">100%</p>
-                  <p className="text-xs uppercase tracking-wider opacity-70">Accessible</p>
+                  <p className="text-xs uppercase tracking-wider opacity-70">WCAG-Aware</p>
                 </div>
               </div>
             </div>
@@ -418,35 +418,30 @@ const ColorsPage: FC = () => {
             <pre>
               <code
                 dangerouslySetInnerHTML={{
-                  __html: `<span class="text-muted-foreground">/* Dutchy Color Tokens */</span>
-:root {
-  <span class="text-primary">--background</span>: 40 30% 97%;
-  <span class="text-primary">--foreground</span>: 25 20% 6%;
+                  __html: `<span class="text-muted-foreground">/* Tailwind 4 theme tokens */</span>
+@theme {
+  <span class="text-primary">--color-background</span>: hsl(40 30% 97%);
+  <span class="text-primary">--color-foreground</span>: hsl(25 20% 6%);
+  <span class="text-primary">--color-primary</span>: hsl(var(--primary));
+  <span class="text-primary">--color-primary-foreground</span>: hsl(0 0% 100%);
+  <span class="text-primary">--color-secondary</span>: hsl(25 30% 92%);
+  <span class="text-primary">--color-muted</span>: hsl(40 20% 94%);
+  <span class="text-primary">--color-muted-foreground</span>: hsl(25 10% 40%);
+  <span class="text-primary">--color-border</span>: hsl(25 20% 88%);
+  <span class="text-primary">--color-ring</span>: hsl(25 95% 53%);
+}
 
-  <span class="text-primary">--primary</span>: 25 95% 53%;
-  <span class="text-primary">--primary-foreground</span>: 0 0% 100%;
-
-  <span class="text-primary">--secondary</span>: 25 20% 92%;
-  <span class="text-primary">--secondary-foreground</span>: 25 25% 15%;
-
-  <span class="text-primary">--muted</span>: 40 20% 94%;
-  <span class="text-primary">--muted-foreground</span>: 25 15% 40%;
-
-  <span class="text-primary">--border</span>: 25 20% 88%;
-  <span class="text-primary">--input</span>: 25 20% 88%;
-  <span class="text-primary">--ring</span>: 25 95% 53%;
-
-  <span class="text-primary">--destructive</span>: 0 84% 60%;
-  <span class="text-primary">--destructive-foreground</span>: 0 0% 100%;
-
-  <span class="text-primary">--success</span>: 142 76% 36%;
-  <span class="text-primary">--success-foreground</span>: 0 0% 100%;
+<span class="text-muted-foreground">/* Runtime theme value */</span>
+@layer base {
+  :root {
+    <span class="text-primary">--primary</span>: 25 95% 53%;
+  }
 }
 
 <span class="text-muted-foreground">/* Usage with Tailwind */</span>
 .element {
-  background-color: hsl(var(<span class="text-primary">--primary</span>));
-  color: hsl(var(<span class="text-primary">--primary-foreground</span>));
+  background-color: var(<span class="text-primary">--color-primary</span>);
+  color: var(<span class="text-primary">--color-primary-foreground</span>);
 }`,
                 }}
               />

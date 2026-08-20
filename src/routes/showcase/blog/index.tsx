@@ -1,6 +1,9 @@
 import Badge from '@/components/Badge';
+import Button from '@/components/Button';
+import Flex from '@/components/Flex';
 import Footer from '@/components/Footer';
 import Header from '@/components/Header';
+import Image from '@/components/Image';
 import Layout from '@/components/Layout';
 import NewsletterForm from '@/components/NewsletterForm';
 import SectionTitle from '@/components/SectionTitle';
@@ -92,13 +95,11 @@ const BlogPage = () => {
           <div className="container mx-auto px-4 md:px-6">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               {/* Image */}
-              <div className="aspect-[4/3] bg-muted">
-                <img
-                  src="https://images.unsplash.com/photo-1499750310107-5fef28a66643?w=800"
-                  alt="Featured post"
-                  className="w-full h-full object-cover"
-                />
-              </div>
+              <Image
+                src="https://images.unsplash.com/photo-1499750310107-5fef28a66643?w=800"
+                alt="Featured post"
+                aspect="4/3"
+              />
 
               {/* Content */}
               <div>
@@ -114,19 +115,14 @@ const BlogPage = () => {
                   Exploring how modern design systems are evolving to meet the demands of complex
                   digital products and diverse teams.
                 </p>
-                <div className="flex items-center gap-4 mb-8">
+                <Flex align="center" gap={4} className="mb-8">
                   <div className="w-10 h-10 bg-foreground" />
                   <div>
                     <p className="font-bold text-sm">Sarah Johnson</p>
                     <p className="text-muted-foreground text-sm">Nov 28, 2025</p>
                   </div>
-                </div>
-                <a
-                  href="#"
-                  className="bg-foreground text-background px-8 py-3 font-bold uppercase tracking-wide inline-block hover:bg-foreground/90 transition-colors"
-                >
-                  Read Article
-                </a>
+                </Flex>
+                <Button variant="secondary">Read Article</Button>
               </div>
             </div>
           </div>
@@ -142,13 +138,7 @@ const BlogPage = () => {
               {articles.map((article, index) => (
                 <article key={index} className="bg-background">
                   <a href="#" className="block">
-                    <div className="aspect-[16/10] bg-muted">
-                      <img
-                        src={article.image}
-                        alt={article.title}
-                        className="w-full h-full object-cover"
-                      />
-                    </div>
+                    <Image src={article.image} alt={article.title} aspect="16/10" />
                     <div className="p-8">
                       <Badge variant="primary">{article.category}</Badge>
                       <h3 className="font-display text-xl font-bold uppercase mt-3 mb-4 hover:text-primary transition-colors">
@@ -157,13 +147,13 @@ const BlogPage = () => {
                       <p className="text-muted-foreground text-sm leading-relaxed mb-4">
                         {article.description}
                       </p>
-                      <div className="flex items-center gap-3">
+                      <Flex align="center" gap={3}>
                         <div className="w-8 h-8 bg-foreground" />
                         <div>
                           <p className="text-sm font-medium">{article.author}</p>
                           <p className="text-xs text-muted-foreground">{article.date}</p>
                         </div>
-                      </div>
+                      </Flex>
                     </div>
                   </a>
                 </article>
@@ -172,12 +162,9 @@ const BlogPage = () => {
 
             {/* Load More */}
             <div className="mt-12 text-center">
-              <a
-                href="#"
-                className="inline-block border-2 border-foreground px-10 py-4 font-bold uppercase tracking-wide hover:bg-foreground hover:text-background transition-colors"
-              >
+              <Button variant="outline" size="lg">
                 Load More Articles
-              </a>
+              </Button>
             </div>
           </div>
         </section>

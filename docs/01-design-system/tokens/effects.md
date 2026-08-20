@@ -323,26 +323,18 @@ No rounded focus rings. Sharp, offset outlines:
 </a>
 ```
 
-## TailwindCSS Configuration
+## Tailwind CSS 4 Tokens
 
-```js
-// tailwind.config.js
-module.exports = {
-  theme: {
-    extend: {
-      borderRadius: {
-        none: '0',
-      },
-      transitionDuration: {
-        '150': '150ms',
-        '200': '200ms',
-        '300': '300ms',
-      },
-      transitionTimingFunction: {
-        'out': 'ease-out',
-      },
-    },
-  },
+```css
+@theme {
+  --radius-xs: 0px;
+  --radius-sm: 0px;
+  --radius-md: 0px;
+  --radius-lg: 0px;
+  --radius-xl: 0px;
+  --radius-2xl: 0px;
+  --radius-3xl: 0px;
+  --radius-4xl: 0px;
 }
 ```
 

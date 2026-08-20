@@ -1,4 +1,5 @@
 import type { FC } from 'react';
+import Flex from '@/components/Flex';
 import Layout from '@/components/Layout';
 import WebsiteFooter from '@/components/WebsiteFooter';
 import WebsiteHeader from '@/components/WebsiteHeader';
@@ -209,27 +210,32 @@ const ShowcasePage: FC = () => {
                   href={`/showcase/${item.slug}`}
                   className="bg-background p-8 group hover:bg-muted/50 transition-colors lg:col-span-2 lg:row-span-2"
                 >
-                  <div className="h-full flex flex-col">
-                    <div className="flex justify-between items-start mb-6">
-                      <div className="w-16 h-16 bg-primary/10 flex items-center justify-center">
+                  <Flex direction="col" className="h-full">
+                    <Flex justify="between" align="start" className="mb-6">
+                      <Flex align="center" justify="center" className="w-16 h-16 bg-primary/10">
                         <SmallIcon name={item.icon} size={40} />
-                      </div>
+                      </Flex>
                       <ArrowIcon size={24} />
-                    </div>
-                    <div className="flex-grow flex flex-col justify-center items-center py-8">
+                    </Flex>
+                    <Flex
+                      direction="col"
+                      align="center"
+                      justify="center"
+                      className="flex-grow py-8"
+                    >
                       <LargeIcon
                         name={item.icon}
                         size={192}
                         className="text-primary/20 group-hover:scale-105 transition-transform"
                       />
-                    </div>
+                    </Flex>
                     <div>
                       <h2 className="font-display text-3xl md:text-4xl font-bold uppercase mb-2 group-hover:text-primary transition-colors">
                         {item.title}
                       </h2>
                       <p className="text-muted-foreground">{item.description}</p>
                     </div>
-                  </div>
+                  </Flex>
                 </a>
               ) : (
                 /* Regular card */
@@ -238,27 +244,27 @@ const ShowcasePage: FC = () => {
                   href={`/showcase/${item.slug}`}
                   className="bg-background p-8 group hover:bg-muted/50 transition-colors"
                 >
-                  <div className="h-full flex flex-col min-h-[280px]">
-                    <div className="flex justify-between items-start mb-4">
-                      <div className="w-12 h-12 bg-primary/10 flex items-center justify-center">
+                  <Flex direction="col" className="h-full min-h-[280px]">
+                    <Flex justify="between" align="start" className="mb-4">
+                      <Flex align="center" justify="center" className="w-12 h-12 bg-primary/10">
                         <SmallIcon name={item.icon} size={32} />
-                      </div>
+                      </Flex>
                       <ArrowIcon size={20} />
-                    </div>
-                    <div className="flex-grow flex items-center justify-center py-4">
+                    </Flex>
+                    <Flex align="center" justify="center" className="flex-grow py-4">
                       <RegularLargeIcon
                         name={item.icon}
                         size={96}
                         className="text-primary/30 group-hover:scale-110 transition-transform"
                       />
-                    </div>
+                    </Flex>
                     <div className="mt-auto">
                       <h3 className="font-display text-xl font-bold uppercase group-hover:text-primary transition-colors">
                         {item.title}
                       </h3>
                       <p className="text-sm text-muted-foreground mt-1">{item.description}</p>
                     </div>
-                  </div>
+                  </Flex>
                 </a>
               ),
             )}

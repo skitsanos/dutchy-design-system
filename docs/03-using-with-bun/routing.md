@@ -319,6 +319,15 @@ import corsResponse from '@/middleware/corsResponse';
 
 const PORT = process.env.PORT || 3000;
 const IS_PRODUCTION = process.env.NODE_ENV === 'production';
+const ASSET_CACHE_HEADERS = IS_PRODUCTION
+  ? {
+      'Cache-Control': 'public, max-age=31536000, immutable',
+    }
+  : {
+      'Cache-Control': 'no-store, no-cache, must-revalidate, max-age=0',
+      Pragma: 'no-cache',
+      Expires: '0',
+    };
 
 async function startServer() {
   // Load routes from filesystem
@@ -328,9 +337,7 @@ async function startServer() {
   const assetHandler = staticAssets({
     assetsPath: 'public/assets',
     urlPrefix: '/assets',
-    cacheControl: IS_PRODUCTION
-      ? 'public, max-age=31536000, immutable'
-      : 'no-cache',
+    headers: ASSET_CACHE_HEADERS,
   });
 
   serve({
@@ -602,12 +609,14 @@ export interface StaticAssetsConfig {
   assetsPath: string;
   urlPrefix?: string;
   cacheControl?: string;
+  headers?: HeadersInit;
 }
 
 export const staticAssets = ({
   assetsPath,
   urlPrefix = '/assets',
   cacheControl = 'public, max-age=31536000, immutable',
+  headers = {},
 }: StaticAssetsConfig) => {
   return async (req: Request): Promise<Response> => {
     const url = new URL(req.url);
@@ -629,6 +638,7 @@ export const staticAssets = ({
         'Content-Length': String(file.size),
         'Cache-Control': cacheControl,
         'Accept-Ranges': 'bytes',
+        ...headers,
       },
     });
   };

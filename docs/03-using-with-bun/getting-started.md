@@ -94,8 +94,9 @@ Update `package.json`:
   "scripts": {
     "dev": "bun run --watch src/index.ts",
     "start": "NODE_ENV=production bun run src/index.ts",
-    "build:css": "bunx tailwindcss -i src/styles/input.css -o public/assets/css/styles.css --minify",
-    "dev:css": "bunx tailwindcss -i src/styles/input.css -o public/assets/css/styles.css --watch",
+    "build": "bun run build:css",
+    "build:css": "bunx tailwindcss -i src/styles/dutchy.css -o public/assets/css/styles.css --minify",
+    "dev:css": "bunx tailwindcss -i src/styles/dutchy.css -o public/assets/css/styles.css --watch",
     "typecheck": "bunx tsc --noEmit",
     "lint": "bunx biome check .",
     "lint:fix": "bunx biome check --write ."
@@ -118,63 +119,54 @@ Update `package.json`:
 
 ### Tailwind CSS Configuration
 
-Create `tailwind.config.js`:
+Tailwind 4 can be configured directly in CSS. No `tailwind.config.js` is required for the base Dutchy setup.
 
-```javascript
-/** @type {import('tailwindcss').Config} */
-export default {
-  content: ['./src/**/*.{ts,tsx}'],
-  theme: {
-    extend: {
-      colors: {
-        primary: {
-          DEFAULT: 'hsl(var(--primary))',
-          foreground: 'hsl(var(--primary-foreground))',
-        },
-        background: 'hsl(var(--background))',
-        foreground: 'hsl(var(--foreground))',
-        muted: {
-          DEFAULT: 'hsl(var(--muted))',
-          foreground: 'hsl(var(--muted-foreground))',
-        },
-        border: 'hsl(var(--border))',
-        destructive: {
-          DEFAULT: 'hsl(var(--destructive))',
-          foreground: 'hsl(var(--destructive-foreground))',
-        },
-      },
-      fontFamily: {
-        display: ['Space Grotesk', 'sans-serif'],
-        body: ['Inter', 'sans-serif'],
-        mono: ['JetBrains Mono', 'monospace'],
-      },
-      borderRadius: {
-        none: '0',
-      },
-    },
-  },
-  plugins: [],
-};
-```
+For the full production lifecycle, including runtime theme variables, generated CSS, Bun static asset serving, Docker, Railway, and cache versioning, see [Theme and CSS Build Lifecycle](./theme-and-css-build.md).
 
-Create `src/styles/input.css`:
+Create `src/styles/dutchy.css`:
 
 ```css
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+
+@source "../**/*.{ts,tsx}";
+@source "../../public/assets/js/**/*.js";
+
+@theme {
+  --color-border: hsl(25 20% 88%);
+  --color-background: hsl(40 30% 97%);
+  --color-foreground: hsl(25 20% 6%);
+  --color-primary: hsl(var(--primary));
+  --color-primary-foreground: hsl(0 0% 100%);
+  --color-secondary: hsl(25 30% 92%);
+  --color-secondary-foreground: hsl(25 25% 15%);
+  --color-muted: hsl(40 20% 94%);
+  --color-muted-foreground: hsl(25 10% 40%);
+  --color-destructive: hsl(0 84% 60%);
+  --color-destructive-foreground: hsl(0 0% 100%);
+  --font-display: "Space Grotesk", sans-serif;
+  --font-body: "Inter", sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+  --radius-xs: 0px;
+  --radius-sm: 0px;
+  --radius-md: 0px;
+  --radius-lg: 0px;
+  --radius-xl: 0px;
+  --radius-2xl: 0px;
+  --radius-3xl: 0px;
+  --radius-4xl: 0px;
+}
 
 @layer base {
   :root {
     --primary: 25 95% 53%;
-    --primary-foreground: 0 0% 100%;
-    --background: 0 0% 100%;
-    --foreground: 0 0% 4%;
-    --muted: 0 0% 96%;
-    --muted-foreground: 0 0% 45%;
-    --border: 0 0% 90%;
-    --destructive: 0 84% 50%;
-    --destructive-foreground: 0 0% 100%;
+  }
+
+  [data-theme="purple"] {
+    --primary: 263 70% 58%;
+  }
+
+  [data-theme="crimson"] {
+    --primary: 0 84% 50%;
   }
 
   * {
@@ -183,8 +175,8 @@ Create `src/styles/input.css`:
 
   body {
     font-family: 'Inter', sans-serif;
-    background-color: hsl(var(--background));
-    color: hsl(var(--foreground));
+    background-color: var(--color-background);
+    color: var(--color-foreground);
   }
 }
 ```
@@ -228,7 +220,7 @@ my-dutchy-app/
 │   ├── middleware/           # Middleware functions
 │   │   └── cors.ts
 │   └── styles/
-│       └── input.css
+│       └── dutchy.css
 ├── public/
 │   └── assets/
 │       ├── css/
@@ -236,7 +228,7 @@ my-dutchy-app/
 │       └── images/
 ├── package.json
 ├── tsconfig.json
-└── tailwind.config.js
+└── biome.jsonc
 ```
 
 ## Server Entry Point
@@ -254,15 +246,22 @@ import staticAssets from './utils/staticAssets';
 
 const PORT = process.env.PORT || 3000;
 const IS_PRODUCTION = process.env.NODE_ENV === 'production';
+const ASSET_CACHE_HEADERS = IS_PRODUCTION
+  ? {
+      'Cache-Control': 'public, max-age=31536000, immutable',
+    }
+  : {
+      'Cache-Control': 'no-store, no-cache, must-revalidate, max-age=0',
+      Pragma: 'no-cache',
+      Expires: '0',
+    };
 
 async function startServer() {
   const routes = await loadRoutes('routes');
   const assetHandler = staticAssets({
     assetsPath: 'public/assets',
     urlPrefix: '/assets',
-    cacheControl: IS_PRODUCTION
-      ? 'public, max-age=31536000, immutable'
-      : 'no-cache',
+    headers: ASSET_CACHE_HEADERS,
   });
 
   serve({

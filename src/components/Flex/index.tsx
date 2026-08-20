@@ -1,15 +1,16 @@
-import type { ElementType, FC, ReactNode } from 'react';
+import type { ElementType, FC, HTMLAttributes, ReactNode } from 'react';
 
 type GapValue = 0 | 0.5 | 1 | 1.5 | 2 | 3 | 4 | 5 | 6 | 8 | 10 | 12 | 16;
 
-interface FlexProps {
+interface FlexProps extends HTMLAttributes<HTMLElement> {
   direction?: 'row' | 'col' | 'row-reverse' | 'col-reverse';
   align?: 'start' | 'center' | 'end' | 'stretch' | 'baseline';
   justify?: 'start' | 'center' | 'end' | 'between' | 'around' | 'evenly';
   wrap?: boolean;
   gap?: GapValue;
+  displayClassName?: string;
   className?: string;
-  children: ReactNode;
+  children?: ReactNode;
   as?: ElementType;
 }
 
@@ -59,12 +60,14 @@ const Flex: FC<FlexProps> = ({
   justify,
   wrap = false,
   gap,
+  displayClassName = 'flex',
   className = '',
   children,
   as: Tag = 'div',
+  ...props
 }) => {
   const classes = [
-    'flex',
+    displayClassName,
     directionClasses[direction],
     align ? alignClasses[align] : '',
     justify ? justifyClasses[justify] : '',
@@ -75,7 +78,11 @@ const Flex: FC<FlexProps> = ({
     .filter(Boolean)
     .join(' ');
 
-  return <Tag className={classes}>{children}</Tag>;
+  return (
+    <Tag className={classes} {...props}>
+      {children}
+    </Tag>
+  );
 };
 
 export default Flex;
