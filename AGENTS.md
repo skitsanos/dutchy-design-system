@@ -1,47 +1,81 @@
 # AGENTS GUIDE
 
-Guidance for automated agents working in this repository.
+Repository guidance for coding agents working on the Dutchy Design System.
 
-## Project Purpose
-- Dutchy Design System: Dutch-inspired, zero-radius geometry, bold typography (Space Grotesk, Inter, JetBrains Mono), high contrast, MIT-licensed.
-- Outputs: design tokens, component/pattern docs, HTML showcases, Bun SSR utilities, and the Bun-served design-system website.
+## Project
 
-## General Rules
-- Preserve the visual language: sharp edges (no border-radius), bold type, high contrast, accent borders.
-- Keep accessibility in mind: visible focus states, WCAG-aware contrast; don’t reduce contrast.
-- Maintain consistency across docs and code blocks; prefer concise, high-signal examples.
-- Respect existing instructions (e.g., don’t mention Claude in commits/PRs).
+- Bun SSR application with TypeScript/JSX rendered through `react-dom/server`.
+- No client-side React runtime or hydration.
+- Shared components live in `src/components/`; pages and handlers live in `src/routes/`.
+- Browser behavior is vanilla JavaScript under `public/assets/js/`.
+- Design-system documentation lives in `docs/`; static HTML examples live in `docs/02-html-showcase/`.
 
-## Code & Structure
-- Docs live in `docs/` (design system, tokens, components, patterns, showcases).
-- The Bun-served website lives in `src/routes/` and shared UI lives in `src/components/`.
-- Server helpers in `src/utils/` (e.g., `loadRoutes` for Bun SSR routing).
-- Middleware in `src/middleware/` (e.g., `corsResponse` for OPTIONS preflight).
-- Default to ASCII; add comments only when clarifying non-obvious logic.
+## Design Language
 
-## Bun SSR Notes
-- `loadRoutes` scans `src/routes/**`, supports `index.tsx` (GET), and method files (`get.ts`, `post.ts`, etc.), `$param` → `:param`.
-- SSR-only: React runtime is not on the client; no hooks or client-side event handlers in JSX. Use vanilla JS for interactivity.
-- Handle OPTIONS early with `corsResponse` when CORS is needed.
-- Trailing slash normalization is expected in routing examples.
+- Preserve sharp, zero-radius geometry, bold typography, high contrast, and accent borders.
+- Use Space Grotesk for display text, Inter for body text, and JetBrains Mono for code.
+- Keep visible focus states and WCAG-aware contrast in every supported theme.
+- Reuse existing tokens and components before introducing new abstractions.
 
-## Docs Hygiene
-- Add language hints to code fences (`html`, `css`, `ts`, `tsx`, `js`).
-- Ensure internal links point to real files (avoid broken paths like `02-tokens.md`).
-- Keep tone concise and confident; avoid fluff.
-- When adding new sections, mirror existing formatting styles and typography references.
+## Bun SSR Contracts
 
-## Frontend Styling
-- Tailwind 4 is generated from `src/styles/dutchy.css` to `public/assets/css/styles.css`; the generated stylesheet is a build artifact and should not be committed. Read `docs/03-using-with-bun/theme-and-css-build.md` before changing theme tokens, CSS build behavior, asset caching, or theme switching. Fonts come from Google Fonts as already configured.
-- Avoid introducing rounded corners or low-contrast schemes.
-- Use accent borders (4px/8px) and tight grids where patterns call for them.
+- `loadRoutes` scans `src/routes/**`; `index.tsx` handles GET and method files handle explicit HTTP methods.
+- A `$param` directory maps to a `:param` route segment. Preserve trailing-slash normalization.
+- Do not use React hooks or JSX event handlers in SSR components.
+- Add interactivity through a vanilla JavaScript handler and stable `data-*` or ID selectors.
+- When using an interactive component, verify the required script in `src/components/componentRegistry.ts` is loaded by the route or `Layout`.
+- Keep CORS preflight handling early when a route needs CORS.
 
-## Commands & Tooling
-- Use `rg` for search when possible.
-- No destructive git commands unless explicitly requested by a human.
-- Prefer `apply_patch` for small edits; don’t auto-reformat unrelated files.
+## Components And Routes
 
-## Outputs & Checks
-- Verify new links and paths exist.
-- Keep examples minimal but meaningful; avoid bloated snippets.
-- If adding tests or scripts, clean up temporary artifacts unless requested to keep them.
+- Follow existing component, route, registry, handler, and documentation patterns before creating a new one.
+- In routes and showcases, use Dutchy components for controls and established layout primitives when they represent the intended semantics.
+- Raw semantic HTML remains appropriate for document structure and when no component equivalent exists.
+- Keep component props typed and preserve native attributes when wrapping one native element.
+- Interactive JSX selectors and client-handler selectors must agree exactly.
+
+## Styling And Themes
+
+- `src/styles/dutchy.css` is the Tailwind 4 source of truth for tokens, themes, and custom component CSS.
+- `public/assets/css/styles.css` is generated by `bun run build`; never edit or commit it.
+- The Bun SSR site uses the generated local stylesheet. Only static HTML examples under `docs/02-html-showcase/` use the Tailwind CDN.
+- Read `docs/03-using-with-bun/theme-and-css-build.md` before changing CSS build behavior, themes, caching, or deployment.
+- Update the asset version in `src/components/Layout/index.tsx` when a release changes CSS behavior or generated utilities.
+- Do not reintroduce `tailwind.config.js`; this project uses Tailwind 4 CSS-first configuration.
+
+## Documentation
+
+- Add language identifiers to fenced code blocks.
+- Verify internal links and example paths exist.
+- Keep examples concise and consistent with the current implementation.
+- Update relevant indexes when adding components or major guides.
+- Do not describe generated CSS as a committed source file.
+
+## Skills
+
+- Codex project skills live in `.agents/skills/`.
+- Claude Code project skills live in `.claude/skills/`.
+- Keep shared skills semantically identical across both directories.
+- Runtime-specific skills, such as `implement`, may differ when their agent-team capabilities differ.
+- `.claude/settings.local.json` is machine-local and remains ignored.
+- Do not add a commit skill; ordinary repository instructions and explicit user authorization are sufficient.
+
+## Git And Dependencies
+
+- Renovate targets `develop`; keep dependency PRs based on that branch.
+- Preserve user changes in a dirty worktree and avoid destructive git commands.
+- Do not mention agent tooling in commit messages or pull-request text.
+- Generated CSS, local settings, environment files, and local TODO files must remain untracked.
+
+## Required Checks
+
+Run checks in proportion to the change. Before committing a repository-wide, component, route, dependency, or styling change, run:
+
+```bash
+bun run build
+bun run lint
+bun run typecheck
+bun test ./tests
+```
+
+For user-facing UI changes, also inspect the affected route in the browser at desktop and mobile sizes, exercise relevant interactions, and check for console errors and overflow.
