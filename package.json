@@ -1,6 +1,7 @@
 {
   "name": "dutchy-design-system",
   "description": "Dutchy Design System",
+  "homepage": "https://dutchy.design",
   "version": "2.1.2",
   "module": "src/index.ts",
   "type": "module",

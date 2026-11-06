@@ -2,6 +2,8 @@
 
 Bold, structural UI kit inspired by Dutch graphic design: zero-radius geometry, high contrast, and loud typography. Built around Bun SSR + a server-only JSX component library in `src/components/`.
 
+Live site: [dutchy.design](https://dutchy.design)
+
 ## Quick Start
 
 ```bash
