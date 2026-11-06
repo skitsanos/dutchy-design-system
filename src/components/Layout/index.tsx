@@ -1,4 +1,5 @@
 import type { FC, ReactNode } from 'react';
+import { DEFAULT_ROBOTS, getCanonicalUrl } from '@/utils/seo';
 
 interface LayoutProps {
   title: string;
@@ -8,6 +9,7 @@ interface LayoutProps {
     keywords?: string;
     image?: string;
     url?: string;
+    robots?: string;
   };
   scripts?: string[];
   styles?: string[];
@@ -16,6 +18,8 @@ interface LayoutProps {
 const ASSET_VERSION = '2.1.2';
 
 const Layout: FC<LayoutProps> = ({ title, children, meta, scripts = [], styles = [] }) => {
+  const canonicalUrl = getCanonicalUrl(meta?.url);
+
   return (
     <html lang="en">
       <head>
@@ -24,6 +28,8 @@ const Layout: FC<LayoutProps> = ({ title, children, meta, scripts = [], styles =
         <title>{title}</title>
 
         {/* SEO Meta Tags */}
+        <link rel="canonical" href={canonicalUrl} />
+        <meta name="robots" content={meta?.robots ?? DEFAULT_ROBOTS} />
         {meta?.description && <meta name="description" content={meta.description} />}
         {meta?.keywords && <meta name="keywords" content={meta.keywords} />}
 
@@ -32,7 +38,7 @@ const Layout: FC<LayoutProps> = ({ title, children, meta, scripts = [], styles =
         <meta property="og:title" content={title} />
         {meta?.description && <meta property="og:description" content={meta.description} />}
         {meta?.image && <meta property="og:image" content={meta.image} />}
-        {meta?.url && <meta property="og:url" content={meta.url} />}
+        <meta property="og:url" content={canonicalUrl} />
 
         {/* Twitter Card */}
         <meta name="twitter:card" content="summary_large_image" />

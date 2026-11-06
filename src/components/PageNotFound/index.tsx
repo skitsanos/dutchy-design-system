@@ -9,7 +9,7 @@ interface PageNotFoundProps {
 
 const PageNotFound: FC<PageNotFoundProps> = () => {
   return (
-    <Layout title="404 - Page Not Found">
+    <Layout title="404 - Page Not Found" meta={{ robots: 'noindex, follow' }}>
       <Header />
       <main className="min-h-[60vh] flex items-center justify-center py-20">
         <div className="container mx-auto px-4 md:px-6 text-center">

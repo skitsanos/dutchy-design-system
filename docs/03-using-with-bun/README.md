@@ -219,6 +219,7 @@ bun run src/index.ts
 - [Routing](./routing.md) - File-based routing system
 - [Components](./components.md) - Building Dutchy components
 - [Theme and CSS Build Lifecycle](./theme-and-css-build.md) - How Tailwind, runtime themes, Bun static assets, Docker, and Railway fit together
+- [Canonical URLs and Crawl Access](./seo.md) - Production metadata, robots.txt, and automatic sitemap discovery
 
 ### Examples
 

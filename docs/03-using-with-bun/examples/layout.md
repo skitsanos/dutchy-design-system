@@ -2,11 +2,14 @@
 
 The Layout component is the root HTML document wrapper for all pages.
 
+The production layout adds request-scoped canonical URLs and crawl metadata automatically. See [Canonical URLs and Crawl Access](../seo.md) for the request context, robots policy, and sitemap behavior.
+
 ## Basic Implementation
 
 ```tsx
 // src/components/Layout/index.tsx
 import type { FC, ReactNode } from 'react';
+import { DEFAULT_ROBOTS, getCanonicalUrl } from '@/utils/seo';
 
 interface LayoutProps {
   title: string;
@@ -16,6 +19,7 @@ interface LayoutProps {
     keywords?: string;
     image?: string;
     url?: string;
+    robots?: string;
   };
   scripts?: string[];
   styles?: string[];
@@ -28,7 +32,7 @@ const Layout: FC<LayoutProps> = ({
   scripts = [],
   styles = [],
 }) => {
-  const siteUrl = process.env.SITE_URL || 'http://localhost:3000';
+  const canonicalUrl = getCanonicalUrl(meta?.url);
 
   return (
     <html lang="en">
@@ -42,6 +46,8 @@ const Layout: FC<LayoutProps> = ({
         <link rel="apple-touch-icon" href="/assets/images/apple-touch-icon.png" />
 
         {/* SEO Meta Tags */}
+        <link rel="canonical" href={canonicalUrl} />
+        <meta name="robots" content={meta?.robots ?? DEFAULT_ROBOTS} />
         {meta?.description && (
           <meta name="description" content={meta.description} />
         )}
@@ -58,9 +64,7 @@ const Layout: FC<LayoutProps> = ({
         {meta?.image && (
           <meta property="og:image" content={meta.image} />
         )}
-        {meta?.url && (
-          <meta property="og:url" content={meta.url} />
-        )}
+        <meta property="og:url" content={canonicalUrl} />
 
         {/* Twitter Card */}
         <meta name="twitter:card" content="summary_large_image" />

@@ -4,6 +4,8 @@ Bold, structural UI kit inspired by Dutch graphic design: zero-radius geometry, 
 
 Live site: [dutchy.design](https://dutchy.design)
 
+The site publishes [robots.txt](https://dutchy.design/robots.txt) and an automatic [sitemap](https://dutchy.design/sitemap.xml). See [Canonical URLs and Crawl Access](./docs/03-using-with-bun/seo.md) for configuration and verification.
+
 ## Quick Start
 
 ```bash

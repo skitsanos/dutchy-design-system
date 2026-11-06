@@ -16,6 +16,7 @@ const ComponentPageLayout: FC<ComponentPageLayoutProps> = ({ componentId, childr
     return (
       <Layout
         title="Component Not Found - Dutchy Design System"
+        meta={{ robots: 'noindex, follow' }}
         scripts={['/assets/js/mobile-menu.js']}
       >
         <WebsiteHeader currentPath="/components" />

@@ -3,8 +3,11 @@ import { basename, dirname, join } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import * as React from 'react';
 import { renderToReadableStream } from 'react-dom/server';
+import { pageRequestContext } from '@/utils/seo';
 
-export type RouteHandler = (req: Request) => Promise<Response> | Response;
+export type RouteHandler = ((req: Request) => Promise<Response> | Response) & {
+  isPage?: boolean;
+};
 export type RouteHandlers = Record<string, RouteHandler>;
 export type Routes = Record<string, RouteHandlers>;
 export type RouteParams = Record<string, string>;
@@ -54,21 +57,25 @@ const isReactComponent = (module: RouteModule): boolean => {
 /**
  * Create a handler for a React component
  */
-export const createReactHandler =
-  (Component: RouteComponent): RouteHandler =>
-  async (req: Request) => {
-    try {
-      const stream = await renderToReadableStream(React.createElement(Component, { request: req }));
+export const createReactHandler = (Component: RouteComponent): RouteHandler =>
+  Object.assign(
+    async (req: Request) => {
+      try {
+        const stream = await pageRequestContext.run(req, () =>
+          renderToReadableStream(React.createElement(Component, { request: req })),
+        );
 
-      return new Response(stream, {
-        headers: { 'Content-Type': 'text/html' },
-      });
-    } catch (error) {
-      const message = error instanceof Error ? error.message : 'Unknown render error';
-      console.error('Error rendering React component:', error);
-      return new Response(`Error: ${message}`, { status: 500 });
-    }
-  };
+        return new Response(stream, {
+          headers: { 'Content-Type': 'text/html' },
+        });
+      } catch (error) {
+        const message = error instanceof Error ? error.message : 'Unknown render error';
+        console.error('Error rendering React component:', error);
+        return new Response(`Error: ${message}`, { status: 500 });
+      }
+    },
+    { isPage: true },
+  );
 
 const isRouteHandler = (value: unknown): value is RouteHandler => typeof value === 'function';
 

@@ -42,6 +42,7 @@ Build server-rendered applications using Bun with JSX/TSX (SSR-only, no client R
 | [Bun Quick Start](./03-using-with-bun/getting-started.md) | Start building with Bun |
 | [Theme and CSS Build Lifecycle](./03-using-with-bun/theme-and-css-build.md) | Understand theme loading, Tailwind generation, Bun serving, and Railway build behavior |
 | [Routing](./03-using-with-bun/routing.md) | File-based routing system |
+| [Canonical URLs and Crawl Access](./03-using-with-bun/seo.md) | Canonical metadata, robots.txt, and sitemap discovery |
 | [Client-Side JS](./03-using-with-bun/examples/client-side-js.md) | Vanilla JS for interactivity |
 | [API Routes](./03-using-with-bun/examples/api-routes.md) | REST API patterns |
 
