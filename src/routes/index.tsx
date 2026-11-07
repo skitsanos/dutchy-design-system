@@ -6,10 +6,10 @@ import WebsiteHeader from '@/components/WebsiteHeader';
 const HomePage: FC = () => {
   return (
     <Layout
-      title="Dutchy Design System - Bold, Structural, Dutch-Inspired"
+      title="Dutchy Design System — Bun SSR and Tailwind CSS Components"
       meta={{
         description:
-          'A bold design system inspired by Dutch design principles. Zero border radius, strong typography, and high contrast aesthetics for modern interfaces.',
+          'Build Dutch-inspired interfaces with Bun SSR, TypeScript/JSX components, and Tailwind CSS 4. Explore design tokens, themes, and vanilla JavaScript demos.',
         keywords:
           'design system, Dutch design, UI components, Tailwind CSS, zero border radius, typography, web design',
       }}

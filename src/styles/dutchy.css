@@ -237,13 +237,13 @@
     outline-offset: 2px;
   }
 
-  .dutchy-checkbox:not(:disabled) + label:hover .dutchy-checkbox-box {
-    border-color: hsl(var(--primary));
-  }
-
   .dutchy-checkbox:disabled + label .dutchy-checkbox-box {
     background: hsl(40 20% 94%);
     border-color: hsl(25 20% 88%);
+  }
+
+  .dutchy-checkbox:not(:disabled) + label:hover .dutchy-checkbox-box {
+    border-color: hsl(var(--primary));
   }
 }
 

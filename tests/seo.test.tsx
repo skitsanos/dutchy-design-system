@@ -6,6 +6,15 @@ import type { RouteHandler, Routes } from '@/utils/loadRoutes';
 import { createReactHandler, loadRoutes, resolveRoute } from '@/utils/loadRoutes';
 import { createSitemap, getCanonicalUrl, ROBOTS_TXT } from '@/utils/seo';
 
+const ConcurrentPage: FC<{ request: Request }> = async ({ request }) => {
+  await Bun.sleep(request.url.includes('first') ? 10 : 1);
+  return (
+    <Layout title="Concurrent page">
+      <main>Page content</main>
+    </Layout>
+  );
+};
+
 describe('canonical URLs', () => {
   test('uses the production origin and removes duplicate query and trailing-slash variants', () => {
     expect(
@@ -19,15 +28,7 @@ describe('canonical URLs', () => {
   });
 
   test('isolates request metadata across concurrent asynchronous SSR renders', async () => {
-    const Page: FC<{ request: Request }> = async ({ request }) => {
-      await Bun.sleep(request.url.includes('first') ? 10 : 1);
-      return (
-        <Layout title="Concurrent page">
-          <main>Page content</main>
-        </Layout>
-      );
-    };
-    const handler = createReactHandler(Page);
+    const handler = createReactHandler(ConcurrentPage);
     const paths = ['/first/?utm_source=test', '/second?theme=purple'];
     const html = await Promise.all(
       paths.map(async (path) => {

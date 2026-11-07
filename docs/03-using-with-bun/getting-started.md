@@ -58,9 +58,8 @@ Create `tsconfig.json`:
 ```json
 {
   "compilerOptions": {
-    "baseUrl": ".",
     "paths": {
-      "@/*": ["src/*"]
+      "@/*": ["./src/*"]
     },
     "lib": ["ESNext", "DOM"],
     "target": "ESNext",

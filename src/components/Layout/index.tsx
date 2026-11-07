@@ -15,7 +15,7 @@ interface LayoutProps {
   styles?: string[];
 }
 
-const ASSET_VERSION = '2.1.2';
+const ASSET_VERSION = '2.1.3';
 
 const Layout: FC<LayoutProps> = ({ title, children, meta, scripts = [], styles = [] }) => {
   const canonicalUrl = getCanonicalUrl(meta?.url);

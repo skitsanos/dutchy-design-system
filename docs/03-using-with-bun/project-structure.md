@@ -276,10 +276,9 @@ Configure path aliases in `tsconfig.json` for cleaner imports:
 ```json
 {
   "compilerOptions": {
-    "baseUrl": ".",
     "paths": {
-      "@/*": ["src/*"],
-      "@data/*": ["data/*"]
+      "@/*": ["./src/*"],
+      "@data/*": ["./data/*"]
     }
   }
 }

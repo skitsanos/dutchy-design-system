@@ -110,9 +110,8 @@ bun add -d @types/react @types/react-dom typescript
 // tsconfig.json
 {
   "compilerOptions": {
-    "baseUrl": ".",
     "paths": {
-      "@/*": ["src/*"]
+      "@/*": ["./src/*"]
     },
     "lib": ["ESNext", "DOM"],
     "target": "ESNext",

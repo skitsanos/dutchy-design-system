@@ -1,9 +1,8 @@
 {
   "compilerOptions": {
     // Path aliases
-    "baseUrl": ".",
     "paths": {
-      "@/*": ["src/*"]
+      "@/*": ["./src/*"]
     },
 
     // Environment setup & latest features

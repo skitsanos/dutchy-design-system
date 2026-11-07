@@ -67,6 +67,12 @@ Repository guidance for coding agents working on the Dutchy Design System.
 - Do not mention agent tooling in commit messages or pull-request text.
 - Generated CSS, local settings, environment files, and local TODO files must remain untracked.
 
+## Post-Push Cleanup
+
+- After pushing and verifying deployment, stop task-owned background processes and remove disposable build artifacts, including generated CSS, and task-specific caches.
+- Inspect repository worktrees and remove only unused, clean worktrees whose changes are fully pushed. Preserve the primary worktree, active worktrees, and any uncommitted or unpushed work.
+- Preserve authored assets and deliverables, installed dependencies, environment files, local settings, and shared caches used by other projects.
+
 ## Required Checks
 
 Run checks in proportion to the change. Before committing a repository-wide, component, route, dependency, or styling change, run:

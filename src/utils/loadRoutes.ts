@@ -30,6 +30,11 @@ export interface ResolvedRoute {
 const HTTP_METHODS = ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS', 'HEAD'] as const;
 type HttpMethod = (typeof HTTP_METHODS)[number];
 
+const defaultRouteHandler: RouteHandler = () =>
+  new Response('It works', {
+    headers: { 'Content-Type': 'text/plain' },
+  });
+
 /**
  * Check if a module exports a React component
  */
@@ -351,10 +356,7 @@ export const loadRoutes = async (routesDir: string): Promise<Routes> => {
   // Add default route if no routes were found
   if (Object.keys(routes).length === 0) {
     routes['/'] = {
-      GET: async () =>
-        new Response('It works', {
-          headers: { 'Content-Type': 'text/plain' },
-        }),
+      GET: defaultRouteHandler,
     };
 
     if (process.env.NODE_ENV !== 'production') {
