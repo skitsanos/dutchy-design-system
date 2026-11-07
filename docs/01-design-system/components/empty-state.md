@@ -4,6 +4,8 @@
 
 Empty states are not dead ends — they are invitations. In the Dutchy Design System, empty states use bold iconography, clear messaging, and a prominent call-to-action to guide users toward their next step.
 
+See the [Empty State component guide](https://dutchy.design/components/emptystate) for labelled previews, Bun SSR usage, and the current prop reference.
+
 ## Search Empty State
 
 ```html
@@ -113,31 +115,23 @@ Empty states are not dead ends — they are invitations. In the Dutchy Design Sy
 }
 ```
 
-## React Component Example
+## Bun SSR Component Usage
 
 ```tsx
-function EmptyState({ icon, title, description, action, secondaryAction }) {
-  return (
-    <div className="flex flex-col items-center justify-center py-20 text-center">
-      {icon && (
-        <div className="w-16 h-16 bg-muted flex items-center justify-center mb-6">
-          {icon}
-        </div>
-      )}
-      <h3 className="font-display text-xl font-bold uppercase tracking-tight mb-2">
-        {title}
-      </h3>
-      {description && (
-        <p className="text-muted-foreground text-sm max-w-sm mb-6">{description}</p>
-      )}
-      <div className="flex gap-4">
-        {action}
-        {secondaryAction}
-      </div>
-    </div>
-  );
-}
+import EmptyState from '@/components/EmptyState';
+
+<EmptyState
+  icon="dashboard"
+  title="Create your first dashboard"
+  description="Choose a starting layout for your project."
+  actionText="Explore dashboard example"
+  actionHref="/showcase/admin"
+/>
 ```
+
+`title` is required. The optional props are `icon` (a supported Dutchy icon name), `description`, `actionText`, `actionHref`, and `className`.
+
+With `actionText` and `actionHref`, the component renders a navigation link. With `actionText` alone, it renders a native button that needs an application-specific vanilla JavaScript handler. The component itself uses server-rendered HTML without React hydration.
 
 ## Accessibility
 

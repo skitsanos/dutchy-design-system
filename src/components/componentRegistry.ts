@@ -52,7 +52,8 @@ export const COMPONENTS: ComponentMeta[] = [
   {
     id: 'emptystate',
     name: 'Empty State',
-    description: 'Placeholder content for empty views with helpful actions.',
+    description:
+      'Empty state component documentation with Bun SSR JSX examples, a prop reference, and accessible patterns for search guidance and dashboard onboarding.',
     category: 'Feedback',
     scripts: [],
   },
