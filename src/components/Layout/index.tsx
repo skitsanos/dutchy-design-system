@@ -1,5 +1,5 @@
 import type { FC, ReactNode } from 'react';
-import { DEFAULT_ROBOTS, getCanonicalUrl } from '@/utils/seo';
+import { DEFAULT_ROBOTS, getCanonicalUrl, SITE_URL } from '@/utils/seo';
 
 interface LayoutProps {
   title: string;
@@ -16,9 +16,14 @@ interface LayoutProps {
 }
 
 const ASSET_VERSION = '2.1.4';
+const DEFAULT_SOCIAL_IMAGE = `${SITE_URL}/assets/images/dutchy-modular-d-social.png`;
+const DEFAULT_SOCIAL_IMAGE_ALT =
+  'Dutchy Design System for Bun SSR and Tailwind CSS with the black and orange Modular D logo';
 
 const Layout: FC<LayoutProps> = ({ title, children, meta, scripts = [], styles = [] }) => {
   const canonicalUrl = getCanonicalUrl(meta?.url);
+  const socialImage = meta?.image || DEFAULT_SOCIAL_IMAGE;
+  const usesDefaultSocialImage = socialImage === DEFAULT_SOCIAL_IMAGE;
 
   return (
     <html lang="en">
@@ -43,14 +48,25 @@ const Layout: FC<LayoutProps> = ({ title, children, meta, scripts = [], styles =
         <meta property="og:type" content="website" />
         <meta property="og:title" content={title} />
         {meta?.description && <meta property="og:description" content={meta.description} />}
-        {meta?.image && <meta property="og:image" content={meta.image} />}
+        <meta property="og:image" content={socialImage} />
+        {usesDefaultSocialImage && (
+          <>
+            <meta property="og:image:type" content="image/png" />
+            <meta property="og:image:width" content="1200" />
+            <meta property="og:image:height" content="630" />
+            <meta property="og:image:alt" content={DEFAULT_SOCIAL_IMAGE_ALT} />
+          </>
+        )}
         <meta property="og:url" content={canonicalUrl} />
 
         {/* Twitter Card */}
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={title} />
         {meta?.description && <meta name="twitter:description" content={meta.description} />}
-        {meta?.image && <meta name="twitter:image" content={meta.image} />}
+        <meta name="twitter:image" content={socialImage} />
+        {usesDefaultSocialImage && (
+          <meta name="twitter:image:alt" content={DEFAULT_SOCIAL_IMAGE_ALT} />
+        )}
 
         {/* Google Fonts */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
