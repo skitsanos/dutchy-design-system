@@ -1,3 +1,5 @@
+[![Dutchy Design System with the Modular D logo](./public/assets/images/dutchy-modular-d-social.png)](https://dutchy.design)
+
 # Dutchy Design System — Bun SSR and Tailwind CSS Components
 
 Dutchy is a Dutch-inspired design system and TypeScript/JSX component library for server-rendered web applications built with Bun and Tailwind CSS 4. It includes reusable UI components, design tokens, themes, and complete page examples, with vanilla JavaScript interactivity and no client-side React runtime.
@@ -5,8 +7,6 @@ Dutchy is a Dutch-inspired design system and TypeScript/JSX component library fo
 Sharp geometry, zero-radius corners, warm orange accents, and bold typography give dashboards, forms, storefronts, and documentation a consistent visual language.
 
 [Live documentation](https://dutchy.design) · [Component gallery](https://dutchy.design/components) · [Layout patterns](https://dutchy.design/patterns) · [Page examples](https://dutchy.design/showcase) · [Bun integration guide](https://dutchy.design/bun)
-
-[![Dutchy Design System homepage with bold typography, sharp geometric panels, and warm orange accents](./docs/assets/dutchy-design-system.jpg)](https://dutchy.design)
 
 ## Why Use Dutchy
 
