@@ -26,6 +26,12 @@ const Layout: FC<LayoutProps> = ({ title, children, meta, scripts = [], styles =
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>{title}</title>
+        <link
+          rel="icon"
+          type="image/svg+xml"
+          sizes="any"
+          href="/assets/images/dutchy-modular-d.svg"
+        />
 
         {/* SEO Meta Tags */}
         <link rel="canonical" href={canonicalUrl} />
