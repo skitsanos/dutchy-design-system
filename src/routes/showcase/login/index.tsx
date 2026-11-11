@@ -42,13 +42,13 @@ const LoginPage: FC<{ request: Request }> = ({ request }) => {
           {/* Logo */}
           <div className="relative z-10">
             <a href="/showcase" className="flex items-center gap-3">
-              <Flex
-                align="center"
-                justify="center"
-                className="bg-primary text-primary-foreground w-12 h-12 font-display font-bold text-2xl"
-              >
-                D.
-              </Flex>
+              <img
+                src="/assets/images/dutchy-modular-d-on-dark.svg"
+                alt=""
+                width={48}
+                height={48}
+                className="shrink-0"
+              />
               <span className="font-display font-bold text-3xl tracking-tighter uppercase text-background">
                 Dutchy
               </span>
@@ -96,13 +96,13 @@ const LoginPage: FC<{ request: Request }> = ({ request }) => {
             {/* Mobile Logo */}
             <div className="lg:hidden mb-8 text-center">
               <a href="/showcase" className="inline-flex items-center gap-3">
-                <Flex
-                  align="center"
-                  justify="center"
-                  className="bg-primary text-primary-foreground w-10 h-10 font-display font-bold text-xl"
-                >
-                  D.
-                </Flex>
+                <img
+                  src="/assets/images/dutchy-modular-d.svg"
+                  alt=""
+                  width={40}
+                  height={40}
+                  className="shrink-0"
+                />
                 <span className="font-display font-bold text-2xl tracking-tighter uppercase text-foreground">
                   Dutchy
                 </span>
