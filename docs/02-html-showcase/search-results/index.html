@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Search Results - Dutchy Design System Showcase</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://dutchy.design/assets/js/select.js" defer></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
@@ -177,13 +178,36 @@
           <!-- Sort Bar -->
           <div class="flex flex-wrap items-center justify-between gap-3 mb-8 pb-4 border-b border-border">
             <div class="flex min-w-0 items-center gap-2 sm:gap-4">
-              <span class="shrink-0 font-mono text-sm text-muted-foreground uppercase tracking-wider">Sort by:</span>
-              <select class="min-w-0 bg-background border-2 border-border px-4 py-2 font-mono text-sm focus:outline-none focus:border-primary">
-                <option>Relevance</option>
-                <option>Name A-Z</option>
-                <option>Name Z-A</option>
-                <option>Recently Updated</option>
-              </select>
+              <span id="search-sort-label" class="shrink-0 font-mono text-sm text-muted-foreground uppercase tracking-wider">Sort by:</span>
+              <div data-select data-value="relevance" class="relative min-w-0 w-52">
+                <input type="hidden" data-select-input value="relevance">
+                <button
+                  type="button"
+                  data-select-trigger
+                  class="w-full px-4 py-3 border-2 border-border bg-background text-base text-left flex items-center justify-between gap-2 cursor-pointer transition-colors duration-150 focus:outline-none focus:border-foreground"
+                  aria-haspopup="listbox"
+                  aria-expanded="false"
+                  aria-controls="search-sort-options"
+                  aria-labelledby="search-sort-label search-sort-value"
+                >
+                  <span id="search-sort-value" data-select-value>Relevance</span>
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" class="w-4 h-4 shrink-0 text-muted-foreground transition-transform" aria-hidden="true">
+                    <path d="M19 9l-7 7-7-7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                </button>
+                <div
+                  id="search-sort-options"
+                  data-select-menu
+                  role="listbox"
+                  aria-labelledby="search-sort-label"
+                  class="absolute top-full left-0 right-0 bg-background border-2 border-border border-t-0 z-50 hidden max-h-60 overflow-y-auto"
+                >
+                  <div data-select-option data-value="relevance" role="option" tabindex="-1" aria-selected="true" class="px-4 py-3 cursor-pointer transition-colors text-sm hover:bg-primary hover:text-primary-foreground bg-muted font-bold">Relevance</div>
+                  <div data-select-option data-value="name-asc" role="option" tabindex="-1" aria-selected="false" class="px-4 py-3 cursor-pointer transition-colors text-sm hover:bg-primary hover:text-primary-foreground">Name A-Z</div>
+                  <div data-select-option data-value="name-desc" role="option" tabindex="-1" aria-selected="false" class="px-4 py-3 cursor-pointer transition-colors text-sm hover:bg-primary hover:text-primary-foreground">Name Z-A</div>
+                  <div data-select-option data-value="recent" role="option" tabindex="-1" aria-selected="false" class="px-4 py-3 cursor-pointer transition-colors text-sm hover:bg-primary hover:text-primary-foreground">Recently Updated</div>
+                </div>
+              </div>
             </div>
             <div class="flex gap-2">
               <button class="p-2 bg-foreground text-background" aria-label="Grid view">
