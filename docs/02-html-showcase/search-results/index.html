@@ -68,7 +68,7 @@
           Dutchy
         </span>
       </a>
-      <nav class="hidden md:flex items-center gap-10">
+      <nav class="hidden md:flex items-center gap-4 lg:gap-10">
         <a href="#" class="text-sm font-bold uppercase tracking-widest text-primary underline decoration-4 underline-offset-4">Components</a>
         <a href="#" class="text-sm font-bold uppercase tracking-widest hover:text-primary transition-colors hover:underline decoration-4 underline-offset-4">Categories</a>
         <a href="#" class="text-sm font-bold uppercase tracking-widest hover:text-primary transition-colors hover:underline decoration-4 underline-offset-4">Docs</a>
@@ -87,7 +87,7 @@
         </h1>
         <!-- Search Box -->
         <div class="flex gap-0 bg-background border-4 border-foreground">
-          <div class="flex items-center px-4">
+          <div class="flex shrink-0 items-center px-3 sm:px-4">
             <!-- Lucide Search Icon -->
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-muted-foreground"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
           </div>
@@ -95,9 +95,9 @@
             type="text"
             placeholder="Search for components..."
             value="button"
-            class="flex-1 py-4 px-2 bg-transparent font-sans text-lg focus:outline-none"
+            class="min-w-0 flex-1 py-4 px-2 bg-transparent font-sans text-lg focus:outline-none"
           />
-          <button class="bg-primary text-primary-foreground px-8 py-4 font-bold uppercase tracking-wide hover:bg-primary/90 transition-colors">
+          <button class="shrink-0 bg-primary text-primary-foreground px-4 sm:px-8 py-4 font-bold uppercase tracking-wide hover:bg-primary/90 transition-colors">
             Search
           </button>
         </div>
@@ -175,10 +175,10 @@
         <!-- Results Grid -->
         <div class="lg:col-span-3">
           <!-- Sort Bar -->
-          <div class="flex items-center justify-between mb-8 pb-4 border-b border-border">
-            <div class="flex items-center gap-4">
-              <span class="font-mono text-sm text-muted-foreground uppercase tracking-wider">Sort by:</span>
-              <select class="bg-background border-2 border-border px-4 py-2 font-mono text-sm focus:outline-none focus:border-primary">
+          <div class="flex flex-wrap items-center justify-between gap-3 mb-8 pb-4 border-b border-border">
+            <div class="flex min-w-0 items-center gap-2 sm:gap-4">
+              <span class="shrink-0 font-mono text-sm text-muted-foreground uppercase tracking-wider">Sort by:</span>
+              <select class="min-w-0 bg-background border-2 border-border px-4 py-2 font-mono text-sm focus:outline-none focus:border-primary">
                 <option>Relevance</option>
                 <option>Name A-Z</option>
                 <option>Name Z-A</option>
