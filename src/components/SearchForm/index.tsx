@@ -31,7 +31,7 @@ const SearchForm: FC<SearchFormProps> = ({
         className="min-w-0 flex-1 bg-transparent px-2 py-4 font-sans text-lg focus:outline-none"
       />
       {submitLabel && (
-        <Button type="submit" size="lg">
+        <Button type="submit" size="lg" className="max-sm:px-4 max-sm:text-sm">
           {submitLabel}
         </Button>
       )}
