@@ -15,7 +15,7 @@ interface LayoutProps {
   styles?: string[];
 }
 
-const ASSET_VERSION = '2.1.4';
+const ASSET_VERSION = '2.1.5';
 const DEFAULT_SOCIAL_IMAGE = `${SITE_URL}/assets/images/dutchy-modular-d-social.png`;
 const DEFAULT_SOCIAL_IMAGE_ALT =
   'Dutchy Design System for Bun SSR and Tailwind CSS with the black and orange Modular D logo';

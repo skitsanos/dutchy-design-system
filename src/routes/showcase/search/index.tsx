@@ -116,7 +116,7 @@ const SearchPage = ({ request }: { request: Request }) => {
               submitLabel="Search"
               className="bg-background border-4 border-foreground"
             />
-            <p className="text-center mt-4 text-muted-foreground">
+            <p className="text-center mt-4 text-muted-foreground wrap-anywhere">
               <span className="font-bold text-foreground">{searchResults.length} results</span>{' '}
               found for "{query}"
             </p>
